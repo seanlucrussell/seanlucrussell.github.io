@@ -1,15 +1,14 @@
 module Main exposing (main)
 
 import Browser exposing (Document, UrlRequest)
-import Browser.Events exposing (onKeyDown)
 import Browser.Navigation as Navigation
 import Char exposing (toLower)
 import Css exposing (..)
 import Css.Global exposing (descendants, typeSelector)
 import Date exposing (Date, format)
-import Html.Styled exposing (Html, a, button, div, h1, i, input, text, toUnstyled)
+import Html.Styled exposing (Html, a, div, h1, i, input, text, toUnstyled)
 import Html.Styled.Attributes exposing (css, href, placeholder, style, tabindex, value)
-import Html.Styled.Events exposing (on, onClick, onInput)
+import Html.Styled.Events exposing (on, onInput)
 import Json.Decode as Decode
 import List exposing (map, singleton)
 import Navigation exposing (navigationPage)
@@ -167,6 +166,18 @@ makeSidePanel =
     map (div [] << singleton)
 
 
+
+-- maybe simpler architecture: one massive Msg type, one massive Model type, every page defined as simply a way of viewing and updating
+-- based on those massive base types
+-- new pages just extend that functionality
+-- giant init structure
+-- then one field that allows pages to know which page is currently active, so updates can be surpressed when a page is inactive
+-- could even have a common function e.g.
+--   when : PageSelection -> UpdateFunction -> UpdateFunction
+--   when selection update = \model -> if model.selection == selection then update model else continue
+-- this prevents page isolation which might be bad but it also could be very nice and simple
+
+
 navBar : SitewideModel -> Html SitewideMsg
 navBar model =
     div [ css [ displayFlex, flexDirection row, fontFamilies [ "courier" ], marginBottom (em 1.2) ] ]
@@ -187,7 +198,9 @@ navBar model =
                 , onInput CommandBarChanged
                 , on "keydown" (Decode.map identity keyDecoder)
                 , style "user-select" "none" -- prevent text box from being highlighted. helps keep it hidden
-                , tabindex -1 -- prevent text box from being tab selected. helps keep it hidden
+
+                -- disabling during development bc this is actually really useful for sendign commands
+                --, tabindex -1 -- prevent text box from being tab selected. helps keep it hidden
                 , placeholder "ENTER COMMAND"
                 ]
                 []

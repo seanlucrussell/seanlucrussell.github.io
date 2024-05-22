@@ -44,26 +44,6 @@ commandMap model =
         ]
 
 
-
--- update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
--- update message model =
---     case ( message, model.currentPage ) of
---         ( SelectPage p, _ ) ->
---             ( { model | currentPage = p }, Cmd.none )
---         ( CommandBarChanged t, _ ) ->
---             ( { model | commandText = t }, Cmd.none )
---         ( CommandSubmitted, _ ) ->
---             case Dict.get (String.map toUpper model.commandText) (commandMap model) of
---                 Just cmd ->
---                     update cmd { model | commandText = "" }
---                 Nothing ->
---                     ( { model | commandText = "" }, Cmd.none )
---         ( _, SamplePage ) ->
---             onFirst (\m -> { model | samplePageModel = m }) (SamplePage.update message model.samplePageModel)
---         _ ->
---             ( model, Cmd.none )
-
-
 update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
 update message model =
     case message of

@@ -1,30 +1,36 @@
 module Main exposing (main)
 
-import Browser exposing (Document, UrlRequest)
+import Browser exposing (Document, UrlRequest(..))
 import Browser.Navigation as Navigation
 import Char exposing (toUpper)
 import Css exposing (..)
 import Css.Global exposing (descendants, typeSelector)
 import Dict exposing (Dict)
-import Html.Styled exposing (Html, a, div, input, text, toUnstyled)
+import Html.Styled exposing (Attribute, Html, a, div, input, text, toUnstyled)
 import Html.Styled.Attributes exposing (css, href, placeholder, style, tabindex, value)
-import Html.Styled.Events exposing (on, onInput)
+import Html.Styled.Events exposing (keyCode, on, onInput)
 import Json.Decode as Decode
-import List exposing (map, singleton)
+import List exposing (filter, map, singleton)
+import Missing exposing (missing)
 import Navigation exposing (navigationPage)
 import SamplePage
 import Types exposing (..)
 import Url exposing (Url)
 
 
-init : flags -> Url -> Navigation.Key -> ( SitewideModel, Cmd msg )
-init _ _ _ =
-    ( { currentPage = NavigationPage
-      , commandText = ""
-      , samplePageModel = SamplePage.init
-      }
-    , Cmd.none
-    )
+
+-- start with
+-- elm-live -p 8001 --pushstate src/Main.elm
+
+
+init : flags -> Url -> Navigation.Key -> ( SitewideModel, Cmd SitewideMsg )
+init _ url key =
+    update (UrlChange url)
+        { key = key
+        , currentPage = NavigationPage
+        , commandText = ""
+        , samplePageModel = SamplePage.init
+        }
 
 
 commandMap : SitewideModel -> Dict String SitewideMsg
@@ -41,14 +47,52 @@ commandMap model =
                     NavigationPage
                 )
           )
+        , ( "INC", Increment )
+        , ( "DEC", Decrement )
         ]
+
+
+urlPageRelation : List ( String, Page )
+urlPageRelation =
+    [ ( "/NAV", NavigationPage )
+    , ( "/TEST", SamplePage )
+    ]
+
+
+urlToPage : Url -> Page
+urlToPage url =
+    case filter (\( u, _ ) -> u == url.path) urlPageRelation of
+        ( _, page ) :: _ ->
+            page
+
+        _ ->
+            MissingPage
+
+
+pageToUrl : Page -> String
+pageToUrl page =
+    case filter (\( _, p ) -> p == page) urlPageRelation of
+        ( url, _ ) :: _ ->
+            url
+
+        _ ->
+            "/MISSING"
 
 
 update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
 update message model =
     case message of
         SelectPage p ->
-            ( { model | currentPage = p }, Cmd.none )
+            ( { model | currentPage = p }, Navigation.pushUrl model.key (pageToUrl p) )
+
+        UrlChange url ->
+            ( { model | currentPage = urlToPage url }, Cmd.none )
+
+        UrlRequest (Internal url) ->
+            update (SelectPage (urlToPage url)) model
+
+        UrlRequest (External url) ->
+            ( model, Navigation.load url )
 
         CommandBarChanged t ->
             ( { model | commandText = t }, Cmd.none )
@@ -64,15 +108,10 @@ update message model =
         _ ->
             case model.currentPage of
                 SamplePage ->
-                    onFirst (\m -> { model | samplePageModel = m }) (SamplePage.update message model.samplePageModel)
+                    SamplePage.update message model
 
                 _ ->
                     ( model, Cmd.none )
-
-
-onFirst : (a -> b) -> ( a, c ) -> ( b, c )
-onFirst f ( a, b ) =
-    ( f a, b )
 
 
 pageView : SitewideModel -> Page -> Html SitewideMsg
@@ -84,6 +123,9 @@ pageView m page =
         SamplePage ->
             SamplePage.view m.samplePageModel
 
+        MissingPage ->
+            missing
+
 
 view : SitewideModel -> Document SitewideMsg
 view m =
@@ -92,10 +134,22 @@ view m =
     }
 
 
-defaultStyles : Html.Styled.Attribute msg
+defaultStyles : Attribute msg
 defaultStyles =
     css
-        [ descendants [ typeSelector "code" [ color (rgb 100 100 100) ] ]
+        [ descendants
+            [ typeSelector "code"
+                [ color (rgb 100 100 100)
+                ]
+            , typeSelector "button"
+                [ borderWidth (px 1)
+                , borderRadius (em 40)
+                , padding2 (em 0.4) (em 1.0)
+                , backgroundColor (rgba 255 255 255 0.7)
+                , hover [ backgroundColor (rgba 200 200 200 0.7) ]
+                , fontFamilies [ "arial" ]
+                ]
+            ]
         ]
 
 
@@ -138,7 +192,7 @@ navBar model =
             ]
         , div [ css [ width navPanelSideWidth, textAlign right ] ]
             (makeSidePanel
-                [ a [ href "http://seanlucrussell.com" ] [ text "NAVIGATION" ]
+                [ a [ href "NAV" ] [ text "NAVIGATION" ]
                 , a [ href "http://seanlucrussell.com" ] [ text "MESSAGE" ]
                 ]
             )

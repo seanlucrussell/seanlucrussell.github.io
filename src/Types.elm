@@ -1,6 +1,7 @@
 module Types exposing (..)
 
 import Browser exposing (UrlRequest)
+import Browser.Navigation exposing (Key)
 import Url exposing (Url)
 
 
@@ -8,6 +9,7 @@ type alias SitewideModel =
     { commandText : String
     , samplePageModel : SampleModel
     , currentPage : Page
+    , key : Key
     }
 
 
@@ -18,6 +20,7 @@ type alias SampleModel =
 type Page
     = NavigationPage
     | SamplePage
+    | MissingPage
 
 
 type SitewideMsg

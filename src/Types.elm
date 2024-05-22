@@ -1,19 +1,30 @@
 module Types exposing (..)
 
-import Date exposing (Date)
-import Html.Styled exposing (Html)
+import Browser exposing (UrlRequest)
+import Url exposing (Url)
 
 
-type alias Page msg model =
-    { update : msg -> model -> ( model, Cmd msg )
-    , view : model -> Html msg
-    , init : model
+type alias SitewideModel =
+    { commandText : String
+    , samplePageModel : SampleModel
+    , currentPage : Page
     }
 
 
-type alias BlogPost msg model =
-    PreBlogPost (Page msg model)
+type alias SampleModel =
+    Int
 
 
-type alias PreBlogPost page =
-    { page | title : String, publicationDate : Date }
+type Page
+    = NavigationPage
+    | SamplePage
+
+
+type SitewideMsg
+    = Increment
+    | Decrement
+    | UrlRequest UrlRequest
+    | UrlChange Url
+    | SelectPage Page
+    | CommandBarChanged String
+    | CommandSubmitted

@@ -2,151 +2,92 @@ module Main exposing (main)
 
 import Browser exposing (Document, UrlRequest)
 import Browser.Navigation as Navigation
-import Char exposing (toLower)
+import Char exposing (toUpper)
 import Css exposing (..)
 import Css.Global exposing (descendants, typeSelector)
-import Date exposing (Date, format)
-import Html.Styled exposing (Html, a, div, h1, i, input, text, toUnstyled)
+import Dict exposing (Dict)
+import Html.Styled exposing (Html, a, div, input, text, toUnstyled)
 import Html.Styled.Attributes exposing (css, href, placeholder, style, tabindex, value)
 import Html.Styled.Events exposing (on, onInput)
 import Json.Decode as Decode
 import List exposing (map, singleton)
 import Navigation exposing (navigationPage)
-import SamplePage exposing (Model, Msg(..), testPostPleaseIgnore)
+import SamplePage
 import Types exposing (..)
 import Url exposing (Url)
 
 
-main : Program () SitewideModel SitewideMsg
-main =
-    Browser.application
-        { init = init
-        , view = view
-        , update = update
-        , subscriptions = always Sub.none
-        , onUrlRequest = UrlRequest
-        , onUrlChange = UrlChange
-        }
+init : flags -> Url -> Navigation.Key -> ( SitewideModel, Cmd msg )
+init _ _ _ =
+    ( { currentPage = NavigationPage
+      , commandText = ""
+      , samplePageModel = SamplePage.init
+      }
+    , Cmd.none
+    )
 
 
-type SitewideMsg
-    = NavigationMessage ()
-    | SamplePageMessage Msg
-    | UrlRequest UrlRequest
-    | UrlChange Url
-    | Toggle
-    | CommandBarChanged String
-    | CommandSubmitted
+commandMap : SitewideModel -> Dict String SitewideMsg
+commandMap model =
+    Dict.fromList
+        [ ( "NAV", SelectPage NavigationPage )
+        , ( "TEST", SelectPage SamplePage )
+        , ( "TOGGLE"
+          , SelectPage
+                (if model.currentPage == NavigationPage then
+                    SamplePage
 
-
-type PageModel
-    = NavigationModel ()
-    | SamplePageModel Model
-
-
-type alias SitewideModel =
-    { pageModel : PageModel, commandText : String }
-
-
-init : flags -> Url.Url -> Navigation.Key -> ( SitewideModel, Cmd msg )
-init =
-    always << always << always ( { pageModel = NavigationModel navigationPage.init, commandText = "" }, Cmd.none )
-
-
-tupleBroadcast : (a -> b) -> (c -> d) -> ( a, c ) -> ( b, d )
-tupleBroadcast f g ( x, y ) =
-    ( f x, g y )
+                 else
+                    NavigationPage
+                )
+          )
+        ]
 
 
 update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
 update message model =
-    case ( message, model.pageModel ) of
-        ( NavigationMessage msg, NavigationModel mod ) ->
-            tupleBroadcast (\m -> { model | pageModel = NavigationModel m }) (Cmd.map NavigationMessage) (navigationPage.update msg mod)
-
-        ( SamplePageMessage msg, SamplePageModel mod ) ->
-            tupleBroadcast (\m -> { model | pageModel = SamplePageModel m }) (Cmd.map SamplePageMessage) (testPostPleaseIgnore.update msg mod)
-
-        ( Toggle, SamplePageModel _ ) ->
-            ( { model | pageModel = NavigationModel navigationPage.init }, Cmd.none )
-
-        ( Toggle, NavigationModel _ ) ->
-            ( { model | pageModel = SamplePageModel testPostPleaseIgnore.init }, Cmd.none )
+    case ( message, model.currentPage ) of
+        ( SelectPage p, _ ) ->
+            ( { model | currentPage = p }, Cmd.none )
 
         ( CommandBarChanged t, _ ) ->
             ( { model | commandText = t }, Cmd.none )
 
         ( CommandSubmitted, _ ) ->
-            let
-                ( newModel, _ ) =
-                    if String.map toLower model.commandText == "toggle" then
-                        update Toggle model
+            case Dict.get (String.map toUpper model.commandText) (commandMap model) of
+                Just cmd ->
+                    update cmd { model | commandText = "" }
 
-                    else
-                        ( model, Cmd.none )
-            in
-            ( { newModel | commandText = "" }, Cmd.none )
+                Nothing ->
+                    ( { model | commandText = "" }, Cmd.none )
+
+        ( _, SamplePage ) ->
+            onFirst (\m -> { model | samplePageModel = m }) (SamplePage.update message model.samplePageModel)
 
         _ ->
             ( model, Cmd.none )
 
 
+onFirst : (a -> b) -> ( a, c ) -> ( b, c )
+onFirst f ( a, b ) =
+    ( f a, b )
+
+
+pageView : SitewideModel -> Page -> Html SitewideMsg
+pageView m page =
+    case page of
+        NavigationPage ->
+            navigationPage
+
+        SamplePage ->
+            SamplePage.view m.samplePageModel
+
+
 view : SitewideModel -> Document SitewideMsg
 view m =
     { title = "SLR"
-    , body =
-        [ toUnstyled
-            (case m.pageModel of
-                NavigationModel _ ->
-                    viewPage navPageAlt m
-
-                SamplePageModel _ ->
-                    viewBlogPost testPostAlt m
-            )
-        ]
+    , body = [ toUnstyled (div [ defaultStyles, css [ margin auto, width (em 30), fontSize large ] ] [ navBar m, pageView m m.currentPage ]) ]
     }
-
-
-navPageAlt : Page SitewideMsg SitewideModel
-navPageAlt =
-    { update = update
-    , view =
-        \swmodel ->
-            case swmodel.pageModel of
-                NavigationModel m ->
-                    Html.Styled.map NavigationMessage (navigationPage.view m)
-
-                _ ->
-                    div [] []
-    , init = { pageModel = NavigationModel navigationPage.init, commandText = "" }
-    }
-
-
-testPostAlt : BlogPost SitewideMsg SitewideModel
-testPostAlt =
-    { update = update
-    , view =
-        \swmodel ->
-            case swmodel.pageModel of
-                SamplePageModel m ->
-                    Html.Styled.map SamplePageMessage (testPostPleaseIgnore.view m)
-
-                _ ->
-                    div [] []
-    , init = { pageModel = SamplePageModel testPostPleaseIgnore.init, commandText = "" }
-    , title = testPostPleaseIgnore.title
-    , publicationDate = testPostPleaseIgnore.publicationDate
-    }
-
-
-viewPage : Page SitewideMsg SitewideModel -> SitewideModel -> Html SitewideMsg
-viewPage page model =
-    wrapBody model [ page.view model ]
-
-
-viewBlogPost : BlogPost SitewideMsg SitewideModel -> SitewideModel -> Html SitewideMsg
-viewBlogPost blogPost model =
-    wrapBody model [ viewHeading blogPost.title blogPost.publicationDate, blogPost.view model ]
 
 
 defaultStyles : Html.Styled.Attribute msg
@@ -164,18 +105,6 @@ navPanelSideWidth =
 makeSidePanel : List (Html msg) -> List (Html msg)
 makeSidePanel =
     map (div [] << singleton)
-
-
-
--- maybe simpler architecture: one massive Msg type, one massive Model type, every page defined as simply a way of viewing and updating
--- based on those massive base types
--- new pages just extend that functionality
--- giant init structure
--- then one field that allows pages to know which page is currently active, so updates can be surpressed when a page is inactive
--- could even have a common function e.g.
---   when : PageSelection -> UpdateFunction -> UpdateFunction
---   when selection update = \model -> if model.selection == selection then update model else continue
--- this prevents page isolation which might be bad but it also could be very nice and simple
 
 
 navBar : SitewideModel -> Html SitewideMsg
@@ -227,14 +156,13 @@ keyDecoder =
         (Decode.field "keyCode" Decode.int)
 
 
-viewHeading : String -> Date -> Html msg
-viewHeading title publicationDate =
-    div [ css [ textAlign center, width (pct 80), margin3 (em 1.2) auto (em 2.8) ] ]
-        [ h1 [ css [ margin3 (em 2.3) (em 0) (em 1.1) ], style "text-wrap" "balance" ] [ text title ]
-        , i [ css [] ] [ text (format "MMMM d, y" publicationDate) ]
-        ]
-
-
-wrapBody : SitewideModel -> List (Html SitewideMsg) -> Html SitewideMsg
-wrapBody model b =
-    div [ defaultStyles, css [ margin auto, width (em 30), fontSize large ] ] (navBar model :: b)
+main : Program () SitewideModel SitewideMsg
+main =
+    Browser.application
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = always Sub.none
+        , onUrlRequest = UrlRequest
+        , onUrlChange = UrlChange
+        }

@@ -1,4 +1,4 @@
-module Navigation exposing (..)
+module Pages.Navigation exposing (..)
 
 import Css exposing (center, textAlign)
 import Html.Styled exposing (Html, a, div, h1, p, text)

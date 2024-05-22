@@ -1,4 +1,4 @@
-module Types exposing (..)
+module Sitewide.Types exposing (..)
 
 import Browser exposing (UrlRequest)
 import Browser.Navigation exposing (Key)

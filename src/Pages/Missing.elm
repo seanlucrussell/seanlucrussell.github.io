@@ -1,4 +1,4 @@
-module Missing exposing (..)
+module Pages.Missing exposing (..)
 
 import Css exposing (center, textAlign)
 import Html.Styled exposing (Html, div, h1, p, text)

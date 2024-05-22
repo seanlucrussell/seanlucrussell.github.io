@@ -44,16 +44,36 @@ commandMap model =
         ]
 
 
+
+-- update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
+-- update message model =
+--     case ( message, model.currentPage ) of
+--         ( SelectPage p, _ ) ->
+--             ( { model | currentPage = p }, Cmd.none )
+--         ( CommandBarChanged t, _ ) ->
+--             ( { model | commandText = t }, Cmd.none )
+--         ( CommandSubmitted, _ ) ->
+--             case Dict.get (String.map toUpper model.commandText) (commandMap model) of
+--                 Just cmd ->
+--                     update cmd { model | commandText = "" }
+--                 Nothing ->
+--                     ( { model | commandText = "" }, Cmd.none )
+--         ( _, SamplePage ) ->
+--             onFirst (\m -> { model | samplePageModel = m }) (SamplePage.update message model.samplePageModel)
+--         _ ->
+--             ( model, Cmd.none )
+
+
 update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
 update message model =
-    case ( message, model.currentPage ) of
-        ( SelectPage p, _ ) ->
+    case message of
+        SelectPage p ->
             ( { model | currentPage = p }, Cmd.none )
 
-        ( CommandBarChanged t, _ ) ->
+        CommandBarChanged t ->
             ( { model | commandText = t }, Cmd.none )
 
-        ( CommandSubmitted, _ ) ->
+        CommandSubmitted ->
             case Dict.get (String.map toUpper model.commandText) (commandMap model) of
                 Just cmd ->
                     update cmd { model | commandText = "" }
@@ -61,11 +81,13 @@ update message model =
                 Nothing ->
                     ( { model | commandText = "" }, Cmd.none )
 
-        ( _, SamplePage ) ->
-            onFirst (\m -> { model | samplePageModel = m }) (SamplePage.update message model.samplePageModel)
-
         _ ->
-            ( model, Cmd.none )
+            case model.currentPage of
+                SamplePage ->
+                    onFirst (\m -> { model | samplePageModel = m }) (SamplePage.update message model.samplePageModel)
+
+                _ ->
+                    ( model, Cmd.none )
 
 
 onFirst : (a -> b) -> ( a, c ) -> ( b, c )

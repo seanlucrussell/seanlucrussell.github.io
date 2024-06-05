@@ -17,4 +17,5 @@ init _ url key =
         , commandText = ""
         , samplePageModel = Pages.SamplePage.init
         , gameOfLifeBoard = Extra.GameOfLife.App.initialBoard
+        , time = 0
         }

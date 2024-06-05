@@ -1,6 +1,7 @@
 module Main exposing (main)
 
 import Browser exposing (UrlRequest(..))
+import Browser.Events
 import Sitewide.Init exposing (init)
 import Sitewide.Types exposing (..)
 import Sitewide.Update exposing (update)
@@ -18,7 +19,7 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = always Sub.none
+        , subscriptions = always (Browser.Events.onAnimationFrameDelta Tick)
         , onUrlRequest = UrlRequest
         , onUrlChange = UrlChange
         }

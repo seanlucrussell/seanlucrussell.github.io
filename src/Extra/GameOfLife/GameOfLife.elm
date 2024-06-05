@@ -38,4 +38,13 @@ cellsToCheck =
 
 nextBoard : Board -> Board
 nextBoard board =
-    filter (cellWillBeAlive board) (cellsToCheck board)
+    cullBoard (filter (cellWillBeAlive board) (cellsToCheck board))
+
+
+
+-- remove any cells that are way too far away to be relevant
+
+
+cullBoard : Board -> Board
+cullBoard =
+    filter (\( x, y ) -> abs x < 300 && abs y < 300)

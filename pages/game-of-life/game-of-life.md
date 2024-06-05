@@ -49,7 +49,7 @@ First the data representation. The basic type here is the cell `type Cell = (Int
 
 For both step 1 and 2 in the algorithm we need a way to compute the neighbors of a cell. Visually, this is what we are computing:
 
-![nearby example](/home/endless/Dropbox/media/nearby.png)
+![nearby example](./nearby.png)
 
 In code there are several ways to do this. The easiest method would be to use the cartesian product of two sets which would look like
 
@@ -72,9 +72,7 @@ nearby ( x, y ) =
 
 Using this neighbors funtction we can easily find all the cells we need to check. We find the neighbors for each living cell in the current grid and then we take the set union of all these nighborhoods. Visually we are doing this
 
-![cells to check example](/home/endless/Dropbox/media/cellsToCheck.png)
-
-
+![cells to check example](./cells-to-check.png)
 
 while in code we are doing this
 
@@ -94,7 +92,7 @@ neighbors board cell = intersect board (diff (nearby cell) (singleton cell))
 
 which visually corresponds to the following reduction
 
-![neighbors example](/home/endless/Dropbox/media/living-neighbors.png)
+![neighbors example](./living-neighbors.png)
 
 In words this is "the set of all cells that are both in the board and in the neighborhood but are not the cell itself". With this we can count up the number of neighbors and apply the update rule
 
@@ -163,7 +161,7 @@ In order to make a cool interactive out of this we still need an event loop and 
 
 ### In Conclusion
 
-The most important thing we all learned today is that I am an excellent programmer.
+The most important thing we all learned today is that arrays drool and sets rule.
 
 But not just that. This is also a neat demonstration of how appropriate datastructure selection can greatly simplify and clarify the nature of a problem. By looking at living cells in the game of life as a set of grid coordinate we get a nice visual intuition for what the rules mean and how to implement them using predefined set operations. Choosing sets for the underlying datastructure also eliminated any boundary problems we might have had and provided us with a sparse, space efficient representation of the game for free.
 
@@ -174,3 +172,5 @@ So if nothing else I hope this at least served as an amusing example of the appl
 And I hope this *sets* you up to think of sets next time you are programming.
 
 He. Hehehehe. Haaha. Ha.
+
+Go sets.

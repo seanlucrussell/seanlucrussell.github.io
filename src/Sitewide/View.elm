@@ -98,7 +98,7 @@ makeSidePanel =
 navBar : SitewideModel -> Html SitewideMsg
 navBar model =
     header [ css [ displayFlex, flexDirection row, fontFamilies [ "courier" ], marginBottom (em 1.2) ] ]
-        [ div [ css [ width navPanelSideWidth ] ] (makeSidePanel [ text "SLR", text "LOCAL BUILD" ])
+        [ div [ css [ width navPanelSideWidth ] ] (makeSidePanel [ text "SLR", text "LOCAL BUILD", text ("Time: " ++ String.fromFloat model.time) ])
         , div [ css [ flexGrow (num 1) ] ]
             [ input
                 -- invisible box

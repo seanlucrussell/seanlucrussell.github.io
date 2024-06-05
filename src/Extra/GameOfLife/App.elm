@@ -15,17 +15,17 @@ import Task
 
 sleep : Cmd SitewideMsg
 sleep =
-    Process.sleep 400 |> Task.perform (always SleepComplete)
+    Process.sleep 400 |> Task.perform (always GameOfLifeStep)
 
 
 update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
 update msg model =
     case msg of
-        SleepComplete ->
-            ( { model | gameOfLifeBoard = nextBoard model.gameOfLifeBoard }, sleep )
+        GameOfLifeStep ->
+            ( { model | gameOfLifeBoard = nextBoard model.gameOfLifeBoard }, Cmd.none )
 
         LoadBoard board ->
-            ( { model | gameOfLifeBoard = board }, sleep )
+            ( { model | gameOfLifeBoard = board }, Cmd.none )
 
         _ ->
             ( model, Cmd.none )
@@ -57,7 +57,7 @@ selectorButton msg description =
 
 initialBoard : Board
 initialBoard =
-    offset 50 20 glider
+    offset 50 20 gliderGun
 
 
 offset : Int -> Int -> Board -> Board

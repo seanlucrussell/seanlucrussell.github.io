@@ -64,6 +64,11 @@ pageToUrl page =
             "/MISSING"
 
 
+intervalCount : Float -> Float -> Int
+intervalCount time intervalDuration =
+    floor (time / intervalDuration)
+
+
 update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
 update message model =
     case message of
@@ -89,6 +94,13 @@ update message model =
 
                 Nothing ->
                     ( { model | commandText = "" }, Cmd.none )
+
+        Tick t ->
+            if intervalCount (model.time + t) 100 - intervalCount model.time 100 >= 1 then
+                update GameOfLifeStep { model | time = model.time + t }
+
+            else
+                ( { model | time = model.time + t }, Cmd.none )
 
         _ ->
             case model.currentPage of

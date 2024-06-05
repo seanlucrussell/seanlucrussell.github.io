@@ -12,6 +12,7 @@ type alias SitewideModel =
     , currentPage : Page
     , key : Key
     , gameOfLifeBoard : Extra.GameOfLife.GameOfLife.Board
+    , time : Float
     }
 
 
@@ -36,5 +37,6 @@ type SitewideMsg
     | SelectPage Page
     | CommandBarChanged String
     | CommandSubmitted
-    | SleepComplete
+    | GameOfLifeStep
     | LoadBoard Board
+    | Tick Float

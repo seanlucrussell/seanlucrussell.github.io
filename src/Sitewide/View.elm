@@ -4,10 +4,11 @@ import Browser exposing (Document, UrlRequest(..))
 import Css exposing (..)
 import Css.Global exposing (descendants, typeSelector)
 import Html.Styled exposing (Attribute, Html, a, div, header, input, main_, text, toUnstyled)
-import Html.Styled.Attributes exposing (attribute, css, href, placeholder, style, value)
+import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
 import Html.Styled.Events exposing (keyCode, on, onInput)
 import Json.Decode as Decode
 import List exposing (map, singleton)
+import Pages.GameOfLife as GameOfLife
 import Pages.Missing exposing (missing)
 import Pages.Navigation exposing (navigationPage)
 import Pages.RecursionSchemes as RecursionSchemes
@@ -33,6 +34,9 @@ pageView m page =
 
         GutsOfGitPage ->
             TheGutsOfGit.view
+
+        GameOfLifePage ->
+            GameOfLife.view m
 
 
 view : SitewideModel -> Document SitewideMsg

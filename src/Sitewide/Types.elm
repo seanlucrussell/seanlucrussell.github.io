@@ -2,6 +2,7 @@ module Sitewide.Types exposing (..)
 
 import Browser exposing (UrlRequest)
 import Browser.Navigation exposing (Key)
+import Extra.GameOfLife.GameOfLife exposing (Board)
 import Url exposing (Url)
 
 
@@ -10,6 +11,7 @@ type alias SitewideModel =
     , samplePageModel : SampleModel
     , currentPage : Page
     , key : Key
+    , gameOfLifeBoard : Extra.GameOfLife.GameOfLife.Board
     }
 
 
@@ -23,6 +25,7 @@ type Page
     | MissingPage
     | RecursionSchemesPage
     | GutsOfGitPage
+    | GameOfLifePage
 
 
 type SitewideMsg
@@ -33,3 +36,5 @@ type SitewideMsg
     | SelectPage Page
     | CommandBarChanged String
     | CommandSubmitted
+    | SleepComplete
+    | LoadBoard Board

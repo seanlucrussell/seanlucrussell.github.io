@@ -10,7 +10,7 @@ import Time exposing (Month(..), millisToPosix, utc)
 view : Html msg
 view =
     article []
-        [ blogHeading (text "The Guts of Git") (fromPosix utc (millisToPosix 1717546921000))
+        [ blogHeading (text "The Guts of Git") (fromPosix utc (millisToPosix 1717555824000))
         , p [] [ text "During the renaissance it became popular for great artists to dissect human corpses. Michelangelo and da Vinci both took part in the dissecting of man. Art requires an intimate knowledge of the subject in order to faithfully reproduce it, and there aren’t many better ways to understand something than by taking it apart." ]
         , p [] [ text "So it is with software. Today we are gonna be tearing out the guts of git and looking at them for ourselves so we may too become like the masters." ]
         , h3 [] [ text "The Content Database" ]
@@ -57,17 +57,17 @@ view =
         , p [] [ text "And with an understanding of references we can now see what happens when we modify a file and commit the changes we’ve made. Lets use the previous example:" ]
         , pre [] [ code [] [ text ".\n├── README.md\n└── src\n    ├── engine-schematics.c\n    └── bernoulli-numbers.js" ] ]
         , p [] [ text "To keep things simple let’s pretend like this is about to be only the second commit ever to this project. The current state of the repo will look something like this:" ]
-        , img [ src "media/0-database-start.png" , alt "Master ref links to initial commit, initial commit links to readme blob and src tree, src tree links to other two" ] []
+        , img [ src "media/0-database-start.png", alt "Master ref links to initial commit, initial commit links to readme blob and src tree, src tree links to other two" ] []
         , p [] [ text "And with annotations so you can see what these different object types are" ]
-        , img [ src "media/1-initial-database-labeled.png" , alt "Annotated version of the same diagram" ] []
+        , img [ src "media/1-initial-database-labeled.png", alt "Annotated version of the same diagram" ] []
         , p [] [ text "We’ve made a change to the readme. So we add that to the CAD" ]
-        , img [ src "media/2-add-new-readme.png" , alt "same as above, but with new readme in green" ] []
+        , img [ src "media/2-add-new-readme.png", alt "same as above, but with new readme in green" ] []
         , p [] [ text "But the new readme means we need a new tree" ]
-        , img [ src "media/3-add-new-tree.png" , alt "same as above, but new readme is darker green and we have a new tree in gree linking to new readme and old src" ] []
+        , img [ src "media/3-add-new-tree.png", alt "same as above, but new readme is darker green and we have a new tree in gree linking to new readme and old src" ] []
         , p [] [ text "With the new tree we can add the new commit" ]
-        , img [ src "media/4-modify-branch.png" , alt "same as above, but new tree is darker green and there is a new commit in green linking to tree and old commit" ] []
+        , img [ src "media/4-modify-branch.png", alt "same as above, but new tree is darker green and there is a new commit in green linking to tree and old commit" ] []
         , p [] [ text "And finally update the reference" ]
-        , img [ src "media/5-new-commit-object.png" , alt "same as above, but new commit is darker green and the reference is yellow and now points to the new commit" ] []
+        , img [ src "media/5-new-commit-object.png", alt "same as above, but new commit is darker green and the reference is yellow and now points to the new commit" ] []
         , p [] [ text "We are now done. The commit is done! We’ve updated our repo. We can always go back by finding the previous commit and restoring the tree." ]
         , p [] [ text "Notice how the only thing that got modified was the reference. Everything else was just added to. Pretty neat." ]
         , p [] [ text "Also notice that we added a completely new copy of the readme. It is a common misconception (that I held until like a week ago) that git stores file differences in order to save space. But it doesn’t (caveat needed: sometimes git will compress objects in the CAD into what are known as pack files, where it will use file diffs to save space. But this doesn’t change the basic semantics of the CAD itself)." ]

@@ -1,3 +1,8 @@
+---
+title: TheGutsOfGit
+static: True
+---
+
 # The Guts of Git
 
 During the renaissance it became popular for great artists to dissect human corpses.  Michelangelo and da Vinci both took part in the dissecting of man. Art requires an intimate knowledge of the subject in order to faithfully reproduce it, and there aren't many better ways to understand something than by taking it apart.

@@ -1,10 +1,23 @@
-# Game of life
+---
+title: "GameOfLife"
+dynamic: True
+imports:
+  - Extra.GameOfLife.App
+---
 
-Robust. Elegant. Simple. All the code I write is always like that. With every keystroke I attain the Komolgorov complexity. Don't go looking into my github repos to refute me; you'll only be wasting your time.
+# Better living through sets
 
-A while back I discovered a robust, elegant, and simple implementation for Conway's Game of Life using sets as the underlying datastructure. I was the first person to ever discover this method (Please don't try to verify this either. Seriously it's a waste of time don't do it.) so please admire me.
+Lists are THE most overrated data type bar none. Who has *ever* needed an ordered sequence of values with duplication? Not me. Lists are such a ridiculous data structure that no one can even agree how they should be built. A collection of cons cells? A block of contiguous memory? Do we index into them with pointers? Do we iterate over them with folds? Are we really just using a queue or a stack? Lists are crazy.
 
-Sets, being the underlying infrastructure of almost all modern mathematics (using elementary set theory you can define numbers, functions, shapes, and much more), are extremely interesting objects and very underutilized by programmers. While you might not believe me if I say they are extremely useful in a broad range of contexts I will at least provide you with this one example for my claim.
+Nah. Sets are where it's at.
+
+The mathemeticians have known about sets for a long time, but until recently (within the last 100 years!) programmers didn't have access to them. Now we do but they remain woefully underutilized. But start looking around and you'll see that sets are way better than lists for every conceivable application.
+
+To prove it to ya we are gon' be implementing Conway's Game of Life today. But we are going to be doing it with sets like civilized men and not lists like so many pagans. Because we use a real datatype we won't have to worry about boundary conditions, we will have a compact core ruleset, cool diagrams will be easy to draw to explain what is going on, the implementation will naturally be sparse, and all will be right in the eyes of the Lord.
+
+```sitecode
+Extra.GameOfLife.App.view model.gameOfLifeBoard
+```
 
 ### The Game Itself
 

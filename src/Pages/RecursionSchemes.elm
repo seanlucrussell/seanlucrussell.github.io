@@ -3,14 +3,14 @@ module Pages.RecursionSchemes exposing (..)
 import Components exposing (blogHeading)
 import Date exposing (fromPosix)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (href)
+import Html.Styled.Attributes exposing (..)
 import Time exposing (Month(..), millisToPosix, utc)
 
 
 view : Html msg
 view =
     article []
-        [ blogHeading (text "Recursion schemes are the answer") (fromPosix utc (millisToPosix 1716943749000))
+        [ blogHeading (text "Recursion schemes are the answer") (fromPosix utc (millisToPosix 1717555835000))
         , p [] [ text "But what is the question?" ]
         , p [] [ text "Since I’ve been learning about recursion schemes lately here is the version of recursion schemes that finally made sense to me. This leaves a lot of topics untouched, instead focusing on what I see as the core idea underlying the field. ", a [ href "https://blog.sumtypeofway.com/posts/introduction-to-recursion-schemes.html" ] [ text "This series by Patrick Thomson" ], text " is the most complete exposition about recursion schemes I have come across to date. And ", a [ href "https://jtobin.io/practical-recursion-schemes" ] [ text "this post by Jared Tobin" ], text " containing several practical examples of non-recursive recursive algorithms is what finally made the concept click for me." ]
         , p [] [ text "Recursion schemes are all about removing recursion from datatypes and separating it out into standard recursive templates,  if you will, and reusing these schemes for every recursive datatype in existence." ]

@@ -5,6 +5,7 @@ import Browser.Navigation as Navigation
 import Char exposing (toUpper)
 import Css exposing (..)
 import Dict exposing (Dict)
+import Extra.GameOfLife.App
 import List exposing (filter)
 import Pages.SamplePage
 import Sitewide.Types exposing (..)
@@ -18,6 +19,7 @@ commandMap model =
         , ( "TEST", SelectPage SamplePage )
         , ( "REC", SelectPage RecursionSchemesPage )
         , ( "GOG", SelectPage GutsOfGitPage )
+        , ( "LIFE", SelectPage GameOfLifePage )
         , ( "TOGGLE"
           , SelectPage
                 (if model.currentPage == NavigationPage then
@@ -38,6 +40,7 @@ urlPageRelation =
     , ( "/TEST", SamplePage )
     , ( "/REC", RecursionSchemesPage )
     , ( "/GOG", GutsOfGitPage )
+    , ( "/LIFE", GameOfLifePage )
     ]
 
 
@@ -91,6 +94,9 @@ update message model =
             case model.currentPage of
                 SamplePage ->
                     Pages.SamplePage.update message model
+
+                GameOfLifePage ->
+                    Extra.GameOfLife.App.update message model
 
                 _ ->
                     ( model, Cmd.none )

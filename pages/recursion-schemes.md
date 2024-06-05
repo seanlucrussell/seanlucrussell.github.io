@@ -1,3 +1,8 @@
+---
+title: "RecursionSchemes"
+static: True
+---
+
 # Recursion schemes are the answer
 
 But what is the question?

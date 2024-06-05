@@ -87,7 +87,8 @@ Once we've got a list of cells to update we need a way to check if they will be 
 
 ```elm
 neighbors : Set Cell -> Cell -> Set Cell
-neighbors board cell = intersect board (diff (nearby cell) (singleton cell))
+neighbors board cell =
+    intersect board (diff (nearby cell) (singleton cell))
 ```
 
 which visually corresponds to the following reduction
@@ -143,7 +144,8 @@ nearby ( x, y ) =
       (fromList (range 0 8))
 
 neighbors : Set Cell -> Cell -> Set Cell
-neighbors board cell = intersect board (diff (nearby cell) (singleton cell))
+neighbors board cell =
+    intersect board (diff (nearby cell) (singleton cell))
 
 cellWillBeAlive : Set Cell -> Cell -> Bool
 cellWillBeAlive board cell =

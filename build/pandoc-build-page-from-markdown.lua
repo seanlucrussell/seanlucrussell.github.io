@@ -3,7 +3,7 @@ local stringify = pandoc.utils.stringify
 
 -- Helper function to escape Elm strings
 local function escape_elm(str)
-  return str:gsub('"', '\\"'):gsub("\n", "\\n")
+  return str:gsub('"', '\\"'):gsub("\\","\\\\"):gsub("\n", "\\n")
 end
 
 -- Function to convert inline elements to Elm code

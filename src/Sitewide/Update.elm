@@ -16,6 +16,8 @@ commandMap model =
     Dict.fromList
         [ ( "NAV", SelectPage NavigationPage )
         , ( "TEST", SelectPage SamplePage )
+        , ( "REC", SelectPage RecursionSchemesPage )
+        , ( "GOG", SelectPage GutsOfGitPage )
         , ( "TOGGLE"
           , SelectPage
                 (if model.currentPage == NavigationPage then
@@ -34,6 +36,8 @@ urlPageRelation : List ( String, Page )
 urlPageRelation =
     [ ( "/NAV", NavigationPage )
     , ( "/TEST", SamplePage )
+    , ( "/REC", RecursionSchemesPage )
+    , ( "/GOG", GutsOfGitPage )
     ]
 
 

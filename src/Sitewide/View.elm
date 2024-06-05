@@ -3,14 +3,16 @@ module Sitewide.View exposing (..)
 import Browser exposing (Document, UrlRequest(..))
 import Css exposing (..)
 import Css.Global exposing (descendants, typeSelector)
-import Html.Styled exposing (Attribute, Html, a, div, input, text, toUnstyled)
-import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
+import Html.Styled exposing (Attribute, Html, a, div, header, input, main_, text, toUnstyled)
+import Html.Styled.Attributes exposing (attribute, css, href, placeholder, style, value)
 import Html.Styled.Events exposing (keyCode, on, onInput)
 import Json.Decode as Decode
 import List exposing (map, singleton)
 import Pages.Missing exposing (missing)
 import Pages.Navigation exposing (navigationPage)
+import Pages.RecursionSchemes as RecursionSchemes
 import Pages.SamplePage
+import Pages.TheGutsOfGit as TheGutsOfGit
 import Sitewide.Types exposing (..)
 
 
@@ -26,11 +28,17 @@ pageView m page =
         MissingPage ->
             missing
 
+        RecursionSchemesPage ->
+            RecursionSchemes.view
+
+        GutsOfGitPage ->
+            TheGutsOfGit.view
+
 
 view : SitewideModel -> Document SitewideMsg
 view m =
     { title = "SLR"
-    , body = [ toUnstyled (div [ defaultStyles, css [ margin auto, width (em 30), fontSize large ] ] [ navBar m, pageView m m.currentPage ]) ]
+    , body = [ toUnstyled (main_ [ defaultStyles, css [ margin auto, width (em 34), fontSize large ] ] [ navBar m, pageView m m.currentPage ]) ]
     }
 
 
@@ -40,7 +48,27 @@ defaultStyles =
         [ descendants
             [ typeSelector "code"
                 [ color (rgb 100 100 100)
+                , fontSize medium
                 ]
+            , typeSelector "pre"
+                [ overflow auto
+                , width (pct 100)
+
+                -- , backgroundColor (rgb 220 220 220)
+                , padding (em 0.9)
+                , borderRadius (em 0.4)
+                ]
+            , typeSelector "p"
+                [ paddingTop (em 0.4)
+
+                -- , lineHeight (num 1.4)
+                , paddingBottom (em 0.4)
+                ]
+            , typeSelector "img"
+                [ width (pct 100)
+                , height auto
+                ]
+            , typeSelector "article" [ paddingBottom (em 12) ]
             , typeSelector "button"
                 [ borderWidth (px 1)
                 , borderRadius (em 40)
@@ -65,7 +93,7 @@ makeSidePanel =
 
 navBar : SitewideModel -> Html SitewideMsg
 navBar model =
-    div [ css [ displayFlex, flexDirection row, fontFamilies [ "courier" ], marginBottom (em 1.2) ] ]
+    header [ css [ displayFlex, flexDirection row, fontFamilies [ "courier" ], marginBottom (em 1.2) ] ]
         [ div [ css [ width navPanelSideWidth ] ] (makeSidePanel [ text "SLR", text "LOCAL BUILD" ])
         , div [ css [ flexGrow (num 1) ] ]
             [ input

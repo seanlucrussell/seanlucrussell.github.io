@@ -21,6 +21,8 @@ type Page
     = NavigationPage
     | SamplePage
     | MissingPage
+    | RecursionSchemesPage
+    | GutsOfGitPage
 
 
 type SitewideMsg

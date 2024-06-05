@@ -31,7 +31,7 @@ init =
 view : SampleModel -> Html SitewideMsg
 view model =
     div []
-        (blogHeading "Blah blah blah: words on a page" (fromOrdinalDate 2024 141)
+        (blogHeading (text "Blah blah blah: words on a page") (fromOrdinalDate 2024 141)
             :: map (p [] << singleton)
                 [ button [ onClick Decrement ] [ text "- Dec" ]
                 , text (String.fromInt model)

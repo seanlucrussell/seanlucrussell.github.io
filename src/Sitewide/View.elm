@@ -2,7 +2,8 @@ module Sitewide.View exposing (..)
 
 import Browser exposing (Document, UrlRequest(..))
 import Css exposing (..)
-import Css.Global exposing (descendants, typeSelector)
+import Css.Global exposing (descendants, global, media, typeSelector)
+import Css.Media exposing (only, screen, withMedia)
 import Html.Styled exposing (Attribute, Html, a, div, header, input, main_, text, toUnstyled)
 import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
 import Html.Styled.Events exposing (keyCode, on, onInput)
@@ -42,7 +43,20 @@ pageView m page =
 view : SitewideModel -> Document SitewideMsg
 view m =
     { title = "SLR"
-    , body = [ toUnstyled (main_ [ defaultStyles, css [ margin auto, width (em 34), fontSize large ] ] [ navBar m, pageView m m.currentPage ]) ]
+    , body =
+        [ toUnstyled
+            (main_
+                [ defaultStyles
+                , css
+                    [ margin auto
+                    , withMedia [ only screen [ Css.Media.minWidth (px 800) ] ] [ width (em 34) ]
+                    , fontSize large
+                    , width (pct 78)
+                    ]
+                ]
+                [ navBar m, pageView m m.currentPage ]
+            )
+        ]
     }
 
 
@@ -56,21 +70,20 @@ defaultStyles =
                 ]
             , typeSelector "pre"
                 [ overflow auto
-                , width (pct 100)
+                , width (pct 90)
 
                 -- , backgroundColor (rgb 220 220 220)
-                , padding (em 0.9)
+                , padding2 (em 0.9) (pct 5)
                 , borderRadius (em 0.4)
                 ]
             , typeSelector "p"
                 [ paddingTop (em 0.4)
-
-                -- , lineHeight (num 1.4)
                 , paddingBottom (em 0.4)
                 ]
             , typeSelector "img"
-                [ width (pct 100)
+                [ width (pct 90)
                 , height auto
+                , padding2 (em 2) (pct 5)
                 ]
             , typeSelector "article" [ paddingBottom (em 12) ]
             , typeSelector "button"

@@ -35,22 +35,6 @@ selectorButton : msg -> String -> Html msg
 selectorButton msg description =
     button
         [ onClick msg
-        , css
-            [ margin2 (em 0.4) (em 0.7)
-            , padding2 (em 0.4) (em 1)
-            , fontSize large
-            , fontWeight (int 200)
-            , borderRadius (em 0.2)
-            , borderWidth (px 1)
-            , borderStyle solid
-            , borderColor (hex "C0C0C0")
-            , backgroundColor (hex "ffffffbb")
-            , color (hex "112233")
-            , hover
-                [ backgroundColor (hex "ddddddbb")
-                , borderColor (hex "a0a0a0")
-                ]
-            ]
         ]
         [ text description ]
 

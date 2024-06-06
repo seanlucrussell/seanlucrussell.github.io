@@ -3,7 +3,7 @@ local stringify = pandoc.utils.stringify
 
 -- Helper function to escape Elm strings
 local function escape_elm(str)
-  return str:gsub('"', '\\"'):gsub("\\","\\\\"):gsub("\n", "\\n")
+  return str:gsub("\\","\\\\"):gsub('"', '\\"'):gsub("\n", "\\n")
 end
 
 -- Function to convert inline elements to Elm code
@@ -37,6 +37,11 @@ local function inline_to_elm(inlines)
       table.insert(buffer, 'a [ href "' .. inline.target .. '" ] [ ' .. inline_to_elm(inline.content) .. ' ]')
     elseif inline.t == "Plain" then
       table.insert(buffer, inline_to_elm(inline.content))
+    elseif inline.t == "Quoted" then
+      table.insert(current_text, '"')
+      flush_text()
+      table.insert(buffer, inline_to_elm(inline.content))
+      table.insert(current_text, '"')
     -- Add more inline element handlers as needed
     end
   end

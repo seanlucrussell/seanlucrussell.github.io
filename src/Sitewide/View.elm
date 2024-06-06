@@ -2,9 +2,9 @@ module Sitewide.View exposing (..)
 
 import Browser exposing (Document, UrlRequest(..))
 import Css exposing (..)
-import Css.Global exposing (descendants, global, media, typeSelector)
+import Css.Global exposing (descendants, typeSelector)
 import Css.Media exposing (only, screen, withMedia)
-import Html.Styled exposing (Attribute, Html, a, div, header, input, main_, text, toUnstyled)
+import Html.Styled exposing (Attribute, Html, a, div, header, input, main_, span, text, toUnstyled)
 import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
 import Html.Styled.Events exposing (keyCode, on, onInput)
 import Json.Decode as Decode
@@ -71,8 +71,7 @@ defaultStyles =
             , typeSelector "pre"
                 [ overflow auto
                 , width (pct 90)
-
-                -- , backgroundColor (rgb 220 220 220)
+                , backgroundColor (rgb 220 220 220)
                 , padding2 (em 0.9) (pct 5)
                 , borderRadius (em 0.4)
                 ]
@@ -89,10 +88,19 @@ defaultStyles =
             , typeSelector "button"
                 [ borderWidth (px 1)
                 , borderRadius (em 40)
-                , padding2 (em 0.4) (em 1.0)
-                , backgroundColor (rgba 255 255 255 0.7)
-                , hover [ backgroundColor (rgba 200 200 200 0.7) ]
                 , fontFamilies [ "arial" ]
+                , margin2 (em 0.4) (em 0.7)
+                , padding2 (em 0.4) (em 1)
+                , fontSize large
+                , fontWeight (int 200)
+                , borderStyle dashed
+                , borderColor (hex "C0C0C0")
+                , backgroundColor (hex "ffffffbb")
+                , hover
+                    [ backgroundColor (hex "ddddddbb")
+                    , borderColor (hex "aaaaaa")
+                    , borderStyle solid
+                    ]
                 ]
             ]
         ]
@@ -111,7 +119,7 @@ makeSidePanel =
 navBar : SitewideModel -> Html SitewideMsg
 navBar model =
     header [ css [ displayFlex, flexDirection row, fontFamilies [ "courier" ], marginBottom (em 1.2) ] ]
-        [ div [ css [ width navPanelSideWidth ] ] (makeSidePanel [ text "SLR", text "LOCAL BUILD", text ("Time: " ++ String.fromFloat model.time) ])
+        [ div [ css [ width navPanelSideWidth ] ] (makeSidePanel [ text "SLR", text "LOCAL BUILD", span [] [ text "CLOCK: ", span [ css [ color (rgb 220 220 220) ] ] [ text (String.fromFloat model.time) ] ] ])
         , div [ css [ flexGrow (num 1) ] ]
             [ input
                 -- invisible box

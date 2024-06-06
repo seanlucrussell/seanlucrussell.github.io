@@ -3,6 +3,7 @@ title: "GameOfLife"
 dynamic: True
 imports:
   - Extra.GameOfLife.App
+  - Extra.GameOfLife.Diagrams
 ---
 
 # Better living through sets
@@ -49,7 +50,9 @@ First the data representation. The basic type here is the cell `type Cell = (Int
 
 For both step 1 and 2 in the algorithm we need a way to compute the neighbors of a cell. Visually, this is what we are computing:
 
-![nearby example](./nearby.png)
+```sitecode
+Extra.GameOfLife.Diagrams.nearDiagram
+```
 
 In code there are several ways to do this. The easiest method would be to use the cartesian product of two sets which would look like
 
@@ -72,7 +75,10 @@ nearby ( x, y ) =
 
 Using this neighbors funtction we can easily find all the cells we need to check. We find the neighbors for each living cell in the current grid and then we take the set union of all these nighborhoods. Visually we are doing this
 
-![cells to check example](./cells-to-check.png)
+
+```sitecode
+Extra.GameOfLife.Diagrams.cellsToCheckDiagram
+```
 
 while in code we are doing this
 
@@ -93,7 +99,9 @@ neighbors board cell =
 
 which visually corresponds to the following reduction
 
-![neighbors example](./living-neighbors.png)
+```sitecode
+Extra.GameOfLife.Diagrams.livingNeighborsDiagram
+```
 
 In words this is "the set of all cells that are both in the board and in the neighborhood but are not the cell itself". With this we can count up the number of neighbors and apply the update rule
 

@@ -10,10 +10,8 @@ import Svg.Styled.Attributes exposing (height, width, x, y)
 
 
 renderBoard : Board -> Html msg
-renderBoard board =
-    svg
-        [ width "100%", height "100%" ]
-        (map renderCell (filter inBounds (toList board)))
+renderBoard =
+    svg [ width "100%", height "100%" ] << map renderCell << filter inBounds << toList
 
 
 inBounds : Cell -> Bool
@@ -23,10 +21,4 @@ inBounds ( x, y ) =
 
 renderCell : Cell -> Svg msg
 renderCell ( xPos, yPos ) =
-    rect
-        [ x (fromInt xPos ++ ".5%")
-        , y (fromInt (2 * yPos + 1) ++ "%")
-        , height "0.15em"
-        , width "0.15em"
-        ]
-        []
+    rect [ x (fromInt xPos ++ ".5%"), y (fromInt (2 * yPos + 1) ++ "%"), height "0.15em", width "0.15em" ] []

@@ -79,6 +79,10 @@ defaultStyles =
                 [ paddingTop (em 0.4)
                 , paddingBottom (em 0.4)
                 ]
+            , typeSelector "svg"
+                [ width (pct 90)
+                , padding2 (em 2) (pct 5)
+                ]
             , typeSelector "img"
                 [ width (pct 90)
                 , height auto

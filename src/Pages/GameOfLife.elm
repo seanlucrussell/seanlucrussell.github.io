@@ -3,6 +3,7 @@ module Pages.GameOfLife exposing (..)
 import Components exposing (blogHeading)
 import Date exposing (fromPosix)
 import Extra.GameOfLife.App
+import Extra.GameOfLife.Diagrams
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
 import Sitewide.Types exposing (SitewideModel, SitewideMsg)
@@ -12,14 +13,14 @@ import Time exposing (Month(..), millisToPosix, utc)
 view : SitewideModel -> Html SitewideMsg
 view model =
     article []
-        [ blogHeading (text "Better living through sets") (fromPosix utc (millisToPosix 1717630897000))
+        [ blogHeading (text "Better living through sets") (fromPosix utc (millisToPosix 1717710107000))
         , p [] [ text "Lists are THE most overrated data type bar none. Who has ", em [] [ text "ever" ], text " needed an ordered sequence of values with duplication? Not me. Lists are such a ridiculous data structure that no one can even agree how they should be built. A collection of cons cells? A block of contiguous memory? Do we index into them with pointers? Do we iterate over them with folds? Are we really just using a queue or a stack? Lists are crazy." ]
         , p [] [ text "Nah. Sets are where it’s at." ]
         , p [] [ text "The mathemeticians have known about sets for a long time, but until recently (within the last 100 years!) programmers didn’t have access to them. Now we do but they remain woefully underutilized. But start looking around and you’ll see that sets are way better than lists for every conceivable application." ]
         , p [] [ text "To prove it to ya we are gon’ be implementing Conway’s Game of Life today. But we are going to be doing it with sets like civilized men and not lists like so many pagans. Because we use a real datatype we won’t have to worry about boundary conditions, we will have a compact core ruleset, cool diagrams will be easy to draw to explain what is going on, the implementation will naturally be sparse, and all will be right in the eyes of the Lord." ]
         , Extra.GameOfLife.App.view model.gameOfLifeBoard
         , h3 [] [ text "The Game Itself" ]
-        , p [] [ text "The game of life is a simple cellular automaton. It is played out on an infinite grid of cells that are either  or  with rules for updating this grid. In order for a cell to be alive, it must either" ]
+        , p [] [ text "The game of life is a simple cellular automaton. It is played out on an infinite grid of cells that are either \"", text "alive", text "\" or \"", text "dead", text "\" with rules for updating this grid. In order for a cell to be alive, it must either" ]
         , ol []
             [ li [] [ text "Have exactly three living neighbors" ]
             , li [] [ text "Have two or three living neighbors and have been alive in the previous timestep." ]
@@ -38,21 +39,21 @@ view model =
         , p [] [ text "(This implementation is in elm but the basic algorithm translates nicely to any language with proper support for sets. At the bottom I’ll have the full implementation of the update rule along with a link to the full source for the simulation above.)" ]
         , p [] [ text "First the data representation. The basic type here is the cell ", code [] [ text "type Cell = (Int,Int)" ], text ". Boards are then represented as ", code [] [ text "Set Cell" ], text ". To check if a particular cell is alive or dead with respect to a given environment is implemented with set membership: ", code [] [ text "cellIsAlive cell board = member cell board" ], text "." ]
         , p [] [ text "For both step 1 and 2 in the algorithm we need a way to compute the neighbors of a cell. Visually, this is what we are computing:" ]
-        , img [ src "media/nearby.png", alt "nearby example" ] []
+        , Extra.GameOfLife.Diagrams.nearDiagram
         , p [] [ text "In code there are several ways to do this. The easiest method would be to use the cartesian product of two sets which would look like" ]
         , pre [] [ code [] [ text "nearby : Cell -> Set Cell\nnearby (x,y) =\n    let adjacent1d n = fromList (range (n-1) (n+1))\n      in cartesianProduct (adjacent1d x) (adjacent1d y)" ] ]
         , p [] [ text "Which is very conceptually clean. Unfortunately elm sets don’t do cartesian products, and while we can implement them ourselves we can also just use the following modular arithmetic nonsense to achieve the same effect" ]
         , pre [] [ code [] [ text "nearby : Cell -> Set Cell\nnearby ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))" ] ]
         , p [] [ text "Using this neighbors funtction we can easily find all the cells we need to check. We find the neighbors for each living cell in the current grid and then we take the set union of all these nighborhoods. Visually we are doing this" ]
-        , img [ src "media/cells-to-check.png", alt "cells to check example" ] []
+        , Extra.GameOfLife.Diagrams.cellsToCheckDiagram
         , p [] [ text "while in code we are doing this" ]
         , pre [] [ code [] [ text "cellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (nearby >> union) empty" ] ]
         , p [] [ text "This is doing a lot of functional programming stuff with folds and function composition and point free style which is all very impressive but in the end it just does what the diagram above is describing: go point by point, apply ", code [] [ text "nearby" ], text " to each point, take the n-way union of all the resulting neighborhoods." ]
         , p [] [ text "Once we’ve got a list of cells to update we need a way to check if they will be alive at the next timestep. We do this by first finding all of a cells living neighbors, counting them, and applying the update rule. To get the living neighbors of a cell is naught but a string of set operations" ]
         , pre [] [ code [] [ text "neighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (nearby cell) (singleton cell))" ] ]
         , p [] [ text "which visually corresponds to the following reduction" ]
-        , img [ src "media/living-neighbors.png", alt "neighbors example" ] []
-        , p [] [ text "In words this is . With this we can count up the number of neighbors and apply the update rule" ]
+        , Extra.GameOfLife.Diagrams.livingNeighborsDiagram
+        , p [] [ text "In words this is \"", text "the set of all cells that are both in the board and in the neighborhood but are not the cell itself", text "\". With this we can count up the number of neighbors and apply the update rule" ]
         , pre [] [ code [] [ text "cellWillBeAlive : Set Cell -> Cell -> Bool\ncellWillBeAlive board cell =\n    let numberNearby = size (neighbors board cell)\n    in numberNearby == 3 || (numberNearby == 2 && member cell board)" ] ]
         , p [] [ text "And for our final act we weave the update rule together with the cells that need checking" ]
         , pre [] [ code [] [ text "update : Set Cell -> Set Cell\nupdate board = filter (cellWillBeAlive board) (cellsToCheck board)" ] ]

@@ -57,8 +57,8 @@ Extra.GameOfLife.Diagrams.nearDiagram
 In code there are several ways to do this. The easiest method would be to use the cartesian product of two sets which would look like
 
 ```elm
-nearby : Cell -> Set Cell
-nearby (x,y) =
+near : Cell -> Set Cell
+near (x,y) =
     let adjacent1d n = fromList (range (n-1) (n+1))
       in cartesianProduct (adjacent1d x) (adjacent1d y)
 ```
@@ -66,8 +66,8 @@ nearby (x,y) =
 Which is very conceptually clean. Unfortunately elm sets don't do cartesian products, and while we can implement them ourselves we can also just use the following modular arithmetic nonsense to achieve the same effect
 
 ```elm
-nearby : Cell -> Set Cell
-nearby ( x, y ) =
+near : Cell -> Set Cell
+near ( x, y ) =
     map
       (\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))
       (fromList (range 0 8))
@@ -84,17 +84,17 @@ while in code we are doing this
 
 ```elm
 cellsToCheck : Set Cell -> Set Cell
-cellsToCheck = foldl (nearby >> union) empty
+cellsToCheck = foldl (near >> union) empty
 ```
 
-This is doing a lot of functional programming stuff with folds and function composition and point free style which is all very impressive but in the end it just does what the diagram above is describing: go point by point, apply `nearby` to each point, take the n-way union of all the resulting neighborhoods.
+This is doing a lot of functional programming stuff with folds and function composition and point free style which is all very impressive but in the end it just does what the diagram above is describing: go point by point, apply `near` to each point, take the n-way union of all the resulting neighborhoods.
 
 Once we've got a list of cells to update we need a way to check if they will be alive at the next timestep. We do this by first finding all of a cells living neighbors, counting them, and applying the update rule. To get the living neighbors of a cell is naught but a string of set operations
 
 ```elm
 neighbors : Set Cell -> Cell -> Set Cell
 neighbors board cell =
-    intersect board (diff (nearby cell) (singleton cell))
+    intersect board (diff (near cell) (singleton cell))
 ```
 
 which visually corresponds to the following reduction
@@ -145,15 +145,15 @@ import Set exposing (..)
 
 type alias Cell = (Int, Int)
 
-nearby : Cell -> Set Cell
-nearby ( x, y ) =
+near : Cell -> Set Cell
+near ( x, y ) =
     map
       (\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))
       (fromList (range 0 8))
 
 neighbors : Set Cell -> Cell -> Set Cell
 neighbors board cell =
-    intersect board (diff (nearby cell) (singleton cell))
+    intersect board (diff (near cell) (singleton cell))
 
 cellWillBeAlive : Set Cell -> Cell -> Bool
 cellWillBeAlive board cell =
@@ -161,7 +161,7 @@ cellWillBeAlive board cell =
     in numberNearby == 3 || (numberNearby == 2 && member cell board)
 
 cellsToCheck : Set Cell -> Set Cell
-cellsToCheck = foldl (nearby >> union) empty
+cellsToCheck = foldl (near >> union) empty
 
 update : Set Cell -> Set Cell
 update board = filter (cellWillBeAlive board) (cellsToCheck board)

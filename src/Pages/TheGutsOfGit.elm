@@ -4,18 +4,19 @@ import Components exposing (blogHeading)
 import Date exposing (fromPosix)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
+import Sitewide.Types exposing (SitewideMsg)
 import Time exposing (Month(..), millisToPosix, utc)
 
 
-view : Html msg
+view : Html SitewideMsg
 view =
     article []
-        [ blogHeading (text "The Guts of Git") (fromPosix utc (millisToPosix 1717555824000))
+        [ blogHeading (text "The Guts of Git") (fromPosix utc (millisToPosix 1717713270000))
         , p [] [ text "During the renaissance it became popular for great artists to dissect human corpses. Michelangelo and da Vinci both took part in the dissecting of man. Art requires an intimate knowledge of the subject in order to faithfully reproduce it, and there aren’t many better ways to understand something than by taking it apart." ]
         , p [] [ text "So it is with software. Today we are gonna be tearing out the guts of git and looking at them for ourselves so we may too become like the masters." ]
         , h3 [] [ text "The Content Database" ]
         , p [] [ text "At the very core of git is a content addressed database (or filesystem, or memory, or whatever). I’m going to be calling this a CAD. To understand what is going on with git it is really important to understand what a content addressed database is. Fortunately they are pretty simple." ]
-        , p [] [ text "First lets look at what  means. This is simple. The content in a content addressed database is literally any kind of data. Just a sequence of 1’s and 0’s. Any pile of bits will do." ]
+        , p [] [ text "First lets look at what \"", text "Content", text "\" means. This is simple. The content in a content addressed database is literally any kind of data. Just a sequence of 1’s and 0’s. Any pile of bits will do." ]
         , p [] [ text "So what does it mean to address content? If I address you, that means I’ve said your name or provided some other indication, some identifier, that it is you I’m addressing. I’m talkin to ya. An address is just a unique way of identifying something. Address books uniquely identify houses. Etc." ]
         , p [] [ text "So if content is a sequence of 1’s and 0’s, the address of some content is a unique way of referring to that data. In what manner might we accomplish that? Hashes! Any sort of hash will do as long as it satisfies all the properties of a good hashing function but for our purposes lets use the sha1 hash." ]
         , p [] [ text "The database part simply means we have a method for finding content based on its hash." ]
@@ -39,7 +40,7 @@ view =
         , p [] [ text "Commits are a snapshot of a repo. From a commit you should be able to recreate the ENTIRE state of the project at that point in time. In addition to the data needed to reconstruct the state of the repo at a moment in time commits include information on the history of the project up until that commit by referencing parent commits (a single commit can reference multiple parents; this happens in the case of a merge. Or none in the case of the initial commit). And commits have a little bit of data that is useful like commit author and message (and committer, which is almost never distinct from commit author). A sample:" ]
         , pre [] [ code [] [ text "tree 8d69b7df5fa3bb43671f9cf34e3674dec4fad311\nparent 13d7893577cedbceed7a364d050c11aa3cfea1ee\nauthor Ada Lovelace <alovlace@analytical.engine> 1674337023 -0700\ncommitter Ada Lovelace <alovlace@analytical.engine> 1674337023 -0700\n\nFinished translation of the algorithm to javascript." ] ]
         , p [] [ text "Btw I mentioned that a commit references one or more parents. How does it do this? Through the CAD! The commit holds a sha1 hash for each parent commit, so to look back in time you simply grab the parent sha1 address from the commit object and then look the parent up in the CAD. Repeat ad infinitum to go back to the big bang." ]
-        , p [] [ text "Ok so how can you  an entire project state from a commit? To do this you need ALL the data that may have been present; you need a full directory heirarchy." ]
+        , p [] [ text "Ok so how can you \"", text "reconstruct", text "\" an entire project state from a commit? To do this you need ALL the data that may have been present; you need a full directory heirarchy." ]
         , p [] [ text "The second type of object git stores in the CAD is just this: the tree type. A tree is simple; it is just a list of references to blobs (I’ll get there in a sec) and other trees, along with some permissions data and filenames. Imagine we had the following project structure:" ]
         , pre [] [ code [] [ text ".\n├── README.md\n└── src\n   ├── engine-schematics.c\n   └── bernoulli-numbers.js" ] ]
         , p [] [ text "the corresponding tree would look something like" ]
@@ -65,9 +66,9 @@ view =
         , p [] [ text "But the new readme means we need a new tree" ]
         , img [ src "media/3-add-new-tree.png", alt "same as above, but new readme is darker green and we have a new tree in gree linking to new readme and old src" ] []
         , p [] [ text "With the new tree we can add the new commit" ]
-        , img [ src "media/4-modify-branch.png", alt "same as above, but new tree is darker green and there is a new commit in green linking to tree and old commit" ] []
+        , img [ src "media/4-new-commit-object.png", alt "same as above, but new tree is darker green and there is a new commit in green linking to tree and old commit" ] []
         , p [] [ text "And finally update the reference" ]
-        , img [ src "media/5-new-commit-object.png", alt "same as above, but new commit is darker green and the reference is yellow and now points to the new commit" ] []
+        , img [ src "media/5-modify-branch.png", alt "same as above, but new commit is darker green and the reference is yellow and now points to the new commit" ] []
         , p [] [ text "We are now done. The commit is done! We’ve updated our repo. We can always go back by finding the previous commit and restoring the tree." ]
         , p [] [ text "Notice how the only thing that got modified was the reference. Everything else was just added to. Pretty neat." ]
         , p [] [ text "Also notice that we added a completely new copy of the readme. It is a common misconception (that I held until like a week ago) that git stores file differences in order to save space. But it doesn’t (caveat needed: sometimes git will compress objects in the CAD into what are known as pack files, where it will use file diffs to save space. But this doesn’t change the basic semantics of the CAD itself)." ]

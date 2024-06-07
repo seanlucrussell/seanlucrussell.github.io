@@ -8,7 +8,7 @@ import Svg.Styled.Attributes exposing (cx, cy, d, fontFamily, fontSize, height, 
 
 nearDiagram : Html msg
 nearDiagram =
-    svg [ width "100%", height "100%", viewBox "0 .02 1 .39", preserveAspectRatio "meet" ]
+    svg [ width "100%", viewBox "0 .02 1 .39", preserveAspectRatio "meet" ]
         [ diagramText "0.42" "0.1" "near"
         , cellGrid ( 0.55, 0.09 ) 5 5 (Set.fromList [ ( 2, 2 ) ])
         , cellGrid ( 0.5, 0.34 ) 5 5 (Set.fromList [ ( 1, 1 ), ( 1, 2 ), ( 1, 3 ), ( 2, 1 ), ( 2, 2 ), ( 2, 3 ), ( 3, 1 ), ( 3, 2 ), ( 3, 3 ) ])
@@ -21,8 +21,8 @@ cellsToCheckDiagram =
     let
         line1 =
             g [ transform "translate(0.04 0.04)" ]
-                [ diagramText "0.17" "0.25" "foldl (nearby >> union) empty"
-                , cellGrid ( 0.7, 0.235 ) 5 5 (Set.fromList [ ( 1, 2 ), ( 1, 1 ), ( 2, 2 ) ])
+                [ diagramText "0.18" "0.25" "foldl (near >> union) empty"
+                , cellGrid ( 0.69, 0.235 ) 5 5 (Set.fromList [ ( 1, 2 ), ( 1, 1 ), ( 2, 2 ) ])
                 ]
 
         line2 =
@@ -45,7 +45,7 @@ cellsToCheckDiagram =
                 , cellGrid ( 0.7, 0.49 ) 5 5 (Set.fromList [ ( 1, 1 ), ( 1, 2 ), ( 1, 3 ), ( 2, 1 ), ( 2, 2 ), ( 2, 3 ), ( 3, 1 ), ( 3, 2 ), ( 3, 3 ) ])
                 ]
     in
-    svg [ width "100%", height "100%", viewBox "0 0.22 1 0.83", preserveAspectRatio "meet" ]
+    svg [ width "100%", viewBox "0 0.22 1 0.83", preserveAspectRatio "meet" ]
         [ line1
         , arrow 0.38
         , line2
@@ -91,7 +91,7 @@ livingNeighborsDiagram =
                 , cellGrid ( 0.6, 0.09 ) 5 5 (Set.fromList [ ( 1, 1 ), ( 1, 2 ), ( 1, 3 ), ( 2, 1 ), ( 2, 3 ), ( 3, 1 ), ( 3, 2 ), ( 3, 3 ) ])
                 ]
     in
-    svg [ width "100%", height "100%", viewBox "0 .06 1 .96", preserveAspectRatio "meet" ]
+    svg [ width "100%", viewBox "0 .06 1 .96", preserveAspectRatio "meet" ]
         [ line1
         , arrow 0.19
         , line2

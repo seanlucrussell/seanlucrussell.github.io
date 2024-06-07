@@ -12,14 +12,14 @@ type alias Board =
     Set Cell
 
 
-nearby : Cell -> Board
-nearby ( x, y ) =
+near : Cell -> Board
+near ( x, y ) =
     map (\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 )) (fromList (range 0 8))
 
 
 neighbors : Set Cell -> Cell -> Set Cell
 neighbors board cell =
-    intersect board (diff (nearby cell) (singleton cell))
+    intersect board (diff (near cell) (singleton cell))
 
 
 cellWillBeAlive : Board -> Cell -> Bool
@@ -33,7 +33,7 @@ cellWillBeAlive board cell =
 
 cellsToCheck : Board -> Board
 cellsToCheck =
-    foldl (nearby >> union) empty
+    foldl (near >> union) empty
 
 
 nextBoard : Board -> Board

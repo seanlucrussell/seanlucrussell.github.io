@@ -124,10 +124,14 @@ function Writer(doc, opts)
   table.insert(imports, 'import Html.Styled.Attributes exposing (..)')
   if doc.meta.dynamic then 
     table.insert(imports, 'import Sitewide.Types exposing (SitewideModel, SitewideMsg)')
+  else
+    table.insert(imports, 'import Sitewide.Types exposing (SitewideMsg)')
   end
   table.insert(imports, 'import Time exposing (Month(..), millisToPosix, utc)')
-  for _, lib in ipairs(doc.meta.imports) do
-    table.insert(imports, 'import ' .. stringify(lib))
+  if doc.meta.imports then
+    for _, lib in ipairs(doc.meta.imports) do
+      table.insert(imports, 'import ' .. stringify(lib))
+    end
   end
   table.sort(imports)
   for i, import in ipairs(imports) do

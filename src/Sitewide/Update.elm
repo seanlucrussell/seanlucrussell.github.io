@@ -7,37 +7,23 @@ import Css exposing (..)
 import Dict exposing (Dict)
 import Extra.GameOfLife.App
 import List exposing (filter)
-import Pages.SamplePage
 import Sitewide.Types exposing (..)
 import Url exposing (Url)
 
 
 commandMap : SitewideModel -> Dict String SitewideMsg
-commandMap model =
+commandMap _ =
     Dict.fromList
         [ ( "NAV", SelectPage NavigationPage )
-        , ( "TEST", SelectPage SamplePage )
         , ( "REC", SelectPage RecursionSchemesPage )
         , ( "GOG", SelectPage GutsOfGitPage )
         , ( "LIFE", SelectPage GameOfLifePage )
-        , ( "TOGGLE"
-          , SelectPage
-                (if model.currentPage == NavigationPage then
-                    SamplePage
-
-                 else
-                    NavigationPage
-                )
-          )
-        , ( "INC", Increment )
-        , ( "DEC", Decrement )
         ]
 
 
 urlPageRelation : List ( String, Page )
 urlPageRelation =
     [ ( "/NAV", NavigationPage )
-    , ( "/TEST", SamplePage )
     , ( "/REC", RecursionSchemesPage )
     , ( "/GOG", GutsOfGitPage )
     , ( "/LIFE", GameOfLifePage )
@@ -104,9 +90,6 @@ update message model =
 
         _ ->
             case model.currentPage of
-                SamplePage ->
-                    Pages.SamplePage.update message model
-
                 GameOfLifePage ->
                     Extra.GameOfLife.App.update message model
 

@@ -8,7 +8,6 @@ import Url exposing (Url)
 
 type alias SitewideModel =
     { commandText : String
-    , samplePageModel : SampleModel
     , currentPage : Page
     , key : Key
     , gameOfLifeBoard : Extra.GameOfLife.GameOfLife.Board
@@ -16,13 +15,8 @@ type alias SitewideModel =
     }
 
 
-type alias SampleModel =
-    Int
-
-
 type Page
     = NavigationPage
-    | SamplePage
     | MissingPage
     | RecursionSchemesPage
     | GutsOfGitPage
@@ -30,9 +24,7 @@ type Page
 
 
 type SitewideMsg
-    = Increment
-    | Decrement
-    | UrlRequest UrlRequest
+    = UrlRequest UrlRequest
     | UrlChange Url
     | SelectPage Page
     | CommandBarChanged String

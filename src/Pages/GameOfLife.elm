@@ -13,7 +13,7 @@ import Time exposing (Month(..), millisToPosix, utc)
 view : SitewideModel -> Html SitewideMsg
 view model =
     article []
-        [ blogHeading (text "Better living through sets") (fromPosix utc (millisToPosix 1717710107000))
+        [ blogHeading (text "Better living through sets") (fromPosix utc (millisToPosix 1717712640000))
         , p [] [ text "Lists are THE most overrated data type bar none. Who has ", em [] [ text "ever" ], text " needed an ordered sequence of values with duplication? Not me. Lists are such a ridiculous data structure that no one can even agree how they should be built. A collection of cons cells? A block of contiguous memory? Do we index into them with pointers? Do we iterate over them with folds? Are we really just using a queue or a stack? Lists are crazy." ]
         , p [] [ text "Nah. Sets are where it’s at." ]
         , p [] [ text "The mathemeticians have known about sets for a long time, but until recently (within the last 100 years!) programmers didn’t have access to them. Now we do but they remain woefully underutilized. But start looking around and you’ll see that sets are way better than lists for every conceivable application." ]
@@ -41,16 +41,16 @@ view model =
         , p [] [ text "For both step 1 and 2 in the algorithm we need a way to compute the neighbors of a cell. Visually, this is what we are computing:" ]
         , Extra.GameOfLife.Diagrams.nearDiagram
         , p [] [ text "In code there are several ways to do this. The easiest method would be to use the cartesian product of two sets which would look like" ]
-        , pre [] [ code [] [ text "nearby : Cell -> Set Cell\nnearby (x,y) =\n    let adjacent1d n = fromList (range (n-1) (n+1))\n      in cartesianProduct (adjacent1d x) (adjacent1d y)" ] ]
+        , pre [] [ code [] [ text "near : Cell -> Set Cell\nnear (x,y) =\n    let adjacent1d n = fromList (range (n-1) (n+1))\n      in cartesianProduct (adjacent1d x) (adjacent1d y)" ] ]
         , p [] [ text "Which is very conceptually clean. Unfortunately elm sets don’t do cartesian products, and while we can implement them ourselves we can also just use the following modular arithmetic nonsense to achieve the same effect" ]
-        , pre [] [ code [] [ text "nearby : Cell -> Set Cell\nnearby ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))" ] ]
+        , pre [] [ code [] [ text "near : Cell -> Set Cell\nnear ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))" ] ]
         , p [] [ text "Using this neighbors funtction we can easily find all the cells we need to check. We find the neighbors for each living cell in the current grid and then we take the set union of all these nighborhoods. Visually we are doing this" ]
         , Extra.GameOfLife.Diagrams.cellsToCheckDiagram
         , p [] [ text "while in code we are doing this" ]
-        , pre [] [ code [] [ text "cellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (nearby >> union) empty" ] ]
-        , p [] [ text "This is doing a lot of functional programming stuff with folds and function composition and point free style which is all very impressive but in the end it just does what the diagram above is describing: go point by point, apply ", code [] [ text "nearby" ], text " to each point, take the n-way union of all the resulting neighborhoods." ]
+        , pre [] [ code [] [ text "cellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (near >> union) empty" ] ]
+        , p [] [ text "This is doing a lot of functional programming stuff with folds and function composition and point free style which is all very impressive but in the end it just does what the diagram above is describing: go point by point, apply ", code [] [ text "near" ], text " to each point, take the n-way union of all the resulting neighborhoods." ]
         , p [] [ text "Once we’ve got a list of cells to update we need a way to check if they will be alive at the next timestep. We do this by first finding all of a cells living neighbors, counting them, and applying the update rule. To get the living neighbors of a cell is naught but a string of set operations" ]
-        , pre [] [ code [] [ text "neighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (nearby cell) (singleton cell))" ] ]
+        , pre [] [ code [] [ text "neighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (near cell) (singleton cell))" ] ]
         , p [] [ text "which visually corresponds to the following reduction" ]
         , Extra.GameOfLife.Diagrams.livingNeighborsDiagram
         , p [] [ text "In words this is \"", text "the set of all cells that are both in the board and in the neighborhood but are not the cell itself", text "\". With this we can count up the number of neighbors and apply the update rule" ]
@@ -63,7 +63,7 @@ view model =
         , p [] [ code [] [ text "nextBoard" ], text " will now be equal to ", code [] [ text "fromList [ (1,1), (1,2), (2,1), (2,2) ]" ], text "." ]
         , h3 [] [ text "Victory" ]
         , p [] [ text "So there we have it. The core rules for the game of life in less than thirty lines of code" ]
-        , pre [] [ code [] [ text "module GameOfLife exposing (Cell, nextBoard)\n\nimport List exposing (range)\nimport Set exposing (..)\n\ntype alias Cell = (Int, Int)\n\nnearby : Cell -> Set Cell\nnearby ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))\n\nneighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (nearby cell) (singleton cell))\n\ncellWillBeAlive : Set Cell -> Cell -> Bool\ncellWillBeAlive board cell =\n    let numberNearby = size (neighbors board cell)\n    in numberNearby == 3 || (numberNearby == 2 && member cell board)\n\ncellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (nearby >> union) empty\n\nupdate : Set Cell -> Set Cell\nupdate board = filter (cellWillBeAlive board) (cellsToCheck board)" ] ]
+        , pre [] [ code [] [ text "module GameOfLife exposing (Cell, nextBoard)\n\nimport List exposing (range)\nimport Set exposing (..)\n\ntype alias Cell = (Int, Int)\n\nnear : Cell -> Set Cell\nnear ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))\n\nneighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (near cell) (singleton cell))\n\ncellWillBeAlive : Set Cell -> Cell -> Bool\ncellWillBeAlive board cell =\n    let numberNearby = size (neighbors board cell)\n    in numberNearby == 3 || (numberNearby == 2 && member cell board)\n\ncellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (near >> union) empty\n\nupdate : Set Cell -> Set Cell\nupdate board = filter (cellWillBeAlive board) (cellsToCheck board)" ] ]
         , p [] [ text "In order to make a cool interactive out of this we still need an event loop and some rendering code. This isn’t terribly hard to implement yourself but because I’m so generous I have a simple implementation ", a [ href "https://github.com/seanlucrussell/elm-life" ] [ text "hosted on Github" ], text "." ]
         , h3 [] [ text "In Conclusion" ]
         , p [] [ text "The most important thing we all learned today is that arrays drool and sets rule." ]

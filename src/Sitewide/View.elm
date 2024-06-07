@@ -13,7 +13,6 @@ import Pages.GameOfLife as GameOfLife
 import Pages.Missing exposing (missing)
 import Pages.Navigation exposing (navigationPage)
 import Pages.RecursionSchemes as RecursionSchemes
-import Pages.SamplePage
 import Pages.TheGutsOfGit as TheGutsOfGit
 import Sitewide.Types exposing (..)
 
@@ -23,9 +22,6 @@ pageView m page =
     case page of
         NavigationPage ->
             navigationPage
-
-        SamplePage ->
-            Pages.SamplePage.view m.samplePageModel
 
         MissingPage ->
             missing
@@ -81,12 +77,15 @@ defaultStyles =
                 ]
             , typeSelector "svg"
                 [ width (pct 90)
-                , padding2 (em 2) (pct 5)
+                , padding2 (em 1.4) (pct 5)
                 ]
             , typeSelector "img"
                 [ width (pct 90)
                 , height auto
-                , padding2 (em 2) (pct 5)
+                , padding2 (em 1.4) (pct 5)
+                ]
+            , typeSelector "li"
+                [ padding2 (em 0.3) (em 0)
                 ]
             , typeSelector "article" [ paddingBottom (em 12) ]
             , typeSelector "button"
@@ -129,7 +128,17 @@ navBar model =
                 -- invisible box
                 [ css
                     [ border (em 0)
-                    , opacity (num 0) -- hide text unless selected
+                    , opacity
+                        (num
+                            (if model.commandText == "" then
+                                0
+
+                             else
+                                1
+                            )
+                        )
+
+                    -- hide text unless selected
                     , focus [ outline none, opacity (num 1) ]
                     , fontFamilies [ "courier" ]
                     , textTransform uppercase

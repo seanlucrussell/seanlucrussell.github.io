@@ -142,11 +142,11 @@ But the new readme means we need a new tree
 
 With the new tree we can add the new commit
 
-![same as above, but new tree is darker green and there is a new commit in green linking to tree and old commit](./4-modify-branch.png)
+![same as above, but new tree is darker green and there is a new commit in green linking to tree and old commit](./4-new-commit-object.png)
 
 And finally update the reference
 
-![same as above, but new commit is darker green and the reference is yellow and now points to the new commit](./5-new-commit-object.png)
+![same as above, but new commit is darker green and the reference is yellow and now points to the new commit](./5-modify-branch.png)
 
 We are now done. The commit is done! We've updated our repo. We can always go back by finding the previous commit and restoring the tree.
 

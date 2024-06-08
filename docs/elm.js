@@ -5576,6 +5576,7 @@ var $author$project$Sitewide$Types$SelectPage = function (a) {
 var $author$project$Sitewide$Types$GameOfLifePage = {$: 'GameOfLifePage'};
 var $author$project$Sitewide$Types$GutsOfGitPage = {$: 'GutsOfGitPage'};
 var $author$project$Sitewide$Types$RecursionSchemesPage = {$: 'RecursionSchemesPage'};
+var $author$project$Sitewide$Types$ToggleClock = {$: 'ToggleClock'};
 var $elm$core$Dict$fromList = function (assocs) {
 	return A3(
 		$elm$core$List$foldl,
@@ -5603,7 +5604,8 @@ var $author$project$Sitewide$Update$commandMap = function (_v0) {
 				$author$project$Sitewide$Types$SelectPage($author$project$Sitewide$Types$GutsOfGitPage)),
 				_Utils_Tuple2(
 				'LIFE',
-				$author$project$Sitewide$Types$SelectPage($author$project$Sitewide$Types$GameOfLifePage))
+				$author$project$Sitewide$Types$SelectPage($author$project$Sitewide$Types$GameOfLifePage)),
+				_Utils_Tuple2('CLOCK', $author$project$Sitewide$Types$ToggleClock)
 			]));
 };
 var $elm$core$Basics$ge = _Utils_ge;
@@ -5646,6 +5648,7 @@ var $elm$browser$Browser$Navigation$load = _Browser_load;
 var $elm$core$String$map = _String_map;
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $elm$core$Basics$not = _Basics_not;
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -5660,6 +5663,7 @@ var $elm$core$List$filter = F2(
 var $author$project$Sitewide$Update$urlPageRelation = _List_fromArray(
 	[
 		_Utils_Tuple2('/NAV', $author$project$Sitewide$Types$NavigationPage),
+		_Utils_Tuple2('/', $author$project$Sitewide$Types$NavigationPage),
 		_Utils_Tuple2('/REC', $author$project$Sitewide$Types$RecursionSchemesPage),
 		_Utils_Tuple2('/GOG', $author$project$Sitewide$Types$GutsOfGitPage),
 		_Utils_Tuple2('/LIFE', $author$project$Sitewide$Types$GameOfLifePage)
@@ -6320,6 +6324,12 @@ var $author$project$Sitewide$Update$update = F2(
 								{commandText: ''}),
 							$elm$core$Platform$Cmd$none);
 					}
+				case 'ToggleClock':
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{clockIsVisible: !model.clockIsVisible}),
+						$elm$core$Platform$Cmd$none);
 				case 'Tick':
 					var t = message.a;
 					if ((A2($author$project$Sitewide$Update$intervalCount, model.time + t, 100) - A2($author$project$Sitewide$Update$intervalCount, model.time, 100)) >= 1) {
@@ -6352,7 +6362,7 @@ var $author$project$Sitewide$Init$init = F3(
 		return A2(
 			$author$project$Sitewide$Update$update,
 			$author$project$Sitewide$Types$UrlChange(url),
-			{commandText: '', currentPage: $author$project$Sitewide$Types$NavigationPage, gameOfLifeBoard: $author$project$Extra$GameOfLife$App$initialBoard, key: key, time: 0});
+			{clockIsVisible: false, commandText: '', currentPage: $author$project$Sitewide$Types$NavigationPage, gameOfLifeBoard: $author$project$Extra$GameOfLife$App$initialBoard, key: key, time: 0});
 	});
 var $elm$browser$Browser$AnimationManager$Delta = function (a) {
 	return {$: 'Delta', a: a};
@@ -6522,7 +6532,6 @@ var $elm$core$List$any = F2(
 			}
 		}
 	});
-var $elm$core$Basics$not = _Basics_not;
 var $elm$core$List$all = F2(
 	function (isOkay, list) {
 		return !A2(
@@ -8839,6 +8848,7 @@ var $author$project$Sitewide$View$defaultStyles = $rtfeldman$elm_css$Html$Styled
 						]))
 				]))
 		]));
+var $rtfeldman$elm_css$Css$Media$landscape = {orientation: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'landscape'};
 var $rtfeldman$elm_css$VirtualDom$Styled$Node = F3(
 	function (a, b, c) {
 		return {$: 'Node', a: a, b: b, c: c};
@@ -9110,11 +9120,15 @@ var $author$project$Sitewide$View$navBar = function (model) {
 								$rtfeldman$elm_css$Css$width($author$project$Sitewide$View$navPanelSideWidth)
 							]))
 					]),
-				$author$project$Sitewide$View$makeSidePanel(
-					_List_fromArray(
+				_Utils_ap(
+					$author$project$Sitewide$View$makeSidePanel(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$text('SLR'),
+								$rtfeldman$elm_css$Html$Styled$text('LOCAL BUILD')
+							])),
+					model.clockIsVisible ? _List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('SLR'),
-							$rtfeldman$elm_css$Html$Styled$text('LOCAL BUILD'),
 							A2(
 							$rtfeldman$elm_css$Html$Styled$span,
 							_List_Nil,
@@ -9138,7 +9152,7 @@ var $author$project$Sitewide$View$navBar = function (model) {
 											$elm$core$String$fromFloat(model.time))
 										]))
 								]))
-						]))),
+						]) : _List_Nil)),
 				A2(
 				$rtfeldman$elm_css$Html$Styled$div,
 				_List_fromArray(
@@ -9233,6 +9247,9 @@ var $rtfeldman$elm_css$Css$Structure$OnlyQuery = F2(
 		return {$: 'OnlyQuery', a: a, b: b};
 	});
 var $rtfeldman$elm_css$Css$Media$only = $rtfeldman$elm_css$Css$Structure$OnlyQuery;
+var $rtfeldman$elm_css$Css$Media$orientation = function (value) {
+	return A2($rtfeldman$elm_css$Css$Media$feature, 'orientation', value);
+};
 var $rtfeldman$elm_css$Css$center = $rtfeldman$elm_css$Css$prop1('center');
 var $rtfeldman$elm_css$Html$Styled$h1 = $rtfeldman$elm_css$Html$Styled$node('h1');
 var $rtfeldman$elm_css$Html$Styled$p = $rtfeldman$elm_css$Html$Styled$node('p');
@@ -9260,7 +9277,17 @@ var $author$project$Pages$Missing$missing = A2(
 			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('This page does not exist')
+					$rtfeldman$elm_css$Html$Styled$text('This page does not exist. '),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$a,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$Attributes$href('NAV')
+						]),
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Return to navigation?')
+						]))
 				]))
 		]));
 var $rtfeldman$elm_css$Html$Styled$li = $rtfeldman$elm_css$Html$Styled$node('li');
@@ -13770,6 +13797,7 @@ var $author$project$Sitewide$View$pageView = F2(
 				return $author$project$Pages$GameOfLife$view(m);
 		}
 	});
+var $rtfeldman$elm_css$Css$Media$portrait = {orientation: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'portrait'};
 var $rtfeldman$elm_css$Css$Structure$Screen = {$: 'Screen'};
 var $rtfeldman$elm_css$Css$Media$screen = $rtfeldman$elm_css$Css$Structure$Screen;
 var $rtfeldman$elm_css$VirtualDom$Styled$UnscopedStyles = function (a) {
@@ -14353,6 +14381,7 @@ var $rtfeldman$elm_css$Css$Preprocess$WithMedia = F2(
 		return {$: 'WithMedia', a: a, b: b};
 	});
 var $rtfeldman$elm_css$Css$Media$withMedia = $rtfeldman$elm_css$Css$Preprocess$WithMedia;
+var $rtfeldman$elm_css$Css$xxLarge = {fontSize: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'xx-large'};
 var $author$project$Sitewide$View$view = function (m) {
 	return {
 		body: _List_fromArray(
@@ -14377,13 +14406,30 @@ var $author$project$Sitewide$View$view = function (m) {
 											_List_fromArray(
 												[
 													$rtfeldman$elm_css$Css$Media$minWidth(
-													$rtfeldman$elm_css$Css$px(800))
+													$rtfeldman$elm_css$Css$px(800)),
+													$rtfeldman$elm_css$Css$Media$orientation($rtfeldman$elm_css$Css$Media$landscape)
 												]))
 										]),
 									_List_fromArray(
 										[
 											$rtfeldman$elm_css$Css$width(
 											$rtfeldman$elm_css$Css$em(34))
+										])),
+									A2(
+									$rtfeldman$elm_css$Css$Media$withMedia,
+									_List_fromArray(
+										[
+											A2(
+											$rtfeldman$elm_css$Css$Media$only,
+											$rtfeldman$elm_css$Css$Media$screen,
+											_List_fromArray(
+												[
+													$rtfeldman$elm_css$Css$Media$orientation($rtfeldman$elm_css$Css$Media$portrait)
+												]))
+										]),
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Css$fontSize($rtfeldman$elm_css$Css$xxLarge)
 										])),
 									$rtfeldman$elm_css$Css$fontSize($rtfeldman$elm_css$Css$large),
 									$rtfeldman$elm_css$Css$width(

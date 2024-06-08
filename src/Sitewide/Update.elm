@@ -18,12 +18,14 @@ commandMap _ =
         , ( "REC", SelectPage RecursionSchemesPage )
         , ( "GOG", SelectPage GutsOfGitPage )
         , ( "LIFE", SelectPage GameOfLifePage )
+        , ( "CLOCK", ToggleClock )
         ]
 
 
 urlPageRelation : List ( String, Page )
 urlPageRelation =
     [ ( "/NAV", NavigationPage )
+    , ( "/", NavigationPage )
     , ( "/REC", RecursionSchemesPage )
     , ( "/GOG", GutsOfGitPage )
     , ( "/LIFE", GameOfLifePage )
@@ -80,6 +82,9 @@ update message model =
 
                 Nothing ->
                     ( { model | commandText = "" }, Cmd.none )
+
+        ToggleClock ->
+            ( { model | clockIsVisible = not model.clockIsVisible }, Cmd.none )
 
         Tick t ->
             if intervalCount (model.time + t) 100 - intervalCount model.time 100 >= 1 then

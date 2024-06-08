@@ -3,7 +3,7 @@ module Sitewide.View exposing (..)
 import Browser exposing (Document, UrlRequest(..))
 import Css exposing (..)
 import Css.Global exposing (descendants, typeSelector)
-import Css.Media exposing (only, screen, withMedia)
+import Css.Media exposing (landscape, only, orientation, portrait, screen, withMedia)
 import Html.Styled exposing (Attribute, Html, a, div, header, input, main_, span, text, toUnstyled)
 import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
 import Html.Styled.Events exposing (keyCode, on, onInput)
@@ -45,7 +45,8 @@ view m =
                 [ defaultStyles
                 , css
                     [ margin auto
-                    , withMedia [ only screen [ Css.Media.minWidth (px 800) ] ] [ width (em 34) ]
+                    , withMedia [ only screen [ Css.Media.minWidth (px 800), orientation landscape ] ] [ width (em 34) ]
+                    , withMedia [ only screen [ orientation portrait ] ] [ fontSize xxLarge ]
                     , fontSize large
                     , width (pct 78)
                     ]
@@ -122,7 +123,20 @@ makeSidePanel =
 navBar : SitewideModel -> Html SitewideMsg
 navBar model =
     header [ css [ displayFlex, flexDirection row, fontFamilies [ "courier" ], marginBottom (em 1.2) ] ]
-        [ div [ css [ width navPanelSideWidth ] ] (makeSidePanel [ text "SLR", text "LOCAL BUILD", span [] [ text "CLOCK: ", span [ css [ color (rgb 220 220 220) ] ] [ text (String.fromFloat model.time) ] ] ])
+        [ div [ css [ width navPanelSideWidth ] ]
+            (makeSidePanel
+                [ text "SLR"
+                , text "LOCAL BUILD"
+                ]
+                ++ (if model.clockIsVisible then
+                        [ span []
+                            [ text "CLOCK: ", span [ css [ color (rgb 220 220 220) ] ] [ text (String.fromFloat model.time) ] ]
+                        ]
+
+                    else
+                        []
+                   )
+            )
         , div [ css [ flexGrow (num 1) ] ]
             [ input
                 -- invisible box

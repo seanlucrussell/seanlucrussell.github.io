@@ -12,6 +12,7 @@ type alias SitewideModel =
     , key : Key
     , gameOfLifeBoard : Extra.GameOfLife.GameOfLife.Board
     , time : Float
+    , clockIsVisible : Bool
     }
 
 
@@ -32,3 +33,4 @@ type SitewideMsg
     | GameOfLifeStep
     | LoadBoard Board
     | Tick Float
+    | ToggleClock

@@ -25,3 +25,6 @@ use the flag `-M dynamic` to generate a page that renders differently depending 
 we can put stuff in the yaml metadata to keep track of these metadata options without having to enter them manually. pretty teriffic
 
 pandoc -t native pages/the-guts-of-git/the-guts-of-git.md
+
+
+elm-live -d site/ --pushstate -p 8001 src/Main.elm -- --output=site/elm.js

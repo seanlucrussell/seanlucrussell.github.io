@@ -9316,7 +9316,7 @@ var $author$project$Pages$Navigation$navigationPage = A2(
 			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('Welcome to my site. I don\'t have an about page because this whole site is about me. That\'s the plan anyhow. So yeah, here are all of my pages. You can look through them to figure out wtf I\'m about.')
+					$rtfeldman$elm_css$Html$Styled$text('WIP')
 				])),
 			A2(
 			$rtfeldman$elm_css$Html$Styled$ul,

@@ -63,7 +63,7 @@ defaultStyles =
         [ descendants
             [ typeSelector "code"
                 [ color (rgb 100 100 100)
-                , fontSize medium
+                , fontSize (em 0.8)
                 ]
             , typeSelector "pre"
                 [ overflow auto

@@ -8673,7 +8673,6 @@ var $rtfeldman$elm_css$Css$prop2 = F3(
 		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + argB.value));
 	});
 var $rtfeldman$elm_css$Css$margin2 = $rtfeldman$elm_css$Css$prop2('margin');
-var $rtfeldman$elm_css$Css$medium = {fontSize: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'medium'};
 var $rtfeldman$elm_css$Css$overflow = $rtfeldman$elm_css$Css$prop1('overflow');
 var $rtfeldman$elm_css$Css$padding2 = $rtfeldman$elm_css$Css$prop2('padding');
 var $rtfeldman$elm_css$Css$paddingBottom = $rtfeldman$elm_css$Css$prop1('padding-bottom');
@@ -8736,7 +8735,8 @@ var $author$project$Sitewide$View$defaultStyles = $rtfeldman$elm_css$Html$Styled
 						[
 							$rtfeldman$elm_css$Css$color(
 							A3($rtfeldman$elm_css$Css$rgb, 100, 100, 100)),
-							$rtfeldman$elm_css$Css$fontSize($rtfeldman$elm_css$Css$medium)
+							$rtfeldman$elm_css$Css$fontSize(
+							$rtfeldman$elm_css$Css$em(0.8))
 						])),
 					A2(
 					$rtfeldman$elm_css$Css$Global$typeSelector,
@@ -10584,7 +10584,7 @@ var $author$project$Components$blogHeading = F2(
 						[
 							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
 							$rtfeldman$elm_css$Css$width(
-							$rtfeldman$elm_css$Css$pct(80)),
+							$rtfeldman$elm_css$Css$pct(70)),
 							A3(
 							$rtfeldman$elm_css$Css$margin3,
 							$rtfeldman$elm_css$Css$em(1.2),
@@ -10605,7 +10605,9 @@ var $author$project$Components$blogHeading = F2(
 									$rtfeldman$elm_css$Css$margin3,
 									$rtfeldman$elm_css$Css$em(2.3),
 									$rtfeldman$elm_css$Css$em(0),
-									$rtfeldman$elm_css$Css$em(1.1))
+									$rtfeldman$elm_css$Css$em(1.1)),
+									$rtfeldman$elm_css$Css$fontSize(
+									$rtfeldman$elm_css$Css$em(2.2))
 								])),
 							A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'text-wrap', 'balance')
 						]),
@@ -10718,9 +10720,11 @@ var $author$project$Extra$GameOfLife$Diagrams$cellGrid = F4(
 					A2($elm$core$List$range, 0, width - 1),
 					A2($elm$core$List$range, 0, height - 1))));
 	});
+var $rtfeldman$elm_css$Svg$Styled$Attributes$dominantBaseline = $rtfeldman$elm_css$VirtualDom$Styled$attribute('dominant-baseline');
 var $rtfeldman$elm_css$Svg$Styled$Attributes$fontFamily = $rtfeldman$elm_css$VirtualDom$Styled$attribute('font-family');
 var $rtfeldman$elm_css$Svg$Styled$Attributes$fontSize = $rtfeldman$elm_css$VirtualDom$Styled$attribute('font-size');
 var $rtfeldman$elm_css$Svg$Styled$text = $rtfeldman$elm_css$VirtualDom$Styled$text;
+var $rtfeldman$elm_css$Svg$Styled$Attributes$textAnchor = $rtfeldman$elm_css$VirtualDom$Styled$attribute('text-anchor');
 var $rtfeldman$elm_css$Svg$Styled$text_ = $rtfeldman$elm_css$Svg$Styled$node('text');
 var $rtfeldman$elm_css$Svg$Styled$Attributes$x = $rtfeldman$elm_css$VirtualDom$Styled$attribute('x');
 var $rtfeldman$elm_css$Svg$Styled$Attributes$y = $rtfeldman$elm_css$VirtualDom$Styled$attribute('y');
@@ -10732,8 +10736,10 @@ var $author$project$Extra$GameOfLife$Diagrams$diagramText = F3(
 				[
 					$rtfeldman$elm_css$Svg$Styled$Attributes$x(xVal),
 					$rtfeldman$elm_css$Svg$Styled$Attributes$y(yVal),
-					$rtfeldman$elm_css$Svg$Styled$Attributes$fontSize('.0015em'),
-					$rtfeldman$elm_css$Svg$Styled$Attributes$fontFamily('courier')
+					$rtfeldman$elm_css$Svg$Styled$Attributes$fontSize('.028'),
+					$rtfeldman$elm_css$Svg$Styled$Attributes$fontFamily('courier'),
+					$rtfeldman$elm_css$Svg$Styled$Attributes$dominantBaseline('central'),
+					$rtfeldman$elm_css$Svg$Styled$Attributes$textAnchor('middle')
 				]),
 			_List_fromArray(
 				[
@@ -10754,8 +10760,8 @@ var $author$project$Extra$GameOfLife$Diagrams$cellsToCheckDiagram = function () 
 			]),
 		_List_fromArray(
 			[
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.39', '.5', '∪'),
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.59', '.5', '∪'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.4', '.49', '∪'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.6', '.49', '∪'),
 				A4(
 				$author$project$Extra$GameOfLife$Diagrams$cellGrid,
 				_Utils_Tuple2(0.3, 0.49),
@@ -10816,10 +10822,10 @@ var $author$project$Extra$GameOfLife$Diagrams$cellsToCheckDiagram = function () 
 		_List_Nil,
 		_List_fromArray(
 			[
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.12', '.5', '(near'),
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.32', '.5', ') ∪ (near'),
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.59', '.5', ') ∪ (near'),
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.86', '.5', ')'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.16', '.49', '(near'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.39', '.49', ') ∪ (near'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.66', '.49', ') ∪ (near'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.86', '.49', ')'),
 				A4(
 				$author$project$Extra$GameOfLife$Diagrams$cellGrid,
 				_Utils_Tuple2(0.26, 0.49),
@@ -10859,7 +10865,7 @@ var $author$project$Extra$GameOfLife$Diagrams$cellsToCheckDiagram = function () 
 			]),
 		_List_fromArray(
 			[
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.18', '0.25', 'foldl (near >> union) empty'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.4', '0.235', 'foldl (near >> union) empty'),
 				A4(
 				$author$project$Extra$GameOfLife$Diagrams$cellGrid,
 				_Utils_Tuple2(0.69, 0.235),
@@ -11078,7 +11084,7 @@ var $author$project$Extra$GameOfLife$Diagrams$livingNeighborsDiagram = function 
 			]),
 		_List_fromArray(
 			[
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.492', '.1', '∩'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.5', '.09', '∩'),
 				A4(
 				$author$project$Extra$GameOfLife$Diagrams$cellGrid,
 				_Utils_Tuple2(0.4, 0.09),
@@ -11119,9 +11125,9 @@ var $author$project$Extra$GameOfLife$Diagrams$livingNeighborsDiagram = function 
 			]),
 		_List_fromArray(
 			[
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.41', '.1', '∩ ('),
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.59', '.1', ' -'),
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.74', '.1', ')'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.44', '.09', '∩ ('),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.6', '.09', ' -'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.74', '.09', ')'),
 				A4(
 				$author$project$Extra$GameOfLife$Diagrams$cellGrid,
 				_Utils_Tuple2(0.34, 0.09),
@@ -11173,9 +11179,9 @@ var $author$project$Extra$GameOfLife$Diagrams$livingNeighborsDiagram = function 
 			]),
 		_List_fromArray(
 			[
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.37', '.1', '∩ ((near'),
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.62', '.1', ') -'),
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.79', '.1', ')'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.44', '.09', '∩ ((near'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.64', '.09', ') -'),
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.79', '.09', ')'),
 				A4(
 				$author$project$Extra$GameOfLife$Diagrams$cellGrid,
 				_Utils_Tuple2(0.3, 0.09),
@@ -11216,7 +11222,7 @@ var $author$project$Extra$GameOfLife$Diagrams$livingNeighborsDiagram = function 
 		_List_Nil,
 		_List_fromArray(
 			[
-				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.29', '.1', 'board ∩ ((near cell) - cell)')
+				A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '.5', '.1', 'board ∩ ((near cell) - cell)')
 			]));
 	return A2(
 		$rtfeldman$elm_css$Svg$Styled$svg,
@@ -11266,7 +11272,7 @@ var $author$project$Extra$GameOfLife$Diagrams$nearDiagram = A2(
 		]),
 	_List_fromArray(
 		[
-			A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.42', '0.1', 'near'),
+			A3($author$project$Extra$GameOfLife$Diagrams$diagramText, '0.45', '0.09', 'near'),
 			A4(
 			$author$project$Extra$GameOfLife$Diagrams$cellGrid,
 			_Utils_Tuple2(0.55, 0.09),

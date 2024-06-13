@@ -106,32 +106,55 @@ local function meta_to_string(meta)
   return result
 end
 
+function ReadMetadata(doc)
+  local metadata = {}
+  metadata.date = 1000 * os.time()
+  if doc.meta.date then
+    local y, m, d = stringify(doc.meta.date):match("(%d+)%-(%d+)%-(%d+)")
+    metadata.date = 1000 * os.time({year = y, month = m, day = d})
+  end
+  if not doc.meta.moduleName then
+    error("Expecting a moduleName for the page in the metadata")
+  end
+  metadata.moduleName = stringify(doc.meta.moduleName)
+  metadata.imports = {}
+  if doc.meta.imports then
+    for _, lib in ipairs(doc.meta.imports) do
+      table.insert(metadata.imports, stringify(lib))
+    end
+  end
+  if doc.meta.update then
+    metadata.update = stringify(doc.meta.update)
+  end
+  if doc.meta.primaryUrl then
+    metadata.primaryUrl = stringify(doc.meta.primaryUrl)
+  else
+    error("Expecting a primaryUrl for the page in the metadata")
+  end
+  if doc.meta.dynamic then
+    metadata.dynamic = true
+  else
+    metadata.dynamic = false
+  end
+  return metadata
+end
+
 -- Convert Pandoc document to Elm code
 function Writer(doc, opts)
   local buffer = {}
-  local date = 1000 * os.time()
+  local metadata = ReadMetadata(doc)
 
-  if doc.meta.title then
-    table.insert(buffer, 'module Pages.' .. stringify(doc.meta.title) .. ' exposing (..)')
-  else
-    table.insert(buffer, 'module Pages._ exposing (..)')
-  end
+  table.insert(buffer, 'module Pages.' .. metadata.moduleName .. ' exposing (..)')
   table.insert(buffer, '')
   local imports = {}
   table.insert(imports, 'import Components exposing (blogHeading)')
   table.insert(imports, 'import Date exposing (fromPosix)')
   table.insert(imports, 'import Html.Styled exposing (..)')
   table.insert(imports, 'import Html.Styled.Attributes exposing (..)')
-  if doc.meta.dynamic then 
-    table.insert(imports, 'import Sitewide.Types exposing (SitewideModel, SitewideMsg)')
-  else
-    table.insert(imports, 'import Sitewide.Types exposing (SitewideMsg)')
-  end
+  table.insert(imports, 'import Sitewide.Types exposing (Article, Page)')
   table.insert(imports, 'import Time exposing (Month(..), millisToPosix, utc)')
-  if doc.meta.imports then
-    for _, lib in ipairs(doc.meta.imports) do
-      table.insert(imports, 'import ' .. stringify(lib))
-    end
+  for _, lib in ipairs(metadata.imports) do
+      table.insert(imports, 'import ' .. lib)
   end
   table.sort(imports)
   for i, import in ipairs(imports) do
@@ -139,29 +162,50 @@ function Writer(doc, opts)
   end
   table.insert(buffer, '')
   table.insert(buffer, '')
-  if doc.meta.dynamic then 
-    table.insert(buffer, 'view : SitewideModel -> Html SitewideMsg')
-    table.insert(buffer, 'view model =')
+  table.insert(buffer, 'page : Page')
+  table.insert(buffer, 'page =')
+  table.insert(buffer, '    { view =')
+  if metadata.dynamic then 
+    table.insert(buffer, '        \\model ->')
   else
-    table.insert(buffer, 'view : Html SitewideMsg')
-    table.insert(buffer, 'view =')
+    table.insert(buffer, '        \\_ ->')
   end
-  table.insert(buffer, '    article []')
+  table.insert(buffer, '            Html.Styled.article []')
+
+  local title = ''
 
   for i, block in ipairs(doc.blocks) do
     if i == 1 then
       if block.t ~= "Header" or block.level ~= 1 then
         error("File should start with h1")
       end
-      table.insert(buffer, '        [ blogHeading (' .. inline_to_elm(block.content) .. ') (fromPosix utc (millisToPosix ' .. date .. '))');
+      table.insert(buffer, '                [ blogHeading (' .. inline_to_elm(block.content) .. ') article.publicationDate');
+      title = stringify(block)
     else
       for _, line in ipairs(processBlock(i, block)) do
-        table.insert(buffer, '        ' .. line);
+        table.insert(buffer, '                ' .. line);
       end
     end
   end
 
-  table.insert(buffer, '        ]')
+  table.insert(buffer, '                ]')
+
+  if metadata.update then
+    table.insert(buffer, '    , update = ' .. metadata.update .. '')
+  else
+    table.insert(buffer, '    , update = \\_ model -> ( model, Cmd.none )')
+  end
+  table.insert(buffer, '    }')
+  table.insert(buffer, '')
+  table.insert(buffer, '')
+  table.insert(buffer, 'article : Article')
+  table.insert(buffer, 'article =')
+  table.insert(buffer, '    { title = "' .. title ..'"')
+  table.insert(buffer, '    , publicationDate = fromPosix utc (millisToPosix ' .. metadata.date .. ')')
+  table.insert(buffer, '    , moduleName = "' .. metadata.moduleName ..'"')
+  table.insert(buffer, '    , primaryUrl = "' .. metadata.primaryUrl .. '"')
+  table.insert(buffer, '    }')
+
 
   return table.concat(buffer, '\n')
 end

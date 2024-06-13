@@ -1,12 +1,14 @@
 ---
-title: "GameOfLife"
+moduleName: "GameOfLife"
 dynamic: True
+primaryUrl: "/LIFE"
+update: Extra.GameOfLife.App.update
 imports:
   - Extra.GameOfLife.App
   - Extra.GameOfLife.Diagrams
 ---
 
-# Better living through sets
+# Better Living Through Sets
 
 Lists are THE most overrated data type bar none. Who has *ever* needed an ordered sequence of values with duplication? Not me. Lists are such a ridiculous data structure that no one can even agree how they should be built. A collection of cons cells? A block of contiguous memory? Do we index into them with pointers? Do we iterate over them with folds? Are we really just using a queue or a stack? Lists are crazy.
 

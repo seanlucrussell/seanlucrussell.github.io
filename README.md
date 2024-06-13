@@ -27,4 +27,22 @@ we can put stuff in the yaml metadata to keep track of these metadata options wi
 pandoc -t native pages/the-guts-of-git/the-guts-of-git.md
 
 
+date in format YYYY-MM-DD
+
+
+need data on
+
+- url
+- module name
+- page title (for navigation main page)
+
+should these be logical transformations of each other? perhaps we presume the page title is the main thing, then we make it camel case for the module name and dash separated for the url. so then should this be derived from the page title in the markdown? but then we might have link instability. so we have a couple of competing needs. we want URLs to remain stable. we want titles to be editable. we probably want module names to be stable too. this suggests to me that we want the title to be one thing and then we want a formula for page references as another thing
+
+i really really want to keep urls stable. perhaps i should create a specific URL tracking file. keeping URLs separate could make it easier to ensure that URL modifications are append-only. what do we need urls for? deciding which update and view to use, right?
+
+what in particular do i want to preserve with URLs? that should make the decision on how to use them easier.
+
+part of the thing is i also want the urls to be available all in one place, so i can quickly verify which ones are in use and which are free
+
+
 elm-live -d site/ --pushstate -p 8001 src/Main.elm -- --output=site/elm.js

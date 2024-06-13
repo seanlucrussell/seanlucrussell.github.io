@@ -1,9 +1,10 @@
 ---
-title: "RecursionSchemes"
+moduleName: "RecursionSchemes"
+primaryUrl: "/REC"
 static: True
 ---
 
-# Recursion schemes are the answer
+# Recursion Schemes Are The Answer
 
 But what is the question?
 

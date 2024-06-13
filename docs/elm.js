@@ -5339,7 +5339,6 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$application = _Browser_application;
-var $author$project$Sitewide$Types$NavigationPage = {$: 'NavigationPage'};
 var $elm$core$Set$Set_elm_builtin = function (a) {
 	return {$: 'Set_elm_builtin', a: a};
 };
@@ -5573,9 +5572,6 @@ var $author$project$Sitewide$Types$GameOfLifeStep = {$: 'GameOfLifeStep'};
 var $author$project$Sitewide$Types$SelectPage = function (a) {
 	return {$: 'SelectPage', a: a};
 };
-var $author$project$Sitewide$Types$GameOfLifePage = {$: 'GameOfLifePage'};
-var $author$project$Sitewide$Types$GutsOfGitPage = {$: 'GutsOfGitPage'};
-var $author$project$Sitewide$Types$RecursionSchemesPage = {$: 'RecursionSchemesPage'};
 var $author$project$Sitewide$Types$ToggleClock = {$: 'ToggleClock'};
 var $elm$core$Dict$fromList = function (assocs) {
 	return A3(
@@ -5595,16 +5591,16 @@ var $author$project$Sitewide$Update$commandMap = function (_v0) {
 			[
 				_Utils_Tuple2(
 				'NAV',
-				$author$project$Sitewide$Types$SelectPage($author$project$Sitewide$Types$NavigationPage)),
+				$author$project$Sitewide$Types$SelectPage('/NAV')),
 				_Utils_Tuple2(
 				'REC',
-				$author$project$Sitewide$Types$SelectPage($author$project$Sitewide$Types$RecursionSchemesPage)),
+				$author$project$Sitewide$Types$SelectPage('/REC')),
 				_Utils_Tuple2(
 				'GOG',
-				$author$project$Sitewide$Types$SelectPage($author$project$Sitewide$Types$GutsOfGitPage)),
+				$author$project$Sitewide$Types$SelectPage('/GOG')),
 				_Utils_Tuple2(
 				'LIFE',
-				$author$project$Sitewide$Types$SelectPage($author$project$Sitewide$Types$GameOfLifePage)),
+				$author$project$Sitewide$Types$SelectPage('/LIFE')),
 				_Utils_Tuple2('CLOCK', $author$project$Sitewide$Types$ToggleClock)
 			]));
 };
@@ -5649,857 +5645,31 @@ var $elm$core$String$map = _String_map;
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $elm$core$Basics$not = _Basics_not;
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $author$project$Sitewide$Update$urlPageRelation = _List_fromArray(
-	[
-		_Utils_Tuple2('/NAV', $author$project$Sitewide$Types$NavigationPage),
-		_Utils_Tuple2('/', $author$project$Sitewide$Types$NavigationPage),
-		_Utils_Tuple2('/REC', $author$project$Sitewide$Types$RecursionSchemesPage),
-		_Utils_Tuple2('/GOG', $author$project$Sitewide$Types$GutsOfGitPage),
-		_Utils_Tuple2('/LIFE', $author$project$Sitewide$Types$GameOfLifePage)
-	]);
-var $author$project$Sitewide$Update$pageToUrl = function (page) {
-	var _v0 = A2(
-		$elm$core$List$filter,
-		function (_v1) {
-			var p = _v1.b;
-			return _Utils_eq(p, page);
-		},
-		$author$project$Sitewide$Update$urlPageRelation);
-	if (_v0.b) {
-		var _v2 = _v0.a;
-		var url = _v2.a;
-		return url;
-	} else {
-		return '/MISSING';
-	}
-};
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
 var $elm$core$Char$toUpper = _Char_toUpper;
-var $elm$core$Dict$member = F2(
-	function (key, dict) {
-		var _v0 = A2($elm$core$Dict$get, key, dict);
-		if (_v0.$ === 'Just') {
-			return true;
-		} else {
-			return false;
-		}
+var $rtfeldman$elm_css$VirtualDom$Styled$Node = F3(
+	function (a, b, c) {
+		return {$: 'Node', a: a, b: b, c: c};
 	});
-var $elm$core$Set$member = F2(
-	function (key, _v0) {
-		var dict = _v0.a;
-		return A2($elm$core$Dict$member, key, dict);
-	});
-var $elm$core$Dict$getMin = function (dict) {
-	getMin:
-	while (true) {
-		if ((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) {
-			var left = dict.d;
-			var $temp$dict = left;
-			dict = $temp$dict;
-			continue getMin;
-		} else {
-			return dict;
-		}
-	}
+var $rtfeldman$elm_css$VirtualDom$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$Node;
+var $rtfeldman$elm_css$Html$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$node;
+var $rtfeldman$elm_css$Html$Styled$a = $rtfeldman$elm_css$Html$Styled$node('a');
+var $rtfeldman$elm_css$Css$Preprocess$AppendProperty = function (a) {
+	return {$: 'AppendProperty', a: a};
 };
-var $elm$core$Dict$moveRedLeft = function (dict) {
-	if (((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) && (dict.e.$ === 'RBNode_elm_builtin')) {
-		if ((dict.e.d.$ === 'RBNode_elm_builtin') && (dict.e.d.a.$ === 'Red')) {
-			var clr = dict.a;
-			var k = dict.b;
-			var v = dict.c;
-			var _v1 = dict.d;
-			var lClr = _v1.a;
-			var lK = _v1.b;
-			var lV = _v1.c;
-			var lLeft = _v1.d;
-			var lRight = _v1.e;
-			var _v2 = dict.e;
-			var rClr = _v2.a;
-			var rK = _v2.b;
-			var rV = _v2.c;
-			var rLeft = _v2.d;
-			var _v3 = rLeft.a;
-			var rlK = rLeft.b;
-			var rlV = rLeft.c;
-			var rlL = rLeft.d;
-			var rlR = rLeft.e;
-			var rRight = _v2.e;
-			return A5(
-				$elm$core$Dict$RBNode_elm_builtin,
-				$elm$core$Dict$Red,
-				rlK,
-				rlV,
-				A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
-					k,
-					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					rlL),
-				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rlR, rRight));
-		} else {
-			var clr = dict.a;
-			var k = dict.b;
-			var v = dict.c;
-			var _v4 = dict.d;
-			var lClr = _v4.a;
-			var lK = _v4.b;
-			var lV = _v4.c;
-			var lLeft = _v4.d;
-			var lRight = _v4.e;
-			var _v5 = dict.e;
-			var rClr = _v5.a;
-			var rK = _v5.b;
-			var rV = _v5.c;
-			var rLeft = _v5.d;
-			var rRight = _v5.e;
-			if (clr.$ === 'Black') {
-				return A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
-					k,
-					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
-			} else {
-				return A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
-					k,
-					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
-			}
-		}
-	} else {
-		return dict;
-	}
+var $rtfeldman$elm_css$Css$Structure$Property = function (a) {
+	return {$: 'Property', a: a};
 };
-var $elm$core$Dict$moveRedRight = function (dict) {
-	if (((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) && (dict.e.$ === 'RBNode_elm_builtin')) {
-		if ((dict.d.d.$ === 'RBNode_elm_builtin') && (dict.d.d.a.$ === 'Red')) {
-			var clr = dict.a;
-			var k = dict.b;
-			var v = dict.c;
-			var _v1 = dict.d;
-			var lClr = _v1.a;
-			var lK = _v1.b;
-			var lV = _v1.c;
-			var _v2 = _v1.d;
-			var _v3 = _v2.a;
-			var llK = _v2.b;
-			var llV = _v2.c;
-			var llLeft = _v2.d;
-			var llRight = _v2.e;
-			var lRight = _v1.e;
-			var _v4 = dict.e;
-			var rClr = _v4.a;
-			var rK = _v4.b;
-			var rV = _v4.c;
-			var rLeft = _v4.d;
-			var rRight = _v4.e;
-			return A5(
-				$elm$core$Dict$RBNode_elm_builtin,
-				$elm$core$Dict$Red,
-				lK,
-				lV,
-				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
-				A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
-					k,
-					v,
-					lRight,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight)));
-		} else {
-			var clr = dict.a;
-			var k = dict.b;
-			var v = dict.c;
-			var _v5 = dict.d;
-			var lClr = _v5.a;
-			var lK = _v5.b;
-			var lV = _v5.c;
-			var lLeft = _v5.d;
-			var lRight = _v5.e;
-			var _v6 = dict.e;
-			var rClr = _v6.a;
-			var rK = _v6.b;
-			var rV = _v6.c;
-			var rLeft = _v6.d;
-			var rRight = _v6.e;
-			if (clr.$ === 'Black') {
-				return A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
-					k,
-					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
-			} else {
-				return A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Black,
-					k,
-					v,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
-			}
-		}
-	} else {
-		return dict;
-	}
-};
-var $elm$core$Dict$removeHelpPrepEQGT = F7(
-	function (targetKey, dict, color, key, value, left, right) {
-		if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
-			var _v1 = left.a;
-			var lK = left.b;
-			var lV = left.c;
-			var lLeft = left.d;
-			var lRight = left.e;
-			return A5(
-				$elm$core$Dict$RBNode_elm_builtin,
-				color,
-				lK,
-				lV,
-				lLeft,
-				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, lRight, right));
-		} else {
-			_v2$2:
-			while (true) {
-				if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Black')) {
-					if (right.d.$ === 'RBNode_elm_builtin') {
-						if (right.d.a.$ === 'Black') {
-							var _v3 = right.a;
-							var _v4 = right.d;
-							var _v5 = _v4.a;
-							return $elm$core$Dict$moveRedRight(dict);
-						} else {
-							break _v2$2;
-						}
-					} else {
-						var _v6 = right.a;
-						var _v7 = right.d;
-						return $elm$core$Dict$moveRedRight(dict);
-					}
-				} else {
-					break _v2$2;
-				}
-			}
-			return dict;
-		}
-	});
-var $elm$core$Dict$removeMin = function (dict) {
-	if ((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) {
-		var color = dict.a;
-		var key = dict.b;
-		var value = dict.c;
-		var left = dict.d;
-		var lColor = left.a;
-		var lLeft = left.d;
-		var right = dict.e;
-		if (lColor.$ === 'Black') {
-			if ((lLeft.$ === 'RBNode_elm_builtin') && (lLeft.a.$ === 'Red')) {
-				var _v3 = lLeft.a;
-				return A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					color,
-					key,
-					value,
-					$elm$core$Dict$removeMin(left),
-					right);
-			} else {
-				var _v4 = $elm$core$Dict$moveRedLeft(dict);
-				if (_v4.$ === 'RBNode_elm_builtin') {
-					var nColor = _v4.a;
-					var nKey = _v4.b;
-					var nValue = _v4.c;
-					var nLeft = _v4.d;
-					var nRight = _v4.e;
-					return A5(
-						$elm$core$Dict$balance,
-						nColor,
-						nKey,
-						nValue,
-						$elm$core$Dict$removeMin(nLeft),
-						nRight);
-				} else {
-					return $elm$core$Dict$RBEmpty_elm_builtin;
-				}
-			}
-		} else {
-			return A5(
-				$elm$core$Dict$RBNode_elm_builtin,
-				color,
-				key,
-				value,
-				$elm$core$Dict$removeMin(left),
-				right);
-		}
-	} else {
-		return $elm$core$Dict$RBEmpty_elm_builtin;
-	}
-};
-var $elm$core$Dict$removeHelp = F2(
-	function (targetKey, dict) {
-		if (dict.$ === 'RBEmpty_elm_builtin') {
-			return $elm$core$Dict$RBEmpty_elm_builtin;
-		} else {
-			var color = dict.a;
-			var key = dict.b;
-			var value = dict.c;
-			var left = dict.d;
-			var right = dict.e;
-			if (_Utils_cmp(targetKey, key) < 0) {
-				if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Black')) {
-					var _v4 = left.a;
-					var lLeft = left.d;
-					if ((lLeft.$ === 'RBNode_elm_builtin') && (lLeft.a.$ === 'Red')) {
-						var _v6 = lLeft.a;
-						return A5(
-							$elm$core$Dict$RBNode_elm_builtin,
-							color,
-							key,
-							value,
-							A2($elm$core$Dict$removeHelp, targetKey, left),
-							right);
-					} else {
-						var _v7 = $elm$core$Dict$moveRedLeft(dict);
-						if (_v7.$ === 'RBNode_elm_builtin') {
-							var nColor = _v7.a;
-							var nKey = _v7.b;
-							var nValue = _v7.c;
-							var nLeft = _v7.d;
-							var nRight = _v7.e;
-							return A5(
-								$elm$core$Dict$balance,
-								nColor,
-								nKey,
-								nValue,
-								A2($elm$core$Dict$removeHelp, targetKey, nLeft),
-								nRight);
-						} else {
-							return $elm$core$Dict$RBEmpty_elm_builtin;
-						}
-					}
-				} else {
-					return A5(
-						$elm$core$Dict$RBNode_elm_builtin,
-						color,
-						key,
-						value,
-						A2($elm$core$Dict$removeHelp, targetKey, left),
-						right);
-				}
-			} else {
-				return A2(
-					$elm$core$Dict$removeHelpEQGT,
-					targetKey,
-					A7($elm$core$Dict$removeHelpPrepEQGT, targetKey, dict, color, key, value, left, right));
-			}
-		}
-	});
-var $elm$core$Dict$removeHelpEQGT = F2(
-	function (targetKey, dict) {
-		if (dict.$ === 'RBNode_elm_builtin') {
-			var color = dict.a;
-			var key = dict.b;
-			var value = dict.c;
-			var left = dict.d;
-			var right = dict.e;
-			if (_Utils_eq(targetKey, key)) {
-				var _v1 = $elm$core$Dict$getMin(right);
-				if (_v1.$ === 'RBNode_elm_builtin') {
-					var minKey = _v1.b;
-					var minValue = _v1.c;
-					return A5(
-						$elm$core$Dict$balance,
-						color,
-						minKey,
-						minValue,
-						left,
-						$elm$core$Dict$removeMin(right));
-				} else {
-					return $elm$core$Dict$RBEmpty_elm_builtin;
-				}
-			} else {
-				return A5(
-					$elm$core$Dict$balance,
-					color,
-					key,
-					value,
-					left,
-					A2($elm$core$Dict$removeHelp, targetKey, right));
-			}
-		} else {
-			return $elm$core$Dict$RBEmpty_elm_builtin;
-		}
-	});
-var $elm$core$Dict$remove = F2(
-	function (key, dict) {
-		var _v0 = A2($elm$core$Dict$removeHelp, key, dict);
-		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
-			var _v1 = _v0.a;
-			var k = _v0.b;
-			var v = _v0.c;
-			var l = _v0.d;
-			var r = _v0.e;
-			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
-		} else {
-			var x = _v0;
-			return x;
-		}
-	});
-var $elm$core$Dict$diff = F2(
-	function (t1, t2) {
-		return A3(
-			$elm$core$Dict$foldl,
-			F3(
-				function (k, v, t) {
-					return A2($elm$core$Dict$remove, k, t);
-				}),
-			t1,
-			t2);
-	});
-var $elm$core$Set$diff = F2(
-	function (_v0, _v1) {
-		var dict1 = _v0.a;
-		var dict2 = _v1.a;
-		return $elm$core$Set$Set_elm_builtin(
-			A2($elm$core$Dict$diff, dict1, dict2));
-	});
-var $elm$core$Dict$filter = F2(
-	function (isGood, dict) {
-		return A3(
-			$elm$core$Dict$foldl,
-			F3(
-				function (k, v, d) {
-					return A2(isGood, k, v) ? A3($elm$core$Dict$insert, k, v, d) : d;
-				}),
-			$elm$core$Dict$empty,
-			dict);
-	});
-var $elm$core$Dict$intersect = F2(
-	function (t1, t2) {
-		return A2(
-			$elm$core$Dict$filter,
-			F2(
-				function (k, _v0) {
-					return A2($elm$core$Dict$member, k, t2);
-				}),
-			t1);
-	});
-var $elm$core$Set$intersect = F2(
-	function (_v0, _v1) {
-		var dict1 = _v0.a;
-		var dict2 = _v1.a;
-		return $elm$core$Set$Set_elm_builtin(
-			A2($elm$core$Dict$intersect, dict1, dict2));
-	});
-var $elm$core$Basics$modBy = _Basics_modBy;
-var $author$project$Extra$GameOfLife$GameOfLife$near = function (_v0) {
-	var x = _v0.a;
-	var y = _v0.b;
-	return A2(
-		$elm$core$Set$map,
-		function (n) {
-			return _Utils_Tuple2(
-				(x - 1) + A2($elm$core$Basics$modBy, 3, n),
-				(y - 1) + ((n / 3) | 0));
-		},
-		$elm$core$Set$fromList(
-			A2($elm$core$List$range, 0, 8)));
-};
-var $elm$core$Dict$singleton = F2(
+var $rtfeldman$elm_css$Css$property = F2(
 	function (key, value) {
-		return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
+		return $rtfeldman$elm_css$Css$Preprocess$AppendProperty(
+			$rtfeldman$elm_css$Css$Structure$Property(key + (':' + value)));
 	});
-var $elm$core$Set$singleton = function (key) {
-	return $elm$core$Set$Set_elm_builtin(
-		A2($elm$core$Dict$singleton, key, _Utils_Tuple0));
-};
-var $author$project$Extra$GameOfLife$GameOfLife$neighbors = F2(
-	function (board, cell) {
-		return A2(
-			$elm$core$Set$intersect,
-			board,
-			A2(
-				$elm$core$Set$diff,
-				$author$project$Extra$GameOfLife$GameOfLife$near(cell),
-				$elm$core$Set$singleton(cell)));
+var $rtfeldman$elm_css$Css$prop1 = F2(
+	function (key, arg) {
+		return A2($rtfeldman$elm_css$Css$property, key, arg.value);
 	});
-var $elm$core$Dict$sizeHelp = F2(
-	function (n, dict) {
-		sizeHelp:
-		while (true) {
-			if (dict.$ === 'RBEmpty_elm_builtin') {
-				return n;
-			} else {
-				var left = dict.d;
-				var right = dict.e;
-				var $temp$n = A2($elm$core$Dict$sizeHelp, n + 1, right),
-					$temp$dict = left;
-				n = $temp$n;
-				dict = $temp$dict;
-				continue sizeHelp;
-			}
-		}
-	});
-var $elm$core$Dict$size = function (dict) {
-	return A2($elm$core$Dict$sizeHelp, 0, dict);
-};
-var $elm$core$Set$size = function (_v0) {
-	var dict = _v0.a;
-	return $elm$core$Dict$size(dict);
-};
-var $author$project$Extra$GameOfLife$GameOfLife$cellWillBeAlive = F2(
-	function (board, cell) {
-		var numberOfNeighbors = $elm$core$Set$size(
-			A2($author$project$Extra$GameOfLife$GameOfLife$neighbors, board, cell));
-		return (numberOfNeighbors === 3) || ((numberOfNeighbors === 2) && A2($elm$core$Set$member, cell, board));
-	});
-var $elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
-	});
-var $elm$core$Dict$union = F2(
-	function (t1, t2) {
-		return A3($elm$core$Dict$foldl, $elm$core$Dict$insert, t2, t1);
-	});
-var $elm$core$Set$union = F2(
-	function (_v0, _v1) {
-		var dict1 = _v0.a;
-		var dict2 = _v1.a;
-		return $elm$core$Set$Set_elm_builtin(
-			A2($elm$core$Dict$union, dict1, dict2));
-	});
-var $author$project$Extra$GameOfLife$GameOfLife$cellsToCheck = A2(
-	$elm$core$Set$foldl,
-	A2($elm$core$Basics$composeR, $author$project$Extra$GameOfLife$GameOfLife$near, $elm$core$Set$union),
-	$elm$core$Set$empty);
-var $elm$core$Basics$abs = function (n) {
-	return (n < 0) ? (-n) : n;
-};
-var $elm$core$Set$filter = F2(
-	function (isGood, _v0) {
-		var dict = _v0.a;
-		return $elm$core$Set$Set_elm_builtin(
-			A2(
-				$elm$core$Dict$filter,
-				F2(
-					function (key, _v1) {
-						return isGood(key);
-					}),
-				dict));
-	});
-var $author$project$Extra$GameOfLife$GameOfLife$cullBoard = $elm$core$Set$filter(
-	function (_v0) {
-		var x = _v0.a;
-		var y = _v0.b;
-		return ($elm$core$Basics$abs(x) < 300) && ($elm$core$Basics$abs(y) < 300);
-	});
-var $author$project$Extra$GameOfLife$GameOfLife$nextBoard = function (board) {
-	return $author$project$Extra$GameOfLife$GameOfLife$cullBoard(
-		A2(
-			$elm$core$Set$filter,
-			$author$project$Extra$GameOfLife$GameOfLife$cellWillBeAlive(board),
-			$author$project$Extra$GameOfLife$GameOfLife$cellsToCheck(board)));
-};
-var $author$project$Extra$GameOfLife$App$update = F2(
-	function (msg, model) {
-		switch (msg.$) {
-			case 'GameOfLifeStep':
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{
-							gameOfLifeBoard: $author$project$Extra$GameOfLife$GameOfLife$nextBoard(model.gameOfLifeBoard)
-						}),
-					$elm$core$Platform$Cmd$none);
-			case 'LoadBoard':
-				var board = msg.a;
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{gameOfLifeBoard: board}),
-					$elm$core$Platform$Cmd$none);
-			default:
-				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-		}
-	});
-var $author$project$Sitewide$Types$MissingPage = {$: 'MissingPage'};
-var $author$project$Sitewide$Update$urlToPage = function (url) {
-	var _v0 = A2(
-		$elm$core$List$filter,
-		function (_v1) {
-			var u = _v1.a;
-			return _Utils_eq(u, url.path);
-		},
-		$author$project$Sitewide$Update$urlPageRelation);
-	if (_v0.b) {
-		var _v2 = _v0.a;
-		var page = _v2.b;
-		return page;
-	} else {
-		return $author$project$Sitewide$Types$MissingPage;
-	}
-};
-var $author$project$Sitewide$Update$update = F2(
-	function (message, model) {
-		update:
-		while (true) {
-			switch (message.$) {
-				case 'SelectPage':
-					var p = message.a;
-					return _Utils_Tuple2(
-						_Utils_update(
-							model,
-							{currentPage: p}),
-						A2(
-							$elm$browser$Browser$Navigation$pushUrl,
-							model.key,
-							$author$project$Sitewide$Update$pageToUrl(p)));
-				case 'UrlChange':
-					var url = message.a;
-					return _Utils_Tuple2(
-						_Utils_update(
-							model,
-							{
-								currentPage: $author$project$Sitewide$Update$urlToPage(url)
-							}),
-						$elm$core$Platform$Cmd$none);
-				case 'UrlRequest':
-					if (message.a.$ === 'Internal') {
-						var url = message.a.a;
-						var $temp$message = $author$project$Sitewide$Types$SelectPage(
-							$author$project$Sitewide$Update$urlToPage(url)),
-							$temp$model = model;
-						message = $temp$message;
-						model = $temp$model;
-						continue update;
-					} else {
-						var url = message.a.a;
-						return _Utils_Tuple2(
-							model,
-							$elm$browser$Browser$Navigation$load(url));
-					}
-				case 'CommandBarChanged':
-					var t = message.a;
-					return _Utils_Tuple2(
-						_Utils_update(
-							model,
-							{commandText: t}),
-						$elm$core$Platform$Cmd$none);
-				case 'CommandSubmitted':
-					var _v1 = A2(
-						$elm$core$Dict$get,
-						A2($elm$core$String$map, $elm$core$Char$toUpper, model.commandText),
-						$author$project$Sitewide$Update$commandMap(model));
-					if (_v1.$ === 'Just') {
-						var cmd = _v1.a;
-						var $temp$message = cmd,
-							$temp$model = _Utils_update(
-							model,
-							{commandText: ''});
-						message = $temp$message;
-						model = $temp$model;
-						continue update;
-					} else {
-						return _Utils_Tuple2(
-							_Utils_update(
-								model,
-								{commandText: ''}),
-							$elm$core$Platform$Cmd$none);
-					}
-				case 'ToggleClock':
-					return _Utils_Tuple2(
-						_Utils_update(
-							model,
-							{clockIsVisible: !model.clockIsVisible}),
-						$elm$core$Platform$Cmd$none);
-				case 'Tick':
-					var t = message.a;
-					if ((A2($author$project$Sitewide$Update$intervalCount, model.time + t, 100) - A2($author$project$Sitewide$Update$intervalCount, model.time, 100)) >= 1) {
-						var $temp$message = $author$project$Sitewide$Types$GameOfLifeStep,
-							$temp$model = _Utils_update(
-							model,
-							{time: model.time + t});
-						message = $temp$message;
-						model = $temp$model;
-						continue update;
-					} else {
-						return _Utils_Tuple2(
-							_Utils_update(
-								model,
-								{time: model.time + t}),
-							$elm$core$Platform$Cmd$none);
-					}
-				default:
-					var _v2 = model.currentPage;
-					if (_v2.$ === 'GameOfLifePage') {
-						return A2($author$project$Extra$GameOfLife$App$update, message, model);
-					} else {
-						return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-					}
-			}
-		}
-	});
-var $author$project$Sitewide$Init$init = F3(
-	function (_v0, url, key) {
-		return A2(
-			$author$project$Sitewide$Update$update,
-			$author$project$Sitewide$Types$UrlChange(url),
-			{clockIsVisible: false, commandText: '', currentPage: $author$project$Sitewide$Types$NavigationPage, gameOfLifeBoard: $author$project$Extra$GameOfLife$App$initialBoard, key: key, time: 0});
-	});
-var $elm$browser$Browser$AnimationManager$Delta = function (a) {
-	return {$: 'Delta', a: a};
-};
-var $elm$browser$Browser$AnimationManager$State = F3(
-	function (subs, request, oldTime) {
-		return {oldTime: oldTime, request: request, subs: subs};
-	});
-var $elm$browser$Browser$AnimationManager$init = $elm$core$Task$succeed(
-	A3($elm$browser$Browser$AnimationManager$State, _List_Nil, $elm$core$Maybe$Nothing, 0));
-var $elm$core$Process$kill = _Scheduler_kill;
-var $elm$browser$Browser$AnimationManager$now = _Browser_now(_Utils_Tuple0);
-var $elm$browser$Browser$AnimationManager$rAF = _Browser_rAF(_Utils_Tuple0);
-var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
-var $elm$core$Process$spawn = _Scheduler_spawn;
-var $elm$browser$Browser$AnimationManager$onEffects = F3(
-	function (router, subs, _v0) {
-		var request = _v0.request;
-		var oldTime = _v0.oldTime;
-		var _v1 = _Utils_Tuple2(request, subs);
-		if (_v1.a.$ === 'Nothing') {
-			if (!_v1.b.b) {
-				var _v2 = _v1.a;
-				return $elm$browser$Browser$AnimationManager$init;
-			} else {
-				var _v4 = _v1.a;
-				return A2(
-					$elm$core$Task$andThen,
-					function (pid) {
-						return A2(
-							$elm$core$Task$andThen,
-							function (time) {
-								return $elm$core$Task$succeed(
-									A3(
-										$elm$browser$Browser$AnimationManager$State,
-										subs,
-										$elm$core$Maybe$Just(pid),
-										time));
-							},
-							$elm$browser$Browser$AnimationManager$now);
-					},
-					$elm$core$Process$spawn(
-						A2(
-							$elm$core$Task$andThen,
-							$elm$core$Platform$sendToSelf(router),
-							$elm$browser$Browser$AnimationManager$rAF)));
-			}
-		} else {
-			if (!_v1.b.b) {
-				var pid = _v1.a.a;
-				return A2(
-					$elm$core$Task$andThen,
-					function (_v3) {
-						return $elm$browser$Browser$AnimationManager$init;
-					},
-					$elm$core$Process$kill(pid));
-			} else {
-				return $elm$core$Task$succeed(
-					A3($elm$browser$Browser$AnimationManager$State, subs, request, oldTime));
-			}
-		}
-	});
-var $elm$time$Time$Posix = function (a) {
-	return {$: 'Posix', a: a};
-};
-var $elm$time$Time$millisToPosix = $elm$time$Time$Posix;
-var $elm$browser$Browser$AnimationManager$onSelfMsg = F3(
-	function (router, newTime, _v0) {
-		var subs = _v0.subs;
-		var oldTime = _v0.oldTime;
-		var send = function (sub) {
-			if (sub.$ === 'Time') {
-				var tagger = sub.a;
-				return A2(
-					$elm$core$Platform$sendToApp,
-					router,
-					tagger(
-						$elm$time$Time$millisToPosix(newTime)));
-			} else {
-				var tagger = sub.a;
-				return A2(
-					$elm$core$Platform$sendToApp,
-					router,
-					tagger(newTime - oldTime));
-			}
-		};
-		return A2(
-			$elm$core$Task$andThen,
-			function (pid) {
-				return A2(
-					$elm$core$Task$andThen,
-					function (_v1) {
-						return $elm$core$Task$succeed(
-							A3(
-								$elm$browser$Browser$AnimationManager$State,
-								subs,
-								$elm$core$Maybe$Just(pid),
-								newTime));
-					},
-					$elm$core$Task$sequence(
-						A2($elm$core$List$map, send, subs)));
-			},
-			$elm$core$Process$spawn(
-				A2(
-					$elm$core$Task$andThen,
-					$elm$core$Platform$sendToSelf(router),
-					$elm$browser$Browser$AnimationManager$rAF)));
-	});
-var $elm$browser$Browser$AnimationManager$Time = function (a) {
-	return {$: 'Time', a: a};
-};
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var $elm$browser$Browser$AnimationManager$subMap = F2(
-	function (func, sub) {
-		if (sub.$ === 'Time') {
-			var tagger = sub.a;
-			return $elm$browser$Browser$AnimationManager$Time(
-				A2($elm$core$Basics$composeL, func, tagger));
-		} else {
-			var tagger = sub.a;
-			return $elm$browser$Browser$AnimationManager$Delta(
-				A2($elm$core$Basics$composeL, func, tagger));
-		}
-	});
-_Platform_effectManagers['Browser.AnimationManager'] = _Platform_createManager($elm$browser$Browser$AnimationManager$init, $elm$browser$Browser$AnimationManager$onEffects, $elm$browser$Browser$AnimationManager$onSelfMsg, 0, $elm$browser$Browser$AnimationManager$subMap);
-var $elm$browser$Browser$AnimationManager$subscription = _Platform_leaf('Browser.AnimationManager');
-var $elm$browser$Browser$AnimationManager$onAnimationFrameDelta = function (tagger) {
-	return $elm$browser$Browser$AnimationManager$subscription(
-		$elm$browser$Browser$AnimationManager$Delta(tagger));
-};
-var $elm$browser$Browser$Events$onAnimationFrameDelta = $elm$browser$Browser$AnimationManager$onAnimationFrameDelta;
-var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
-var $rtfeldman$elm_css$Css$auto = {alignItemsOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible, intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, justifyContentOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, tableLayout: $rtfeldman$elm_css$Css$Structure$Compatible, textRendering: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'auto'};
+var $rtfeldman$elm_css$Css$center = $rtfeldman$elm_css$Css$prop1('center');
 var $rtfeldman$elm_css$VirtualDom$Styled$Attribute = F3(
 	function (a, b, c) {
 		return {$: 'Attribute', a: a, b: b, c: c};
@@ -6531,6 +5701,11 @@ var $elm$core$List$any = F2(
 				}
 			}
 		}
+	});
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
 	});
 var $elm$core$List$all = F2(
 	function (isOkay, list) {
@@ -6937,9 +6112,6 @@ var $rtfeldman$elm_css$Css$Structure$FontFace = function (a) {
 };
 var $rtfeldman$elm_css$Css$Structure$PageRule = function (a) {
 	return {$: 'PageRule', a: a};
-};
-var $rtfeldman$elm_css$Css$Structure$Property = function (a) {
-	return {$: 'Property', a: a};
 };
 var $rtfeldman$elm_css$Css$Structure$Selector = F3(
 	function (a, b, c) {
@@ -7391,6 +6563,7 @@ var $robinheghan$murmur3$Murmur3$hashString = F2(
 	});
 var $rtfeldman$elm_css$Hash$initialSeed = 15739;
 var $elm$core$String$fromList = _String_fromList;
+var $elm$core$Basics$modBy = _Basics_modBy;
 var $rtfeldman$elm_hex$Hex$unsafeToDigit = function (num) {
 	unsafeToDigit:
 	while (true) {
@@ -8189,696 +7362,8 @@ var $rtfeldman$elm_css$Html$Styled$Internal$css = function (styles) {
 	return A3($rtfeldman$elm_css$VirtualDom$Styled$Attribute, classProperty, true, cssTemplate);
 };
 var $rtfeldman$elm_css$Html$Styled$Attributes$css = $rtfeldman$elm_css$Html$Styled$Internal$css;
-var $rtfeldman$elm_css$Css$Preprocess$AppendProperty = function (a) {
-	return {$: 'AppendProperty', a: a};
-};
-var $rtfeldman$elm_css$Css$property = F2(
-	function (key, value) {
-		return $rtfeldman$elm_css$Css$Preprocess$AppendProperty(
-			$rtfeldman$elm_css$Css$Structure$Property(key + (':' + value)));
-	});
-var $rtfeldman$elm_css$Css$backgroundColor = function (c) {
-	return A2($rtfeldman$elm_css$Css$property, 'background-color', c.value);
-};
-var $rtfeldman$elm_css$Css$borderColor = function (c) {
-	return A2($rtfeldman$elm_css$Css$property, 'border-color', c.value);
-};
-var $rtfeldman$elm_css$Css$prop1 = F2(
-	function (key, arg) {
-		return A2($rtfeldman$elm_css$Css$property, key, arg.value);
-	});
-var $rtfeldman$elm_css$Css$borderRadius = $rtfeldman$elm_css$Css$prop1('border-radius');
-var $rtfeldman$elm_css$Css$borderStyle = $rtfeldman$elm_css$Css$prop1('border-style');
-var $rtfeldman$elm_css$Css$borderWidth = $rtfeldman$elm_css$Css$prop1('border-width');
-var $rtfeldman$elm_css$Css$color = function (c) {
-	return A2($rtfeldman$elm_css$Css$property, 'color', c.value);
-};
-var $rtfeldman$elm_css$Css$dashed = {borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationStyle: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'dashed'};
-var $rtfeldman$elm_css$Css$Structure$Descendant = {$: 'Descendant'};
-var $rtfeldman$elm_css$Css$Preprocess$NestSnippet = F2(
-	function (a, b) {
-		return {$: 'NestSnippet', a: a, b: b};
-	});
-var $rtfeldman$elm_css$Css$Global$descendants = $rtfeldman$elm_css$Css$Preprocess$NestSnippet($rtfeldman$elm_css$Css$Structure$Descendant);
-var $rtfeldman$elm_css$Css$EmUnits = {$: 'EmUnits'};
-var $elm$core$String$fromFloat = _String_fromNumber;
-var $rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
-	function (units, unitLabel, numericValue) {
-		return {
-			absoluteLength: $rtfeldman$elm_css$Css$Structure$Compatible,
-			calc: $rtfeldman$elm_css$Css$Structure$Compatible,
-			flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible,
-			fontSize: $rtfeldman$elm_css$Css$Structure$Compatible,
-			length: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lineHeight: $rtfeldman$elm_css$Css$Structure$Compatible,
-			numericValue: numericValue,
-			textIndent: $rtfeldman$elm_css$Css$Structure$Compatible,
-			unitLabel: unitLabel,
-			units: units,
-			value: _Utils_ap(
-				$elm$core$String$fromFloat(numericValue),
-				unitLabel)
-		};
-	});
-var $rtfeldman$elm_css$Css$em = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$EmUnits, 'em');
-var $rtfeldman$elm_css$Css$stringsToValue = function (list) {
-	return $elm$core$List$isEmpty(list) ? {value: 'none'} : {
-		value: A2($elm$core$String$join, ', ', list)
-	};
-};
-var $rtfeldman$elm_css$Css$fontFamilies = A2(
-	$elm$core$Basics$composeL,
-	$rtfeldman$elm_css$Css$prop1('font-family'),
-	$rtfeldman$elm_css$Css$stringsToValue);
-var $rtfeldman$elm_css$Css$fontSize = $rtfeldman$elm_css$Css$prop1('font-size');
-var $rtfeldman$elm_css$Css$fontWeight = function (_v0) {
-	var value = _v0.value;
-	return A2($rtfeldman$elm_css$Css$property, 'font-weight', value);
-};
-var $rtfeldman$elm_css$Css$height = $rtfeldman$elm_css$Css$prop1('height');
-var $rtfeldman$elm_css$Css$withPrecedingHash = function (str) {
-	return A2($elm$core$String$startsWith, '#', str) ? str : A2(
-		$elm$core$String$cons,
-		_Utils_chr('#'),
-		str);
-};
-var $rtfeldman$elm_css$Css$erroneousHex = function (str) {
-	return {
-		alpha: 1,
-		blue: 0,
-		color: $rtfeldman$elm_css$Css$Structure$Compatible,
-		green: 0,
-		red: 0,
-		value: $rtfeldman$elm_css$Css$withPrecedingHash(str)
-	};
-};
-var $elm$core$String$foldr = _String_foldr;
-var $elm$core$String$toList = function (string) {
-	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
-};
-var $elm$core$String$fromChar = function (_char) {
-	return A2($elm$core$String$cons, _char, '');
-};
-var $elm$core$Basics$pow = _Basics_pow;
-var $rtfeldman$elm_hex$Hex$fromStringHelp = F3(
-	function (position, chars, accumulated) {
-		fromStringHelp:
-		while (true) {
-			if (!chars.b) {
-				return $elm$core$Result$Ok(accumulated);
-			} else {
-				var _char = chars.a;
-				var rest = chars.b;
-				switch (_char.valueOf()) {
-					case '0':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated;
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '1':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + A2($elm$core$Basics$pow, 16, position);
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '2':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (2 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '3':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (3 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '4':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (4 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '5':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (5 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '6':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (6 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '7':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (7 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '8':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (8 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '9':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (9 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'a':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (10 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'b':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (11 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'c':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (12 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'd':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (13 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'e':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (14 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'f':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (15 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					default:
-						var nonHex = _char;
-						return $elm$core$Result$Err(
-							$elm$core$String$fromChar(nonHex) + ' is not a valid hexadecimal character.');
-				}
-			}
-		}
-	});
-var $elm$core$Result$map = F2(
-	function (func, ra) {
-		if (ra.$ === 'Ok') {
-			var a = ra.a;
-			return $elm$core$Result$Ok(
-				func(a));
-		} else {
-			var e = ra.a;
-			return $elm$core$Result$Err(e);
-		}
-	});
-var $elm$core$Result$mapError = F2(
-	function (f, result) {
-		if (result.$ === 'Ok') {
-			var v = result.a;
-			return $elm$core$Result$Ok(v);
-		} else {
-			var e = result.a;
-			return $elm$core$Result$Err(
-				f(e));
-		}
-	});
-var $rtfeldman$elm_hex$Hex$fromString = function (str) {
-	if ($elm$core$String$isEmpty(str)) {
-		return $elm$core$Result$Err('Empty strings are not valid hexadecimal strings.');
-	} else {
-		var result = function () {
-			if (A2($elm$core$String$startsWith, '-', str)) {
-				var list = A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					$elm$core$List$tail(
-						$elm$core$String$toList(str)));
-				return A2(
-					$elm$core$Result$map,
-					$elm$core$Basics$negate,
-					A3(
-						$rtfeldman$elm_hex$Hex$fromStringHelp,
-						$elm$core$List$length(list) - 1,
-						list,
-						0));
-			} else {
-				return A3(
-					$rtfeldman$elm_hex$Hex$fromStringHelp,
-					$elm$core$String$length(str) - 1,
-					$elm$core$String$toList(str),
-					0);
-			}
-		}();
-		var formatError = function (err) {
-			return A2(
-				$elm$core$String$join,
-				' ',
-				_List_fromArray(
-					['\"' + (str + '\"'), 'is not a valid hexadecimal string because', err]));
-		};
-		return A2($elm$core$Result$mapError, formatError, result);
-	}
-};
-var $elm$core$String$toLower = _String_toLower;
-var $rtfeldman$elm_css$Css$validHex = F5(
-	function (str, _v0, _v1, _v2, _v3) {
-		var r1 = _v0.a;
-		var r2 = _v0.b;
-		var g1 = _v1.a;
-		var g2 = _v1.b;
-		var b1 = _v2.a;
-		var b2 = _v2.b;
-		var a1 = _v3.a;
-		var a2 = _v3.b;
-		var toResult = A2(
-			$elm$core$Basics$composeR,
-			$elm$core$String$fromList,
-			A2($elm$core$Basics$composeR, $elm$core$String$toLower, $rtfeldman$elm_hex$Hex$fromString));
-		var results = _Utils_Tuple2(
-			_Utils_Tuple2(
-				toResult(
-					_List_fromArray(
-						[r1, r2])),
-				toResult(
-					_List_fromArray(
-						[g1, g2]))),
-			_Utils_Tuple2(
-				toResult(
-					_List_fromArray(
-						[b1, b2])),
-				toResult(
-					_List_fromArray(
-						[a1, a2]))));
-		if ((((results.a.a.$ === 'Ok') && (results.a.b.$ === 'Ok')) && (results.b.a.$ === 'Ok')) && (results.b.b.$ === 'Ok')) {
-			var _v5 = results.a;
-			var red = _v5.a.a;
-			var green = _v5.b.a;
-			var _v6 = results.b;
-			var blue = _v6.a.a;
-			var alpha = _v6.b.a;
-			return {
-				alpha: alpha / 255,
-				blue: blue,
-				color: $rtfeldman$elm_css$Css$Structure$Compatible,
-				green: green,
-				red: red,
-				value: $rtfeldman$elm_css$Css$withPrecedingHash(str)
-			};
-		} else {
-			return $rtfeldman$elm_css$Css$erroneousHex(str);
-		}
-	});
-var $rtfeldman$elm_css$Css$hex = function (str) {
-	var withoutHash = A2($elm$core$String$startsWith, '#', str) ? A2($elm$core$String$dropLeft, 1, str) : str;
-	var _v0 = $elm$core$String$toList(withoutHash);
-	_v0$4:
-	while (true) {
-		if ((_v0.b && _v0.b.b) && _v0.b.b.b) {
-			if (!_v0.b.b.b.b) {
-				var r = _v0.a;
-				var _v1 = _v0.b;
-				var g = _v1.a;
-				var _v2 = _v1.b;
-				var b = _v2.a;
-				return A5(
-					$rtfeldman$elm_css$Css$validHex,
-					str,
-					_Utils_Tuple2(r, r),
-					_Utils_Tuple2(g, g),
-					_Utils_Tuple2(b, b),
-					_Utils_Tuple2(
-						_Utils_chr('f'),
-						_Utils_chr('f')));
-			} else {
-				if (!_v0.b.b.b.b.b) {
-					var r = _v0.a;
-					var _v3 = _v0.b;
-					var g = _v3.a;
-					var _v4 = _v3.b;
-					var b = _v4.a;
-					var _v5 = _v4.b;
-					var a = _v5.a;
-					return A5(
-						$rtfeldman$elm_css$Css$validHex,
-						str,
-						_Utils_Tuple2(r, r),
-						_Utils_Tuple2(g, g),
-						_Utils_Tuple2(b, b),
-						_Utils_Tuple2(a, a));
-				} else {
-					if (_v0.b.b.b.b.b.b) {
-						if (!_v0.b.b.b.b.b.b.b) {
-							var r1 = _v0.a;
-							var _v6 = _v0.b;
-							var r2 = _v6.a;
-							var _v7 = _v6.b;
-							var g1 = _v7.a;
-							var _v8 = _v7.b;
-							var g2 = _v8.a;
-							var _v9 = _v8.b;
-							var b1 = _v9.a;
-							var _v10 = _v9.b;
-							var b2 = _v10.a;
-							return A5(
-								$rtfeldman$elm_css$Css$validHex,
-								str,
-								_Utils_Tuple2(r1, r2),
-								_Utils_Tuple2(g1, g2),
-								_Utils_Tuple2(b1, b2),
-								_Utils_Tuple2(
-									_Utils_chr('f'),
-									_Utils_chr('f')));
-						} else {
-							if (_v0.b.b.b.b.b.b.b.b && (!_v0.b.b.b.b.b.b.b.b.b)) {
-								var r1 = _v0.a;
-								var _v11 = _v0.b;
-								var r2 = _v11.a;
-								var _v12 = _v11.b;
-								var g1 = _v12.a;
-								var _v13 = _v12.b;
-								var g2 = _v13.a;
-								var _v14 = _v13.b;
-								var b1 = _v14.a;
-								var _v15 = _v14.b;
-								var b2 = _v15.a;
-								var _v16 = _v15.b;
-								var a1 = _v16.a;
-								var _v17 = _v16.b;
-								var a2 = _v17.a;
-								return A5(
-									$rtfeldman$elm_css$Css$validHex,
-									str,
-									_Utils_Tuple2(r1, r2),
-									_Utils_Tuple2(g1, g2),
-									_Utils_Tuple2(b1, b2),
-									_Utils_Tuple2(a1, a2));
-							} else {
-								break _v0$4;
-							}
-						}
-					} else {
-						break _v0$4;
-					}
-				}
-			}
-		} else {
-			break _v0$4;
-		}
-	}
-	return $rtfeldman$elm_css$Css$erroneousHex(str);
-};
-var $rtfeldman$elm_css$Css$Preprocess$ExtendSelector = F2(
-	function (a, b) {
-		return {$: 'ExtendSelector', a: a, b: b};
-	});
-var $rtfeldman$elm_css$Css$Structure$PseudoClassSelector = function (a) {
-	return {$: 'PseudoClassSelector', a: a};
-};
-var $rtfeldman$elm_css$Css$pseudoClass = function (_class) {
-	return $rtfeldman$elm_css$Css$Preprocess$ExtendSelector(
-		$rtfeldman$elm_css$Css$Structure$PseudoClassSelector(_class));
-};
-var $rtfeldman$elm_css$Css$hover = $rtfeldman$elm_css$Css$pseudoClass('hover');
-var $rtfeldman$elm_css$Css$UnitlessInteger = {$: 'UnitlessInteger'};
-var $rtfeldman$elm_css$Css$int = function (val) {
-	return {
-		fontWeight: $rtfeldman$elm_css$Css$Structure$Compatible,
-		intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible,
-		lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible,
-		lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible,
-		number: $rtfeldman$elm_css$Css$Structure$Compatible,
-		numberOrInfinite: $rtfeldman$elm_css$Css$Structure$Compatible,
-		numericValue: val,
-		unitLabel: '',
-		units: $rtfeldman$elm_css$Css$UnitlessInteger,
-		value: $elm$core$String$fromInt(val)
-	};
-};
-var $rtfeldman$elm_css$Css$large = {fontSize: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'large'};
-var $rtfeldman$elm_css$Css$prop2 = F3(
-	function (key, argA, argB) {
-		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + argB.value));
-	});
-var $rtfeldman$elm_css$Css$margin2 = $rtfeldman$elm_css$Css$prop2('margin');
-var $rtfeldman$elm_css$Css$overflow = $rtfeldman$elm_css$Css$prop1('overflow');
-var $rtfeldman$elm_css$Css$padding2 = $rtfeldman$elm_css$Css$prop2('padding');
-var $rtfeldman$elm_css$Css$paddingBottom = $rtfeldman$elm_css$Css$prop1('padding-bottom');
-var $rtfeldman$elm_css$Css$paddingTop = $rtfeldman$elm_css$Css$prop1('padding-top');
-var $rtfeldman$elm_css$Css$PercentageUnits = {$: 'PercentageUnits'};
-var $rtfeldman$elm_css$Css$pct = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PercentageUnits, '%');
-var $rtfeldman$elm_css$Css$PxUnits = {$: 'PxUnits'};
-var $rtfeldman$elm_css$Css$px = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PxUnits, 'px');
-var $rtfeldman$elm_css$Css$cssFunction = F2(
-	function (funcName, args) {
-		return funcName + ('(' + (A2($elm$core$String$join, ',', args) + ')'));
-	});
-var $rtfeldman$elm_css$Css$rgb = F3(
-	function (r, g, b) {
-		return {
-			alpha: 1,
-			blue: b,
-			color: $rtfeldman$elm_css$Css$Structure$Compatible,
-			green: g,
-			red: r,
-			value: A2(
-				$rtfeldman$elm_css$Css$cssFunction,
-				'rgb',
-				A2(
-					$elm$core$List$map,
-					$elm$core$String$fromInt,
-					_List_fromArray(
-						[r, g, b])))
-		};
-	});
-var $rtfeldman$elm_css$Css$solid = {borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationStyle: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'solid'};
-var $rtfeldman$elm_css$Css$Structure$TypeSelector = function (a) {
-	return {$: 'TypeSelector', a: a};
-};
-var $rtfeldman$elm_css$Css$Global$typeSelector = F2(
-	function (selectorStr, styles) {
-		var sequence = A2(
-			$rtfeldman$elm_css$Css$Structure$TypeSelectorSequence,
-			$rtfeldman$elm_css$Css$Structure$TypeSelector(selectorStr),
-			_List_Nil);
-		var sel = A3($rtfeldman$elm_css$Css$Structure$Selector, sequence, _List_Nil, $elm$core$Maybe$Nothing);
-		return $rtfeldman$elm_css$Css$Preprocess$Snippet(
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Css$Preprocess$StyleBlockDeclaration(
-					A3($rtfeldman$elm_css$Css$Preprocess$StyleBlock, sel, _List_Nil, styles))
-				]));
-	});
-var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
-var $author$project$Sitewide$View$defaultStyles = $rtfeldman$elm_css$Html$Styled$Attributes$css(
-	_List_fromArray(
-		[
-			$rtfeldman$elm_css$Css$Global$descendants(
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Css$Global$typeSelector,
-					'code',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$color(
-							A3($rtfeldman$elm_css$Css$rgb, 100, 100, 100)),
-							$rtfeldman$elm_css$Css$fontSize(
-							$rtfeldman$elm_css$Css$em(0.8))
-						])),
-					A2(
-					$rtfeldman$elm_css$Css$Global$typeSelector,
-					'pre',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$overflow($rtfeldman$elm_css$Css$auto),
-							$rtfeldman$elm_css$Css$width(
-							$rtfeldman$elm_css$Css$pct(90)),
-							$rtfeldman$elm_css$Css$backgroundColor(
-							A3($rtfeldman$elm_css$Css$rgb, 220, 220, 220)),
-							A2(
-							$rtfeldman$elm_css$Css$padding2,
-							$rtfeldman$elm_css$Css$em(0.9),
-							$rtfeldman$elm_css$Css$pct(5)),
-							$rtfeldman$elm_css$Css$borderRadius(
-							$rtfeldman$elm_css$Css$em(0.4))
-						])),
-					A2(
-					$rtfeldman$elm_css$Css$Global$typeSelector,
-					'p',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$paddingTop(
-							$rtfeldman$elm_css$Css$em(0.4)),
-							$rtfeldman$elm_css$Css$paddingBottom(
-							$rtfeldman$elm_css$Css$em(0.4))
-						])),
-					A2(
-					$rtfeldman$elm_css$Css$Global$typeSelector,
-					'svg',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$width(
-							$rtfeldman$elm_css$Css$pct(90)),
-							A2(
-							$rtfeldman$elm_css$Css$padding2,
-							$rtfeldman$elm_css$Css$em(1.4),
-							$rtfeldman$elm_css$Css$pct(5))
-						])),
-					A2(
-					$rtfeldman$elm_css$Css$Global$typeSelector,
-					'img',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$width(
-							$rtfeldman$elm_css$Css$pct(90)),
-							$rtfeldman$elm_css$Css$height($rtfeldman$elm_css$Css$auto),
-							A2(
-							$rtfeldman$elm_css$Css$padding2,
-							$rtfeldman$elm_css$Css$em(1.4),
-							$rtfeldman$elm_css$Css$pct(5))
-						])),
-					A2(
-					$rtfeldman$elm_css$Css$Global$typeSelector,
-					'li',
-					_List_fromArray(
-						[
-							A2(
-							$rtfeldman$elm_css$Css$padding2,
-							$rtfeldman$elm_css$Css$em(0.3),
-							$rtfeldman$elm_css$Css$em(0))
-						])),
-					A2(
-					$rtfeldman$elm_css$Css$Global$typeSelector,
-					'article',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$paddingBottom(
-							$rtfeldman$elm_css$Css$em(12))
-						])),
-					A2(
-					$rtfeldman$elm_css$Css$Global$typeSelector,
-					'button',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$borderWidth(
-							$rtfeldman$elm_css$Css$px(1)),
-							$rtfeldman$elm_css$Css$borderRadius(
-							$rtfeldman$elm_css$Css$em(40)),
-							$rtfeldman$elm_css$Css$fontFamilies(
-							_List_fromArray(
-								['arial'])),
-							A2(
-							$rtfeldman$elm_css$Css$margin2,
-							$rtfeldman$elm_css$Css$em(0.4),
-							$rtfeldman$elm_css$Css$em(0.7)),
-							A2(
-							$rtfeldman$elm_css$Css$padding2,
-							$rtfeldman$elm_css$Css$em(0.4),
-							$rtfeldman$elm_css$Css$em(1)),
-							$rtfeldman$elm_css$Css$fontSize($rtfeldman$elm_css$Css$large),
-							$rtfeldman$elm_css$Css$fontWeight(
-							$rtfeldman$elm_css$Css$int(200)),
-							$rtfeldman$elm_css$Css$borderStyle($rtfeldman$elm_css$Css$dashed),
-							$rtfeldman$elm_css$Css$borderColor(
-							$rtfeldman$elm_css$Css$hex('C0C0C0')),
-							$rtfeldman$elm_css$Css$backgroundColor(
-							$rtfeldman$elm_css$Css$hex('ffffffbb')),
-							$rtfeldman$elm_css$Css$hover(
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Css$backgroundColor(
-									$rtfeldman$elm_css$Css$hex('ddddddbb')),
-									$rtfeldman$elm_css$Css$borderColor(
-									$rtfeldman$elm_css$Css$hex('aaaaaa')),
-									$rtfeldman$elm_css$Css$borderStyle($rtfeldman$elm_css$Css$solid)
-								]))
-						]))
-				]))
-		]));
-var $rtfeldman$elm_css$Css$Media$landscape = {orientation: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'landscape'};
-var $rtfeldman$elm_css$VirtualDom$Styled$Node = F3(
-	function (a, b, c) {
-		return {$: 'Node', a: a, b: b, c: c};
-	});
-var $rtfeldman$elm_css$VirtualDom$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$Node;
-var $rtfeldman$elm_css$Html$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$node;
-var $rtfeldman$elm_css$Html$Styled$main_ = $rtfeldman$elm_css$Html$Styled$node('main');
-var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
-var $rtfeldman$elm_css$Css$Media$feature = F2(
-	function (key, _v0) {
-		var value = _v0.value;
-		return {
-			feature: key,
-			value: $elm$core$Maybe$Just(value)
-		};
-	});
-var $rtfeldman$elm_css$Css$Media$minWidth = function (value) {
-	return A2($rtfeldman$elm_css$Css$Media$feature, 'min-width', value);
-};
-var $author$project$Sitewide$Types$CommandBarChanged = function (a) {
-	return {$: 'CommandBarChanged', a: a};
-};
-var $rtfeldman$elm_css$Html$Styled$a = $rtfeldman$elm_css$Html$Styled$node('a');
-var $rtfeldman$elm_css$Css$border = $rtfeldman$elm_css$Css$prop1('border');
-var $rtfeldman$elm_css$Css$displayFlex = A2($rtfeldman$elm_css$Css$property, 'display', 'flex');
 var $rtfeldman$elm_css$Html$Styled$div = $rtfeldman$elm_css$Html$Styled$node('div');
-var $rtfeldman$elm_css$Css$flexDirection = $rtfeldman$elm_css$Css$prop1('flex-direction');
-var $rtfeldman$elm_css$Css$flexGrow = $rtfeldman$elm_css$Css$prop1('flex-grow');
-var $rtfeldman$elm_css$Css$focus = $rtfeldman$elm_css$Css$pseudoClass('focus');
-var $rtfeldman$elm_css$Html$Styled$header = $rtfeldman$elm_css$Html$Styled$node('header');
+var $rtfeldman$elm_css$Html$Styled$h1 = $rtfeldman$elm_css$Html$Styled$node('h1');
 var $elm$virtual_dom$VirtualDom$property = F2(
 	function (key, value) {
 		return A2(
@@ -8905,107 +7390,7 @@ var $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty = F2(
 var $rtfeldman$elm_css$Html$Styled$Attributes$href = function (url) {
 	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'href', url);
 };
-var $rtfeldman$elm_css$Html$Styled$input = $rtfeldman$elm_css$Html$Styled$node('input');
-var $author$project$Sitewide$Types$CommandSubmitted = {$: 'CommandSubmitted'};
-var $elm$json$Json$Decode$andThen = _Json_andThen;
-var $elm$json$Json$Decode$fail = _Json_fail;
-var $elm$json$Json$Decode$field = _Json_decodeField;
-var $elm$json$Json$Decode$int = _Json_decodeInt;
-var $author$project$Sitewide$View$keyDecoder = A2(
-	$elm$json$Json$Decode$andThen,
-	function (keyCode) {
-		return (keyCode === 13) ? $elm$json$Json$Decode$succeed($author$project$Sitewide$Types$CommandSubmitted) : $elm$json$Json$Decode$fail('Not the Enter key');
-	},
-	A2($elm$json$Json$Decode$field, 'keyCode', $elm$json$Json$Decode$int));
-var $author$project$Sitewide$View$makeSidePanel = $elm$core$List$map(
-	A2(
-		$elm$core$Basics$composeL,
-		$rtfeldman$elm_css$Html$Styled$div(_List_Nil),
-		$elm$core$List$singleton));
-var $rtfeldman$elm_css$Css$marginBottom = $rtfeldman$elm_css$Css$prop1('margin-bottom');
-var $author$project$Sitewide$View$navPanelSideWidth = $rtfeldman$elm_css$Css$em(8);
-var $rtfeldman$elm_css$Css$none = {backgroundImage: $rtfeldman$elm_css$Css$Structure$Compatible, blockAxisOverflow: $rtfeldman$elm_css$Css$Structure$Compatible, borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, display: $rtfeldman$elm_css$Css$Structure$Compatible, hoverCapability: $rtfeldman$elm_css$Css$Structure$Compatible, inlineAxisOverflow: $rtfeldman$elm_css$Css$Structure$Compatible, keyframes: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, listStyleType: $rtfeldman$elm_css$Css$Structure$Compatible, listStyleTypeOrPositionOrImage: $rtfeldman$elm_css$Css$Structure$Compatible, none: $rtfeldman$elm_css$Css$Structure$Compatible, outline: $rtfeldman$elm_css$Css$Structure$Compatible, pointerDevice: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, resize: $rtfeldman$elm_css$Css$Structure$Compatible, scriptingSupport: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationLine: $rtfeldman$elm_css$Css$Structure$Compatible, textTransform: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, transform: $rtfeldman$elm_css$Css$Structure$Compatible, updateFrequency: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'none'};
-var $rtfeldman$elm_css$Css$UnitlessFloat = {$: 'UnitlessFloat'};
-var $rtfeldman$elm_css$Css$num = function (val) {
-	return {
-		lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible,
-		lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible,
-		lineHeight: $rtfeldman$elm_css$Css$Structure$Compatible,
-		number: $rtfeldman$elm_css$Css$Structure$Compatible,
-		numberOrInfinite: $rtfeldman$elm_css$Css$Structure$Compatible,
-		numericValue: val,
-		unitLabel: '',
-		units: $rtfeldman$elm_css$Css$UnitlessFloat,
-		value: $elm$core$String$fromFloat(val)
-	};
-};
-var $elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 'Normal', a: a};
-};
-var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
-var $rtfeldman$elm_css$VirtualDom$Styled$on = F2(
-	function (eventName, handler) {
-		return A3(
-			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
-			A2($elm$virtual_dom$VirtualDom$on, eventName, handler),
-			false,
-			'');
-	});
-var $rtfeldman$elm_css$Html$Styled$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			$rtfeldman$elm_css$VirtualDom$Styled$on,
-			event,
-			$elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
-var $rtfeldman$elm_css$Html$Styled$Events$alwaysStop = function (x) {
-	return _Utils_Tuple2(x, true);
-};
-var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
-};
-var $rtfeldman$elm_css$Html$Styled$Events$stopPropagationOn = F2(
-	function (event, decoder) {
-		return A2(
-			$rtfeldman$elm_css$VirtualDom$Styled$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
-	});
-var $elm$json$Json$Decode$at = F2(
-	function (fields, decoder) {
-		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
-	});
-var $elm$json$Json$Decode$string = _Json_decodeString;
-var $rtfeldman$elm_css$Html$Styled$Events$targetValue = A2(
-	$elm$json$Json$Decode$at,
-	_List_fromArray(
-		['target', 'value']),
-	$elm$json$Json$Decode$string);
-var $rtfeldman$elm_css$Html$Styled$Events$onInput = function (tagger) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$Events$stopPropagationOn,
-		'input',
-		A2(
-			$elm$json$Json$Decode$map,
-			$rtfeldman$elm_css$Html$Styled$Events$alwaysStop,
-			A2($elm$json$Json$Decode$map, tagger, $rtfeldman$elm_css$Html$Styled$Events$targetValue)));
-};
-var $rtfeldman$elm_css$Css$opacity = $rtfeldman$elm_css$Css$prop1('opacity');
-var $rtfeldman$elm_css$Css$outline = $rtfeldman$elm_css$Css$prop1('outline');
-var $rtfeldman$elm_css$Html$Styled$Attributes$placeholder = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('placeholder');
-var $rtfeldman$elm_css$Css$right = $rtfeldman$elm_css$Css$prop1('right');
-var $rtfeldman$elm_css$Css$row = {flexDirection: $rtfeldman$elm_css$Css$Structure$Compatible, flexDirectionOrWrap: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'row'};
-var $rtfeldman$elm_css$Html$Styled$span = $rtfeldman$elm_css$Html$Styled$node('span');
-var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
-var $rtfeldman$elm_css$VirtualDom$Styled$style = F2(
-	function (key, val) {
-		return A3(
-			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
-			A2($elm$virtual_dom$VirtualDom$style, key, val),
-			false,
-			'');
-	});
-var $rtfeldman$elm_css$Html$Styled$Attributes$style = $rtfeldman$elm_css$VirtualDom$Styled$style;
+var $rtfeldman$elm_css$Html$Styled$p = $rtfeldman$elm_css$Html$Styled$node('p');
 var $rtfeldman$elm_css$VirtualDom$Styled$Unstyled = function (a) {
 	return {$: 'Unstyled', a: a};
 };
@@ -9080,6 +7465,33 @@ var $rtfeldman$elm_css$Css$Internal$getOverloadedProperty = F3(
 		}
 	});
 var $rtfeldman$elm_css$Css$Internal$IncompatibleUnits = {$: 'IncompatibleUnits'};
+var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
+	function (units, unitLabel, numericValue) {
+		return {
+			absoluteLength: $rtfeldman$elm_css$Css$Structure$Compatible,
+			calc: $rtfeldman$elm_css$Css$Structure$Compatible,
+			flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible,
+			fontSize: $rtfeldman$elm_css$Css$Structure$Compatible,
+			length: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lineHeight: $rtfeldman$elm_css$Css$Structure$Compatible,
+			numericValue: numericValue,
+			textIndent: $rtfeldman$elm_css$Css$Structure$Compatible,
+			unitLabel: unitLabel,
+			units: units,
+			value: _Utils_ap(
+				$elm$core$String$fromFloat(numericValue),
+				unitLabel)
+		};
+	});
 var $rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty = A3($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$Internal$IncompatibleUnits, '', 0);
 var $rtfeldman$elm_css$Css$textAlign = function (fn) {
 	return A3(
@@ -9088,171 +7500,6 @@ var $rtfeldman$elm_css$Css$textAlign = function (fn) {
 		'text-align',
 		fn($rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
 };
-var $rtfeldman$elm_css$Css$textTransform = $rtfeldman$elm_css$Css$prop1('text-transform');
-var $rtfeldman$elm_css$Css$uppercase = {textTransform: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'uppercase'};
-var $rtfeldman$elm_css$Html$Styled$Attributes$value = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('value');
-var $author$project$Sitewide$View$navBar = function (model) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$header,
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Css$displayFlex,
-						$rtfeldman$elm_css$Css$flexDirection($rtfeldman$elm_css$Css$row),
-						$rtfeldman$elm_css$Css$fontFamilies(
-						_List_fromArray(
-							['courier'])),
-						$rtfeldman$elm_css$Css$marginBottom(
-						$rtfeldman$elm_css$Css$em(1.2))
-					]))
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$rtfeldman$elm_css$Html$Styled$div,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$width($author$project$Sitewide$View$navPanelSideWidth)
-							]))
-					]),
-				_Utils_ap(
-					$author$project$Sitewide$View$makeSidePanel(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('SLR'),
-								$rtfeldman$elm_css$Html$Styled$text('LOCAL BUILD')
-							])),
-					model.clockIsVisible ? _List_fromArray(
-						[
-							A2(
-							$rtfeldman$elm_css$Html$Styled$span,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$text('CLOCK: '),
-									A2(
-									$rtfeldman$elm_css$Html$Styled$span,
-									_List_fromArray(
-										[
-											$rtfeldman$elm_css$Html$Styled$Attributes$css(
-											_List_fromArray(
-												[
-													$rtfeldman$elm_css$Css$color(
-													A3($rtfeldman$elm_css$Css$rgb, 220, 220, 220))
-												]))
-										]),
-									_List_fromArray(
-										[
-											$rtfeldman$elm_css$Html$Styled$text(
-											$elm$core$String$fromFloat(model.time))
-										]))
-								]))
-						]) : _List_Nil)),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$div,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$flexGrow(
-								$rtfeldman$elm_css$Css$num(1))
-							]))
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$input,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$Attributes$css(
-								_List_fromArray(
-									[
-										$rtfeldman$elm_css$Css$border(
-										$rtfeldman$elm_css$Css$em(0)),
-										$rtfeldman$elm_css$Css$opacity(
-										$rtfeldman$elm_css$Css$num(
-											(model.commandText === '') ? 0 : 1)),
-										$rtfeldman$elm_css$Css$focus(
-										_List_fromArray(
-											[
-												$rtfeldman$elm_css$Css$outline($rtfeldman$elm_css$Css$none),
-												$rtfeldman$elm_css$Css$opacity(
-												$rtfeldman$elm_css$Css$num(1))
-											])),
-										$rtfeldman$elm_css$Css$fontFamilies(
-										_List_fromArray(
-											['courier'])),
-										$rtfeldman$elm_css$Css$textTransform($rtfeldman$elm_css$Css$uppercase),
-										$rtfeldman$elm_css$Css$color(
-										A3($rtfeldman$elm_css$Css$rgb, 100, 100, 100)),
-										$rtfeldman$elm_css$Css$width(
-										$rtfeldman$elm_css$Css$pct(100))
-									])),
-								$rtfeldman$elm_css$Html$Styled$Attributes$value(model.commandText),
-								$rtfeldman$elm_css$Html$Styled$Events$onInput($author$project$Sitewide$Types$CommandBarChanged),
-								A2(
-								$rtfeldman$elm_css$Html$Styled$Events$on,
-								'keydown',
-								A2($elm$json$Json$Decode$map, $elm$core$Basics$identity, $author$project$Sitewide$View$keyDecoder)),
-								A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'user-select', 'none'),
-								$rtfeldman$elm_css$Html$Styled$Attributes$placeholder('ENTER COMMAND')
-							]),
-						_List_Nil)
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$div,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$width($author$project$Sitewide$View$navPanelSideWidth),
-								$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$right)
-							]))
-					]),
-				$author$project$Sitewide$View$makeSidePanel(
-					_List_fromArray(
-						[
-							A2(
-							$rtfeldman$elm_css$Html$Styled$a,
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('NAV')
-								]),
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$text('NAVIGATION')
-								])),
-							A2(
-							$rtfeldman$elm_css$Html$Styled$a,
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('http://seanlucrussell.com')
-								]),
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$text('MESSAGE')
-								]))
-						])))
-			]));
-};
-var $rtfeldman$elm_css$Css$Structure$OnlyQuery = F2(
-	function (a, b) {
-		return {$: 'OnlyQuery', a: a, b: b};
-	});
-var $rtfeldman$elm_css$Css$Media$only = $rtfeldman$elm_css$Css$Structure$OnlyQuery;
-var $rtfeldman$elm_css$Css$Media$orientation = function (value) {
-	return A2($rtfeldman$elm_css$Css$Media$feature, 'orientation', value);
-};
-var $rtfeldman$elm_css$Css$center = $rtfeldman$elm_css$Css$prop1('center');
-var $rtfeldman$elm_css$Html$Styled$h1 = $rtfeldman$elm_css$Html$Styled$node('h1');
-var $rtfeldman$elm_css$Html$Styled$p = $rtfeldman$elm_css$Html$Styled$node('p');
 var $author$project$Pages$Missing$missing = A2(
 	$rtfeldman$elm_css$Html$Styled$div,
 	_List_Nil,
@@ -9290,99 +7537,25 @@ var $author$project$Pages$Missing$missing = A2(
 						]))
 				]))
 		]));
-var $rtfeldman$elm_css$Html$Styled$li = $rtfeldman$elm_css$Html$Styled$node('li');
-var $rtfeldman$elm_css$Html$Styled$ul = $rtfeldman$elm_css$Html$Styled$node('ul');
-var $author$project$Pages$Navigation$navigationPage = A2(
-	$rtfeldman$elm_css$Html$Styled$div,
-	_List_Nil,
-	_List_fromArray(
-		[
-			A2(
-			$rtfeldman$elm_css$Html$Styled$h1,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$css(
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center)
-						]))
-				]),
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Navigation')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('WIP')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$ul,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$css(
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$fontFamilies(
-							_List_fromArray(
-								['courier']))
-						]))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$rtfeldman$elm_css$Html$Styled$a,
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('/GOG')
-								]),
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$text('THE-GUTS-OF-GIT')
-								]))
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$rtfeldman$elm_css$Html$Styled$a,
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('/LIFE')
-								]),
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$text('GAME-OF-LIFE')
-								]))
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$rtfeldman$elm_css$Html$Styled$a,
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('/REC')
-								]),
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$text('RECURSION-SCHEMES')
-								]))
-						]))
-				]))
-		]));
 var $rtfeldman$elm_css$Html$Styled$article = $rtfeldman$elm_css$Html$Styled$node('article');
+var $rtfeldman$elm_css$Css$EmUnits = {$: 'EmUnits'};
+var $rtfeldman$elm_css$Css$em = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$EmUnits, 'em');
+var $rtfeldman$elm_css$Css$stringsToValue = function (list) {
+	return $elm$core$List$isEmpty(list) ? {value: 'none'} : {
+		value: A2($elm$core$String$join, ', ', list)
+	};
+};
+var $rtfeldman$elm_css$Css$fontFamilies = A2(
+	$elm$core$Basics$composeL,
+	$rtfeldman$elm_css$Css$prop1('font-family'),
+	$rtfeldman$elm_css$Css$stringsToValue);
+var $rtfeldman$elm_css$Css$fontSize = $rtfeldman$elm_css$Css$prop1('font-size');
+var $rtfeldman$elm_css$Html$Styled$i = $rtfeldman$elm_css$Html$Styled$node('i');
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
 var $elm$time$Time$Jan = {$: 'Jan'};
 var $justinmimbs$date$Date$RD = function (a) {
 	return {$: 'RD', a: a};
@@ -9572,6 +7745,9 @@ var $justinmimbs$date$Date$ordinalDay = A2(
 	function ($) {
 		return $.ordinalDay;
 	});
+var $elm$core$String$fromChar = function (_char) {
+	return A2($elm$core$String$cons, _char, '');
+};
 var $elm$core$Bitwise$shiftRightBy = _Bitwise_shiftRightBy;
 var $elm$core$String$repeatHelp = F3(
 	function (n, chunk, result) {
@@ -9594,6 +7770,9 @@ var $elm$core$String$padLeft = F3(
 				$elm$core$String$fromChar(_char)),
 			string);
 	});
+var $elm$core$Basics$abs = function (n) {
+	return (n < 0) ? (-n) : n;
+};
 var $justinmimbs$date$Date$padSignedInt = F2(
 	function (length, _int) {
 		return _Utils_ap(
@@ -10168,6 +8347,10 @@ var $elm$parser$Parser$problem = function (msg) {
 	return $elm$parser$Parser$Advanced$problem(
 		$elm$parser$Parser$Problem(msg));
 };
+var $elm$core$String$foldr = _String_foldr;
+var $elm$core$String$toList = function (string) {
+	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
+};
 var $justinmimbs$date$Pattern$fieldRepeats = function (str) {
 	var _v0 = $elm$core$String$toList(str);
 	if (_v0.b && (!_v0.b.b)) {
@@ -10567,63 +8750,420 @@ var $justinmimbs$date$Date$language_en = {
 var $justinmimbs$date$Date$format = function (pattern) {
 	return A2($justinmimbs$date$Date$formatWithLanguage, $justinmimbs$date$Date$language_en, pattern);
 };
-var $rtfeldman$elm_css$Html$Styled$i = $rtfeldman$elm_css$Html$Styled$node('i');
-var $rtfeldman$elm_css$Css$prop3 = F4(
-	function (key, argA, argB, argC) {
-		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + (argB.value + (' ' + argC.value))));
+var $rtfeldman$elm_css$Css$right = $rtfeldman$elm_css$Css$prop1('right');
+var $rtfeldman$elm_css$Html$Styled$td = $rtfeldman$elm_css$Html$Styled$node('td');
+var $rtfeldman$elm_css$Html$Styled$tr = $rtfeldman$elm_css$Html$Styled$node('tr');
+var $author$project$Pages$Navigation$navRow = function (pageInfo) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$tr,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						$rtfeldman$elm_css$Html$Styled$a,
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$Attributes$href(pageInfo.primaryUrl)
+							]),
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$text(pageInfo.title)
+							]))
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$td,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$right)
+							]))
+					]),
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(
+						A2($justinmimbs$date$Date$format, 'MMM d y', pageInfo.publicationDate))
+					]))
+			]));
+};
+var $elm$core$Basics$clamp = F3(
+	function (low, high, number) {
+		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
 	});
-var $rtfeldman$elm_css$Css$margin3 = $rtfeldman$elm_css$Css$prop3('margin');
-var $author$project$Components$blogHeading = F2(
-	function (title, publicationDate) {
-		return A2(
+var $justinmimbs$date$Date$daysBeforeMonth = F2(
+	function (y, m) {
+		var leapDays = $justinmimbs$date$Date$isLeapYear(y) ? 1 : 0;
+		switch (m.$) {
+			case 'Jan':
+				return 0;
+			case 'Feb':
+				return 31;
+			case 'Mar':
+				return 59 + leapDays;
+			case 'Apr':
+				return 90 + leapDays;
+			case 'May':
+				return 120 + leapDays;
+			case 'Jun':
+				return 151 + leapDays;
+			case 'Jul':
+				return 181 + leapDays;
+			case 'Aug':
+				return 212 + leapDays;
+			case 'Sep':
+				return 243 + leapDays;
+			case 'Oct':
+				return 273 + leapDays;
+			case 'Nov':
+				return 304 + leapDays;
+			default:
+				return 334 + leapDays;
+		}
+	});
+var $justinmimbs$date$Date$fromCalendarDate = F3(
+	function (y, m, d) {
+		return $justinmimbs$date$Date$RD(
+			($justinmimbs$date$Date$daysBeforeYear(y) + A2($justinmimbs$date$Date$daysBeforeMonth, y, m)) + A3(
+				$elm$core$Basics$clamp,
+				1,
+				A2($justinmimbs$date$Date$daysInMonth, y, m),
+				d));
+	});
+var $elm$time$Time$flooredDiv = F2(
+	function (numerator, denominator) {
+		return $elm$core$Basics$floor(numerator / denominator);
+	});
+var $elm$time$Time$posixToMillis = function (_v0) {
+	var millis = _v0.a;
+	return millis;
+};
+var $elm$time$Time$toAdjustedMinutesHelp = F3(
+	function (defaultOffset, posixMinutes, eras) {
+		toAdjustedMinutesHelp:
+		while (true) {
+			if (!eras.b) {
+				return posixMinutes + defaultOffset;
+			} else {
+				var era = eras.a;
+				var olderEras = eras.b;
+				if (_Utils_cmp(era.start, posixMinutes) < 0) {
+					return posixMinutes + era.offset;
+				} else {
+					var $temp$defaultOffset = defaultOffset,
+						$temp$posixMinutes = posixMinutes,
+						$temp$eras = olderEras;
+					defaultOffset = $temp$defaultOffset;
+					posixMinutes = $temp$posixMinutes;
+					eras = $temp$eras;
+					continue toAdjustedMinutesHelp;
+				}
+			}
+		}
+	});
+var $elm$time$Time$toAdjustedMinutes = F2(
+	function (_v0, time) {
+		var defaultOffset = _v0.a;
+		var eras = _v0.b;
+		return A3(
+			$elm$time$Time$toAdjustedMinutesHelp,
+			defaultOffset,
+			A2(
+				$elm$time$Time$flooredDiv,
+				$elm$time$Time$posixToMillis(time),
+				60000),
+			eras);
+	});
+var $elm$time$Time$toCivil = function (minutes) {
+	var rawDay = A2($elm$time$Time$flooredDiv, minutes, 60 * 24) + 719468;
+	var era = (((rawDay >= 0) ? rawDay : (rawDay - 146096)) / 146097) | 0;
+	var dayOfEra = rawDay - (era * 146097);
+	var yearOfEra = ((((dayOfEra - ((dayOfEra / 1460) | 0)) + ((dayOfEra / 36524) | 0)) - ((dayOfEra / 146096) | 0)) / 365) | 0;
+	var dayOfYear = dayOfEra - (((365 * yearOfEra) + ((yearOfEra / 4) | 0)) - ((yearOfEra / 100) | 0));
+	var mp = (((5 * dayOfYear) + 2) / 153) | 0;
+	var month = mp + ((mp < 10) ? 3 : (-9));
+	var year = yearOfEra + (era * 400);
+	return {
+		day: (dayOfYear - ((((153 * mp) + 2) / 5) | 0)) + 1,
+		month: month,
+		year: year + ((month <= 2) ? 1 : 0)
+	};
+};
+var $elm$time$Time$toDay = F2(
+	function (zone, time) {
+		return $elm$time$Time$toCivil(
+			A2($elm$time$Time$toAdjustedMinutes, zone, time)).day;
+	});
+var $elm$time$Time$toMonth = F2(
+	function (zone, time) {
+		var _v0 = $elm$time$Time$toCivil(
+			A2($elm$time$Time$toAdjustedMinutes, zone, time)).month;
+		switch (_v0) {
+			case 1:
+				return $elm$time$Time$Jan;
+			case 2:
+				return $elm$time$Time$Feb;
+			case 3:
+				return $elm$time$Time$Mar;
+			case 4:
+				return $elm$time$Time$Apr;
+			case 5:
+				return $elm$time$Time$May;
+			case 6:
+				return $elm$time$Time$Jun;
+			case 7:
+				return $elm$time$Time$Jul;
+			case 8:
+				return $elm$time$Time$Aug;
+			case 9:
+				return $elm$time$Time$Sep;
+			case 10:
+				return $elm$time$Time$Oct;
+			case 11:
+				return $elm$time$Time$Nov;
+			default:
+				return $elm$time$Time$Dec;
+		}
+	});
+var $elm$time$Time$toYear = F2(
+	function (zone, time) {
+		return $elm$time$Time$toCivil(
+			A2($elm$time$Time$toAdjustedMinutes, zone, time)).year;
+	});
+var $justinmimbs$date$Date$fromPosix = F2(
+	function (zone, posix) {
+		return A3(
+			$justinmimbs$date$Date$fromCalendarDate,
+			A2($elm$time$Time$toYear, zone, posix),
+			A2($elm$time$Time$toMonth, zone, posix),
+			A2($elm$time$Time$toDay, zone, posix));
+	});
+var $elm$time$Time$Posix = function (a) {
+	return {$: 'Posix', a: a};
+};
+var $elm$time$Time$millisToPosix = $elm$time$Time$Posix;
+var $elm$time$Time$Zone = F2(
+	function (a, b) {
+		return {$: 'Zone', a: a, b: b};
+	});
+var $elm$time$Time$utc = A2($elm$time$Time$Zone, 0, _List_Nil);
+var $author$project$Pages$GameOfLife$article = {
+	moduleName: 'GameOfLife',
+	primaryUrl: '/LIFE',
+	publicationDate: A2(
+		$justinmimbs$date$Date$fromPosix,
+		$elm$time$Time$utc,
+		$elm$time$Time$millisToPosix(1718317438000)),
+	title: 'Better Living Through Sets'
+};
+var $author$project$Pages$RecursionSchemes$article = {
+	moduleName: 'RecursionSchemes',
+	primaryUrl: '/REC',
+	publicationDate: A2(
+		$justinmimbs$date$Date$fromPosix,
+		$elm$time$Time$utc,
+		$elm$time$Time$millisToPosix(1718317439000)),
+	title: 'Recursion Schemes Are The Answer'
+};
+var $author$project$Pages$TheGutsOfGit$article = {
+	moduleName: 'TheGutsOfGit',
+	primaryUrl: '/GOG',
+	publicationDate: A2(
+		$justinmimbs$date$Date$fromPosix,
+		$elm$time$Time$utc,
+		$elm$time$Time$millisToPosix(1709319600000)),
+	title: 'The Guts of Git'
+};
+var $justinmimbs$date$Date$compare = F2(
+	function (_v0, _v1) {
+		var a = _v0.a;
+		var b = _v1.a;
+		return A2($elm$core$Basics$compare, a, b);
+	});
+var $elm$core$List$sortWith = _List_sortWith;
+var $author$project$Pages$Navigation$pageList = A2(
+	$elm$core$List$sortWith,
+	F2(
+		function (r, s) {
+			return A2($justinmimbs$date$Date$compare, s.publicationDate, r.publicationDate);
+		}),
+	_List_fromArray(
+		[$author$project$Pages$TheGutsOfGit$article, $author$project$Pages$GameOfLife$article, $author$project$Pages$RecursionSchemes$article]));
+var $rtfeldman$elm_css$Css$PercentageUnits = {$: 'PercentageUnits'};
+var $rtfeldman$elm_css$Css$pct = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PercentageUnits, '%');
+var $rtfeldman$elm_css$Html$Styled$table = $rtfeldman$elm_css$Html$Styled$node('table');
+var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
+var $author$project$Pages$Navigation$navigationPage = A2(
+	$rtfeldman$elm_css$Html$Styled$article,
+	_List_Nil,
+	_List_fromArray(
+		[
+			A2(
+			$rtfeldman$elm_css$Html$Styled$h1,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center)
+						]))
+				]),
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$text('Navigation')
+				])),
+			A2(
+			$rtfeldman$elm_css$Html$Styled$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$text('WIP')
+				])),
+			A2(
+			$rtfeldman$elm_css$Html$Styled$table,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$fontFamilies(
+							_List_fromArray(
+								['courier'])),
+							$rtfeldman$elm_css$Css$width(
+							$rtfeldman$elm_css$Css$pct(100))
+						]))
+				]),
+			A2($elm$core$List$map, $author$project$Pages$Navigation$navRow, $author$project$Pages$Navigation$pageList)),
+			A2(
 			$rtfeldman$elm_css$Html$Styled$div,
 			_List_fromArray(
 				[
 					$rtfeldman$elm_css$Html$Styled$Attributes$css(
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
-							$rtfeldman$elm_css$Css$width(
-							$rtfeldman$elm_css$Css$pct(70)),
-							A3(
-							$rtfeldman$elm_css$Css$margin3,
-							$rtfeldman$elm_css$Css$em(1.2),
-							$rtfeldman$elm_css$Css$auto,
-							$rtfeldman$elm_css$Css$em(2.8))
+							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center)
 						]))
 				]),
 			_List_fromArray(
 				[
 					A2(
-					$rtfeldman$elm_css$Html$Styled$h1,
+					$rtfeldman$elm_css$Html$Styled$i,
 					_List_fromArray(
 						[
 							$rtfeldman$elm_css$Html$Styled$Attributes$css(
 							_List_fromArray(
 								[
-									A3(
-									$rtfeldman$elm_css$Css$margin3,
-									$rtfeldman$elm_css$Css$em(2.3),
-									$rtfeldman$elm_css$Css$em(0),
-									$rtfeldman$elm_css$Css$em(1.1)),
 									$rtfeldman$elm_css$Css$fontSize(
-									$rtfeldman$elm_css$Css$em(2.2))
-								])),
-							A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'text-wrap', 'balance')
-						]),
-					_List_fromArray(
-						[title])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$i,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$Attributes$css(_List_Nil)
+									$rtfeldman$elm_css$Css$em(0.8))
+								]))
 						]),
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text(
-							A2($justinmimbs$date$Date$format, 'MMMM d, y', publicationDate))
+							$rtfeldman$elm_css$Html$Styled$text('fig 1.1: Random blog posts')
 						]))
+				]))
+		]));
+var $rtfeldman$elm_css$Css$auto = {alignItemsOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible, intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, justifyContentOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, tableLayout: $rtfeldman$elm_css$Css$Structure$Compatible, textRendering: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'auto'};
+var $rtfeldman$elm_css$Css$prop3 = F4(
+	function (key, argA, argB, argC) {
+		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + (argB.value + (' ' + argC.value))));
+	});
+var $rtfeldman$elm_css$Css$margin3 = $rtfeldman$elm_css$Css$prop3('margin');
+var $author$project$Components$date = function (d) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
+						$rtfeldman$elm_css$Css$width(
+						$rtfeldman$elm_css$Css$pct(70)),
+						A3(
+						$rtfeldman$elm_css$Css$margin3,
+						$rtfeldman$elm_css$Css$em(1.2),
+						$rtfeldman$elm_css$Css$auto,
+						$rtfeldman$elm_css$Css$em(2.8))
+					]))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$i,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(
+						A2($justinmimbs$date$Date$format, 'MMMM d, y', d))
+					]))
+			]));
+};
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $rtfeldman$elm_css$VirtualDom$Styled$style = F2(
+	function (key, val) {
+		return A3(
+			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
+			A2($elm$virtual_dom$VirtualDom$style, key, val),
+			false,
+			'');
+	});
+var $rtfeldman$elm_css$Html$Styled$Attributes$style = $rtfeldman$elm_css$VirtualDom$Styled$style;
+var $author$project$Components$heading = function (title) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						A3(
+						$rtfeldman$elm_css$Css$margin3,
+						$rtfeldman$elm_css$Css$em(1.2),
+						$rtfeldman$elm_css$Css$auto,
+						$rtfeldman$elm_css$Css$em(2.8))
+					]))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$h1,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
+								$rtfeldman$elm_css$Css$width(
+								$rtfeldman$elm_css$Css$pct(70)),
+								A3(
+								$rtfeldman$elm_css$Css$margin3,
+								$rtfeldman$elm_css$Css$em(2.3),
+								$rtfeldman$elm_css$Css$auto,
+								$rtfeldman$elm_css$Css$em(1.1)),
+								$rtfeldman$elm_css$Css$fontSize(
+								$rtfeldman$elm_css$Css$em(2.2))
+							])),
+						A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'text-wrap', 'balance')
+					]),
+				_List_fromArray(
+					[title]))
+			]));
+};
+var $author$project$Components$blogHeading = F2(
+	function (title, publicationDate) {
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$div,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$author$project$Components$heading(title),
+					$author$project$Components$date(publicationDate)
 				]));
 	});
 var $rtfeldman$elm_css$VirtualDom$Styled$attribute = F2(
@@ -10694,6 +9234,20 @@ var $author$project$Extra$GameOfLife$Diagrams$drawCell = F2(
 			_List_Nil);
 	});
 var $rtfeldman$elm_css$Svg$Styled$g = $rtfeldman$elm_css$Svg$Styled$node('g');
+var $elm$core$Dict$member = F2(
+	function (key, dict) {
+		var _v0 = A2($elm$core$Dict$get, key, dict);
+		if (_v0.$ === 'Just') {
+			return true;
+		} else {
+			return false;
+		}
+	});
+var $elm$core$Set$member = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return A2($elm$core$Dict$member, key, dict);
+	});
 var $author$project$Extra$GameOfLife$Diagrams$spacing = 0.017;
 var $author$project$Extra$GameOfLife$Diagrams$cellGrid = F4(
 	function (_v0, width, height, cells) {
@@ -10923,158 +9477,8 @@ var $author$project$Extra$GameOfLife$Diagrams$cellsToCheckDiagram = function () 
 }();
 var $rtfeldman$elm_css$Html$Styled$code = $rtfeldman$elm_css$Html$Styled$node('code');
 var $rtfeldman$elm_css$Html$Styled$em = $rtfeldman$elm_css$Html$Styled$node('em');
-var $elm$core$Basics$clamp = F3(
-	function (low, high, number) {
-		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
-	});
-var $justinmimbs$date$Date$daysBeforeMonth = F2(
-	function (y, m) {
-		var leapDays = $justinmimbs$date$Date$isLeapYear(y) ? 1 : 0;
-		switch (m.$) {
-			case 'Jan':
-				return 0;
-			case 'Feb':
-				return 31;
-			case 'Mar':
-				return 59 + leapDays;
-			case 'Apr':
-				return 90 + leapDays;
-			case 'May':
-				return 120 + leapDays;
-			case 'Jun':
-				return 151 + leapDays;
-			case 'Jul':
-				return 181 + leapDays;
-			case 'Aug':
-				return 212 + leapDays;
-			case 'Sep':
-				return 243 + leapDays;
-			case 'Oct':
-				return 273 + leapDays;
-			case 'Nov':
-				return 304 + leapDays;
-			default:
-				return 334 + leapDays;
-		}
-	});
-var $justinmimbs$date$Date$fromCalendarDate = F3(
-	function (y, m, d) {
-		return $justinmimbs$date$Date$RD(
-			($justinmimbs$date$Date$daysBeforeYear(y) + A2($justinmimbs$date$Date$daysBeforeMonth, y, m)) + A3(
-				$elm$core$Basics$clamp,
-				1,
-				A2($justinmimbs$date$Date$daysInMonth, y, m),
-				d));
-	});
-var $elm$time$Time$flooredDiv = F2(
-	function (numerator, denominator) {
-		return $elm$core$Basics$floor(numerator / denominator);
-	});
-var $elm$time$Time$posixToMillis = function (_v0) {
-	var millis = _v0.a;
-	return millis;
-};
-var $elm$time$Time$toAdjustedMinutesHelp = F3(
-	function (defaultOffset, posixMinutes, eras) {
-		toAdjustedMinutesHelp:
-		while (true) {
-			if (!eras.b) {
-				return posixMinutes + defaultOffset;
-			} else {
-				var era = eras.a;
-				var olderEras = eras.b;
-				if (_Utils_cmp(era.start, posixMinutes) < 0) {
-					return posixMinutes + era.offset;
-				} else {
-					var $temp$defaultOffset = defaultOffset,
-						$temp$posixMinutes = posixMinutes,
-						$temp$eras = olderEras;
-					defaultOffset = $temp$defaultOffset;
-					posixMinutes = $temp$posixMinutes;
-					eras = $temp$eras;
-					continue toAdjustedMinutesHelp;
-				}
-			}
-		}
-	});
-var $elm$time$Time$toAdjustedMinutes = F2(
-	function (_v0, time) {
-		var defaultOffset = _v0.a;
-		var eras = _v0.b;
-		return A3(
-			$elm$time$Time$toAdjustedMinutesHelp,
-			defaultOffset,
-			A2(
-				$elm$time$Time$flooredDiv,
-				$elm$time$Time$posixToMillis(time),
-				60000),
-			eras);
-	});
-var $elm$time$Time$toCivil = function (minutes) {
-	var rawDay = A2($elm$time$Time$flooredDiv, minutes, 60 * 24) + 719468;
-	var era = (((rawDay >= 0) ? rawDay : (rawDay - 146096)) / 146097) | 0;
-	var dayOfEra = rawDay - (era * 146097);
-	var yearOfEra = ((((dayOfEra - ((dayOfEra / 1460) | 0)) + ((dayOfEra / 36524) | 0)) - ((dayOfEra / 146096) | 0)) / 365) | 0;
-	var dayOfYear = dayOfEra - (((365 * yearOfEra) + ((yearOfEra / 4) | 0)) - ((yearOfEra / 100) | 0));
-	var mp = (((5 * dayOfYear) + 2) / 153) | 0;
-	var month = mp + ((mp < 10) ? 3 : (-9));
-	var year = yearOfEra + (era * 400);
-	return {
-		day: (dayOfYear - ((((153 * mp) + 2) / 5) | 0)) + 1,
-		month: month,
-		year: year + ((month <= 2) ? 1 : 0)
-	};
-};
-var $elm$time$Time$toDay = F2(
-	function (zone, time) {
-		return $elm$time$Time$toCivil(
-			A2($elm$time$Time$toAdjustedMinutes, zone, time)).day;
-	});
-var $elm$time$Time$toMonth = F2(
-	function (zone, time) {
-		var _v0 = $elm$time$Time$toCivil(
-			A2($elm$time$Time$toAdjustedMinutes, zone, time)).month;
-		switch (_v0) {
-			case 1:
-				return $elm$time$Time$Jan;
-			case 2:
-				return $elm$time$Time$Feb;
-			case 3:
-				return $elm$time$Time$Mar;
-			case 4:
-				return $elm$time$Time$Apr;
-			case 5:
-				return $elm$time$Time$May;
-			case 6:
-				return $elm$time$Time$Jun;
-			case 7:
-				return $elm$time$Time$Jul;
-			case 8:
-				return $elm$time$Time$Aug;
-			case 9:
-				return $elm$time$Time$Sep;
-			case 10:
-				return $elm$time$Time$Oct;
-			case 11:
-				return $elm$time$Time$Nov;
-			default:
-				return $elm$time$Time$Dec;
-		}
-	});
-var $elm$time$Time$toYear = F2(
-	function (zone, time) {
-		return $elm$time$Time$toCivil(
-			A2($elm$time$Time$toAdjustedMinutes, zone, time)).year;
-	});
-var $justinmimbs$date$Date$fromPosix = F2(
-	function (zone, posix) {
-		return A3(
-			$justinmimbs$date$Date$fromCalendarDate,
-			A2($elm$time$Time$toYear, zone, posix),
-			A2($elm$time$Time$toMonth, zone, posix),
-			A2($elm$time$Time$toDay, zone, posix));
-	});
 var $rtfeldman$elm_css$Html$Styled$h3 = $rtfeldman$elm_css$Html$Styled$node('h3');
+var $rtfeldman$elm_css$Html$Styled$li = $rtfeldman$elm_css$Html$Styled$node('li');
 var $author$project$Extra$GameOfLife$Diagrams$livingNeighborsDiagram = function () {
 	var line4 = A2(
 		$rtfeldman$elm_css$Svg$Styled$g,
@@ -11305,16 +9709,543 @@ var $author$project$Extra$GameOfLife$Diagrams$nearDiagram = A2(
 		]));
 var $rtfeldman$elm_css$Html$Styled$ol = $rtfeldman$elm_css$Html$Styled$node('ol');
 var $rtfeldman$elm_css$Html$Styled$pre = $rtfeldman$elm_css$Html$Styled$node('pre');
-var $elm$time$Time$Zone = F2(
-	function (a, b) {
-		return {$: 'Zone', a: a, b: b};
+var $elm$core$Dict$getMin = function (dict) {
+	getMin:
+	while (true) {
+		if ((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) {
+			var left = dict.d;
+			var $temp$dict = left;
+			dict = $temp$dict;
+			continue getMin;
+		} else {
+			return dict;
+		}
+	}
+};
+var $elm$core$Dict$moveRedLeft = function (dict) {
+	if (((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) && (dict.e.$ === 'RBNode_elm_builtin')) {
+		if ((dict.e.d.$ === 'RBNode_elm_builtin') && (dict.e.d.a.$ === 'Red')) {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _v1 = dict.d;
+			var lClr = _v1.a;
+			var lK = _v1.b;
+			var lV = _v1.c;
+			var lLeft = _v1.d;
+			var lRight = _v1.e;
+			var _v2 = dict.e;
+			var rClr = _v2.a;
+			var rK = _v2.b;
+			var rV = _v2.c;
+			var rLeft = _v2.d;
+			var _v3 = rLeft.a;
+			var rlK = rLeft.b;
+			var rlV = rLeft.c;
+			var rlL = rLeft.d;
+			var rlR = rLeft.e;
+			var rRight = _v2.e;
+			return A5(
+				$elm$core$Dict$RBNode_elm_builtin,
+				$elm$core$Dict$Red,
+				rlK,
+				rlV,
+				A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					rlL),
+				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rlR, rRight));
+		} else {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _v4 = dict.d;
+			var lClr = _v4.a;
+			var lK = _v4.b;
+			var lV = _v4.c;
+			var lLeft = _v4.d;
+			var lRight = _v4.e;
+			var _v5 = dict.e;
+			var rClr = _v5.a;
+			var rK = _v5.b;
+			var rV = _v5.c;
+			var rLeft = _v5.d;
+			var rRight = _v5.e;
+			if (clr.$ === 'Black') {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+			}
+		}
+	} else {
+		return dict;
+	}
+};
+var $elm$core$Dict$moveRedRight = function (dict) {
+	if (((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) && (dict.e.$ === 'RBNode_elm_builtin')) {
+		if ((dict.d.d.$ === 'RBNode_elm_builtin') && (dict.d.d.a.$ === 'Red')) {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _v1 = dict.d;
+			var lClr = _v1.a;
+			var lK = _v1.b;
+			var lV = _v1.c;
+			var _v2 = _v1.d;
+			var _v3 = _v2.a;
+			var llK = _v2.b;
+			var llV = _v2.c;
+			var llLeft = _v2.d;
+			var llRight = _v2.e;
+			var lRight = _v1.e;
+			var _v4 = dict.e;
+			var rClr = _v4.a;
+			var rK = _v4.b;
+			var rV = _v4.c;
+			var rLeft = _v4.d;
+			var rRight = _v4.e;
+			return A5(
+				$elm$core$Dict$RBNode_elm_builtin,
+				$elm$core$Dict$Red,
+				lK,
+				lV,
+				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
+				A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					lRight,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight)));
+		} else {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _v5 = dict.d;
+			var lClr = _v5.a;
+			var lK = _v5.b;
+			var lV = _v5.c;
+			var lLeft = _v5.d;
+			var lRight = _v5.e;
+			var _v6 = dict.e;
+			var rClr = _v6.a;
+			var rK = _v6.b;
+			var rV = _v6.c;
+			var rLeft = _v6.d;
+			var rRight = _v6.e;
+			if (clr.$ === 'Black') {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+			}
+		}
+	} else {
+		return dict;
+	}
+};
+var $elm$core$Dict$removeHelpPrepEQGT = F7(
+	function (targetKey, dict, color, key, value, left, right) {
+		if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
+			var _v1 = left.a;
+			var lK = left.b;
+			var lV = left.c;
+			var lLeft = left.d;
+			var lRight = left.e;
+			return A5(
+				$elm$core$Dict$RBNode_elm_builtin,
+				color,
+				lK,
+				lV,
+				lLeft,
+				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, lRight, right));
+		} else {
+			_v2$2:
+			while (true) {
+				if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Black')) {
+					if (right.d.$ === 'RBNode_elm_builtin') {
+						if (right.d.a.$ === 'Black') {
+							var _v3 = right.a;
+							var _v4 = right.d;
+							var _v5 = _v4.a;
+							return $elm$core$Dict$moveRedRight(dict);
+						} else {
+							break _v2$2;
+						}
+					} else {
+						var _v6 = right.a;
+						var _v7 = right.d;
+						return $elm$core$Dict$moveRedRight(dict);
+					}
+				} else {
+					break _v2$2;
+				}
+			}
+			return dict;
+		}
 	});
-var $elm$time$Time$utc = A2($elm$time$Time$Zone, 0, _List_Nil);
+var $elm$core$Dict$removeMin = function (dict) {
+	if ((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) {
+		var color = dict.a;
+		var key = dict.b;
+		var value = dict.c;
+		var left = dict.d;
+		var lColor = left.a;
+		var lLeft = left.d;
+		var right = dict.e;
+		if (lColor.$ === 'Black') {
+			if ((lLeft.$ === 'RBNode_elm_builtin') && (lLeft.a.$ === 'Red')) {
+				var _v3 = lLeft.a;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					color,
+					key,
+					value,
+					$elm$core$Dict$removeMin(left),
+					right);
+			} else {
+				var _v4 = $elm$core$Dict$moveRedLeft(dict);
+				if (_v4.$ === 'RBNode_elm_builtin') {
+					var nColor = _v4.a;
+					var nKey = _v4.b;
+					var nValue = _v4.c;
+					var nLeft = _v4.d;
+					var nRight = _v4.e;
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						$elm$core$Dict$removeMin(nLeft),
+						nRight);
+				} else {
+					return $elm$core$Dict$RBEmpty_elm_builtin;
+				}
+			}
+		} else {
+			return A5(
+				$elm$core$Dict$RBNode_elm_builtin,
+				color,
+				key,
+				value,
+				$elm$core$Dict$removeMin(left),
+				right);
+		}
+	} else {
+		return $elm$core$Dict$RBEmpty_elm_builtin;
+	}
+};
+var $elm$core$Dict$removeHelp = F2(
+	function (targetKey, dict) {
+		if (dict.$ === 'RBEmpty_elm_builtin') {
+			return $elm$core$Dict$RBEmpty_elm_builtin;
+		} else {
+			var color = dict.a;
+			var key = dict.b;
+			var value = dict.c;
+			var left = dict.d;
+			var right = dict.e;
+			if (_Utils_cmp(targetKey, key) < 0) {
+				if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Black')) {
+					var _v4 = left.a;
+					var lLeft = left.d;
+					if ((lLeft.$ === 'RBNode_elm_builtin') && (lLeft.a.$ === 'Red')) {
+						var _v6 = lLeft.a;
+						return A5(
+							$elm$core$Dict$RBNode_elm_builtin,
+							color,
+							key,
+							value,
+							A2($elm$core$Dict$removeHelp, targetKey, left),
+							right);
+					} else {
+						var _v7 = $elm$core$Dict$moveRedLeft(dict);
+						if (_v7.$ === 'RBNode_elm_builtin') {
+							var nColor = _v7.a;
+							var nKey = _v7.b;
+							var nValue = _v7.c;
+							var nLeft = _v7.d;
+							var nRight = _v7.e;
+							return A5(
+								$elm$core$Dict$balance,
+								nColor,
+								nKey,
+								nValue,
+								A2($elm$core$Dict$removeHelp, targetKey, nLeft),
+								nRight);
+						} else {
+							return $elm$core$Dict$RBEmpty_elm_builtin;
+						}
+					}
+				} else {
+					return A5(
+						$elm$core$Dict$RBNode_elm_builtin,
+						color,
+						key,
+						value,
+						A2($elm$core$Dict$removeHelp, targetKey, left),
+						right);
+				}
+			} else {
+				return A2(
+					$elm$core$Dict$removeHelpEQGT,
+					targetKey,
+					A7($elm$core$Dict$removeHelpPrepEQGT, targetKey, dict, color, key, value, left, right));
+			}
+		}
+	});
+var $elm$core$Dict$removeHelpEQGT = F2(
+	function (targetKey, dict) {
+		if (dict.$ === 'RBNode_elm_builtin') {
+			var color = dict.a;
+			var key = dict.b;
+			var value = dict.c;
+			var left = dict.d;
+			var right = dict.e;
+			if (_Utils_eq(targetKey, key)) {
+				var _v1 = $elm$core$Dict$getMin(right);
+				if (_v1.$ === 'RBNode_elm_builtin') {
+					var minKey = _v1.b;
+					var minValue = _v1.c;
+					return A5(
+						$elm$core$Dict$balance,
+						color,
+						minKey,
+						minValue,
+						left,
+						$elm$core$Dict$removeMin(right));
+				} else {
+					return $elm$core$Dict$RBEmpty_elm_builtin;
+				}
+			} else {
+				return A5(
+					$elm$core$Dict$balance,
+					color,
+					key,
+					value,
+					left,
+					A2($elm$core$Dict$removeHelp, targetKey, right));
+			}
+		} else {
+			return $elm$core$Dict$RBEmpty_elm_builtin;
+		}
+	});
+var $elm$core$Dict$remove = F2(
+	function (key, dict) {
+		var _v0 = A2($elm$core$Dict$removeHelp, key, dict);
+		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
+			var _v1 = _v0.a;
+			var k = _v0.b;
+			var v = _v0.c;
+			var l = _v0.d;
+			var r = _v0.e;
+			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
+		} else {
+			var x = _v0;
+			return x;
+		}
+	});
+var $elm$core$Dict$diff = F2(
+	function (t1, t2) {
+		return A3(
+			$elm$core$Dict$foldl,
+			F3(
+				function (k, v, t) {
+					return A2($elm$core$Dict$remove, k, t);
+				}),
+			t1,
+			t2);
+	});
+var $elm$core$Set$diff = F2(
+	function (_v0, _v1) {
+		var dict1 = _v0.a;
+		var dict2 = _v1.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A2($elm$core$Dict$diff, dict1, dict2));
+	});
+var $elm$core$Dict$filter = F2(
+	function (isGood, dict) {
+		return A3(
+			$elm$core$Dict$foldl,
+			F3(
+				function (k, v, d) {
+					return A2(isGood, k, v) ? A3($elm$core$Dict$insert, k, v, d) : d;
+				}),
+			$elm$core$Dict$empty,
+			dict);
+	});
+var $elm$core$Dict$intersect = F2(
+	function (t1, t2) {
+		return A2(
+			$elm$core$Dict$filter,
+			F2(
+				function (k, _v0) {
+					return A2($elm$core$Dict$member, k, t2);
+				}),
+			t1);
+	});
+var $elm$core$Set$intersect = F2(
+	function (_v0, _v1) {
+		var dict1 = _v0.a;
+		var dict2 = _v1.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A2($elm$core$Dict$intersect, dict1, dict2));
+	});
+var $author$project$Extra$GameOfLife$GameOfLife$near = function (_v0) {
+	var x = _v0.a;
+	var y = _v0.b;
+	return A2(
+		$elm$core$Set$map,
+		function (n) {
+			return _Utils_Tuple2(
+				(x - 1) + A2($elm$core$Basics$modBy, 3, n),
+				(y - 1) + ((n / 3) | 0));
+		},
+		$elm$core$Set$fromList(
+			A2($elm$core$List$range, 0, 8)));
+};
+var $elm$core$Dict$singleton = F2(
+	function (key, value) {
+		return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
+	});
+var $elm$core$Set$singleton = function (key) {
+	return $elm$core$Set$Set_elm_builtin(
+		A2($elm$core$Dict$singleton, key, _Utils_Tuple0));
+};
+var $author$project$Extra$GameOfLife$GameOfLife$neighbors = F2(
+	function (board, cell) {
+		return A2(
+			$elm$core$Set$intersect,
+			board,
+			A2(
+				$elm$core$Set$diff,
+				$author$project$Extra$GameOfLife$GameOfLife$near(cell),
+				$elm$core$Set$singleton(cell)));
+	});
+var $elm$core$Dict$sizeHelp = F2(
+	function (n, dict) {
+		sizeHelp:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return n;
+			} else {
+				var left = dict.d;
+				var right = dict.e;
+				var $temp$n = A2($elm$core$Dict$sizeHelp, n + 1, right),
+					$temp$dict = left;
+				n = $temp$n;
+				dict = $temp$dict;
+				continue sizeHelp;
+			}
+		}
+	});
+var $elm$core$Dict$size = function (dict) {
+	return A2($elm$core$Dict$sizeHelp, 0, dict);
+};
+var $elm$core$Set$size = function (_v0) {
+	var dict = _v0.a;
+	return $elm$core$Dict$size(dict);
+};
+var $author$project$Extra$GameOfLife$GameOfLife$cellWillBeAlive = F2(
+	function (board, cell) {
+		var numberOfNeighbors = $elm$core$Set$size(
+			A2($author$project$Extra$GameOfLife$GameOfLife$neighbors, board, cell));
+		return (numberOfNeighbors === 3) || ((numberOfNeighbors === 2) && A2($elm$core$Set$member, cell, board));
+	});
+var $elm$core$Dict$union = F2(
+	function (t1, t2) {
+		return A3($elm$core$Dict$foldl, $elm$core$Dict$insert, t2, t1);
+	});
+var $elm$core$Set$union = F2(
+	function (_v0, _v1) {
+		var dict1 = _v0.a;
+		var dict2 = _v1.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A2($elm$core$Dict$union, dict1, dict2));
+	});
+var $author$project$Extra$GameOfLife$GameOfLife$cellsToCheck = A2(
+	$elm$core$Set$foldl,
+	A2($elm$core$Basics$composeR, $author$project$Extra$GameOfLife$GameOfLife$near, $elm$core$Set$union),
+	$elm$core$Set$empty);
+var $elm$core$Set$filter = F2(
+	function (isGood, _v0) {
+		var dict = _v0.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A2(
+				$elm$core$Dict$filter,
+				F2(
+					function (key, _v1) {
+						return isGood(key);
+					}),
+				dict));
+	});
+var $author$project$Extra$GameOfLife$GameOfLife$cullBoard = $elm$core$Set$filter(
+	function (_v0) {
+		var x = _v0.a;
+		var y = _v0.b;
+		return ($elm$core$Basics$abs(x) < 300) && ($elm$core$Basics$abs(y) < 300);
+	});
+var $author$project$Extra$GameOfLife$GameOfLife$nextBoard = function (board) {
+	return $author$project$Extra$GameOfLife$GameOfLife$cullBoard(
+		A2(
+			$elm$core$Set$filter,
+			$author$project$Extra$GameOfLife$GameOfLife$cellWillBeAlive(board),
+			$author$project$Extra$GameOfLife$GameOfLife$cellsToCheck(board)));
+};
+var $author$project$Extra$GameOfLife$App$update = F2(
+	function (msg, model) {
+		switch (msg.$) {
+			case 'GameOfLifeStep':
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							gameOfLifeBoard: $author$project$Extra$GameOfLife$GameOfLife$nextBoard(model.gameOfLifeBoard)
+						}),
+					$elm$core$Platform$Cmd$none);
+			case 'LoadBoard':
+				var board = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{gameOfLifeBoard: board}),
+					$elm$core$Platform$Cmd$none);
+			default:
+				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}
+	});
 var $author$project$Sitewide$Types$LoadBoard = function (a) {
 	return {$: 'LoadBoard', a: a};
 };
 var $rtfeldman$elm_css$Css$absolute = {position: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'absolute'};
 var $rtfeldman$elm_css$Css$bottom = $rtfeldman$elm_css$Css$prop1('bottom');
+var $rtfeldman$elm_css$Css$displayFlex = A2($rtfeldman$elm_css$Css$property, 'display', 'flex');
 var $rtfeldman$elm_css$Css$flexWrap = $rtfeldman$elm_css$Css$prop1('flex-wrap');
 var $author$project$Extra$GameOfLife$ExampleBoards$glider = $elm$core$Set$fromList(
 	_List_fromArray(
@@ -11396,7 +10327,20 @@ var $author$project$Extra$GameOfLife$ExampleBoards$pulsar = $elm$core$Set$fromLi
 			_Utils_Tuple2(6, 3),
 			_Utils_Tuple2(6, 4)
 		]));
+var $rtfeldman$elm_css$Css$PxUnits = {$: 'PxUnits'};
+var $rtfeldman$elm_css$Css$px = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PxUnits, 'px');
 var $rtfeldman$elm_css$Css$relative = {position: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'relative'};
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
 var $rtfeldman$elm_css$Svg$Styled$Attributes$height = $rtfeldman$elm_css$VirtualDom$Styled$attribute('height');
 var $author$project$Extra$GameOfLife$RenderBoard$inBounds = function (_v0) {
 	var x = _v0.a;
@@ -11436,6 +10380,25 @@ var $author$project$Extra$GameOfLife$RenderBoard$renderBoard = A2(
 		$elm$core$List$filter($author$project$Extra$GameOfLife$RenderBoard$inBounds)),
 	$elm$core$Set$toList);
 var $rtfeldman$elm_css$Html$Styled$button = $rtfeldman$elm_css$Html$Styled$node('button');
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $rtfeldman$elm_css$VirtualDom$Styled$on = F2(
+	function (eventName, handler) {
+		return A3(
+			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
+			A2($elm$virtual_dom$VirtualDom$on, eventName, handler),
+			false,
+			'');
+	});
+var $rtfeldman$elm_css$Html$Styled$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$rtfeldman$elm_css$VirtualDom$Styled$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
 var $rtfeldman$elm_css$Html$Styled$Events$onClick = function (msg) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$Events$on,
@@ -11515,1314 +10478,1110 @@ var $author$project$Extra$GameOfLife$App$view = function (b) {
 					]))
 			]));
 };
-var $author$project$Pages$GameOfLife$view = function (model) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$article,
-		_List_Nil,
-		_List_fromArray(
-			[
-				A2(
-				$author$project$Components$blogHeading,
-				$rtfeldman$elm_css$Html$Styled$text('Better living through sets'),
-				A2(
-					$justinmimbs$date$Date$fromPosix,
-					$elm$time$Time$utc,
-					$elm$time$Time$millisToPosix(1717712640000))),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('Lists are THE most overrated data type bar none. Who has '),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$em,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('ever')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text(' needed an ordered sequence of values with duplication? Not me. Lists are such a ridiculous data structure that no one can even agree how they should be built. A collection of cons cells? A block of contiguous memory? Do we index into them with pointers? Do we iterate over them with folds? Are we really just using a queue or a stack? Lists are crazy.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('Nah. Sets are where it’s at.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('The mathemeticians have known about sets for a long time, but until recently (within the last 100 years!) programmers didn’t have access to them. Now we do but they remain woefully underutilized. But start looking around and you’ll see that sets are way better than lists for every conceivable application.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('To prove it to ya we are gon’ be implementing Conway’s Game of Life today. But we are going to be doing it with sets like civilized men and not lists like so many pagans. Because we use a real datatype we won’t have to worry about boundary conditions, we will have a compact core ruleset, cool diagrams will be easy to draw to explain what is going on, the implementation will naturally be sparse, and all will be right in the eyes of the Lord.')
-					])),
-				$author$project$Extra$GameOfLife$App$view(model.gameOfLifeBoard),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$h3,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('The Game Itself')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('The game of life is a simple cellular automaton. It is played out on an infinite grid of cells that are either \"'),
-						$rtfeldman$elm_css$Html$Styled$text('alive'),
-						$rtfeldman$elm_css$Html$Styled$text('\" or \"'),
-						$rtfeldman$elm_css$Html$Styled$text('dead'),
-						$rtfeldman$elm_css$Html$Styled$text('\" with rules for updating this grid. In order for a cell to be alive, it must either')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$ol,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$li,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('Have exactly three living neighbors')
-							])),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$li,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('Have two or three living neighbors and have been alive in the previous timestep.')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('By repeatedly applying the update rule to some initial grid you can observe all sorts of interesting behavior. People have developed initial patterns that explode in complexity, act like factories, fly across the grid, or even simulate entire computers. The game of life is in fact turing complete if that phrase is meaningful to you.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$h3,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('The implementation')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('What is so remarkable about the game of life, the reason it has captured the imagination of so many computer scientists and mathematicians, is how this extremely simple ruleset gives rise to incredibly complex behavior. But even if it seems simple in theory, how can one express these rules simply in practice?')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('The heart of the trick is in how the grid is represented programmatically. It is tempting to use a two dimensional array to represent the grid, but this results in extra complexity at the boundary of the array. The true game of life is played on an infinite grid, so using a finite representation of the grid forces the implementation to either 1) resize the grid which involves complexity not found in the basic semantics of the game or 2) come up with boundary conditions, like cell death or a toroidal topology, that change the semantics of the game entirely.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('So instead of using a two dimensional array for the grid representation, we use a set containing the coordinates of all the living cells. With a point-set representation of the grid we have dealt with the problem of grid boundaries. But we have also translated the problem into a form which can almost entirely be calculated using elementary set operations. In principle we have also found a format that allows for huge efficiency gains by reducing the number of cells we have to check for updates, though to exploit this last point would require work that I deem beneath me.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('At a high level the algorithm for the point-set representation looks like this')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$ol,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$li,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('Identify which cells need to be checked for updates. Because the game of life rules only operate on cells which are alive or have living neighbors this amounts to finding all the cells which are alive or have living neighbors.')
-							])),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$li,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('For each cell identified in step 1, determine the next state of the cell. This requires counting up all living neighbors (which requires finding all living neighbors) and then applying the update rules based on this count.')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('And that is all. So lets get down to raw code.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('(This implementation is in elm but the basic algorithm translates nicely to any language with proper support for sets. At the bottom I’ll have the full implementation of the update rule along with a link to the full source for the simulation above.)')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('First the data representation. The basic type here is the cell '),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('type Cell = (Int,Int)')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text('. Boards are then represented as '),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('Set Cell')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text('. To check if a particular cell is alive or dead with respect to a given environment is implemented with set membership: '),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('cellIsAlive cell board = member cell board')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text('.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('For both step 1 and 2 in the algorithm we need a way to compute the neighbors of a cell. Visually, this is what we are computing:')
-					])),
-				$author$project$Extra$GameOfLife$Diagrams$nearDiagram,
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('In code there are several ways to do this. The easiest method would be to use the cartesian product of two sets which would look like')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$pre,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('near : Cell -> Set Cell\nnear (x,y) =\n    let adjacent1d n = fromList (range (n-1) (n+1))\n      in cartesianProduct (adjacent1d x) (adjacent1d y)')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('Which is very conceptually clean. Unfortunately elm sets don’t do cartesian products, and while we can implement them ourselves we can also just use the following modular arithmetic nonsense to achieve the same effect')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$pre,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('near : Cell -> Set Cell\nnear ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('Using this neighbors funtction we can easily find all the cells we need to check. We find the neighbors for each living cell in the current grid and then we take the set union of all these nighborhoods. Visually we are doing this')
-					])),
-				$author$project$Extra$GameOfLife$Diagrams$cellsToCheckDiagram,
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('while in code we are doing this')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$pre,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('cellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (near >> union) empty')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('This is doing a lot of functional programming stuff with folds and function composition and point free style which is all very impressive but in the end it just does what the diagram above is describing: go point by point, apply '),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('near')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text(' to each point, take the n-way union of all the resulting neighborhoods.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('Once we’ve got a list of cells to update we need a way to check if they will be alive at the next timestep. We do this by first finding all of a cells living neighbors, counting them, and applying the update rule. To get the living neighbors of a cell is naught but a string of set operations')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$pre,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('neighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (near cell) (singleton cell))')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('which visually corresponds to the following reduction')
-					])),
-				$author$project$Extra$GameOfLife$Diagrams$livingNeighborsDiagram,
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('In words this is \"'),
-						$rtfeldman$elm_css$Html$Styled$text('the set of all cells that are both in the board and in the neighborhood but are not the cell itself'),
-						$rtfeldman$elm_css$Html$Styled$text('\". With this we can count up the number of neighbors and apply the update rule')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$pre,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('cellWillBeAlive : Set Cell -> Cell -> Bool\ncellWillBeAlive board cell =\n    let numberNearby = size (neighbors board cell)\n    in numberNearby == 3 || (numberNearby == 2 && member cell board)')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('And for our final act we weave the update rule together with the cells that need checking')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$pre,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('update : Set Cell -> Set Cell\nupdate board = filter (cellWillBeAlive board) (cellsToCheck board)')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('and we are done!')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('To use it is simplicity itself. Write down all the coordinates of living cells for the board you’d like to represent and then hit go')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$pre,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('initialBoard : Set Cell\ninitialBoard = fromList [ (1,1), (1,2), (2,1) ]\n\nnextBoard : Set Cell\nnextBoard = update initialBoard')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('nextBoard')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text(' will now be equal to '),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('fromList [ (1,1), (1,2), (2,1), (2,2) ]')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text('.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$h3,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('Victory')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('So there we have it. The core rules for the game of life in less than thirty lines of code')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$pre,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Html$Styled$code,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('module GameOfLife exposing (Cell, nextBoard)\n\nimport List exposing (range)\nimport Set exposing (..)\n\ntype alias Cell = (Int, Int)\n\nnear : Cell -> Set Cell\nnear ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))\n\nneighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (near cell) (singleton cell))\n\ncellWillBeAlive : Set Cell -> Cell -> Bool\ncellWillBeAlive board cell =\n    let numberNearby = size (neighbors board cell)\n    in numberNearby == 3 || (numberNearby == 2 && member cell board)\n\ncellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (near >> union) empty\n\nupdate : Set Cell -> Set Cell\nupdate board = filter (cellWillBeAlive board) (cellsToCheck board)')
-							]))
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('In order to make a cool interactive out of this we still need an event loop and some rendering code. This isn’t terribly hard to implement yourself but because I’m so generous I have a simple implementation '),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$a,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$Attributes$href('https://github.com/seanlucrussell/elm-life')
-							]),
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('hosted on Github')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text('.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$h3,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('In Conclusion')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('The most important thing we all learned today is that arrays drool and sets rule.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('But not just that. This is also a neat demonstration of how appropriate datastructure selection can greatly simplify and clarify the nature of a problem. By looking at living cells in the game of life as a set of grid coordinate we get a nice visual intuition for what the rules mean and how to implement them using predefined set operations. Choosing sets for the underlying datastructure also eliminated any boundary problems we might have had and provided us with a sparse, space efficient representation of the game for free.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('It is my opinion that sets are severely underutilized by programmers. A surprising number of situations, from storing command line options to understanding relational algebras (which in turn underly the design of SQL) or even for implementing the game of life, benefit from the judicious application of some simple set theory.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('So if nothing else I hope this at least served as an amusing example of the applications of sets to programming.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('And I hope this '),
-						A2(
-						$rtfeldman$elm_css$Html$Styled$em,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('sets')
-							])),
-						$rtfeldman$elm_css$Html$Styled$text(' you up to think of sets next time you are programming.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('He. Hehehehe. Haaha. Ha.')
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('Go sets.')
-					]))
-			]));
+var $author$project$Pages$GameOfLife$page = {
+	update: $author$project$Extra$GameOfLife$App$update,
+	view: function (model) {
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$article,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$author$project$Components$blogHeading,
+					$rtfeldman$elm_css$Html$Styled$text('Better Living Through Sets'),
+					$author$project$Pages$GameOfLife$article.publicationDate),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Lists are THE most overrated data type bar none. Who has '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$em,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('ever')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' needed an ordered sequence of values with duplication? Not me. Lists are such a ridiculous data structure that no one can even agree how they should be built. A collection of cons cells? A block of contiguous memory? Do we index into them with pointers? Do we iterate over them with folds? Are we really just using a queue or a stack? Lists are crazy.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Nah. Sets are where it’s at.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The mathemeticians have known about sets for a long time, but until recently (within the last 100 years!) programmers didn’t have access to them. Now we do but they remain woefully underutilized. But start looking around and you’ll see that sets are way better than lists for every conceivable application.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('To prove it to ya we are gon’ be implementing Conway’s Game of Life today. But we are going to be doing it with sets like civilized men and not lists like so many pagans. Because we use a real datatype we won’t have to worry about boundary conditions, we will have a compact core ruleset, cool diagrams will be easy to draw to explain what is going on, the implementation will naturally be sparse, and all will be right in the eyes of the Lord.')
+						])),
+					$author$project$Extra$GameOfLife$App$view(model.gameOfLifeBoard),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The Game Itself')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The game of life is a simple cellular automaton. It is played out on an infinite grid of cells that are either \"'),
+							$rtfeldman$elm_css$Html$Styled$text('alive'),
+							$rtfeldman$elm_css$Html$Styled$text('\" or \"'),
+							$rtfeldman$elm_css$Html$Styled$text('dead'),
+							$rtfeldman$elm_css$Html$Styled$text('\" with rules for updating this grid. In order for a cell to be alive, it must either')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$ol,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Have exactly three living neighbors')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Have two or three living neighbors and have been alive in the previous timestep.')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('By repeatedly applying the update rule to some initial grid you can observe all sorts of interesting behavior. People have developed initial patterns that explode in complexity, act like factories, fly across the grid, or even simulate entire computers. The game of life is in fact turing complete if that phrase is meaningful to you.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The implementation')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('What is so remarkable about the game of life, the reason it has captured the imagination of so many computer scientists and mathematicians, is how this extremely simple ruleset gives rise to incredibly complex behavior. But even if it seems simple in theory, how can one express these rules simply in practice?')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The heart of the trick is in how the grid is represented programmatically. It is tempting to use a two dimensional array to represent the grid, but this results in extra complexity at the boundary of the array. The true game of life is played on an infinite grid, so using a finite representation of the grid forces the implementation to either 1) resize the grid which involves complexity not found in the basic semantics of the game or 2) come up with boundary conditions, like cell death or a toroidal topology, that change the semantics of the game entirely.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('So instead of using a two dimensional array for the grid representation, we use a set containing the coordinates of all the living cells. With a point-set representation of the grid we have dealt with the problem of grid boundaries. But we have also translated the problem into a form which can almost entirely be calculated using elementary set operations. In principle we have also found a format that allows for huge efficiency gains by reducing the number of cells we have to check for updates, though to exploit this last point would require work that I deem beneath me.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('At a high level the algorithm for the point-set representation looks like this')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$ol,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Identify which cells need to be checked for updates. Because the game of life rules only operate on cells which are alive or have living neighbors this amounts to finding all the cells which are alive or have living neighbors.')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('For each cell identified in step 1, determine the next state of the cell. This requires counting up all living neighbors (which requires finding all living neighbors) and then applying the update rules based on this count.')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And that is all. So lets get down to raw code.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('(This implementation is in elm but the basic algorithm translates nicely to any language with proper support for sets. At the bottom I’ll have the full implementation of the update rule along with a link to the full source for the simulation above.)')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('First the data representation. The basic type here is the cell '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('type Cell = (Int,Int)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. Boards are then represented as '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Set Cell')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. To check if a particular cell is alive or dead with respect to a given environment is implemented with set membership: '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cellIsAlive cell board = member cell board')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('For both step 1 and 2 in the algorithm we need a way to compute the neighbors of a cell. Visually, this is what we are computing:')
+						])),
+					$author$project$Extra$GameOfLife$Diagrams$nearDiagram,
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('In code there are several ways to do this. The easiest method would be to use the cartesian product of two sets which would look like')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('near : Cell -> Set Cell\nnear (x,y) =\n    let adjacent1d n = fromList (range (n-1) (n+1))\n      in cartesianProduct (adjacent1d x) (adjacent1d y)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Which is very conceptually clean. Unfortunately elm sets don’t do cartesian products, and while we can implement them ourselves we can also just use the following modular arithmetic nonsense to achieve the same effect')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('near : Cell -> Set Cell\nnear ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Using this neighbors funtction we can easily find all the cells we need to check. We find the neighbors for each living cell in the current grid and then we take the set union of all these nighborhoods. Visually we are doing this')
+						])),
+					$author$project$Extra$GameOfLife$Diagrams$cellsToCheckDiagram,
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('while in code we are doing this')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (near >> union) empty')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('This is doing a lot of functional programming stuff with folds and function composition and point free style which is all very impressive but in the end it just does what the diagram above is describing: go point by point, apply '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('near')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' to each point, take the n-way union of all the resulting neighborhoods.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Once we’ve got a list of cells to update we need a way to check if they will be alive at the next timestep. We do this by first finding all of a cells living neighbors, counting them, and applying the update rule. To get the living neighbors of a cell is naught but a string of set operations')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('neighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (near cell) (singleton cell))')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('which visually corresponds to the following reduction')
+						])),
+					$author$project$Extra$GameOfLife$Diagrams$livingNeighborsDiagram,
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('In words this is \"'),
+							$rtfeldman$elm_css$Html$Styled$text('the set of all cells that are both in the board and in the neighborhood but are not the cell itself'),
+							$rtfeldman$elm_css$Html$Styled$text('\". With this we can count up the number of neighbors and apply the update rule')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cellWillBeAlive : Set Cell -> Cell -> Bool\ncellWillBeAlive board cell =\n    let numberNearby = size (neighbors board cell)\n    in numberNearby == 3 || (numberNearby == 2 && member cell board)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And for our final act we weave the update rule together with the cells that need checking')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('update : Set Cell -> Set Cell\nupdate board = filter (cellWillBeAlive board) (cellsToCheck board)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('and we are done!')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('To use it is simplicity itself. Write down all the coordinates of living cells for the board you’d like to represent and then hit go')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('initialBoard : Set Cell\ninitialBoard = fromList [ (1,1), (1,2), (2,1) ]\n\nnextBoard : Set Cell\nnextBoard = update initialBoard')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('nextBoard')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' will now be equal to '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('fromList [ (1,1), (1,2), (2,1), (2,2) ]')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Victory')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('So there we have it. The core rules for the game of life in less than thirty lines of code')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('module GameOfLife exposing (Cell, nextBoard)\n\nimport List exposing (range)\nimport Set exposing (..)\n\ntype alias Cell = (Int, Int)\n\nnear : Cell -> Set Cell\nnear ( x, y ) =\n    map\n      (\\n -> ( x - 1 + modBy 3 n, y - 1 + n // 3 ))\n      (fromList (range 0 8))\n\nneighbors : Set Cell -> Cell -> Set Cell\nneighbors board cell =\n    intersect board (diff (near cell) (singleton cell))\n\ncellWillBeAlive : Set Cell -> Cell -> Bool\ncellWillBeAlive board cell =\n    let numberNearby = size (neighbors board cell)\n    in numberNearby == 3 || (numberNearby == 2 && member cell board)\n\ncellsToCheck : Set Cell -> Set Cell\ncellsToCheck = foldl (near >> union) empty\n\nupdate : Set Cell -> Set Cell\nupdate board = filter (cellWillBeAlive board) (cellsToCheck board)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('In order to make a cool interactive out of this we still need an event loop and some rendering code. This isn’t terribly hard to implement yourself but because I’m so generous I have a simple implementation '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$a,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('https://github.com/seanlucrussell/elm-life')
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('hosted on Github')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('In Conclusion')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The most important thing we all learned today is that arrays drool and sets rule.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('But not just that. This is also a neat demonstration of how appropriate datastructure selection can greatly simplify and clarify the nature of a problem. By looking at living cells in the game of life as a set of grid coordinate we get a nice visual intuition for what the rules mean and how to implement them using predefined set operations. Choosing sets for the underlying datastructure also eliminated any boundary problems we might have had and provided us with a sparse, space efficient representation of the game for free.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('It is my opinion that sets are severely underutilized by programmers. A surprising number of situations, from storing command line options to understanding relational algebras (which in turn underly the design of SQL) or even for implementing the game of life, benefit from the judicious application of some simple set theory.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('So if nothing else I hope this at least served as an amusing example of the applications of sets to programming.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And I hope this '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$em,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('sets')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' you up to think of sets next time you are programming.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('He. Hehehehe. Haaha. Ha.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Go sets.')
+						]))
+				]));
+	}
 };
 var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
-var $author$project$Pages$RecursionSchemes$view = A2(
-	$rtfeldman$elm_css$Html$Styled$article,
-	_List_Nil,
-	_List_fromArray(
-		[
-			A2(
-			$author$project$Components$blogHeading,
-			$rtfeldman$elm_css$Html$Styled$text('Recursion schemes are the answer'),
-			A2(
-				$justinmimbs$date$Date$fromPosix,
-				$elm$time$Time$utc,
-				$elm$time$Time$millisToPosix(1717555835000))),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('But what is the question?')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Since I’ve been learning about recursion schemes lately here is the version of recursion schemes that finally made sense to me. This leaves a lot of topics untouched, instead focusing on what I see as the core idea underlying the field. '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$a,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$Attributes$href('https://blog.sumtypeofway.com/posts/introduction-to-recursion-schemes.html')
-						]),
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('This series by Patrick Thomson')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is the most complete exposition about recursion schemes I have come across to date. And '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$a,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$Attributes$href('https://jtobin.io/practical-recursion-schemes')
-						]),
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('this post by Jared Tobin')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' containing several practical examples of non-recursive recursive algorithms is what finally made the concept click for me.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Recursion schemes are all about removing recursion from datatypes and separating it out into standard recursive templates,  if you will, and reusing these schemes for every recursive datatype in existence.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('But to ensure we are starting on solid ground let us be very clear what we mean by recursive datatypes by looking at a couple of the most common: linked lists and binary trees.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('A linked list is a recursive datatype. By recursive we mean that a linked list can be built up from smaller linked lists. The list '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('[1,2,3]')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is essentially the same as the first item, '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('1')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(', plus the rest of the list, '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('[2,3]')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('. The rest of the list can in turn be described as the first item ('),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('2')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(') and an even smaller list ('),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('[3]')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('), which is in turn a final item ('),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('3')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(') and the smallest possible list (the empty list '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('[]')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(').')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('When we say a datatype is recursive we mean it can be built up from smaller copies of itself. The standard definition of a list involves defining the empty list and an operation for adding an item to the front of a preexisting list. We call these operations Nil and Cons respectively because that is what people decided on sixty years ago with lisp and no-one understands what the lisp people are doing well enough to challenge them.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Binary trees are the same. A binary tree can be built from a single leaf containing a value or it can be built from a pair of smaller trees. As with the linked list, the creation of a tree may require the input of smaller trees.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('In Haskell syntax we’d write the linked list and tree definitions as '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data List a = Nil | Cons a (List a)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' and '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data Tree a = Leaf a | Node (Tree a) (Tree a)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' respectively.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('So these types are recursive. Now that we know that let us do something silly. Lets see if we can make them non-recursive. Or at least as non-recursive as possible. And if you are asking why we’d do that right now I will kindly ask you to shut up and pretend like I haven’t lost my mind.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Our list is recursive only in the second argument to Cons. What if we just made that a type variable? Why? I told you to stop asking questions.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Turning the recursive call in Cons into a type variable leaves us with '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data List a f = Nil | Cons a f')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('. This seems totally useless but we can still technically create a list using this new type. See for example '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Cons 3 (Cons 1 Nil)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Beware that we have somewhat changed behavior. The type of '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Cons 3 (Cons 1 Nil)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(', that is '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('List Int (List Int (List a f))')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is now different from the type '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('(Cons 1 Nil)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(', which is '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('List Int (List a f)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('. Not to mention we get weird typing behavior that lets us write lists of mixed type like '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Cons True (Cons 1 Nil)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' or even weird tree like structures like '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Cons (Cons 5 Nil) (Cons \"baking soda\" Nil)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('So this is clearly less useful as a list than our original list. There may be some useful applications of it because this new type is in fact isomorphic to the type '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Maybe (a,f)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' which isn’t an unreasonable type to see in the real world. But if types are changing based on the length of the list and we have hetrogeneous collections then we can’t fairly say we have a list as the word  is normally understood.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Clearly I haven’t gone quite insane enough for this to make sense. So here is another type: '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data Fix f = Fix (f (Fix f))')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('. This one is recursive. But I think it’s the only recursive datatype we will need ever again.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('I’m not going to elaborate on the reasoning behind the definition of this one. It was provided by divine providence as far as you are concerned. Lets just keep doing things like apply it to list datatype starting with the empty list constructor: '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix Nil')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' gets us the type '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix (List a)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('. If we make the following function '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('newCons x l = Fix (Cons x l)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' and inspect its type we will see it is of type '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('a -> Fix (List a) -> Fix (List a)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' which, barring the bizarre addition of '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(', is precisely the normal type signature for the Cons constructor. So '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix (Cons 3 (Fix Nil)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' will be of type '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix (List Int)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' and the type of a list no longer depends on the length of the list. And lists are back to being homogenous in the type of their contents.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Great! We’ve reinvented a normal list using an extremely confusing declaration, a few extra lines of code, and extra syntax interleaved in any list definition. To review, normally we’d write')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
+var $author$project$Pages$RecursionSchemes$page = {
+	update: F2(
+		function (_v0, model) {
+			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}),
+	view: function (_v1) {
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$article,
 			_List_Nil,
 			_List_fromArray(
 				[
 					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data List a = Nil | Cons a (List a)\n\nexampleList :: List String\nexampleList = Cons \"what\" (Cons \"is\" (Cons \"butter?\" Nil))')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('but with this exciting new paradigm we would write')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
+					$author$project$Components$blogHeading,
+					$rtfeldman$elm_css$Html$Styled$text('Recursion Schemes Are The Answer'),
+					$author$project$Pages$RecursionSchemes$article.publicationDate),
 					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
+					$rtfeldman$elm_css$Html$Styled$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('data List a f = Nil | Cons a f\ndata Fix f = Fix (f (Fix f))\n\nexampleList :: Fix (List String)\nexampleList = Fix (Cons \"what\" (Fix (Cons \"is\" (Fix (Cons \"butter?\" (Fix Nil))))))')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('We have successfully made our program worse. Huzzah! That’s right, recursion schemes are just a fancy obfuscation tactic.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Actually, there is one way in which recursion schemes are better. Say we have this new fancy nonsense function that I’m not going to bother to explain as the purpose is obvious (this is called sarcasm)')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata :: Functor f => (f a -> a) -> Fix f -> a\ncata f = f . fmap (cata f) . unfix\n  where unfix :: Fix f -> f (Fix f)\n        unfix (Fix x) = x')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('and since I’m just throwing things out there let’s also give our non-recursive list a functor instance')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('instance Functor (List a) where\n  fmap _ Nil = Nil\n  fmap f (Cons a b) = Cons a (f b)')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('and define a random function on our list type')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('sum :: List Int Int -> Int\nsum Nil = 0\nsum (Cons a b) = a + b')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Sequencing these things we can sum a list! Evaluating '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata sum (Fix (Cons 3 (Fix (Cons 4 (Fix Nil)))))')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' yields '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('7')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('. Very cool.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('For the recursive list type we could have of course written')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('sum :: List Int -> Int\nsum Nil = 0\nsum (Cons a b) = a + sum b')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('This is a good place to once again take the score. For the traditional list we have')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data List a = Nil | Cons a (List a)\n\nsum :: List Int -> Int\nsum Nil = 0\nsum (Cons a b) = a + sum b')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Weighing in at 5 lines of code this is all that is needed to define a list and the sum of a list. By contrast with our new fancy method using nonsense words we have')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data List a f = Nil | Cons a f\ndata Fix f = Fix (f (Fix f))\n\ncata :: Functor f => (f a -> a) -> Fix f -> a\ncata f = f . fmap (cata f) . unfix\n  where unfix :: Fix f -> f (Fix f)\n        unfix (Fix x) = x\n\ninstance Functor (List a) where\n  fmap _ Nil = Nil\n  fmap f (Cons a b) = Cons a (f b)\n\nsum :: Fix (List Int) -> Int\nsum = cata assistant\n  where assistant :: List Int Int -> Int\n        assistant Nil = 0\n        assistant (Cons a b) = a + b')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Summing up to 15 lines of code. We’ve managed to triple the length of code required to take the sum of a list for no perceptible benefit. Super rad.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('But wait. There '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$em,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('is')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' a small, very small, very very '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$em,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('very')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' small way in which the second is better than the first. One section of the sum function is ever so slightly simpler, not requiring a recursive call to the tail of the list to evaluate the sum.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('But the sum is a recursive operation is it not?')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('It is indeed. Packed away in the mystery function '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' and the '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Functor')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' instance for '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('List a')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is all the recursion we need to implement the sum.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Ok, but we could totally just write a list fold for the normal list and factor out the recursion from the normal list sum. No need for all this nonsense.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Thats right. In fact that is essentially what we’ve done with the weird list. The function '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is a bizarre type of fold for our bizarre type of list.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Alright, time to actually do something cool with all this nonsense. Let’s make a tree type using our dumb recursion-factoring methodology and give it its functor instance:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data Tree a f = Leaf a | Branch f f\n\ninstance Functor (Tree a) where\n  fmap _ (Leaf x) = Leaf x\n  fmap f (Branch a b) = Branch (f a) (f b)')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('If you play around with the '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Tree a f')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' constructors for a while you’ll see they behave similarly to the weird linked list: the tree will have different types depending on the depth of the tree. Plus there is some new weird behavior only possible with trees: each branch needs to be of the same depth in order for the tree to type check.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('But if you use the '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' type, the same exact type we defined above, you’ll start getting a normal tree again! See '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix (Branch (Fix (Leaf \'f\')) (Fix (Branch (Fix (Leaf \'f\')) (Fix (Leaf \'f\')))))')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' for example: while this tree has mixed branches you can see it is of type '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix (Tree Char)')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' in a Haskell interpreter. The same exact Fix type, when applied to our completely new weird Tree type, has resulted in something essentially identical to the ordinary Tree definition.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('But this goes deeper. Let’s define a sum over our new Tree type')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('sum :: Fix (Tree Int) -> Int\nsum = cata assistant\n  where assistant :: Tree Int Int -> Int\n        assistant (Leaf x) = x\n        assistant (Branch a b) = a + b')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Once again we attain a recursion-free sum. Applying it to an example tree '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('sum (Fix (Branch (Fix (Leaf 4)) (Fix (Branch (Fix (Leaf 3)) (Fix (Leaf 2))))))')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' yields a result of '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('9')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Bizarre. We still have a lot of boilerplate with all the '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text('es interleaved through everything and the functor instance. But the Fix type and the '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' function worked for both the tree and the linked list.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('And now we approach the heart of the utility of recursion schemes. For ANY recursive datatype, and that means ANY, we can go through this simple procedure:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$ol,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Factor out the recursion')
+							$rtfeldman$elm_css$Html$Styled$text('But what is the question?')
 						])),
 					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
+					$rtfeldman$elm_css$Html$Styled$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('Create a functor instance')
+							$rtfeldman$elm_css$Html$Styled$text('Since I’ve been learning about recursion schemes lately here is the version of recursion schemes that finally made sense to me. This leaves a lot of topics untouched, instead focusing on what I see as the core idea underlying the field. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$a,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('https://blog.sumtypeofway.com/posts/introduction-to-recursion-schemes.html')
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('This series by Patrick Thomson')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is the most complete exposition about recursion schemes I have come across to date. And '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$a,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('https://jtobin.io/practical-recursion-schemes')
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('this post by Jared Tobin')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' containing several practical examples of non-recursive recursive algorithms is what finally made the concept click for me.')
 						])),
 					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
+					$rtfeldman$elm_css$Html$Styled$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('Apply the '),
+							$rtfeldman$elm_css$Html$Styled$text('Recursion schemes are all about removing recursion from datatypes and separating it out into standard recursive templates, \"'),
+							$rtfeldman$elm_css$Html$Styled$text('schemes'),
+							$rtfeldman$elm_css$Html$Styled$text('\" if you will, and reusing these schemes for every recursive datatype in existence.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('But to ensure we are starting on solid ground let us be very clear what we mean by recursive datatypes by looking at a couple of the most common: linked lists and binary trees.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('A linked list is a recursive datatype. By recursive we mean that a linked list can be built up from smaller linked lists. The list '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('[1,2,3]')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is essentially the same as the first item, '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('1')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', plus the rest of the list, '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('[2,3]')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. The rest of the list can in turn be described as the first item ('),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('2')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(') and an even smaller list ('),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('[3]')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('), which is in turn a final item ('),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('3')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(') and the smallest possible list (the empty list '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('[]')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(').')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('When we say a datatype is recursive we mean it can be built up from smaller copies of itself. The standard definition of a list involves defining the empty list and an operation for adding an item to the front of a preexisting list. We call these operations Nil and Cons respectively because that is what people decided on sixty years ago with lisp and no-one understands what the lisp people are doing well enough to challenge them.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Binary trees are the same. A binary tree can be built from a single leaf containing a value or it can be built from a pair of smaller trees. As with the linked list, the creation of a tree may require the input of smaller trees.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('In Haskell syntax we’d write the linked list and tree definitions as '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data List a = Nil | Cons a (List a)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data Tree a = Leaf a | Node (Tree a) (Tree a)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' respectively.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('So these types are recursive. Now that we know that let us do something silly. Lets see if we can make them non-recursive. Or at least as non-recursive as possible. And if you are asking why we’d do that right now I will kindly ask you to shut up and pretend like I haven’t lost my mind.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Our list is recursive only in the second argument to Cons. What if we just made that a type variable? Why? I told you to stop asking questions.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Turning the recursive call in Cons into a type variable leaves us with '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data List a f = Nil | Cons a f')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. This seems totally useless but we can still technically create a list using this new type. See for example '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Cons 3 (Cons 1 Nil)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Beware that we have somewhat changed behavior. The type of '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Cons 3 (Cons 1 Nil)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', that is '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('List Int (List Int (List a f))')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is now different from the type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('(Cons 1 Nil)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', which is '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('List Int (List a f)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. Not to mention we get weird typing behavior that lets us write lists of mixed type like '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Cons True (Cons 1 Nil)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' or even weird tree like structures like '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Cons (Cons 5 Nil) (Cons \"baking soda\" Nil)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('So this is clearly less useful as a list than our original list. There may be some useful applications of it because this new type is in fact isomorphic to the type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Maybe (a,f)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' which isn’t an unreasonable type to see in the real world. But if types are changing based on the length of the list and we have hetrogeneous collections then we can’t fairly say we have a list as the word \"'),
+							$rtfeldman$elm_css$Html$Styled$text('list'),
+							$rtfeldman$elm_css$Html$Styled$text('\" is normally understood.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Clearly I haven’t gone quite insane enough for this to make sense. So here is another type: '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data Fix f = Fix (f (Fix f))')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. This one is recursive. But I think it’s the only recursive datatype we will need ever again.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('I’m not going to elaborate on the reasoning behind the definition of this one. It was provided by divine providence as far as you are concerned. Lets just keep doing things like apply it to list datatype starting with the empty list constructor: '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix Nil')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' gets us the type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix (List a)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. If we make the following function '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('newCons x l = Fix (Cons x l)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and inspect its type we will see it is of type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('a -> Fix (List a) -> Fix (List a)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' which, barring the bizarre addition of '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', is precisely the normal type signature for the Cons constructor. So '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix (Cons 3 (Fix Nil)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' will be of type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix (List Int)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and the type of a list no longer depends on the length of the list. And lists are back to being homogenous in the type of their contents.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Great! We’ve reinvented a normal list using an extremely confusing declaration, a few extra lines of code, and extra syntax interleaved in any list definition. To review, normally we’d write')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data List a = Nil | Cons a (List a)\n\nexampleList :: List String\nexampleList = Cons \"what\" (Cons \"is\" (Cons \"butter?\" Nil))')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('but with this exciting new paradigm we would write')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data List a f = Nil | Cons a f\ndata Fix f = Fix (f (Fix f))\n\nexampleList :: Fix (List String)\nexampleList = Fix (Cons \"what\" (Fix (Cons \"is\" (Fix (Cons \"butter?\" (Fix Nil))))))')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('We have successfully made our program worse. Huzzah! That’s right, recursion schemes are just a fancy obfuscation tactic.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Actually, there is one way in which recursion schemes are better. Say we have this new fancy nonsense function that I’m not going to bother to explain as the purpose is obvious (this is called sarcasm)')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata :: Functor f => (f a -> a) -> Fix f -> a\ncata f = f . fmap (cata f) . unfix\n  where unfix :: Fix f -> f (Fix f)\n        unfix (Fix x) = x')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('and since I’m just throwing things out there let’s also give our non-recursive list a functor instance')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('instance Functor (List a) where\n  fmap _ Nil = Nil\n  fmap f (Cons a b) = Cons a (f b)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('and define a random function on our list type')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('sum :: List Int Int -> Int\nsum Nil = 0\nsum (Cons a b) = a + b')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Sequencing these things we can sum a list! Evaluating '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata sum (Fix (Cons 3 (Fix (Cons 4 (Fix Nil)))))')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' yields '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('7')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. Very cool.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('For the recursive list type we could have of course written')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('sum :: List Int -> Int\nsum Nil = 0\nsum (Cons a b) = a + sum b')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('This is a good place to once again take the score. For the traditional list we have')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data List a = Nil | Cons a (List a)\n\nsum :: List Int -> Int\nsum Nil = 0\nsum (Cons a b) = a + sum b')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Weighing in at 5 lines of code this is all that is needed to define a list and the sum of a list. By contrast with our new fancy method using nonsense words we have')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data List a f = Nil | Cons a f\ndata Fix f = Fix (f (Fix f))\n\ncata :: Functor f => (f a -> a) -> Fix f -> a\ncata f = f . fmap (cata f) . unfix\n  where unfix :: Fix f -> f (Fix f)\n        unfix (Fix x) = x\n\ninstance Functor (List a) where\n  fmap _ Nil = Nil\n  fmap f (Cons a b) = Cons a (f b)\n\nsum :: Fix (List Int) -> Int\nsum = cata assistant\n  where assistant :: List Int Int -> Int\n        assistant Nil = 0\n        assistant (Cons a b) = a + b')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Summing up to 15 lines of code. We’ve managed to triple the length of code required to take the sum of a list for no perceptible benefit. Super rad.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('But wait. There '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$em,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('is')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' a small, very small, very very '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$em,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('very')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' small way in which the second is better than the first. One section of the sum function is ever so slightly simpler, not requiring a recursive call to the tail of the list to evaluate the sum.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('But the sum is a recursive operation is it not?')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('It is indeed. Packed away in the mystery function '),
 							A2(
 							$rtfeldman$elm_css$Html$Styled$code,
 							_List_Nil,
@@ -12830,979 +11589,2288 @@ var $author$project$Pages$RecursionSchemes$view = A2(
 								[
 									$rtfeldman$elm_css$Html$Styled$text('cata')
 								])),
-							$rtfeldman$elm_css$Html$Styled$text(' function to iterate over it')
+							$rtfeldman$elm_css$Html$Styled$text(' and the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Functor')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' instance for '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('List a')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is all the recursion we need to implement the sum.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Ok, but we could totally just write a list fold for the normal list and factor out the recursion from the normal list sum. No need for all this nonsense.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Thats right. In fact that is essentially what we’ve done with the weird list. The function '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is a bizarre type of fold for our bizarre type of list.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Alright, time to actually do something cool with all this nonsense. Let’s make a tree type using our dumb recursion-factoring methodology and give it its functor instance:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data Tree a f = Leaf a | Branch f f\n\ninstance Functor (Tree a) where\n  fmap _ (Leaf x) = Leaf x\n  fmap f (Branch a b) = Branch (f a) (f b)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('If you play around with the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Tree a f')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' constructors for a while you’ll see they behave similarly to the weird linked list: the tree will have different types depending on the depth of the tree. Plus there is some new weird behavior only possible with trees: each branch needs to be of the same depth in order for the tree to type check.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('But if you use the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' type, the same exact type we defined above, you’ll start getting a normal tree again! See '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix (Branch (Fix (Leaf \'f\')) (Fix (Branch (Fix (Leaf \'f\')) (Fix (Leaf \'f\')))))')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' for example: while this tree has mixed branches you can see it is of type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix (Tree Char)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' in a Haskell interpreter. The same exact Fix type, when applied to our completely new weird Tree type, has resulted in something essentially identical to the ordinary Tree definition.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('But this goes deeper. Let’s define a sum over our new Tree type')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('sum :: Fix (Tree Int) -> Int\nsum = cata assistant\n  where assistant :: Tree Int Int -> Int\n        assistant (Leaf x) = x\n        assistant (Branch a b) = a + b')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Once again we attain a recursion-free sum. Applying it to an example tree '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('sum (Fix (Branch (Fix (Leaf 4)) (Fix (Branch (Fix (Leaf 3)) (Fix (Leaf 2))))))')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' yields a result of '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('9')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Bizarre. We still have a lot of boilerplate with all the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('es interleaved through everything and the functor instance. But the Fix type and the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' function worked for both the tree and the linked list.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And now we approach the heart of the utility of recursion schemes. For ANY recursive datatype, and that means ANY, we can go through this simple procedure:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$ol,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Factor out the recursion')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Create a functor instance')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Apply the '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('cata')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text(' function to iterate over it')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('This is all very mechanical. Functor instances can be derived with normal haskell. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' never changes. Factoring out recursion can be accomplished with template haskell. Humans don’t actually need to engage in any of this.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And then we can write fancy functions for much more sophisticated datatypes than the simple tree or list:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data Ring f\n    = Zero\n    | One\n    | Invert f\n    | Add f f\n    | Multiply f f\n    deriving (Functor)\n\nevaluate :: Fix Ring -> Int\nevaluate = cata assistant\n  where assistant :: Ring Int -> Int\n        assistant Zero = 0\n        assistant One = 1\n        assistant (Invert n) = -n\n        assistant (Add a b) = a + b\n        assistant (Multiply a b) = a * b')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('There we go. The '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('assistant')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' function here makes clear the essence of ring evaluation without any explicit recursion. I never had to write a fold anywhere (I’m using mathematical rings as a simple example of a domain specific language, don’t worry too much about what a ring is). Compare '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('assistant')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' to a hypothetical recursive ring evaluation')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('evaluate Ring -> Int\nevaluate Zero = 0\nevaluate One = 1\nevaluate (Invert n) = - (evaluate n)\nevaluate (Add a b) = (evaluate a) + (evaluate b)\nevaluate (Multiply a b) = (evaluate a) * (evaluate b)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('and see that, ignoring all the other mess we’ve made, the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('assistant')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' function is clearer. All the recursion in '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('assistant')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is implicit and the general notion is obvious.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('By the way all these functions I’ve been calling '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('assistant')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' are examples of what insiders call an F-Algebra, sometimes shortened to Algebra. It’s a fancy name for a very simple concept. Anything of type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('f a -> a')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is an algebra. Complain to the mathematicians if this doesn’t seem obvious to you.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('There is likely one lingering thought you are having at this point. Sure, we can derive functor instances automatically. Sure, we can create non-recursive types automatically. Sure, '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' work for all functors. But dealing with This:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix (Multiply (Fix (Add (Fix Unit) (Fix Zero))) (Fix One))')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('where half of our datastructure is just calls to '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Fix')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' instead of This:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Multiply (Add Unit Zero) One')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('is simply not going to work. Semantically they might behave the same. But programs are a means for humans and computers to communicate with each other and that first version is just '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$em,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('awful')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' for communicating with humans. So recursion schemes are useless after all.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Unless we can find a way to use them with normal data types.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And this is the final piece of the puzzle. Just like it is fairly straightforward to automatically derive the functionality to generate a non-recursive type from a recursive type it is also straightforward to generate the functions that convert between the fixpoint of the non-recursive type and the original recursive type. For our lists')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('data NormalList a\n    = NormalNil\n    | NormalCons a (NormalList a)\n\ndata WeirdList a f \n    = WeirdNil\n    | WeirdCons a f')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('that means we could auto-generate')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('from :: NormalList a -> Fix (WeirdList a)\nto :: Fix (WeirdList a) -> NormalList a')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('and then use these functions to go back and forth between the real world and the upside-down world of recursion schemes. We can use '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' when it is simpler and we can use our ordinary datatype when we prefer.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Finally we are at the point where this is all actually worthwhile:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$ol,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('We write a recursive datatype as we normally would')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('We import a library for managing recursion schemes')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('The recursion schemes library generates the non-recursive variant of our datatype')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('The library also generates the conversion functions')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('It also generates the functor instances')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('We write almost no boilerplate, can use our types as God intended, but we can also jump over to mystery recursion land to perform dark magic')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And that is the secret to recursion schemes.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('To review. The essential concept to understand recursion schemes is to view it as an exploration of factoring out recursion from our datatypes. When we look deep enough we discover that there is a purely mechanical process for performing this factorization that allows us to write elegant, non-recursive code and then apply it recursively.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Library writers then go off and write things like the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('recursion-schemes')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' library that takes care of all this manual boiler plate for us so we get the best of both worlds; little incomprehensible nonsense code with all the power of recursion schemes.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h2,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Conclusion')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('I hardly touched on what the recursion schemes really are. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is the only example provided in this article. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cata')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is in fact short for catamorphism, and it turns out there are a number of different ways to recurse through a datatype so there are a number of different functions akin to the catamorhism. They all have wild and exotic names like the zygomorphism or the histomorphism but they each boil down to strategies, schemes if you will, to recurse over a recursive datatype.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('One particularly large weakness of recursion schemes is that they don’t deal elegantly with mutually recursive datatypes. At least not that I’ve been able to divine. This is a real problem for things like programming languages where you’ll often have mutually recursive datatypes like expressions and statements. There appears to be a number of attempts to expand recursion schemes to more flexible datatypes but it isn’t clear to me that there is a winner in this battle yet.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('I hope that the main takeaway of this article has come across. For me the essence of recursion schemes is the answer to a question: \"'),
+							$rtfeldman$elm_css$Html$Styled$text('What happens if we try to take away recursion from as much of a datatype as we possibly can?'),
+							$rtfeldman$elm_css$Html$Styled$text('\". Recursion schemes are the answer. And the answer turns out to be pretty cool.')
 						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('This is all very mechanical. Functor instances can be derived with normal haskell. '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' never changes. Factoring out recursion can be accomplished with template haskell. Humans don’t actually need to engage in any of this.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('And then we can write fancy functions for much more sophisticated datatypes than the simple tree or list:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data Ring f\n    = Zero\n    | One\n    | Invert f\n    | Add f f\n    | Multiply f f\n    deriving (Functor)\n\nevaluate :: Fix Ring -> Int\nevaluate = cata assistant\n  where assistant :: Ring Int -> Int\n        assistant Zero = 0\n        assistant One = 1\n        assistant (Invert n) = -n\n        assistant (Add a b) = a + b\n        assistant (Multiply a b) = a * b')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('There we go. The '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('assistant')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' function here makes clear the essence of ring evaluation without any explicit recursion. I never had to write a fold anywhere (I’m using mathematical rings as a simple example of a domain specific language, don’t worry too much about what a ring is). Compare '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('assistant')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' to a hypothetical recursive ring evaluation')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('evaluate Ring -> Int\nevaluate Zero = 0\nevaluate One = 1\nevaluate (Invert n) = - (evaluate n)\nevaluate (Add a b) = (evaluate a) + (evaluate b)\nevaluate (Multiply a b) = (evaluate a) * (evaluate b)')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('and see that, ignoring all the other mess we’ve made, the '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('assistant')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' function is clearer. All the recursion in '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('assistant')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is implicit and the general notion is obvious.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('By the way all these functions I’ve been calling '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('assistant')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' are examples of what insiders call an F-Algebra, sometimes shortened to Algebra. It’s a fancy name for a very simple concept. Anything of type '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('f a -> a')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is an algebra. Complain to the mathematicians if this doesn’t seem obvious to you.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('There is likely one lingering thought you are having at this point. Sure, we can derive functor instances automatically. Sure, we can create non-recursive types automatically. Sure, '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' and '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' work for all functors. But dealing with This:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix (Multiply (Fix (Add (Fix Unit) (Fix Zero))) (Fix One))')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('where half of our datastructure is just calls to '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Fix')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' instead of This:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('Multiply (Add Unit Zero) One')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('is simply not going to work. Semantically they might behave the same. But programs are a means for humans and computers to communicate with each other and that first version is just '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$em,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('awful')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' for communicating with humans. So recursion schemes are useless after all.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Unless we can find a way to use them with normal data types.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('And this is the final piece of the puzzle. Just like it is fairly straightforward to automatically derive the functionality to generate a non-recursive type from a recursive type it is also straightforward to generate the functions that convert between the fixpoint of the non-recursive type and the original recursive type. For our lists')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('data NormalList a\n    = NormalNil\n    | NormalCons a (NormalList a)\n\ndata WeirdList a f \n    = WeirdNil\n    | WeirdCons a f')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('that means we could auto-generate')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('from :: NormalList a -> Fix (WeirdList a)\nto :: Fix (WeirdList a) -> NormalList a')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('and then use these functions to go back and forth between the real world and the upside-down world of recursion schemes. We can use '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' when it is simpler and we can use our ordinary datatype when we prefer.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Finally we are at the point where this is all actually worthwhile:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$ol,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('We write a recursive datatype as we normally would')
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('We import a library for managing recursion schemes')
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('The recursion schemes library generates the non-recursive variant of our datatype')
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('The library also generates the conversion functions')
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('It also generates the functor instances')
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('We write almost no boilerplate, can use our types as God intended, but we can also jump over to mystery recursion land to perform dark magic')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('And that is the secret to recursion schemes.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('To review. The essential concept to understand recursion schemes is to view it as an exploration of factoring out recursion from our datatypes. When we look deep enough we discover that there is a purely mechanical process for performing this factorization that allows us to write elegant, non-recursive code and then apply it recursively.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Library writers then go off and write things like the '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('recursion-schemes')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' library that takes care of all this manual boiler plate for us so we get the best of both worlds; little incomprehensible nonsense code with all the power of recursion schemes.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$h2,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Conclusion')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('I hardly touched on what the recursion schemes really are. '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is the only example provided in this article. '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('cata')
-						])),
-					$rtfeldman$elm_css$Html$Styled$text(' is in fact short for catamorphism, and it turns out there are a number of different ways to recurse through a datatype so there are a number of different functions akin to the catamorhism. They all have wild and exotic names like the zygomorphism or the histomorphism but they each boil down to strategies, schemes if you will, to recurse over a recursive datatype.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('One particularly large weakness of recursion schemes is that they don’t deal elegantly with mutually recursive datatypes. At least not that I’ve been able to divine. This is a real problem for things like programming languages where you’ll often have mutually recursive datatypes like expressions and statements. There appears to be a number of attempts to expand recursion schemes to more flexible datatypes but it isn’t clear to me that there is a winner in this battle yet.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('I hope that the main takeaway of this article has come across. For me the essence of recursion schemes is the answer to a question: . Recursion schemes are the answer. And the answer turns out to be pretty cool.')
-				]))
-		]));
+				]));
+	}
+};
 var $rtfeldman$elm_css$Html$Styled$Attributes$alt = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('alt');
 var $rtfeldman$elm_css$Html$Styled$img = $rtfeldman$elm_css$Html$Styled$node('img');
 var $rtfeldman$elm_css$Html$Styled$Attributes$src = function (url) {
 	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'src', url);
 };
-var $author$project$Pages$TheGutsOfGit$view = A2(
-	$rtfeldman$elm_css$Html$Styled$article,
-	_List_Nil,
-	_List_fromArray(
-		[
-			A2(
-			$author$project$Components$blogHeading,
-			$rtfeldman$elm_css$Html$Styled$text('The Guts of Git'),
-			A2(
-				$justinmimbs$date$Date$fromPosix,
-				$elm$time$Time$utc,
-				$elm$time$Time$millisToPosix(1717713270000))),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
+var $author$project$Pages$TheGutsOfGit$page = {
+	update: F2(
+		function (_v0, model) {
+			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}),
+	view: function (_v1) {
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$article,
 			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('During the renaissance it became popular for great artists to dissect human corpses. Michelangelo and da Vinci both took part in the dissecting of man. Art requires an intimate knowledge of the subject in order to faithfully reproduce it, and there aren’t many better ways to understand something than by taking it apart.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('So it is with software. Today we are gonna be tearing out the guts of git and looking at them for ourselves so we may too become like the masters.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$h3,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('The Content Database')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('At the very core of git is a content addressed database (or filesystem, or memory, or whatever). I’m going to be calling this a CAD. To understand what is going on with git it is really important to understand what a content addressed database is. Fortunately they are pretty simple.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('First lets look at what \"'),
-					$rtfeldman$elm_css$Html$Styled$text('Content'),
-					$rtfeldman$elm_css$Html$Styled$text('\" means. This is simple. The content in a content addressed database is literally any kind of data. Just a sequence of 1’s and 0’s. Any pile of bits will do.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('So what does it mean to address content? If I address you, that means I’ve said your name or provided some other indication, some identifier, that it is you I’m addressing. I’m talkin to ya. An address is just a unique way of identifying something. Address books uniquely identify houses. Etc.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('So if content is a sequence of 1’s and 0’s, the address of some content is a unique way of referring to that data. In what manner might we accomplish that? Hashes! Any sort of hash will do as long as it satisfies all the properties of a good hashing function but for our purposes lets use the sha1 hash.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('The database part simply means we have a method for finding content based on its hash.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Alright so we have a lookup table that correlates hashes with data. This has some nice properties.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('First, we don’t have to trust the database for data integrity. When we request some data from the database and we get the data back we can run our hashing algorithm against the hash we had stored and check if they match. So content addressed memory doesn’t require any trust between the client and the server. Except maybe that the client will desire that the server doesn’t delete their data. So maybe a bit of trust.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('It also means that data is immutable in the database. The store is extremely simple, supporting only two operations. Add a blob of data and retrieve a blob of data by hash. There are no mutation operations here.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Of course it is so simple that figuring out how to use a CAD appropriately takes some work. But git shows us how.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$h3,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('What is git used for?')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Ok so real quick aside: we need to remember what the essential purpose of git is. What operations do we want it to support? Because that all determines how git can work with a CAD.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('The real essence of a version control system (VCS, how many acronyms can we pack in this essay?) is it should allow us to look back into the history of a project, see how the new version differs from whatever past versions we have, let us revert to previous versions of our codebase, and ideally allow us to work nicely with others.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('A big part of this means that a VCS is about recreating snapshots for different moments in history of our project. This is actually super simple in theory: we could copy EVERYTHING in a project whenever we take a snapshot and save it to a tarball or something and tag the tarball with the previous version and some note to let us know what the tarball meant. Then to retrieve previous versions we can unpack the tarball and voila we have the previous version. But that is really inefficient especially when we want to make small changes at a time. So the trick to building a good version control system is to make these snapshots efficient while still allowing one to construct the entire state of the repo.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$h3,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Proof')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('One more aside: if you want to follow along you can look into the guts with the '),
 					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
+					$author$project$Components$blogHeading,
+					$rtfeldman$elm_css$Html$Styled$text('The Guts of Git'),
+					$author$project$Pages$TheGutsOfGit$article.publicationDate),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('cat-file')
+							$rtfeldman$elm_css$Html$Styled$text('During the renaissance it became popular for great artists to dissect human corpses. Michelangelo and da Vinci both took part in the dissecting of man. Art requires an intimate knowledge of the subject in order to faithfully reproduce it, and there aren’t many better ways to understand something than by taking it apart.')
 						])),
-					$rtfeldman$elm_css$Html$Styled$text(' command; this one lists all the objects in a repo along with their types')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
 					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
+					$rtfeldman$elm_css$Html$Styled$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('git cat-file --batch-check --batch-all-objects')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('and this one grabs a file by hash')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('git cat-file -p $HASH')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('I’d encourage you to experiment with these for a bit. Run the first command to list all the objects in the repo of some project you are familiar with. Then take one of those objects at random and run its hash through the second command. Look for patterns.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('You can also sort of see the structure of the repo by looking in '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('.git/objects/')
+							$rtfeldman$elm_css$Html$Styled$text('So it is with software. Today we are gonna be tearing out the guts of git and looking at them for ourselves so we may too become like the masters.')
 						])),
-					$rtfeldman$elm_css$Html$Styled$text(' but I recommend using the '),
 					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
+					$rtfeldman$elm_css$Html$Styled$h3,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('cat-file')
+							$rtfeldman$elm_css$Html$Styled$text('The Content Database')
 						])),
-					$rtfeldman$elm_css$Html$Styled$text(' command because otherwise you’ll have to look at compressed objects in packfiles and their indexes and some other nonsense.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$h3,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Blobs, Trees, and Commits')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Git uses its CAD for 3 types of objects. Remember we are keeping things simple here so we aren’t using 3 separate CADs, one for each type of object. Everything goes into the one CAD.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Commits are a snapshot of a repo. From a commit you should be able to recreate the ENTIRE state of the project at that point in time. In addition to the data needed to reconstruct the state of the repo at a moment in time commits include information on the history of the project up until that commit by referencing parent commits (a single commit can reference multiple parents; this happens in the case of a merge. Or none in the case of the initial commit). And commits have a little bit of data that is useful like commit author and message (and committer, which is almost never distinct from commit author). A sample:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
 					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
+					$rtfeldman$elm_css$Html$Styled$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('tree 8d69b7df5fa3bb43671f9cf34e3674dec4fad311\nparent 13d7893577cedbceed7a364d050c11aa3cfea1ee\nauthor Ada Lovelace <alovlace@analytical.engine> 1674337023 -0700\ncommitter Ada Lovelace <alovlace@analytical.engine> 1674337023 -0700\n\nFinished translation of the algorithm to javascript.')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Btw I mentioned that a commit references one or more parents. How does it do this? Through the CAD! The commit holds a sha1 hash for each parent commit, so to look back in time you simply grab the parent sha1 address from the commit object and then look the parent up in the CAD. Repeat ad infinitum to go back to the big bang.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Ok so how can you \"'),
-					$rtfeldman$elm_css$Html$Styled$text('reconstruct'),
-					$rtfeldman$elm_css$Html$Styled$text('\" an entire project state from a commit? To do this you need ALL the data that may have been present; you need a full directory heirarchy.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('The second type of object git stores in the CAD is just this: the tree type. A tree is simple; it is just a list of references to blobs (I’ll get there in a sec) and other trees, along with some permissions data and filenames. Imagine we had the following project structure:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('.\n├── README.md\n└── src\n   ├── engine-schematics.c\n   └── bernoulli-numbers.js')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('the corresponding tree would look something like')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('100644 blob c2226816b4eeaf4cd22bbca0b69d084dfc49c8af    README.md\n040000 tree 084f97465213fd702411f144fac54b13ff351430    src')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Wait theres only two things here? Nah just look at the src object, which can be retrieved from the CAD using its hash, and you’ll see something like')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('100644 blob a9340b122ae22ca82be607c6abc9fc35af57de33    engine-schematics.c\n100644 blob 9c63c22bf2335c96ab74fc41c549aefafa38253a    bernoulli-numbers.js')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Alright so commits point to previous commits and to trees. The trees can be used to reconstruct the entirety of a commit; or at least the filesystem layout at the time of commit.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('And now for the simplest type of data in the git CAD: the blob. A blob can be ANYTHING, look inside a blob and you will simply see your source files.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('To recap. A commit is a repo snapshot. Commits link to previous commits and to a tree. The tree represents a directory. In each tree is a list of links to other trees and blobs along with the file name and permissions at time of commit. And a blob is any kind of data.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$h3,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('The creature in motion')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('I don’t think this description is complete without seeing how this all plays out when new files are committed. That should help tie up any loose ends about the reasoning for this design.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('But before we do that we have to introduce one last concept: references.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('All the above works great but if you are just looking at a repo as a list of objects by hash you will have no idea what to do. A big project can get well beyond the thousands of objects in a repository; if you want the latest version of a project, or to try out an experimental branch, or to do anything else, where on earth should you start?')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('References provide the answer. These live outside the CAD; they are just files that hold the index (hash) of an object within the CAD. They are mostly used to know what the latest state for different branches are, though they are also used for things like tagging releases. '),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('git show-ref')
+							$rtfeldman$elm_css$Html$Styled$text('At the very core of git is a content addressed database (or filesystem, or memory, or whatever). I’m going to be calling this a CAD. To understand what is going on with git it is really important to understand what a content addressed database is. Fortunately they are pretty simple.')
 						])),
-					$rtfeldman$elm_css$Html$Styled$text(' lists all the references in a git repo along with the corresponding commit hashes.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('And with an understanding of references we can now see what happens when we modify a file and commit the changes we’ve made. Lets use the previous example:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$pre,
-			_List_Nil,
-			_List_fromArray(
-				[
 					A2(
-					$rtfeldman$elm_css$Html$Styled$code,
+					$rtfeldman$elm_css$Html$Styled$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('.\n├── README.md\n└── src\n    ├── engine-schematics.c\n    └── bernoulli-numbers.js')
-						]))
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('To keep things simple let’s pretend like this is about to be only the second commit ever to this project. The current state of the repo will look something like this:')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$img,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$src('media/0-database-start.png'),
-					$rtfeldman$elm_css$Html$Styled$Attributes$alt('Master ref links to initial commit, initial commit links to readme blob and src tree, src tree links to other two')
-				]),
-			_List_Nil),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('And with annotations so you can see what these different object types are')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$img,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$src('media/1-initial-database-labeled.png'),
-					$rtfeldman$elm_css$Html$Styled$Attributes$alt('Annotated version of the same diagram')
-				]),
-			_List_Nil),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('We’ve made a change to the readme. So we add that to the CAD')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$img,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$src('media/2-add-new-readme.png'),
-					$rtfeldman$elm_css$Html$Styled$Attributes$alt('same as above, but with new readme in green')
-				]),
-			_List_Nil),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('But the new readme means we need a new tree')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$img,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$src('media/3-add-new-tree.png'),
-					$rtfeldman$elm_css$Html$Styled$Attributes$alt('same as above, but new readme is darker green and we have a new tree in gree linking to new readme and old src')
-				]),
-			_List_Nil),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('With the new tree we can add the new commit')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$img,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$src('media/4-new-commit-object.png'),
-					$rtfeldman$elm_css$Html$Styled$Attributes$alt('same as above, but new tree is darker green and there is a new commit in green linking to tree and old commit')
-				]),
-			_List_Nil),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('And finally update the reference')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$img,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$src('media/5-modify-branch.png'),
-					$rtfeldman$elm_css$Html$Styled$Attributes$alt('same as above, but new commit is darker green and the reference is yellow and now points to the new commit')
-				]),
-			_List_Nil),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('We are now done. The commit is done! We’ve updated our repo. We can always go back by finding the previous commit and restoring the tree.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Notice how the only thing that got modified was the reference. Everything else was just added to. Pretty neat.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Also notice that we added a completely new copy of the readme. It is a common misconception (that I held until like a week ago) that git stores file differences in order to save space. But it doesn’t (caveat needed: sometimes git will compress objects in the CAD into what are known as pack files, where it will use file diffs to save space. But this doesn’t change the basic semantics of the CAD itself).')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$h3,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Conclusion')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Git is built on top of a content addressed database. This database holds three kinds of objects: commits, trees, and blobs. Commits link to trees and previous commits. Trees link to trees and blob. References point to interesting commits.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('If you understand this summary then you should understand nearly everything there is to know about git. Most of the git documentation and commands should not only be understandable to you, but you should be able to nearly reproduce for yourself. Or at least imagine the implementation.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('The real reason I ended up writing about all this was because I was interested in the git CAD and ended up writing a little '),
+							$rtfeldman$elm_css$Html$Styled$text('First lets look at what \"'),
+							$rtfeldman$elm_css$Html$Styled$text('Content'),
+							$rtfeldman$elm_css$Html$Styled$text('\" means. This is simple. The content in a content addressed database is literally any kind of data. Just a sequence of 1’s and 0’s. Any pile of bits will do.')
+						])),
 					A2(
-					$rtfeldman$elm_css$Html$Styled$a,
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$Attributes$href('https://github.com/seanlucrussell/object-explorer')
+							$rtfeldman$elm_css$Html$Styled$text('So what does it mean to address content? If I address you, that means I’ve said your name or provided some other indication, some identifier, that it is you I’m addressing. I’m talkin to ya. An address is just a unique way of identifying something. Address books uniquely identify houses. Etc.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('So if content is a sequence of 1’s and 0’s, the address of some content is a unique way of referring to that data. In what manner might we accomplish that? Hashes! Any sort of hash will do as long as it satisfies all the properties of a good hashing function but for our purposes lets use the sha1 hash.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The database part simply means we have a method for finding content based on its hash.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Alright so we have a lookup table that correlates hashes with data. This has some nice properties.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('First, we don’t have to trust the database for data integrity. When we request some data from the database and we get the data back we can run our hashing algorithm against the hash we had stored and check if they match. So content addressed memory doesn’t require any trust between the client and the server. Except maybe that the client will desire that the server doesn’t delete their data. So maybe a bit of trust.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('It also means that data is immutable in the database. The store is extremely simple, supporting only two operations. Add a blob of data and retrieve a blob of data by hash. There are no mutation operations here.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Of course it is so simple that figuring out how to use a CAD appropriately takes some work. But git shows us how.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('What is git used for?')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Ok so real quick aside: we need to remember what the essential purpose of git is. What operations do we want it to support? Because that all determines how git can work with a CAD.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The real essence of a version control system (VCS, how many acronyms can we pack in this essay?) is it should allow us to look back into the history of a project, see how the new version differs from whatever past versions we have, let us revert to previous versions of our codebase, and ideally allow us to work nicely with others.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('A big part of this means that a VCS is about recreating snapshots for different moments in history of our project. This is actually super simple in theory: we could copy EVERYTHING in a project whenever we take a snapshot and save it to a tarball or something and tag the tarball with the previous version and some note to let us know what the tarball meant. Then to retrieve previous versions we can unpack the tarball and voila we have the previous version. But that is really inefficient especially when we want to make small changes at a time. So the trick to building a good version control system is to make these snapshots efficient while still allowing one to construct the entire state of the repo.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Proof')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('One more aside: if you want to follow along you can look into the guts with the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cat-file')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' command; this one lists all the objects in a repo along with their types')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('git cat-file --batch-check --batch-all-objects')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('and this one grabs a file by hash')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('git cat-file -p $HASH')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('I’d encourage you to experiment with these for a bit. Run the first command to list all the objects in the repo of some project you are familiar with. Then take one of those objects at random and run its hash through the second command. Look for patterns.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('You can also sort of see the structure of the repo by looking in '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('.git/objects/')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' but I recommend using the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('cat-file')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' command because otherwise you’ll have to look at compressed objects in packfiles and their indexes and some other nonsense.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Blobs, Trees, and Commits')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Git uses its CAD for 3 types of objects. Remember we are keeping things simple here so we aren’t using 3 separate CADs, one for each type of object. Everything goes into the one CAD.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Commits are a snapshot of a repo. From a commit you should be able to recreate the ENTIRE state of the project at that point in time. In addition to the data needed to reconstruct the state of the repo at a moment in time commits include information on the history of the project up until that commit by referencing parent commits (a single commit can reference multiple parents; this happens in the case of a merge. Or none in the case of the initial commit). And commits have a little bit of data that is useful like commit author and message (and committer, which is almost never distinct from commit author). A sample:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('tree 8d69b7df5fa3bb43671f9cf34e3674dec4fad311\nparent 13d7893577cedbceed7a364d050c11aa3cfea1ee\nauthor Ada Lovelace <alovlace@analytical.engine> 1674337023 -0700\ncommitter Ada Lovelace <alovlace@analytical.engine> 1674337023 -0700\n\nFinished translation of the algorithm to javascript.')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Btw I mentioned that a commit references one or more parents. How does it do this? Through the CAD! The commit holds a sha1 hash for each parent commit, so to look back in time you simply grab the parent sha1 address from the commit object and then look the parent up in the CAD. Repeat ad infinitum to go back to the big bang.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Ok so how can you \"'),
+							$rtfeldman$elm_css$Html$Styled$text('reconstruct'),
+							$rtfeldman$elm_css$Html$Styled$text('\" an entire project state from a commit? To do this you need ALL the data that may have been present; you need a full directory heirarchy.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The second type of object git stores in the CAD is just this: the tree type. A tree is simple; it is just a list of references to blobs (I’ll get there in a sec) and other trees, along with some permissions data and filenames. Imagine we had the following project structure:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('.\n├── README.md\n└── src\n   ├── engine-schematics.c\n   └── bernoulli-numbers.js')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('the corresponding tree would look something like')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('100644 blob c2226816b4eeaf4cd22bbca0b69d084dfc49c8af    README.md\n040000 tree 084f97465213fd702411f144fac54b13ff351430    src')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Wait theres only two things here? Nah just look at the src object, which can be retrieved from the CAD using its hash, and you’ll see something like')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('100644 blob a9340b122ae22ca82be607c6abc9fc35af57de33    engine-schematics.c\n100644 blob 9c63c22bf2335c96ab74fc41c549aefafa38253a    bernoulli-numbers.js')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Alright so commits point to previous commits and to trees. The trees can be used to reconstruct the entirety of a commit; or at least the filesystem layout at the time of commit.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And now for the simplest type of data in the git CAD: the blob. A blob can be ANYTHING, look inside a blob and you will simply see your source files.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('To recap. A commit is a repo snapshot. Commits link to previous commits and to a tree. The tree represents a directory. In each tree is a list of links to other trees and blobs along with the file name and permissions at time of commit. And a blob is any kind of data.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The creature in motion')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('I don’t think this description is complete without seeing how this all plays out when new files are committed. That should help tie up any loose ends about the reasoning for this design.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('But before we do that we have to introduce one last concept: references.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('All the above works great but if you are just looking at a repo as a list of objects by hash you will have no idea what to do. A big project can get well beyond the thousands of objects in a repository; if you want the latest version of a project, or to try out an experimental branch, or to do anything else, where on earth should you start?')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('References provide the answer. These live outside the CAD; they are just files that hold the index (hash) of an object within the CAD. They are mostly used to know what the latest state for different branches are, though they are also used for things like tagging releases. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('git show-ref')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' lists all the references in a git repo along with the corresponding commit hashes.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And with an understanding of references we can now see what happens when we modify a file and commit the changes we’ve made. Lets use the previous example:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('.\n├── README.md\n└── src\n    ├── engine-schematics.c\n    └── bernoulli-numbers.js')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('To keep things simple let’s pretend like this is about to be only the second commit ever to this project. The current state of the repo will look something like this:')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$img,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$Attributes$src('media/0-database-start.png'),
+							$rtfeldman$elm_css$Html$Styled$Attributes$alt('Master ref links to initial commit, initial commit links to readme blob and src tree, src tree links to other two')
 						]),
+					_List_Nil),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('app to turn the objects in a git CAD into a website')
+							$rtfeldman$elm_css$Html$Styled$text('And with annotations so you can see what these different object types are')
 						])),
-					$rtfeldman$elm_css$Html$Styled$text('. Since commits link to trees and trees link to trees and trees link to blobs and commits link to commits I figured the web would provide a nice way to explore a git repo.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('Just remember: the heart has four chambers, the spine has thirty three vertebrae, and git is built on a content addressed database. And you’ll do just fine.')
-				]))
-		]));
-var $author$project$Sitewide$View$pageView = F2(
-	function (m, page) {
-		switch (page.$) {
-			case 'NavigationPage':
-				return $author$project$Pages$Navigation$navigationPage;
-			case 'MissingPage':
-				return $author$project$Pages$Missing$missing;
-			case 'RecursionSchemesPage':
-				return $author$project$Pages$RecursionSchemes$view;
-			case 'GutsOfGitPage':
-				return $author$project$Pages$TheGutsOfGit$view;
-			default:
-				return $author$project$Pages$GameOfLife$view(m);
+					A2(
+					$rtfeldman$elm_css$Html$Styled$img,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$Attributes$src('media/1-initial-database-labeled.png'),
+							$rtfeldman$elm_css$Html$Styled$Attributes$alt('Annotated version of the same diagram')
+						]),
+					_List_Nil),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('We’ve made a change to the readme. So we add that to the CAD')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$img,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$Attributes$src('media/2-add-new-readme.png'),
+							$rtfeldman$elm_css$Html$Styled$Attributes$alt('same as above, but with new readme in green')
+						]),
+					_List_Nil),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('But the new readme means we need a new tree')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$img,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$Attributes$src('media/3-add-new-tree.png'),
+							$rtfeldman$elm_css$Html$Styled$Attributes$alt('same as above, but new readme is darker green and we have a new tree in gree linking to new readme and old src')
+						]),
+					_List_Nil),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('With the new tree we can add the new commit')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$img,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$Attributes$src('media/4-new-commit-object.png'),
+							$rtfeldman$elm_css$Html$Styled$Attributes$alt('same as above, but new tree is darker green and there is a new commit in green linking to tree and old commit')
+						]),
+					_List_Nil),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And finally update the reference')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$img,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$Attributes$src('media/5-modify-branch.png'),
+							$rtfeldman$elm_css$Html$Styled$Attributes$alt('same as above, but new commit is darker green and the reference is yellow and now points to the new commit')
+						]),
+					_List_Nil),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('We are now done. The commit is done! We’ve updated our repo. We can always go back by finding the previous commit and restoring the tree.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Notice how the only thing that got modified was the reference. Everything else was just added to. Pretty neat.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Also notice that we added a completely new copy of the readme. It is a common misconception (that I held until like a week ago) that git stores file differences in order to save space. But it doesn’t (caveat needed: sometimes git will compress objects in the CAD into what are known as pack files, where it will use file diffs to save space. But this doesn’t change the basic semantics of the CAD itself).')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h3,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Conclusion')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Git is built on top of a content addressed database. This database holds three kinds of objects: commits, trees, and blobs. Commits link to trees and previous commits. Trees link to trees and blob. References point to interesting commits.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('If you understand this summary then you should understand nearly everything there is to know about git. Most of the git documentation and commands should not only be understandable to you, but you should be able to nearly reproduce for yourself. Or at least imagine the implementation.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The real reason I ended up writing about all this was because I was interested in the git CAD and ended up writing a little '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$a,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('https://github.com/seanlucrussell/object-explorer')
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('app to turn the objects in a git CAD into a website')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. Since commits link to trees and trees link to trees and trees link to blobs and commits link to commits I figured the web would provide a nice way to explore a git repo.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Just remember: the heart has four chambers, the spine has thirty three vertebrae, and git is built on a content addressed database. And you’ll do just fine.')
+						]))
+				]));
+	}
+};
+var $author$project$Sitewide$UrlMap$staticPage = function (pageView) {
+	return {
+		update: F2(
+			function (_v0, model) {
+				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+			}),
+		view: pageView
+	};
+};
+var $author$project$Sitewide$UrlMap$urlMap = function (s) {
+	switch (s) {
+		case '/':
+			return $author$project$Sitewide$UrlMap$staticPage(
+				$elm$core$Basics$always($author$project$Pages$Navigation$navigationPage));
+		case '/NAV':
+			return $author$project$Sitewide$UrlMap$staticPage(
+				$elm$core$Basics$always($author$project$Pages$Navigation$navigationPage));
+		case '/GOG':
+			return $author$project$Pages$TheGutsOfGit$page;
+		case '/REC':
+			return $author$project$Pages$RecursionSchemes$page;
+		case '/LIFE':
+			return $author$project$Pages$GameOfLife$page;
+		default:
+			return $author$project$Sitewide$UrlMap$staticPage(
+				$elm$core$Basics$always($author$project$Pages$Missing$missing));
+	}
+};
+var $author$project$Sitewide$Update$update = F2(
+	function (message, model) {
+		update:
+		while (true) {
+			switch (message.$) {
+				case 'SelectPage':
+					var p = message.a;
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{currentPage: p}),
+						A2($elm$browser$Browser$Navigation$pushUrl, model.key, p));
+				case 'UrlChange':
+					var url = message.a;
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{currentPage: url.path}),
+						$elm$core$Platform$Cmd$none);
+				case 'UrlRequest':
+					if (message.a.$ === 'Internal') {
+						var url = message.a.a;
+						var $temp$message = $author$project$Sitewide$Types$SelectPage(url.path),
+							$temp$model = model;
+						message = $temp$message;
+						model = $temp$model;
+						continue update;
+					} else {
+						var url = message.a.a;
+						return _Utils_Tuple2(
+							model,
+							$elm$browser$Browser$Navigation$load(url));
+					}
+				case 'CommandBarChanged':
+					var t = message.a;
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{commandText: t}),
+						$elm$core$Platform$Cmd$none);
+				case 'CommandSubmitted':
+					var _v1 = A2(
+						$elm$core$Dict$get,
+						A2($elm$core$String$map, $elm$core$Char$toUpper, model.commandText),
+						$author$project$Sitewide$Update$commandMap(model));
+					if (_v1.$ === 'Just') {
+						var cmd = _v1.a;
+						var $temp$message = cmd,
+							$temp$model = _Utils_update(
+							model,
+							{commandText: ''});
+						message = $temp$message;
+						model = $temp$model;
+						continue update;
+					} else {
+						return _Utils_Tuple2(
+							_Utils_update(
+								model,
+								{commandText: ''}),
+							$elm$core$Platform$Cmd$none);
+					}
+				case 'ToggleClock':
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{clockIsVisible: !model.clockIsVisible}),
+						$elm$core$Platform$Cmd$none);
+				case 'Tick':
+					var t = message.a;
+					if ((A2($author$project$Sitewide$Update$intervalCount, model.time + t, 100) - A2($author$project$Sitewide$Update$intervalCount, model.time, 100)) >= 1) {
+						var $temp$message = $author$project$Sitewide$Types$GameOfLifeStep,
+							$temp$model = _Utils_update(
+							model,
+							{time: model.time + t});
+						message = $temp$message;
+						model = $temp$model;
+						continue update;
+					} else {
+						return _Utils_Tuple2(
+							_Utils_update(
+								model,
+								{time: model.time + t}),
+							$elm$core$Platform$Cmd$none);
+					}
+				default:
+					return A2(
+						$author$project$Sitewide$UrlMap$urlMap(model.currentPage).update,
+						message,
+						model);
+			}
 		}
 	});
+var $author$project$Sitewide$Init$init = F3(
+	function (_v0, url, key) {
+		return A2(
+			$author$project$Sitewide$Update$update,
+			$author$project$Sitewide$Types$UrlChange(url),
+			{clockIsVisible: false, commandText: '', currentPage: '/NAV', gameOfLifeBoard: $author$project$Extra$GameOfLife$App$initialBoard, key: key, time: 0});
+	});
+var $elm$browser$Browser$AnimationManager$Delta = function (a) {
+	return {$: 'Delta', a: a};
+};
+var $elm$browser$Browser$AnimationManager$State = F3(
+	function (subs, request, oldTime) {
+		return {oldTime: oldTime, request: request, subs: subs};
+	});
+var $elm$browser$Browser$AnimationManager$init = $elm$core$Task$succeed(
+	A3($elm$browser$Browser$AnimationManager$State, _List_Nil, $elm$core$Maybe$Nothing, 0));
+var $elm$core$Process$kill = _Scheduler_kill;
+var $elm$browser$Browser$AnimationManager$now = _Browser_now(_Utils_Tuple0);
+var $elm$browser$Browser$AnimationManager$rAF = _Browser_rAF(_Utils_Tuple0);
+var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
+var $elm$core$Process$spawn = _Scheduler_spawn;
+var $elm$browser$Browser$AnimationManager$onEffects = F3(
+	function (router, subs, _v0) {
+		var request = _v0.request;
+		var oldTime = _v0.oldTime;
+		var _v1 = _Utils_Tuple2(request, subs);
+		if (_v1.a.$ === 'Nothing') {
+			if (!_v1.b.b) {
+				var _v2 = _v1.a;
+				return $elm$browser$Browser$AnimationManager$init;
+			} else {
+				var _v4 = _v1.a;
+				return A2(
+					$elm$core$Task$andThen,
+					function (pid) {
+						return A2(
+							$elm$core$Task$andThen,
+							function (time) {
+								return $elm$core$Task$succeed(
+									A3(
+										$elm$browser$Browser$AnimationManager$State,
+										subs,
+										$elm$core$Maybe$Just(pid),
+										time));
+							},
+							$elm$browser$Browser$AnimationManager$now);
+					},
+					$elm$core$Process$spawn(
+						A2(
+							$elm$core$Task$andThen,
+							$elm$core$Platform$sendToSelf(router),
+							$elm$browser$Browser$AnimationManager$rAF)));
+			}
+		} else {
+			if (!_v1.b.b) {
+				var pid = _v1.a.a;
+				return A2(
+					$elm$core$Task$andThen,
+					function (_v3) {
+						return $elm$browser$Browser$AnimationManager$init;
+					},
+					$elm$core$Process$kill(pid));
+			} else {
+				return $elm$core$Task$succeed(
+					A3($elm$browser$Browser$AnimationManager$State, subs, request, oldTime));
+			}
+		}
+	});
+var $elm$browser$Browser$AnimationManager$onSelfMsg = F3(
+	function (router, newTime, _v0) {
+		var subs = _v0.subs;
+		var oldTime = _v0.oldTime;
+		var send = function (sub) {
+			if (sub.$ === 'Time') {
+				var tagger = sub.a;
+				return A2(
+					$elm$core$Platform$sendToApp,
+					router,
+					tagger(
+						$elm$time$Time$millisToPosix(newTime)));
+			} else {
+				var tagger = sub.a;
+				return A2(
+					$elm$core$Platform$sendToApp,
+					router,
+					tagger(newTime - oldTime));
+			}
+		};
+		return A2(
+			$elm$core$Task$andThen,
+			function (pid) {
+				return A2(
+					$elm$core$Task$andThen,
+					function (_v1) {
+						return $elm$core$Task$succeed(
+							A3(
+								$elm$browser$Browser$AnimationManager$State,
+								subs,
+								$elm$core$Maybe$Just(pid),
+								newTime));
+					},
+					$elm$core$Task$sequence(
+						A2($elm$core$List$map, send, subs)));
+			},
+			$elm$core$Process$spawn(
+				A2(
+					$elm$core$Task$andThen,
+					$elm$core$Platform$sendToSelf(router),
+					$elm$browser$Browser$AnimationManager$rAF)));
+	});
+var $elm$browser$Browser$AnimationManager$Time = function (a) {
+	return {$: 'Time', a: a};
+};
+var $elm$browser$Browser$AnimationManager$subMap = F2(
+	function (func, sub) {
+		if (sub.$ === 'Time') {
+			var tagger = sub.a;
+			return $elm$browser$Browser$AnimationManager$Time(
+				A2($elm$core$Basics$composeL, func, tagger));
+		} else {
+			var tagger = sub.a;
+			return $elm$browser$Browser$AnimationManager$Delta(
+				A2($elm$core$Basics$composeL, func, tagger));
+		}
+	});
+_Platform_effectManagers['Browser.AnimationManager'] = _Platform_createManager($elm$browser$Browser$AnimationManager$init, $elm$browser$Browser$AnimationManager$onEffects, $elm$browser$Browser$AnimationManager$onSelfMsg, 0, $elm$browser$Browser$AnimationManager$subMap);
+var $elm$browser$Browser$AnimationManager$subscription = _Platform_leaf('Browser.AnimationManager');
+var $elm$browser$Browser$AnimationManager$onAnimationFrameDelta = function (tagger) {
+	return $elm$browser$Browser$AnimationManager$subscription(
+		$elm$browser$Browser$AnimationManager$Delta(tagger));
+};
+var $elm$browser$Browser$Events$onAnimationFrameDelta = $elm$browser$Browser$AnimationManager$onAnimationFrameDelta;
+var $rtfeldman$elm_css$Css$backgroundColor = function (c) {
+	return A2($rtfeldman$elm_css$Css$property, 'background-color', c.value);
+};
+var $rtfeldman$elm_css$Css$borderColor = function (c) {
+	return A2($rtfeldman$elm_css$Css$property, 'border-color', c.value);
+};
+var $rtfeldman$elm_css$Css$borderRadius = $rtfeldman$elm_css$Css$prop1('border-radius');
+var $rtfeldman$elm_css$Css$borderStyle = $rtfeldman$elm_css$Css$prop1('border-style');
+var $rtfeldman$elm_css$Css$borderWidth = $rtfeldman$elm_css$Css$prop1('border-width');
+var $rtfeldman$elm_css$Css$color = function (c) {
+	return A2($rtfeldman$elm_css$Css$property, 'color', c.value);
+};
+var $rtfeldman$elm_css$Css$dashed = {borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationStyle: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'dashed'};
+var $rtfeldman$elm_css$Css$Structure$Descendant = {$: 'Descendant'};
+var $rtfeldman$elm_css$Css$Preprocess$NestSnippet = F2(
+	function (a, b) {
+		return {$: 'NestSnippet', a: a, b: b};
+	});
+var $rtfeldman$elm_css$Css$Global$descendants = $rtfeldman$elm_css$Css$Preprocess$NestSnippet($rtfeldman$elm_css$Css$Structure$Descendant);
+var $rtfeldman$elm_css$Css$fontWeight = function (_v0) {
+	var value = _v0.value;
+	return A2($rtfeldman$elm_css$Css$property, 'font-weight', value);
+};
+var $rtfeldman$elm_css$Css$height = $rtfeldman$elm_css$Css$prop1('height');
+var $rtfeldman$elm_css$Css$withPrecedingHash = function (str) {
+	return A2($elm$core$String$startsWith, '#', str) ? str : A2(
+		$elm$core$String$cons,
+		_Utils_chr('#'),
+		str);
+};
+var $rtfeldman$elm_css$Css$erroneousHex = function (str) {
+	return {
+		alpha: 1,
+		blue: 0,
+		color: $rtfeldman$elm_css$Css$Structure$Compatible,
+		green: 0,
+		red: 0,
+		value: $rtfeldman$elm_css$Css$withPrecedingHash(str)
+	};
+};
+var $elm$core$Basics$pow = _Basics_pow;
+var $rtfeldman$elm_hex$Hex$fromStringHelp = F3(
+	function (position, chars, accumulated) {
+		fromStringHelp:
+		while (true) {
+			if (!chars.b) {
+				return $elm$core$Result$Ok(accumulated);
+			} else {
+				var _char = chars.a;
+				var rest = chars.b;
+				switch (_char.valueOf()) {
+					case '0':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated;
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '1':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + A2($elm$core$Basics$pow, 16, position);
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '2':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (2 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '3':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (3 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '4':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (4 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '5':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (5 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '6':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (6 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '7':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (7 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '8':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (8 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '9':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (9 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'a':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (10 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'b':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (11 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'c':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (12 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'd':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (13 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'e':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (14 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'f':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (15 * A2($elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					default:
+						var nonHex = _char;
+						return $elm$core$Result$Err(
+							$elm$core$String$fromChar(nonHex) + ' is not a valid hexadecimal character.');
+				}
+			}
+		}
+	});
+var $elm$core$Result$map = F2(
+	function (func, ra) {
+		if (ra.$ === 'Ok') {
+			var a = ra.a;
+			return $elm$core$Result$Ok(
+				func(a));
+		} else {
+			var e = ra.a;
+			return $elm$core$Result$Err(e);
+		}
+	});
+var $elm$core$Result$mapError = F2(
+	function (f, result) {
+		if (result.$ === 'Ok') {
+			var v = result.a;
+			return $elm$core$Result$Ok(v);
+		} else {
+			var e = result.a;
+			return $elm$core$Result$Err(
+				f(e));
+		}
+	});
+var $rtfeldman$elm_hex$Hex$fromString = function (str) {
+	if ($elm$core$String$isEmpty(str)) {
+		return $elm$core$Result$Err('Empty strings are not valid hexadecimal strings.');
+	} else {
+		var result = function () {
+			if (A2($elm$core$String$startsWith, '-', str)) {
+				var list = A2(
+					$elm$core$Maybe$withDefault,
+					_List_Nil,
+					$elm$core$List$tail(
+						$elm$core$String$toList(str)));
+				return A2(
+					$elm$core$Result$map,
+					$elm$core$Basics$negate,
+					A3(
+						$rtfeldman$elm_hex$Hex$fromStringHelp,
+						$elm$core$List$length(list) - 1,
+						list,
+						0));
+			} else {
+				return A3(
+					$rtfeldman$elm_hex$Hex$fromStringHelp,
+					$elm$core$String$length(str) - 1,
+					$elm$core$String$toList(str),
+					0);
+			}
+		}();
+		var formatError = function (err) {
+			return A2(
+				$elm$core$String$join,
+				' ',
+				_List_fromArray(
+					['\"' + (str + '\"'), 'is not a valid hexadecimal string because', err]));
+		};
+		return A2($elm$core$Result$mapError, formatError, result);
+	}
+};
+var $elm$core$String$toLower = _String_toLower;
+var $rtfeldman$elm_css$Css$validHex = F5(
+	function (str, _v0, _v1, _v2, _v3) {
+		var r1 = _v0.a;
+		var r2 = _v0.b;
+		var g1 = _v1.a;
+		var g2 = _v1.b;
+		var b1 = _v2.a;
+		var b2 = _v2.b;
+		var a1 = _v3.a;
+		var a2 = _v3.b;
+		var toResult = A2(
+			$elm$core$Basics$composeR,
+			$elm$core$String$fromList,
+			A2($elm$core$Basics$composeR, $elm$core$String$toLower, $rtfeldman$elm_hex$Hex$fromString));
+		var results = _Utils_Tuple2(
+			_Utils_Tuple2(
+				toResult(
+					_List_fromArray(
+						[r1, r2])),
+				toResult(
+					_List_fromArray(
+						[g1, g2]))),
+			_Utils_Tuple2(
+				toResult(
+					_List_fromArray(
+						[b1, b2])),
+				toResult(
+					_List_fromArray(
+						[a1, a2]))));
+		if ((((results.a.a.$ === 'Ok') && (results.a.b.$ === 'Ok')) && (results.b.a.$ === 'Ok')) && (results.b.b.$ === 'Ok')) {
+			var _v5 = results.a;
+			var red = _v5.a.a;
+			var green = _v5.b.a;
+			var _v6 = results.b;
+			var blue = _v6.a.a;
+			var alpha = _v6.b.a;
+			return {
+				alpha: alpha / 255,
+				blue: blue,
+				color: $rtfeldman$elm_css$Css$Structure$Compatible,
+				green: green,
+				red: red,
+				value: $rtfeldman$elm_css$Css$withPrecedingHash(str)
+			};
+		} else {
+			return $rtfeldman$elm_css$Css$erroneousHex(str);
+		}
+	});
+var $rtfeldman$elm_css$Css$hex = function (str) {
+	var withoutHash = A2($elm$core$String$startsWith, '#', str) ? A2($elm$core$String$dropLeft, 1, str) : str;
+	var _v0 = $elm$core$String$toList(withoutHash);
+	_v0$4:
+	while (true) {
+		if ((_v0.b && _v0.b.b) && _v0.b.b.b) {
+			if (!_v0.b.b.b.b) {
+				var r = _v0.a;
+				var _v1 = _v0.b;
+				var g = _v1.a;
+				var _v2 = _v1.b;
+				var b = _v2.a;
+				return A5(
+					$rtfeldman$elm_css$Css$validHex,
+					str,
+					_Utils_Tuple2(r, r),
+					_Utils_Tuple2(g, g),
+					_Utils_Tuple2(b, b),
+					_Utils_Tuple2(
+						_Utils_chr('f'),
+						_Utils_chr('f')));
+			} else {
+				if (!_v0.b.b.b.b.b) {
+					var r = _v0.a;
+					var _v3 = _v0.b;
+					var g = _v3.a;
+					var _v4 = _v3.b;
+					var b = _v4.a;
+					var _v5 = _v4.b;
+					var a = _v5.a;
+					return A5(
+						$rtfeldman$elm_css$Css$validHex,
+						str,
+						_Utils_Tuple2(r, r),
+						_Utils_Tuple2(g, g),
+						_Utils_Tuple2(b, b),
+						_Utils_Tuple2(a, a));
+				} else {
+					if (_v0.b.b.b.b.b.b) {
+						if (!_v0.b.b.b.b.b.b.b) {
+							var r1 = _v0.a;
+							var _v6 = _v0.b;
+							var r2 = _v6.a;
+							var _v7 = _v6.b;
+							var g1 = _v7.a;
+							var _v8 = _v7.b;
+							var g2 = _v8.a;
+							var _v9 = _v8.b;
+							var b1 = _v9.a;
+							var _v10 = _v9.b;
+							var b2 = _v10.a;
+							return A5(
+								$rtfeldman$elm_css$Css$validHex,
+								str,
+								_Utils_Tuple2(r1, r2),
+								_Utils_Tuple2(g1, g2),
+								_Utils_Tuple2(b1, b2),
+								_Utils_Tuple2(
+									_Utils_chr('f'),
+									_Utils_chr('f')));
+						} else {
+							if (_v0.b.b.b.b.b.b.b.b && (!_v0.b.b.b.b.b.b.b.b.b)) {
+								var r1 = _v0.a;
+								var _v11 = _v0.b;
+								var r2 = _v11.a;
+								var _v12 = _v11.b;
+								var g1 = _v12.a;
+								var _v13 = _v12.b;
+								var g2 = _v13.a;
+								var _v14 = _v13.b;
+								var b1 = _v14.a;
+								var _v15 = _v14.b;
+								var b2 = _v15.a;
+								var _v16 = _v15.b;
+								var a1 = _v16.a;
+								var _v17 = _v16.b;
+								var a2 = _v17.a;
+								return A5(
+									$rtfeldman$elm_css$Css$validHex,
+									str,
+									_Utils_Tuple2(r1, r2),
+									_Utils_Tuple2(g1, g2),
+									_Utils_Tuple2(b1, b2),
+									_Utils_Tuple2(a1, a2));
+							} else {
+								break _v0$4;
+							}
+						}
+					} else {
+						break _v0$4;
+					}
+				}
+			}
+		} else {
+			break _v0$4;
+		}
+	}
+	return $rtfeldman$elm_css$Css$erroneousHex(str);
+};
+var $rtfeldman$elm_css$Css$Preprocess$ExtendSelector = F2(
+	function (a, b) {
+		return {$: 'ExtendSelector', a: a, b: b};
+	});
+var $rtfeldman$elm_css$Css$Structure$PseudoClassSelector = function (a) {
+	return {$: 'PseudoClassSelector', a: a};
+};
+var $rtfeldman$elm_css$Css$pseudoClass = function (_class) {
+	return $rtfeldman$elm_css$Css$Preprocess$ExtendSelector(
+		$rtfeldman$elm_css$Css$Structure$PseudoClassSelector(_class));
+};
+var $rtfeldman$elm_css$Css$hover = $rtfeldman$elm_css$Css$pseudoClass('hover');
+var $rtfeldman$elm_css$Css$UnitlessInteger = {$: 'UnitlessInteger'};
+var $rtfeldman$elm_css$Css$int = function (val) {
+	return {
+		fontWeight: $rtfeldman$elm_css$Css$Structure$Compatible,
+		intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible,
+		lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible,
+		lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible,
+		number: $rtfeldman$elm_css$Css$Structure$Compatible,
+		numberOrInfinite: $rtfeldman$elm_css$Css$Structure$Compatible,
+		numericValue: val,
+		unitLabel: '',
+		units: $rtfeldman$elm_css$Css$UnitlessInteger,
+		value: $elm$core$String$fromInt(val)
+	};
+};
+var $rtfeldman$elm_css$Css$large = {fontSize: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'large'};
+var $rtfeldman$elm_css$Css$prop2 = F3(
+	function (key, argA, argB) {
+		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + argB.value));
+	});
+var $rtfeldman$elm_css$Css$margin2 = $rtfeldman$elm_css$Css$prop2('margin');
+var $rtfeldman$elm_css$Css$overflow = $rtfeldman$elm_css$Css$prop1('overflow');
+var $rtfeldman$elm_css$Css$padding2 = $rtfeldman$elm_css$Css$prop2('padding');
+var $rtfeldman$elm_css$Css$paddingBottom = $rtfeldman$elm_css$Css$prop1('padding-bottom');
+var $rtfeldman$elm_css$Css$paddingTop = $rtfeldman$elm_css$Css$prop1('padding-top');
+var $rtfeldman$elm_css$Css$cssFunction = F2(
+	function (funcName, args) {
+		return funcName + ('(' + (A2($elm$core$String$join, ',', args) + ')'));
+	});
+var $rtfeldman$elm_css$Css$rgb = F3(
+	function (r, g, b) {
+		return {
+			alpha: 1,
+			blue: b,
+			color: $rtfeldman$elm_css$Css$Structure$Compatible,
+			green: g,
+			red: r,
+			value: A2(
+				$rtfeldman$elm_css$Css$cssFunction,
+				'rgb',
+				A2(
+					$elm$core$List$map,
+					$elm$core$String$fromInt,
+					_List_fromArray(
+						[r, g, b])))
+		};
+	});
+var $rtfeldman$elm_css$Css$solid = {borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationStyle: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'solid'};
+var $rtfeldman$elm_css$Css$Structure$TypeSelector = function (a) {
+	return {$: 'TypeSelector', a: a};
+};
+var $rtfeldman$elm_css$Css$Global$typeSelector = F2(
+	function (selectorStr, styles) {
+		var sequence = A2(
+			$rtfeldman$elm_css$Css$Structure$TypeSelectorSequence,
+			$rtfeldman$elm_css$Css$Structure$TypeSelector(selectorStr),
+			_List_Nil);
+		var sel = A3($rtfeldman$elm_css$Css$Structure$Selector, sequence, _List_Nil, $elm$core$Maybe$Nothing);
+		return $rtfeldman$elm_css$Css$Preprocess$Snippet(
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Css$Preprocess$StyleBlockDeclaration(
+					A3($rtfeldman$elm_css$Css$Preprocess$StyleBlock, sel, _List_Nil, styles))
+				]));
+	});
+var $author$project$Sitewide$View$defaultStyles = $rtfeldman$elm_css$Html$Styled$Attributes$css(
+	_List_fromArray(
+		[
+			$rtfeldman$elm_css$Css$Global$descendants(
+			_List_fromArray(
+				[
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'code',
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$color(
+							A3($rtfeldman$elm_css$Css$rgb, 100, 100, 100)),
+							$rtfeldman$elm_css$Css$fontSize(
+							$rtfeldman$elm_css$Css$em(0.8))
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'pre',
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$overflow($rtfeldman$elm_css$Css$auto),
+							$rtfeldman$elm_css$Css$width(
+							$rtfeldman$elm_css$Css$pct(90)),
+							$rtfeldman$elm_css$Css$backgroundColor(
+							A3($rtfeldman$elm_css$Css$rgb, 220, 220, 220)),
+							A2(
+							$rtfeldman$elm_css$Css$padding2,
+							$rtfeldman$elm_css$Css$em(0.9),
+							$rtfeldman$elm_css$Css$pct(5)),
+							$rtfeldman$elm_css$Css$borderRadius(
+							$rtfeldman$elm_css$Css$em(0.4))
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'p',
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$paddingTop(
+							$rtfeldman$elm_css$Css$em(0.4)),
+							$rtfeldman$elm_css$Css$paddingBottom(
+							$rtfeldman$elm_css$Css$em(0.4))
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'svg',
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$width(
+							$rtfeldman$elm_css$Css$pct(90)),
+							A2(
+							$rtfeldman$elm_css$Css$padding2,
+							$rtfeldman$elm_css$Css$em(1.4),
+							$rtfeldman$elm_css$Css$pct(5))
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'img',
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$width(
+							$rtfeldman$elm_css$Css$pct(90)),
+							$rtfeldman$elm_css$Css$height($rtfeldman$elm_css$Css$auto),
+							A2(
+							$rtfeldman$elm_css$Css$padding2,
+							$rtfeldman$elm_css$Css$em(1.4),
+							$rtfeldman$elm_css$Css$pct(5))
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'li',
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Css$padding2,
+							$rtfeldman$elm_css$Css$em(0.3),
+							$rtfeldman$elm_css$Css$em(0))
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'article',
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$paddingBottom(
+							$rtfeldman$elm_css$Css$em(12))
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'button',
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$borderWidth(
+							$rtfeldman$elm_css$Css$px(1)),
+							$rtfeldman$elm_css$Css$borderRadius(
+							$rtfeldman$elm_css$Css$em(40)),
+							$rtfeldman$elm_css$Css$fontFamilies(
+							_List_fromArray(
+								['arial'])),
+							A2(
+							$rtfeldman$elm_css$Css$margin2,
+							$rtfeldman$elm_css$Css$em(0.4),
+							$rtfeldman$elm_css$Css$em(0.7)),
+							A2(
+							$rtfeldman$elm_css$Css$padding2,
+							$rtfeldman$elm_css$Css$em(0.4),
+							$rtfeldman$elm_css$Css$em(1)),
+							$rtfeldman$elm_css$Css$fontSize($rtfeldman$elm_css$Css$large),
+							$rtfeldman$elm_css$Css$fontWeight(
+							$rtfeldman$elm_css$Css$int(200)),
+							$rtfeldman$elm_css$Css$borderStyle($rtfeldman$elm_css$Css$dashed),
+							$rtfeldman$elm_css$Css$borderColor(
+							$rtfeldman$elm_css$Css$hex('C0C0C0')),
+							$rtfeldman$elm_css$Css$backgroundColor(
+							$rtfeldman$elm_css$Css$hex('ffffffbb')),
+							$rtfeldman$elm_css$Css$hover(
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Css$backgroundColor(
+									$rtfeldman$elm_css$Css$hex('ddddddbb')),
+									$rtfeldman$elm_css$Css$borderColor(
+									$rtfeldman$elm_css$Css$hex('aaaaaa')),
+									$rtfeldman$elm_css$Css$borderStyle($rtfeldman$elm_css$Css$solid)
+								]))
+						]))
+				]))
+		]));
+var $rtfeldman$elm_css$Css$Media$landscape = {orientation: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'landscape'};
+var $rtfeldman$elm_css$Html$Styled$main_ = $rtfeldman$elm_css$Html$Styled$node('main');
+var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
+var $rtfeldman$elm_css$Css$Media$feature = F2(
+	function (key, _v0) {
+		var value = _v0.value;
+		return {
+			feature: key,
+			value: $elm$core$Maybe$Just(value)
+		};
+	});
+var $rtfeldman$elm_css$Css$Media$minWidth = function (value) {
+	return A2($rtfeldman$elm_css$Css$Media$feature, 'min-width', value);
+};
+var $author$project$Sitewide$Types$CommandBarChanged = function (a) {
+	return {$: 'CommandBarChanged', a: a};
+};
+var $rtfeldman$elm_css$Css$border = $rtfeldman$elm_css$Css$prop1('border');
+var $rtfeldman$elm_css$Css$flexDirection = $rtfeldman$elm_css$Css$prop1('flex-direction');
+var $rtfeldman$elm_css$Css$flexGrow = $rtfeldman$elm_css$Css$prop1('flex-grow');
+var $rtfeldman$elm_css$Css$focus = $rtfeldman$elm_css$Css$pseudoClass('focus');
+var $rtfeldman$elm_css$Html$Styled$header = $rtfeldman$elm_css$Html$Styled$node('header');
+var $rtfeldman$elm_css$Html$Styled$input = $rtfeldman$elm_css$Html$Styled$node('input');
+var $author$project$Sitewide$Types$CommandSubmitted = {$: 'CommandSubmitted'};
+var $elm$json$Json$Decode$andThen = _Json_andThen;
+var $elm$json$Json$Decode$fail = _Json_fail;
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$int = _Json_decodeInt;
+var $author$project$Sitewide$View$keyDecoder = A2(
+	$elm$json$Json$Decode$andThen,
+	function (keyCode) {
+		return (keyCode === 13) ? $elm$json$Json$Decode$succeed($author$project$Sitewide$Types$CommandSubmitted) : $elm$json$Json$Decode$fail('Not the Enter key');
+	},
+	A2($elm$json$Json$Decode$field, 'keyCode', $elm$json$Json$Decode$int));
+var $author$project$Sitewide$View$makeSidePanel = $elm$core$List$map(
+	A2(
+		$elm$core$Basics$composeL,
+		$rtfeldman$elm_css$Html$Styled$div(_List_Nil),
+		$elm$core$List$singleton));
+var $rtfeldman$elm_css$Css$marginBottom = $rtfeldman$elm_css$Css$prop1('margin-bottom');
+var $author$project$Sitewide$View$navPanelSideWidth = $rtfeldman$elm_css$Css$em(8);
+var $rtfeldman$elm_css$Css$none = {backgroundImage: $rtfeldman$elm_css$Css$Structure$Compatible, blockAxisOverflow: $rtfeldman$elm_css$Css$Structure$Compatible, borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, display: $rtfeldman$elm_css$Css$Structure$Compatible, hoverCapability: $rtfeldman$elm_css$Css$Structure$Compatible, inlineAxisOverflow: $rtfeldman$elm_css$Css$Structure$Compatible, keyframes: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, listStyleType: $rtfeldman$elm_css$Css$Structure$Compatible, listStyleTypeOrPositionOrImage: $rtfeldman$elm_css$Css$Structure$Compatible, none: $rtfeldman$elm_css$Css$Structure$Compatible, outline: $rtfeldman$elm_css$Css$Structure$Compatible, pointerDevice: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, resize: $rtfeldman$elm_css$Css$Structure$Compatible, scriptingSupport: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationLine: $rtfeldman$elm_css$Css$Structure$Compatible, textTransform: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, transform: $rtfeldman$elm_css$Css$Structure$Compatible, updateFrequency: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'none'};
+var $rtfeldman$elm_css$Css$UnitlessFloat = {$: 'UnitlessFloat'};
+var $rtfeldman$elm_css$Css$num = function (val) {
+	return {
+		lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible,
+		lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible,
+		lineHeight: $rtfeldman$elm_css$Css$Structure$Compatible,
+		number: $rtfeldman$elm_css$Css$Structure$Compatible,
+		numberOrInfinite: $rtfeldman$elm_css$Css$Structure$Compatible,
+		numericValue: val,
+		unitLabel: '',
+		units: $rtfeldman$elm_css$Css$UnitlessFloat,
+		value: $elm$core$String$fromFloat(val)
+	};
+};
+var $rtfeldman$elm_css$Html$Styled$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 'MayStopPropagation', a: a};
+};
+var $rtfeldman$elm_css$Html$Styled$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			$rtfeldman$elm_css$VirtualDom$Styled$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var $elm$json$Json$Decode$at = F2(
+	function (fields, decoder) {
+		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
+	});
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $rtfeldman$elm_css$Html$Styled$Events$targetValue = A2(
+	$elm$json$Json$Decode$at,
+	_List_fromArray(
+		['target', 'value']),
+	$elm$json$Json$Decode$string);
+var $rtfeldman$elm_css$Html$Styled$Events$onInput = function (tagger) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$Events$stopPropagationOn,
+		'input',
+		A2(
+			$elm$json$Json$Decode$map,
+			$rtfeldman$elm_css$Html$Styled$Events$alwaysStop,
+			A2($elm$json$Json$Decode$map, tagger, $rtfeldman$elm_css$Html$Styled$Events$targetValue)));
+};
+var $rtfeldman$elm_css$Css$opacity = $rtfeldman$elm_css$Css$prop1('opacity');
+var $rtfeldman$elm_css$Css$outline = $rtfeldman$elm_css$Css$prop1('outline');
+var $rtfeldman$elm_css$Html$Styled$Attributes$placeholder = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('placeholder');
+var $rtfeldman$elm_css$Css$row = {flexDirection: $rtfeldman$elm_css$Css$Structure$Compatible, flexDirectionOrWrap: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'row'};
+var $rtfeldman$elm_css$Html$Styled$span = $rtfeldman$elm_css$Html$Styled$node('span');
+var $rtfeldman$elm_css$Css$textTransform = $rtfeldman$elm_css$Css$prop1('text-transform');
+var $rtfeldman$elm_css$Css$uppercase = {textTransform: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'uppercase'};
+var $rtfeldman$elm_css$Html$Styled$Attributes$value = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('value');
+var $author$project$Sitewide$View$navBar = function (model) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$header,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Css$displayFlex,
+						$rtfeldman$elm_css$Css$flexDirection($rtfeldman$elm_css$Css$row),
+						$rtfeldman$elm_css$Css$fontFamilies(
+						_List_fromArray(
+							['courier'])),
+						$rtfeldman$elm_css$Css$marginBottom(
+						$rtfeldman$elm_css$Css$em(1.2))
+					]))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$width($author$project$Sitewide$View$navPanelSideWidth)
+							]))
+					]),
+				_Utils_ap(
+					$author$project$Sitewide$View$makeSidePanel(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$text('SLR'),
+								$rtfeldman$elm_css$Html$Styled$text('LOCAL BUILD')
+							])),
+					model.clockIsVisible ? _List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$span,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('CLOCK: '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$span,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$Attributes$css(
+											_List_fromArray(
+												[
+													$rtfeldman$elm_css$Css$color(
+													A3($rtfeldman$elm_css$Css$rgb, 220, 220, 220))
+												]))
+										]),
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text(
+											$elm$core$String$fromFloat(model.time))
+										]))
+								]))
+						]) : _List_Nil)),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$flexGrow(
+								$rtfeldman$elm_css$Css$num(1))
+							]))
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$rtfeldman$elm_css$Html$Styled$input,
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$Attributes$css(
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$border(
+										$rtfeldman$elm_css$Css$em(0)),
+										$rtfeldman$elm_css$Css$opacity(
+										$rtfeldman$elm_css$Css$num(
+											(model.commandText === '') ? 0 : 1)),
+										$rtfeldman$elm_css$Css$focus(
+										_List_fromArray(
+											[
+												$rtfeldman$elm_css$Css$outline($rtfeldman$elm_css$Css$none),
+												$rtfeldman$elm_css$Css$opacity(
+												$rtfeldman$elm_css$Css$num(1))
+											])),
+										$rtfeldman$elm_css$Css$fontFamilies(
+										_List_fromArray(
+											['courier'])),
+										$rtfeldman$elm_css$Css$textTransform($rtfeldman$elm_css$Css$uppercase),
+										$rtfeldman$elm_css$Css$color(
+										A3($rtfeldman$elm_css$Css$rgb, 100, 100, 100)),
+										$rtfeldman$elm_css$Css$width(
+										$rtfeldman$elm_css$Css$pct(100))
+									])),
+								$rtfeldman$elm_css$Html$Styled$Attributes$value(model.commandText),
+								$rtfeldman$elm_css$Html$Styled$Events$onInput($author$project$Sitewide$Types$CommandBarChanged),
+								A2(
+								$rtfeldman$elm_css$Html$Styled$Events$on,
+								'keydown',
+								A2($elm$json$Json$Decode$map, $elm$core$Basics$identity, $author$project$Sitewide$View$keyDecoder)),
+								A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'user-select', 'none'),
+								$rtfeldman$elm_css$Html$Styled$Attributes$placeholder('ENTER COMMAND')
+							]),
+						_List_Nil)
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$width($author$project$Sitewide$View$navPanelSideWidth),
+								$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$right)
+							]))
+					]),
+				$author$project$Sitewide$View$makeSidePanel(
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$a,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('NAV')
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('NAVIGATION')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$a,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('http://seanlucrussell.com')
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('MESSAGE')
+								]))
+						])))
+			]));
+};
+var $rtfeldman$elm_css$Css$Structure$OnlyQuery = F2(
+	function (a, b) {
+		return {$: 'OnlyQuery', a: a, b: b};
+	});
+var $rtfeldman$elm_css$Css$Media$only = $rtfeldman$elm_css$Css$Structure$OnlyQuery;
+var $rtfeldman$elm_css$Css$Media$orientation = function (value) {
+	return A2($rtfeldman$elm_css$Css$Media$feature, 'orientation', value);
+};
 var $rtfeldman$elm_css$Css$Media$portrait = {orientation: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'portrait'};
 var $rtfeldman$elm_css$Css$Structure$Screen = {$: 'Screen'};
 var $rtfeldman$elm_css$Css$Media$screen = $rtfeldman$elm_css$Css$Structure$Screen;
@@ -14445,7 +14513,7 @@ var $author$project$Sitewide$View$view = function (m) {
 					_List_fromArray(
 						[
 							$author$project$Sitewide$View$navBar(m),
-							A2($author$project$Sitewide$View$pageView, m, m.currentPage)
+							$author$project$Sitewide$UrlMap$urlMap(m.currentPage).view(m)
 						])))
 			]),
 		title: 'SLR'

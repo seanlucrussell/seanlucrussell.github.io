@@ -9,31 +9,8 @@ import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
 import Html.Styled.Events exposing (keyCode, on, onInput)
 import Json.Decode as Decode
 import List exposing (map, singleton)
-import Pages.GameOfLife as GameOfLife
-import Pages.Missing exposing (missing)
-import Pages.Navigation exposing (navigationPage)
-import Pages.RecursionSchemes as RecursionSchemes
-import Pages.TheGutsOfGit as TheGutsOfGit
 import Sitewide.Types exposing (..)
-
-
-pageView : SitewideModel -> Page -> Html SitewideMsg
-pageView m page =
-    case page of
-        NavigationPage ->
-            navigationPage
-
-        MissingPage ->
-            missing
-
-        RecursionSchemesPage ->
-            RecursionSchemes.view
-
-        GutsOfGitPage ->
-            TheGutsOfGit.view
-
-        GameOfLifePage ->
-            GameOfLife.view m
+import Sitewide.UrlMap exposing (urlMap)
 
 
 view : SitewideModel -> Document SitewideMsg
@@ -51,7 +28,7 @@ view m =
                     , width (pct 78)
                     ]
                 ]
-                [ navBar m, pageView m m.currentPage ]
+                [ navBar m, (urlMap m.currentPage).view m ]
             )
         ]
     }
@@ -164,7 +141,7 @@ navBar model =
                 , on "keydown" (Decode.map identity keyDecoder)
                 , style "user-select" "none" -- prevent text box from being highlighted. helps keep it hidden
 
-                -- disabling during development bc this is actually really useful for sendign commands
+                -- disabling during development bc this is actually really useful for sending commands
                 --, tabindex -1 -- prevent text box from being tab selected. helps keep it hidden
                 , placeholder "ENTER COMMAND"
                 ]

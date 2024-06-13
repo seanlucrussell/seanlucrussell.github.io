@@ -5,51 +5,19 @@ import Browser.Navigation as Navigation
 import Char exposing (toUpper)
 import Css exposing (..)
 import Dict exposing (Dict)
-import Extra.GameOfLife.App
-import List exposing (filter)
 import Sitewide.Types exposing (..)
-import Url exposing (Url)
+import Sitewide.UrlMap exposing (urlMap)
 
 
 commandMap : SitewideModel -> Dict String SitewideMsg
 commandMap _ =
     Dict.fromList
-        [ ( "NAV", SelectPage NavigationPage )
-        , ( "REC", SelectPage RecursionSchemesPage )
-        , ( "GOG", SelectPage GutsOfGitPage )
-        , ( "LIFE", SelectPage GameOfLifePage )
+        [ ( "NAV", SelectPage "/NAV" )
+        , ( "REC", SelectPage "/REC" )
+        , ( "GOG", SelectPage "/GOG" )
+        , ( "LIFE", SelectPage "/LIFE" )
         , ( "CLOCK", ToggleClock )
         ]
-
-
-urlPageRelation : List ( String, Page )
-urlPageRelation =
-    [ ( "/NAV", NavigationPage )
-    , ( "/", NavigationPage )
-    , ( "/REC", RecursionSchemesPage )
-    , ( "/GOG", GutsOfGitPage )
-    , ( "/LIFE", GameOfLifePage )
-    ]
-
-
-urlToPage : Url -> Page
-urlToPage url =
-    case filter (\( u, _ ) -> u == url.path) urlPageRelation of
-        ( _, page ) :: _ ->
-            page
-
-        _ ->
-            MissingPage
-
-
-pageToUrl : Page -> String
-pageToUrl page =
-    case filter (\( _, p ) -> p == page) urlPageRelation of
-        ( url, _ ) :: _ ->
-            url
-
-        _ ->
-            "/MISSING"
 
 
 intervalCount : Float -> Float -> Int
@@ -61,13 +29,13 @@ update : SitewideMsg -> SitewideModel -> ( SitewideModel, Cmd SitewideMsg )
 update message model =
     case message of
         SelectPage p ->
-            ( { model | currentPage = p }, Navigation.pushUrl model.key (pageToUrl p) )
+            ( { model | currentPage = p }, Navigation.pushUrl model.key p )
 
         UrlChange url ->
-            ( { model | currentPage = urlToPage url }, Cmd.none )
+            ( { model | currentPage = url.path }, Cmd.none )
 
         UrlRequest (Internal url) ->
-            update (SelectPage (urlToPage url)) model
+            update (SelectPage url.path) model
 
         UrlRequest (External url) ->
             ( model, Navigation.load url )
@@ -94,9 +62,4 @@ update message model =
                 ( { model | time = model.time + t }, Cmd.none )
 
         _ ->
-            case model.currentPage of
-                GameOfLifePage ->
-                    Extra.GameOfLife.App.update message model
-
-                _ ->
-                    ( model, Cmd.none )
+            (urlMap model.currentPage).update message model

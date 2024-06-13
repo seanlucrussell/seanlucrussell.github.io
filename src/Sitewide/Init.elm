@@ -12,7 +12,7 @@ init : flags -> Url -> Key -> ( SitewideModel, Cmd SitewideMsg )
 init _ url key =
     update (UrlChange url)
         { key = key
-        , currentPage = NavigationPage
+        , currentPage = "/NAV"
         , commandText = ""
         , gameOfLifeBoard = Extra.GameOfLife.App.initialBoard
         , time = 0

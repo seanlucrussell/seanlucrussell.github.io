@@ -8,7 +8,19 @@ import Html.Styled.Attributes exposing (css, style)
 
 blogHeading : Html msg -> Date -> Html msg
 blogHeading title publicationDate =
-    div [ css [ textAlign center, width (pct 70), margin3 (em 1.2) auto (em 2.8) ] ]
-        [ h1 [ css [ margin3 (em 2.3) (em 0) (em 1.1), fontSize (em 2.2) ], style "text-wrap" "balance" ] [ title ]
-        , i [ css [] ] [ text (format "MMMM d, y" publicationDate) ]
+    div []
+        [ heading title
+        , date publicationDate
         ]
+
+
+heading : Html msg -> Html msg
+heading title =
+    div [ css [ margin3 (em 1.2) auto (em 2.8) ] ]
+        [ h1 [ css [ textAlign center, width (pct 70), margin3 (em 2.3) auto (em 1.1), fontSize (em 2.2) ], style "text-wrap" "balance" ] [ title ]
+        ]
+
+
+date : Date -> Html msg
+date d =
+    div [ css [ textAlign center, width (pct 70), margin3 (em 1.2) auto (em 2.8) ] ] [ i [] [ text (format "MMMM d, y" d) ] ]

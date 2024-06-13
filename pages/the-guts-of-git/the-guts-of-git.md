@@ -1,6 +1,8 @@
 ---
-title: TheGutsOfGit
+moduleName: TheGutsOfGit
+primaryUrl: "/GOG"
 static: True
+date: 2024-03-01
 ---
 
 # The Guts of Git

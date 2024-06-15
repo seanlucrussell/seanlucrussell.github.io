@@ -5,8 +5,8 @@ import Browser.Navigation as Navigation
 import Char exposing (toUpper)
 import Css exposing (..)
 import Dict exposing (Dict)
+import Sitewide.Routes exposing (urlMap)
 import Sitewide.Types exposing (..)
-import Sitewide.UrlMap exposing (urlMap)
 
 
 commandMap : SitewideModel -> Dict String SitewideMsg

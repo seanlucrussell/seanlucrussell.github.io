@@ -12,9 +12,11 @@ type alias SitewideModel =
     { commandText : String
     , currentPage : String
     , key : Key
-    , gameOfLifeBoard : Extra.GameOfLife.GameOfLife.Board
     , time : Float
     , clockIsVisible : Bool
+
+    -- game of life
+    , gameOfLifeBoard : Extra.GameOfLife.GameOfLife.Board
     }
 
 
@@ -38,7 +40,8 @@ type SitewideMsg
     | SelectPage String
     | CommandBarChanged String
     | CommandSubmitted
-    | GameOfLifeStep
-    | LoadBoard Board
     | Tick Float
     | ToggleClock
+      -- game of life
+    | GameOfLifeStep
+    | LoadBoard Board

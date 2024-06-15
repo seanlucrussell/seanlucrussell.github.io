@@ -9,8 +9,8 @@ import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
 import Html.Styled.Events exposing (keyCode, on, onInput)
 import Json.Decode as Decode
 import List exposing (map, singleton)
+import Sitewide.Routes exposing (urlMap)
 import Sitewide.Types exposing (..)
-import Sitewide.UrlMap exposing (urlMap)
 
 
 view : SitewideModel -> Document SitewideMsg

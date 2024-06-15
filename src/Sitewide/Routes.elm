@@ -1,4 +1,4 @@
-module Sitewide.UrlMap exposing (..)
+module Sitewide.Routes exposing (..)
 
 import Html.Styled exposing (Html)
 import Pages.GameOfLife

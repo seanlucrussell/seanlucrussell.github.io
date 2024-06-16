@@ -3,7 +3,7 @@ module Sitewide.View exposing (..)
 import Browser exposing (Document, UrlRequest(..))
 import Css exposing (..)
 import Css.Global exposing (descendants, typeSelector)
-import Css.Media exposing (landscape, only, orientation, portrait, screen, withMedia)
+import Css.Media exposing (only, screen, withMedia)
 import Html.Styled exposing (Attribute, Html, a, div, header, input, main_, span, text, toUnstyled)
 import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
 import Html.Styled.Events exposing (keyCode, on, onInput)
@@ -22,10 +22,9 @@ view m =
                 [ defaultStyles
                 , css
                     [ margin auto
-                    , withMedia [ only screen [ Css.Media.minWidth (px 800), orientation landscape ] ] [ width (em 34) ]
-                    , withMedia [ only screen [ orientation portrait ] ] [ fontSize xxLarge ]
-                    , fontSize large
-                    , width (pct 78)
+                    , withMedia [ only screen [ Css.Media.minWidth (px 660) ] ] [ width (em 34) ]
+                    , fontSize (rem 1.13)
+                    , width (pct 93)
                     ]
                 ]
                 [ navBar m, (urlMap m.currentPage).view m ]
@@ -72,7 +71,7 @@ defaultStyles =
                 , fontFamilies [ "arial" ]
                 , margin2 (em 0.4) (em 0.7)
                 , padding2 (em 0.4) (em 1)
-                , fontSize large
+                , fontSize (em 0.9)
                 , fontWeight (int 200)
                 , borderStyle dashed
                 , borderColor (hex "C0C0C0")
@@ -150,7 +149,7 @@ navBar model =
         , div [ css [ width navPanelSideWidth, textAlign right ] ]
             (makeSidePanel
                 [ a [ href "NAV" ] [ text "NAVIGATION" ]
-                , a [ href "http://seanlucrussell.com" ] [ text "MESSAGE" ]
+                , a [ href "mailto:seanlucrussell@gmail.com" ] [ text "MESSAGE" ]
                 ]
             )
         ]

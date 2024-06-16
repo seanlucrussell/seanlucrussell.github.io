@@ -12767,7 +12767,7 @@ var $author$project$Pages$TheGutsOfGit$page = {
 				]));
 	}
 };
-var $author$project$Sitewide$UrlMap$staticPage = function (pageView) {
+var $author$project$Sitewide$Routes$staticPage = function (pageView) {
 	return {
 		update: F2(
 			function (_v0, model) {
@@ -12776,13 +12776,13 @@ var $author$project$Sitewide$UrlMap$staticPage = function (pageView) {
 		view: pageView
 	};
 };
-var $author$project$Sitewide$UrlMap$urlMap = function (s) {
+var $author$project$Sitewide$Routes$urlMap = function (s) {
 	switch (s) {
 		case '/':
-			return $author$project$Sitewide$UrlMap$staticPage(
+			return $author$project$Sitewide$Routes$staticPage(
 				$elm$core$Basics$always($author$project$Pages$Navigation$navigationPage));
 		case '/NAV':
-			return $author$project$Sitewide$UrlMap$staticPage(
+			return $author$project$Sitewide$Routes$staticPage(
 				$elm$core$Basics$always($author$project$Pages$Navigation$navigationPage));
 		case '/GOG':
 			return $author$project$Pages$TheGutsOfGit$page;
@@ -12791,7 +12791,7 @@ var $author$project$Sitewide$UrlMap$urlMap = function (s) {
 		case '/LIFE':
 			return $author$project$Pages$GameOfLife$page;
 		default:
-			return $author$project$Sitewide$UrlMap$staticPage(
+			return $author$project$Sitewide$Routes$staticPage(
 				$elm$core$Basics$always($author$project$Pages$Missing$missing));
 	}
 };
@@ -12881,7 +12881,7 @@ var $author$project$Sitewide$Update$update = F2(
 					}
 				default:
 					return A2(
-						$author$project$Sitewide$UrlMap$urlMap(model.currentPage).update,
+						$author$project$Sitewide$Routes$urlMap(model.currentPage).update,
 						message,
 						model);
 			}
@@ -13440,7 +13440,6 @@ var $rtfeldman$elm_css$Css$int = function (val) {
 		value: $elm$core$String$fromInt(val)
 	};
 };
-var $rtfeldman$elm_css$Css$large = {fontSize: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'large'};
 var $rtfeldman$elm_css$Css$prop2 = F3(
 	function (key, argA, argB) {
 		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + argB.value));
@@ -13596,7 +13595,8 @@ var $author$project$Sitewide$View$defaultStyles = $rtfeldman$elm_css$Html$Styled
 							$rtfeldman$elm_css$Css$padding2,
 							$rtfeldman$elm_css$Css$em(0.4),
 							$rtfeldman$elm_css$Css$em(1)),
-							$rtfeldman$elm_css$Css$fontSize($rtfeldman$elm_css$Css$large),
+							$rtfeldman$elm_css$Css$fontSize(
+							$rtfeldman$elm_css$Css$em(0.9)),
 							$rtfeldman$elm_css$Css$fontWeight(
 							$rtfeldman$elm_css$Css$int(200)),
 							$rtfeldman$elm_css$Css$borderStyle($rtfeldman$elm_css$Css$dashed),
@@ -13616,7 +13616,6 @@ var $author$project$Sitewide$View$defaultStyles = $rtfeldman$elm_css$Html$Styled
 						]))
 				]))
 		]));
-var $rtfeldman$elm_css$Css$Media$landscape = {orientation: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'landscape'};
 var $rtfeldman$elm_css$Html$Styled$main_ = $rtfeldman$elm_css$Html$Styled$node('main');
 var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
 var $rtfeldman$elm_css$Css$Media$feature = F2(
@@ -13854,7 +13853,7 @@ var $author$project$Sitewide$View$navBar = function (model) {
 							$rtfeldman$elm_css$Html$Styled$a,
 							_List_fromArray(
 								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('http://seanlucrussell.com')
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('mailto:seanlucrussell@gmail.com')
 								]),
 							_List_fromArray(
 								[
@@ -13868,10 +13867,8 @@ var $rtfeldman$elm_css$Css$Structure$OnlyQuery = F2(
 		return {$: 'OnlyQuery', a: a, b: b};
 	});
 var $rtfeldman$elm_css$Css$Media$only = $rtfeldman$elm_css$Css$Structure$OnlyQuery;
-var $rtfeldman$elm_css$Css$Media$orientation = function (value) {
-	return A2($rtfeldman$elm_css$Css$Media$feature, 'orientation', value);
-};
-var $rtfeldman$elm_css$Css$Media$portrait = {orientation: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'portrait'};
+var $rtfeldman$elm_css$Css$RemUnits = {$: 'RemUnits'};
+var $rtfeldman$elm_css$Css$rem = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$RemUnits, 'rem');
 var $rtfeldman$elm_css$Css$Structure$Screen = {$: 'Screen'};
 var $rtfeldman$elm_css$Css$Media$screen = $rtfeldman$elm_css$Css$Structure$Screen;
 var $rtfeldman$elm_css$VirtualDom$Styled$UnscopedStyles = function (a) {
@@ -14455,7 +14452,6 @@ var $rtfeldman$elm_css$Css$Preprocess$WithMedia = F2(
 		return {$: 'WithMedia', a: a, b: b};
 	});
 var $rtfeldman$elm_css$Css$Media$withMedia = $rtfeldman$elm_css$Css$Preprocess$WithMedia;
-var $rtfeldman$elm_css$Css$xxLarge = {fontSize: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'xx-large'};
 var $author$project$Sitewide$View$view = function (m) {
 	return {
 		body: _List_fromArray(
@@ -14480,8 +14476,7 @@ var $author$project$Sitewide$View$view = function (m) {
 											_List_fromArray(
 												[
 													$rtfeldman$elm_css$Css$Media$minWidth(
-													$rtfeldman$elm_css$Css$px(800)),
-													$rtfeldman$elm_css$Css$Media$orientation($rtfeldman$elm_css$Css$Media$landscape)
+													$rtfeldman$elm_css$Css$px(660))
 												]))
 										]),
 									_List_fromArray(
@@ -14489,31 +14484,16 @@ var $author$project$Sitewide$View$view = function (m) {
 											$rtfeldman$elm_css$Css$width(
 											$rtfeldman$elm_css$Css$em(34))
 										])),
-									A2(
-									$rtfeldman$elm_css$Css$Media$withMedia,
-									_List_fromArray(
-										[
-											A2(
-											$rtfeldman$elm_css$Css$Media$only,
-											$rtfeldman$elm_css$Css$Media$screen,
-											_List_fromArray(
-												[
-													$rtfeldman$elm_css$Css$Media$orientation($rtfeldman$elm_css$Css$Media$portrait)
-												]))
-										]),
-									_List_fromArray(
-										[
-											$rtfeldman$elm_css$Css$fontSize($rtfeldman$elm_css$Css$xxLarge)
-										])),
-									$rtfeldman$elm_css$Css$fontSize($rtfeldman$elm_css$Css$large),
+									$rtfeldman$elm_css$Css$fontSize(
+									$rtfeldman$elm_css$Css$rem(1.13)),
 									$rtfeldman$elm_css$Css$width(
-									$rtfeldman$elm_css$Css$pct(78))
+									$rtfeldman$elm_css$Css$pct(93))
 								]))
 						]),
 					_List_fromArray(
 						[
 							$author$project$Sitewide$View$navBar(m),
-							$author$project$Sitewide$UrlMap$urlMap(m.currentPage).view(m)
+							$author$project$Sitewide$Routes$urlMap(m.currentPage).view(m)
 						])))
 			]),
 		title: 'SLR'

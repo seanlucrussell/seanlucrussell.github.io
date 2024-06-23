@@ -109,7 +109,7 @@ page =
 article : Article
 article =
     { title = "Recursion Schemes Are The Answer"
-    , publicationDate = fromPosix utc (millisToPosix 1718317439000)
+    , publicationDate = fromPosix utc (millisToPosix 1673031600000)
     , moduleName = "RecursionSchemes"
     , primaryUrl = "/REC"
     }

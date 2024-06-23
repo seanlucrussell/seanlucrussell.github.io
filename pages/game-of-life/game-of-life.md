@@ -2,6 +2,7 @@
 moduleName: "GameOfLife"
 dynamic: True
 primaryUrl: "/LIFE"
+date: 2022-11-16
 update: Extra.GameOfLife.App.update
 imports:
   - Extra.GameOfLife.App

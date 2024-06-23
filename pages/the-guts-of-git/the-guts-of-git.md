@@ -2,7 +2,7 @@
 moduleName: TheGutsOfGit
 primaryUrl: "/GOG"
 static: True
-date: 2024-03-01
+date: 2023-01-19
 ---
 
 # The Guts of Git

@@ -7550,6 +7550,67 @@ var $rtfeldman$elm_css$Css$fontFamilies = A2(
 	$rtfeldman$elm_css$Css$prop1('font-family'),
 	$rtfeldman$elm_css$Css$stringsToValue);
 var $rtfeldman$elm_css$Css$fontSize = $rtfeldman$elm_css$Css$prop1('font-size');
+var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
+var $rtfeldman$elm_css$Css$auto = {alignItemsOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible, intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, justifyContentOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, tableLayout: $rtfeldman$elm_css$Css$Structure$Compatible, textRendering: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'auto'};
+var $rtfeldman$elm_css$Css$prop3 = F4(
+	function (key, argA, argB, argC) {
+		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + (argB.value + (' ' + argC.value))));
+	});
+var $rtfeldman$elm_css$Css$margin3 = $rtfeldman$elm_css$Css$prop3('margin');
+var $rtfeldman$elm_css$Css$PercentageUnits = {$: 'PercentageUnits'};
+var $rtfeldman$elm_css$Css$pct = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PercentageUnits, '%');
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $rtfeldman$elm_css$VirtualDom$Styled$style = F2(
+	function (key, val) {
+		return A3(
+			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
+			A2($elm$virtual_dom$VirtualDom$style, key, val),
+			false,
+			'');
+	});
+var $rtfeldman$elm_css$Html$Styled$Attributes$style = $rtfeldman$elm_css$VirtualDom$Styled$style;
+var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
+var $author$project$Components$heading = function (title) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						A3(
+						$rtfeldman$elm_css$Css$margin3,
+						$rtfeldman$elm_css$Css$em(1.2),
+						$rtfeldman$elm_css$Css$auto,
+						$rtfeldman$elm_css$Css$em(2.8))
+					]))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$h1,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
+								$rtfeldman$elm_css$Css$width(
+								$rtfeldman$elm_css$Css$pct(70)),
+								A3(
+								$rtfeldman$elm_css$Css$margin3,
+								$rtfeldman$elm_css$Css$em(2.3),
+								$rtfeldman$elm_css$Css$auto,
+								$rtfeldman$elm_css$Css$em(1.1)),
+								$rtfeldman$elm_css$Css$fontSize(
+								$rtfeldman$elm_css$Css$em(2.2))
+							])),
+						A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'text-wrap', 'balance')
+					]),
+				_List_fromArray(
+					[title]))
+			]));
+};
 var $rtfeldman$elm_css$Html$Styled$i = $rtfeldman$elm_css$Html$Styled$node('i');
 var $elm$core$Basics$composeR = F3(
 	function (f, g, x) {
@@ -8788,7 +8849,7 @@ var $author$project$Pages$Navigation$navRow = function (pageInfo) {
 				_List_fromArray(
 					[
 						$rtfeldman$elm_css$Html$Styled$text(
-						A2($justinmimbs$date$Date$format, 'MMM d y', pageInfo.publicationDate))
+						A2($justinmimbs$date$Date$format, 'MMM dd y', pageInfo.publicationDate))
 					]))
 			]));
 };
@@ -8958,7 +9019,7 @@ var $author$project$Pages$GameOfLife$article = {
 	publicationDate: A2(
 		$justinmimbs$date$Date$fromPosix,
 		$elm$time$Time$utc,
-		$elm$time$Time$millisToPosix(1718317438000)),
+		$elm$time$Time$millisToPosix(1668625200000)),
 	title: 'Better Living Through Sets'
 };
 var $author$project$Pages$RecursionSchemes$article = {
@@ -8967,7 +9028,7 @@ var $author$project$Pages$RecursionSchemes$article = {
 	publicationDate: A2(
 		$justinmimbs$date$Date$fromPosix,
 		$elm$time$Time$utc,
-		$elm$time$Time$millisToPosix(1718317439000)),
+		$elm$time$Time$millisToPosix(1673031600000)),
 	title: 'Recursion Schemes Are The Answer'
 };
 var $author$project$Pages$TheGutsOfGit$article = {
@@ -8976,7 +9037,7 @@ var $author$project$Pages$TheGutsOfGit$article = {
 	publicationDate: A2(
 		$justinmimbs$date$Date$fromPosix,
 		$elm$time$Time$utc,
-		$elm$time$Time$millisToPosix(1709319600000)),
+		$elm$time$Time$millisToPosix(1674154800000)),
 	title: 'The Guts of Git'
 };
 var $justinmimbs$date$Date$compare = F2(
@@ -8994,35 +9055,48 @@ var $author$project$Pages$Navigation$pageList = A2(
 		}),
 	_List_fromArray(
 		[$author$project$Pages$TheGutsOfGit$article, $author$project$Pages$GameOfLife$article, $author$project$Pages$RecursionSchemes$article]));
-var $rtfeldman$elm_css$Css$PercentageUnits = {$: 'PercentageUnits'};
-var $rtfeldman$elm_css$Css$pct = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PercentageUnits, '%');
 var $rtfeldman$elm_css$Html$Styled$table = $rtfeldman$elm_css$Html$Styled$node('table');
-var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
 var $author$project$Pages$Navigation$navigationPage = A2(
 	$rtfeldman$elm_css$Html$Styled$article,
 	_List_Nil,
 	_List_fromArray(
 		[
+			$author$project$Components$heading(
+			$rtfeldman$elm_css$Html$Styled$text('Navigation')),
 			A2(
-			$rtfeldman$elm_css$Html$Styled$h1,
+			$rtfeldman$elm_css$Html$Styled$p,
+			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$css(
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center)
-						]))
-				]),
+					$rtfeldman$elm_css$Html$Styled$text('My name is Sean Luc Russell. Remember the name, for it shall soon spread across the lands and all shall sing my praises. You are a visitor to my website. Welcome.')
+				])),
+			A2(
+			$rtfeldman$elm_css$Html$Styled$h2,
+			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('Navigation')
+					$rtfeldman$elm_css$Html$Styled$text('Bio')
 				])),
 			A2(
 			$rtfeldman$elm_css$Html$Styled$p,
 			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('WIP')
+					$rtfeldman$elm_css$Html$Styled$text('Ahh who am I? Born in MI, moved to CO when young. Studied CS and minored in math. Should have majored in math, but didn\'t realize how much I liked it till too late. Took all the AI courses I could in college, including one graduate course. Ended up being in charge of the whole group even though I was the only undergrad there (perhaps the only undergrad in the whole course)')
+				])),
+			A2(
+			$rtfeldman$elm_css$Html$Styled$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$text('TBH my interests are all over the place, so I\'m not going to pretend to be exhaustive. My main goal in life is to be right about everything all the time, which means that I have to know a lot of things. It\'s a work in progress. So rather than write a misleading bio that gives you an entirely too narrow view of who I am, I\'ll let you read the random nonsense I write and come to your own conclusions about my true nature.')
+				])),
+			A2(
+			$rtfeldman$elm_css$Html$Styled$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$text('I am a man of modest ambition. All I want is to be right about everything all of the time.')
 				])),
 			A2(
 			$rtfeldman$elm_css$Html$Styled$table,
@@ -9068,12 +9142,6 @@ var $author$project$Pages$Navigation$navigationPage = A2(
 						]))
 				]))
 		]));
-var $rtfeldman$elm_css$Css$auto = {alignItemsOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible, intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, justifyContentOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, tableLayout: $rtfeldman$elm_css$Css$Structure$Compatible, textRendering: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'auto'};
-var $rtfeldman$elm_css$Css$prop3 = F4(
-	function (key, argA, argB, argC) {
-		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + (argB.value + (' ' + argC.value))));
-	});
-var $rtfeldman$elm_css$Css$margin3 = $rtfeldman$elm_css$Css$prop3('margin');
 var $author$project$Components$date = function (d) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
@@ -9102,57 +9170,6 @@ var $author$project$Components$date = function (d) {
 						$rtfeldman$elm_css$Html$Styled$text(
 						A2($justinmimbs$date$Date$format, 'MMMM d, y', d))
 					]))
-			]));
-};
-var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
-var $rtfeldman$elm_css$VirtualDom$Styled$style = F2(
-	function (key, val) {
-		return A3(
-			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
-			A2($elm$virtual_dom$VirtualDom$style, key, val),
-			false,
-			'');
-	});
-var $rtfeldman$elm_css$Html$Styled$Attributes$style = $rtfeldman$elm_css$VirtualDom$Styled$style;
-var $author$project$Components$heading = function (title) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$div,
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						A3(
-						$rtfeldman$elm_css$Css$margin3,
-						$rtfeldman$elm_css$Css$em(1.2),
-						$rtfeldman$elm_css$Css$auto,
-						$rtfeldman$elm_css$Css$em(2.8))
-					]))
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$rtfeldman$elm_css$Html$Styled$h1,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
-								$rtfeldman$elm_css$Css$width(
-								$rtfeldman$elm_css$Css$pct(70)),
-								A3(
-								$rtfeldman$elm_css$Css$margin3,
-								$rtfeldman$elm_css$Css$em(2.3),
-								$rtfeldman$elm_css$Css$auto,
-								$rtfeldman$elm_css$Css$em(1.1)),
-								$rtfeldman$elm_css$Css$fontSize(
-								$rtfeldman$elm_css$Css$em(2.2))
-							])),
-						A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'text-wrap', 'balance')
-					]),
-				_List_fromArray(
-					[title]))
 			]));
 };
 var $author$project$Components$blogHeading = F2(
@@ -10994,7 +11011,6 @@ var $author$project$Pages$GameOfLife$page = {
 				]));
 	}
 };
-var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
 var $author$project$Pages$RecursionSchemes$page = {
 	update: F2(
 		function (_v0, model) {

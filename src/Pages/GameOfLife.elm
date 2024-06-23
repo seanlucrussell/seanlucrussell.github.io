@@ -83,7 +83,7 @@ page =
 article : Article
 article =
     { title = "Better Living Through Sets"
-    , publicationDate = fromPosix utc (millisToPosix 1718317438000)
+    , publicationDate = fromPosix utc (millisToPosix 1668625200000)
     , moduleName = "GameOfLife"
     , primaryUrl = "/LIFE"
     }

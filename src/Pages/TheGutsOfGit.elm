@@ -87,7 +87,7 @@ page =
 article : Article
 article =
     { title = "The Guts of Git"
-    , publicationDate = fromPosix utc (millisToPosix 1709319600000)
+    , publicationDate = fromPosix utc (millisToPosix 1674154800000)
     , moduleName = "TheGutsOfGit"
     , primaryUrl = "/GOG"
     }

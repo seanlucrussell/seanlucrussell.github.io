@@ -10,5 +10,5 @@ missing =
     div []
         [ h1 [ css [ textAlign center ] ] [ text "404" ]
         , p []
-            [ text "This page does not exist. ", a [ href "NAV" ] [ text "Return to navigation?" ] ]
+            [ text "This page does not exist. ", a [ href "/NAV" ] [ text "Return to navigation?" ] ]
         ]

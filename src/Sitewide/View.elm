@@ -148,7 +148,7 @@ navBar model =
             ]
         , div [ css [ width navPanelSideWidth, textAlign right ] ]
             (makeSidePanel
-                [ a [ href "NAV" ] [ text "NAVIGATION" ]
+                [ a [ href "/NAV" ] [ text "NAVIGATION" ]
                 , a [ href "mailto:seanlucrussell@gmail.com" ] [ text "MESSAGE" ]
                 ]
             )

@@ -7529,7 +7529,7 @@ var $author$project$Pages$Missing$missing = A2(
 					$rtfeldman$elm_css$Html$Styled$a,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$Attributes$href('NAV')
+							$rtfeldman$elm_css$Html$Styled$Attributes$href('/NAV')
 						]),
 					_List_fromArray(
 						[
@@ -13859,7 +13859,7 @@ var $author$project$Sitewide$View$navBar = function (model) {
 							$rtfeldman$elm_css$Html$Styled$a,
 							_List_fromArray(
 								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('NAV')
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('/NAV')
 								]),
 							_List_fromArray(
 								[

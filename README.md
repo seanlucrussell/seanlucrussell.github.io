@@ -45,4 +45,44 @@ what in particular do i want to preserve with URLs? that should make the decisio
 part of the thing is i also want the urls to be available all in one place, so i can quickly verify which ones are in use and which are free
 
 
-elm-live -d site/ --pushstate -p 8001 src/Main.elm -- --output=site/elm.js
+elm-live -d docs/ --pushstate -p 8001 src/Main.elm -- --output=site/elm.js
+
+## pre-flight
+
+- [x] fix mobile scaling
+- [ ] figure out messaging
+- [ ] write bio
+- [x] better contact system
+- [ ] what do i do with local build?
+- [ ] beautify navigation / home page
+- [ ] scan through pages, make sure there are not glaring errors
+- [x] rectify dates
+- [ ] confirm initial urls (develop scheme?)
+- [x] adopt my domain name
+
+## defense of design
+
+### Pandoc integration
+
+
+
+### Model and message architecture
+
+I've opted for a very flat application architecture. There is one core message type and one core model type. We don't specialize either of these for articles or have nested data structures. While this does prevent encapsulation of application components, I'm finding that encapsulation is overrated. Especially for a project of this size. A few core datatypes with a million operations defined on them is way better than a million datatypes with a few operations each. This also reduces plumbing since we don't gotta isolate substructures to pass to other handlers. I'm somewhat inspired by the co-dfns project because their compiler passes seem to work in sorta the same way.
+
+This also provides potential flexibility for fun things in the future. We could have pages secretly influencing other pages in the background, which would allow for all sorts of weirdness. We could allow for a page to influence the global model or easily emit messages to the global update handler.
+
+### URL routing
+
+Our url system took a bit of work to figure out. I'm still not sure it is as elegant as it could be, but it's pretty good.
+
+The central problem is that I want URLs to be stable in time. If a URL gets added to the website and someone links to it from somewhere, I'd like to ensure that the link never disappears. However I'd also like to preserve the ability to flexibly change and add links.
+
+What I've settled on is a simple system. We have the UrlMap funciton in our sitewide group of documents. This acts as a routing system for the site. I can pretty easily ensure manually that routes are never removed or changed, just added. I can also quickly see all the current routes in the system.
+
+In addition each individual article generates some metadata that includes the primary URL for a given article. this URL can then be the single source of truth for the rest of the site when the site needs to look up pages.
+
+So we divide the URL handling into two parts: the routing and the usage. this does create an opportunity for the two to get out of sync, but so long as the routing is append-only we can't *break* existing pages if we mess up the primary URL. changing the primary URL for a page will only affect that page, so we don't have a ton of testing to do when making changes there. and since we do keep track of the primary URL, there is only one place that the two can get desynchronized.
+
+I suspect there are cleverer ways to implement this system, but I'm attracted to the simplicity of this basic implementation. Importantly it is good enough for now, so we will leave it be.
+

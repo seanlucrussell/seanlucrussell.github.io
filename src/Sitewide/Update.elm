@@ -54,6 +54,9 @@ update message model =
         ToggleClock ->
             ( { model | clockIsVisible = not model.clockIsVisible }, Cmd.none )
 
+        ToggleContactForm ->
+            ( { model | contactInfoIsVisible = not model.contactInfoIsVisible }, Cmd.none )
+
         Tick t ->
             if intervalCount (model.time + t) 100 - intervalCount model.time 100 >= 1 then
                 update GameOfLifeStep { model | time = model.time + t }

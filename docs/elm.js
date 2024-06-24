@@ -12878,6 +12878,12 @@ var $author$project$Sitewide$Update$update = F2(
 							model,
 							{clockIsVisible: !model.clockIsVisible}),
 						$elm$core$Platform$Cmd$none);
+				case 'ToggleContactForm':
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{contactInfoIsVisible: !model.contactInfoIsVisible}),
+						$elm$core$Platform$Cmd$none);
 				case 'Tick':
 					var t = message.a;
 					if ((A2($author$project$Sitewide$Update$intervalCount, model.time + t, 100) - A2($author$project$Sitewide$Update$intervalCount, model.time, 100)) >= 1) {
@@ -12908,7 +12914,7 @@ var $author$project$Sitewide$Init$init = F3(
 		return A2(
 			$author$project$Sitewide$Update$update,
 			$author$project$Sitewide$Types$UrlChange(url),
-			{clockIsVisible: false, commandText: '', currentPage: '/NAV', gameOfLifeBoard: $author$project$Extra$GameOfLife$App$initialBoard, key: key, time: 0});
+			{clockIsVisible: false, commandText: '', contactInfoIsVisible: false, currentPage: '/NAV', gameOfLifeBoard: $author$project$Extra$GameOfLife$App$initialBoard, key: key, time: 0});
 	});
 var $elm$browser$Browser$AnimationManager$Delta = function (a) {
 	return {$: 'Delta', a: a};
@@ -13632,6 +13638,17 @@ var $author$project$Sitewide$View$defaultStyles = $rtfeldman$elm_css$Html$Styled
 						]))
 				]))
 		]));
+var $rtfeldman$elm_css$Css$Transitions$Height = {$: 'Height'};
+var $rtfeldman$elm_css$Css$Transitions$Transition = function (a) {
+	return {$: 'Transition', a: a};
+};
+var $rtfeldman$elm_css$Css$Transitions$durationTransition = F2(
+	function (animation, duration) {
+		return $rtfeldman$elm_css$Css$Transitions$Transition(
+			{animation: animation, delay: $elm$core$Maybe$Nothing, duration: duration, timing: $elm$core$Maybe$Nothing});
+	});
+var $rtfeldman$elm_css$Css$Transitions$height = $rtfeldman$elm_css$Css$Transitions$durationTransition($rtfeldman$elm_css$Css$Transitions$Height);
+var $rtfeldman$elm_css$Css$hidden = {borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'hidden', visibility: $rtfeldman$elm_css$Css$Structure$Compatible};
 var $rtfeldman$elm_css$Html$Styled$main_ = $rtfeldman$elm_css$Html$Styled$node('main');
 var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
 var $rtfeldman$elm_css$Css$Media$feature = F2(
@@ -13648,6 +13665,7 @@ var $rtfeldman$elm_css$Css$Media$minWidth = function (value) {
 var $author$project$Sitewide$Types$CommandBarChanged = function (a) {
 	return {$: 'CommandBarChanged', a: a};
 };
+var $author$project$Sitewide$Types$ToggleContactForm = {$: 'ToggleContactForm'};
 var $rtfeldman$elm_css$Css$border = $rtfeldman$elm_css$Css$prop1('border');
 var $rtfeldman$elm_css$Css$flexDirection = $rtfeldman$elm_css$Css$prop1('flex-direction');
 var $rtfeldman$elm_css$Css$flexGrow = $rtfeldman$elm_css$Css$prop1('flex-grow');
@@ -13668,7 +13686,18 @@ var $author$project$Sitewide$View$keyDecoder = A2(
 var $author$project$Sitewide$View$makeSidePanel = $elm$core$List$map(
 	A2(
 		$elm$core$Basics$composeL,
-		$rtfeldman$elm_css$Html$Styled$div(_List_Nil),
+		$rtfeldman$elm_css$Html$Styled$div(
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Css$padding2,
+							$rtfeldman$elm_css$Css$em(0.1),
+							$rtfeldman$elm_css$Css$em(0))
+						]))
+				])),
 		$elm$core$List$singleton));
 var $rtfeldman$elm_css$Css$marginBottom = $rtfeldman$elm_css$Css$prop1('margin-bottom');
 var $author$project$Sitewide$View$navPanelSideWidth = $rtfeldman$elm_css$Css$em(8);
@@ -13869,11 +13898,13 @@ var $author$project$Sitewide$View$navBar = function (model) {
 							$rtfeldman$elm_css$Html$Styled$a,
 							_List_fromArray(
 								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('mailto:seanlucrussell@gmail.com')
+									$rtfeldman$elm_css$Html$Styled$Events$onClick($author$project$Sitewide$Types$ToggleContactForm),
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('#')
 								]),
 							_List_fromArray(
 								[
-									$rtfeldman$elm_css$Html$Styled$text('MESSAGE')
+									$rtfeldman$elm_css$Html$Styled$text(
+									model.contactInfoIsVisible ? 'HIDE' : 'CONTACT')
 								]))
 						])))
 			]));
@@ -14463,6 +14494,254 @@ var $rtfeldman$elm_css$VirtualDom$Styled$toUnstyled = function (vdom) {
 	}
 };
 var $rtfeldman$elm_css$Html$Styled$toUnstyled = $rtfeldman$elm_css$VirtualDom$Styled$toUnstyled;
+var $rtfeldman$elm_css$Css$Transitions$propToString = function (prop) {
+	switch (prop.$) {
+		case 'Background':
+			return 'background';
+		case 'BackgroundColor':
+			return 'background-color';
+		case 'BackgroundPosition':
+			return 'background-position';
+		case 'BackgroundSize':
+			return 'background-size';
+		case 'Border':
+			return 'border';
+		case 'BorderBottom':
+			return 'border-bottom';
+		case 'BorderBottomColor':
+			return 'border-bottom-color';
+		case 'BorderBottomLeftRadius':
+			return 'border-bottom-left-radius';
+		case 'BorderBottomRightRadius':
+			return 'border-bottom-right-radius';
+		case 'BorderBottomWidth':
+			return 'border-bottom-width';
+		case 'BorderColor':
+			return 'border-color';
+		case 'BorderLeft':
+			return 'border-left';
+		case 'BorderLeftColor':
+			return 'border-left-color';
+		case 'BorderLeftWidth':
+			return 'border-left-width';
+		case 'BorderRadius':
+			return 'border-radius';
+		case 'BorderRight':
+			return 'border-right';
+		case 'BorderRightColor':
+			return 'border-right-color';
+		case 'BorderRightWidth':
+			return 'border-right-width';
+		case 'BorderTop':
+			return 'border-top';
+		case 'BorderTopColor':
+			return 'border-top-color';
+		case 'BorderTopLeftRadius':
+			return 'border-top-left-radius';
+		case 'BorderTopRightRadius':
+			return 'border-top-right-radius';
+		case 'BorderTopWidth':
+			return 'border-top-width';
+		case 'BorderWidth':
+			return 'border-width';
+		case 'Bottom':
+			return 'bottom';
+		case 'BoxShadow':
+			return 'box-shadow';
+		case 'CaretColor':
+			return 'caret-color';
+		case 'Clip':
+			return 'clip';
+		case 'ClipPath':
+			return 'clip-path';
+		case 'Color':
+			return 'color';
+		case 'ColumnCount':
+			return 'column-count';
+		case 'ColumnGap':
+			return 'column-gap';
+		case 'ColumnRule':
+			return 'column-rule';
+		case 'ColumnRuleColor':
+			return 'column-rule-color';
+		case 'ColumnRuleWidth':
+			return 'column-rule-width';
+		case 'ColumnWidth':
+			return 'column-width';
+		case 'Columns':
+			return 'columns';
+		case 'Filter':
+			return 'filter';
+		case 'Flex':
+			return 'flex';
+		case 'FlexBasis':
+			return 'flex-basis';
+		case 'FlexGrow':
+			return 'flex-grow';
+		case 'FlexShrink':
+			return 'flex-shrink';
+		case 'Font':
+			return 'font';
+		case 'FontSize':
+			return 'font-size';
+		case 'FontSizeAdjust':
+			return 'font-size-adjust';
+		case 'FontStretch':
+			return 'font-stretch';
+		case 'FontVariationSettings':
+			return 'font-variation-settings';
+		case 'FontWeight':
+			return 'font-weight';
+		case 'GridColumnGap':
+			return 'grid-column-gap';
+		case 'GridGap':
+			return 'grid-gap';
+		case 'GridRowGap':
+			return 'grid-row-gap';
+		case 'Height':
+			return 'height';
+		case 'Left':
+			return 'left';
+		case 'LetterSpacing':
+			return 'letter-spacing';
+		case 'LineHeight':
+			return 'line-height';
+		case 'Margin':
+			return 'margin';
+		case 'MarginBottom':
+			return 'margin-bottom';
+		case 'MarginLeft':
+			return 'margin-left';
+		case 'MarginRight':
+			return 'margin-right';
+		case 'MarginTop':
+			return 'margin-top';
+		case 'Mask':
+			return 'mask';
+		case 'MaskPosition':
+			return 'mask-position';
+		case 'MaskSize':
+			return 'mask-size';
+		case 'MaxHeight':
+			return 'max-height';
+		case 'MaxWidth':
+			return 'max-width';
+		case 'MinHeight':
+			return 'min-height';
+		case 'MinWidth':
+			return 'min-width';
+		case 'ObjectPosition':
+			return 'object-position';
+		case 'Offset':
+			return 'offset';
+		case 'OffsetAnchor':
+			return 'offset-anchor';
+		case 'OffsetDistance':
+			return 'offset-distance';
+		case 'OffsetPath':
+			return 'offset-path';
+		case 'OffsetRotate':
+			return 'offset-rotate';
+		case 'Opacity':
+			return 'opacity';
+		case 'Order':
+			return 'order';
+		case 'Outline':
+			return 'outline';
+		case 'OutlineColor':
+			return 'outline-color';
+		case 'OutlineOffset':
+			return 'outline-offset';
+		case 'OutlineWidth':
+			return 'outline-width';
+		case 'Padding':
+			return 'padding';
+		case 'PaddingBottom':
+			return 'padding-bottom';
+		case 'PaddingLeft':
+			return 'padding-left';
+		case 'PaddingRight':
+			return 'padding-right';
+		case 'PaddingTop':
+			return 'padding-top';
+		case 'Right':
+			return 'right';
+		case 'TabSize':
+			return 'tab-size';
+		case 'TextIndent':
+			return 'text-indent';
+		case 'TextShadow':
+			return 'text-shadow';
+		case 'Top':
+			return 'top';
+		case 'Transform':
+			return 'transform';
+		case 'TransformOrigin':
+			return 'transform-origin';
+		case 'VerticalAlign':
+			return 'vertical-align';
+		case 'Visibility':
+			return 'visibility';
+		case 'Width':
+			return 'width';
+		case 'WordSpacing':
+			return 'word-spacing';
+		default:
+			return 'z-index';
+	}
+};
+var $rtfeldman$elm_css$Css$Transitions$timeToString = function (time) {
+	return $elm$core$String$fromFloat(time) + 'ms';
+};
+var $rtfeldman$elm_css$Css$Transitions$timingFunctionToString = function (tf) {
+	switch (tf.$) {
+		case 'Ease':
+			return 'ease';
+		case 'Linear':
+			return 'linear';
+		case 'EaseIn':
+			return 'ease-in';
+		case 'EaseOut':
+			return 'ease-out';
+		case 'EaseInOut':
+			return 'ease-in-out';
+		case 'StepStart':
+			return 'step-start';
+		case 'StepEnd':
+			return 'step-end';
+		default:
+			var _float = tf.a;
+			var float2 = tf.b;
+			var float3 = tf.c;
+			var float4 = tf.d;
+			return 'cubic-bezier(' + ($elm$core$String$fromFloat(_float) + (' , ' + ($elm$core$String$fromFloat(float2) + (' , ' + ($elm$core$String$fromFloat(float3) + (' , ' + ($elm$core$String$fromFloat(float4) + ')')))))));
+	}
+};
+var $rtfeldman$elm_css$Css$Transitions$transition = function (options) {
+	var v = A3(
+		$elm$core$String$slice,
+		0,
+		-1,
+		A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v0, s) {
+					var animation = _v0.a.animation;
+					var duration = _v0.a.duration;
+					var delay = _v0.a.delay;
+					var timing = _v0.a.timing;
+					return s + ($rtfeldman$elm_css$Css$Transitions$propToString(animation) + (' ' + ($rtfeldman$elm_css$Css$Transitions$timeToString(duration) + (' ' + (A2(
+						$elm$core$Maybe$withDefault,
+						'',
+						A2($elm$core$Maybe$map, $rtfeldman$elm_css$Css$Transitions$timeToString, delay)) + (' ' + (A2(
+						$elm$core$Maybe$withDefault,
+						'',
+						A2($elm$core$Maybe$map, $rtfeldman$elm_css$Css$Transitions$timingFunctionToString, timing)) + ',')))))));
+				}),
+			'',
+			options));
+	return A2($rtfeldman$elm_css$Css$property, 'transition', v);
+};
 var $rtfeldman$elm_css$Css$Preprocess$WithMedia = F2(
 	function (a, b) {
 		return {$: 'WithMedia', a: a, b: b};
@@ -14509,6 +14788,43 @@ var $author$project$Sitewide$View$view = function (m) {
 					_List_fromArray(
 						[
 							$author$project$Sitewide$View$navBar(m),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$div,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$css(
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Css$Transitions$transition(
+											_List_fromArray(
+												[
+													$rtfeldman$elm_css$Css$Transitions$height(300)
+												])),
+											$rtfeldman$elm_css$Css$height(
+											$rtfeldman$elm_css$Css$em(
+												m.contactInfoIsVisible ? 2 : 0)),
+											$rtfeldman$elm_css$Css$overflow($rtfeldman$elm_css$Css$hidden),
+											$rtfeldman$elm_css$Css$margin($rtfeldman$elm_css$Css$auto),
+											$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
+											$rtfeldman$elm_css$Css$fontFamilies(
+											_List_fromArray(
+												['courier']))
+										]))
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('EMAIL ME AT '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$a,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$Attributes$href('mailto:seanlucrussell@gmail.com')
+										]),
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('seanlucrussell@gmail.com')
+										]))
+								])),
 							$author$project$Sitewide$Routes$urlMap(m.currentPage).view(m)
 						])))
 			]),

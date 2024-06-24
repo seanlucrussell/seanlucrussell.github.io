@@ -17,4 +17,5 @@ init _ url key =
         , gameOfLifeBoard = Extra.GameOfLife.App.initialBoard
         , time = 0
         , clockIsVisible = False
+        , contactInfoIsVisible = False
         }

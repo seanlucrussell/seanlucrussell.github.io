@@ -14,6 +14,7 @@ type alias SitewideModel =
     , key : Key
     , time : Float
     , clockIsVisible : Bool
+    , contactInfoIsVisible : Bool
 
     -- game of life
     , gameOfLifeBoard : Extra.GameOfLife.GameOfLife.Board
@@ -42,6 +43,7 @@ type SitewideMsg
     | CommandSubmitted
     | Tick Float
     | ToggleClock
+    | ToggleContactForm
       -- game of life
     | GameOfLifeStep
     | LoadBoard Board

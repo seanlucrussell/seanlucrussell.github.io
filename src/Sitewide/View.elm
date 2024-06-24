@@ -4,9 +4,10 @@ import Browser exposing (Document, UrlRequest(..))
 import Css exposing (..)
 import Css.Global exposing (descendants, typeSelector)
 import Css.Media exposing (only, screen, withMedia)
+import Css.Transitions as Transitions exposing (transition)
 import Html.Styled exposing (Attribute, Html, a, div, header, input, main_, span, text, toUnstyled)
 import Html.Styled.Attributes exposing (css, href, placeholder, style, value)
-import Html.Styled.Events exposing (keyCode, on, onInput)
+import Html.Styled.Events exposing (keyCode, on, onClick, onInput)
 import Json.Decode as Decode
 import List exposing (map, singleton)
 import Sitewide.Routes exposing (urlMap)
@@ -27,7 +28,30 @@ view m =
                     , width (pct 93)
                     ]
                 ]
-                [ navBar m, (urlMap m.currentPage).view m ]
+                [ navBar m
+                , div
+                    [ css
+                        [ transition [ Transitions.height 300 ]
+                        , height
+                            (em
+                                (if m.contactInfoIsVisible then
+                                    2
+
+                                 else
+                                    0
+                                )
+                            )
+                        , overflow hidden
+                        , margin auto
+                        , textAlign center
+                        , fontFamilies [ "courier" ]
+
+                        -- , textAlign right
+                        ]
+                    ]
+                    [ text "EMAIL ME AT ", a [ href "mailto:seanlucrussell@gmail.com" ] [ text "seanlucrussell@gmail.com" ] ]
+                , (urlMap m.currentPage).view m
+                ]
             )
         ]
     }
@@ -93,7 +117,7 @@ navPanelSideWidth =
 
 makeSidePanel : List (Html msg) -> List (Html msg)
 makeSidePanel =
-    map (div [] << singleton)
+    map (div [ css [ padding2 (em 0.1) (em 0) ] ] << singleton)
 
 
 navBar : SitewideModel -> Html SitewideMsg
@@ -149,7 +173,15 @@ navBar model =
         , div [ css [ width navPanelSideWidth, textAlign right ] ]
             (makeSidePanel
                 [ a [ href "/NAV" ] [ text "NAVIGATION" ]
-                , a [ href "mailto:seanlucrussell@gmail.com" ] [ text "MESSAGE" ]
+                , a [ onClick ToggleContactForm, href "#" ]
+                    [ text
+                        (if model.contactInfoIsVisible then
+                            "HIDE"
+
+                         else
+                            "CONTACT"
+                        )
+                    ]
                 ]
             )
         ]

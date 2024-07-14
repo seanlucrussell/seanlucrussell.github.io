@@ -45,12 +45,15 @@ what in particular do i want to preserve with URLs? that should make the decisio
 part of the thing is i also want the urls to be available all in one place, so i can quickly verify which ones are in use and which are free
 
 
-elm-live -d docs/ --pushstate -p 8001 src/Main.elm -- --output=site/elm.js
+elm-live src/Main.elm --host=10.0.0.119 --port=8001 --dir=docs/ --pushstate --start-page=index.html -- --output=docs/elm.js
+
+
+analytics are something to think about sometime. how would you wanna do that? roll your own? use off the shelf? idk.
+
 
 ## pre-flight
 
 - [x] fix mobile scaling
-- [ ] figure out messaging
 - [ ] write bio
 - [x] better contact system
 - [ ] what do i do with local build?

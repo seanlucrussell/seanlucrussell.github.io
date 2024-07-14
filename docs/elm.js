@@ -5573,6 +5573,7 @@ var $author$project$Sitewide$Types$SelectPage = function (a) {
 	return {$: 'SelectPage', a: a};
 };
 var $author$project$Sitewide$Types$ToggleClock = {$: 'ToggleClock'};
+var $author$project$Sitewide$Types$ToggleContactForm = {$: 'ToggleContactForm'};
 var $elm$core$Dict$fromList = function (assocs) {
 	return A3(
 		$elm$core$List$foldl,
@@ -5601,7 +5602,8 @@ var $author$project$Sitewide$Update$commandMap = function (_v0) {
 				_Utils_Tuple2(
 				'LIFE',
 				$author$project$Sitewide$Types$SelectPage('/LIFE')),
-				_Utils_Tuple2('CLOCK', $author$project$Sitewide$Types$ToggleClock)
+				_Utils_Tuple2('CLOCK', $author$project$Sitewide$Types$ToggleClock),
+				_Utils_Tuple2('MSG', $author$project$Sitewide$Types$ToggleContactForm)
 			]));
 };
 var $elm$core$Basics$ge = _Utils_ge;
@@ -7538,8 +7540,6 @@ var $author$project$Pages$Missing$missing = A2(
 				]))
 		]));
 var $rtfeldman$elm_css$Html$Styled$article = $rtfeldman$elm_css$Html$Styled$node('article');
-var $rtfeldman$elm_css$Css$EmUnits = {$: 'EmUnits'};
-var $rtfeldman$elm_css$Css$em = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$EmUnits, 'em');
 var $rtfeldman$elm_css$Css$stringsToValue = function (list) {
 	return $elm$core$List$isEmpty(list) ? {value: 'none'} : {
 		value: A2($elm$core$String$join, ', ', list)
@@ -7549,9 +7549,11 @@ var $rtfeldman$elm_css$Css$fontFamilies = A2(
 	$elm$core$Basics$composeL,
 	$rtfeldman$elm_css$Css$prop1('font-family'),
 	$rtfeldman$elm_css$Css$stringsToValue);
-var $rtfeldman$elm_css$Css$fontSize = $rtfeldman$elm_css$Css$prop1('font-size');
 var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
 var $rtfeldman$elm_css$Css$auto = {alignItemsOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible, intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, justifyContentOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, tableLayout: $rtfeldman$elm_css$Css$Structure$Compatible, textRendering: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'auto'};
+var $rtfeldman$elm_css$Css$EmUnits = {$: 'EmUnits'};
+var $rtfeldman$elm_css$Css$em = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$EmUnits, 'em');
+var $rtfeldman$elm_css$Css$fontSize = $rtfeldman$elm_css$Css$prop1('font-size');
 var $rtfeldman$elm_css$Css$prop3 = F4(
 	function (key, argA, argB, argC) {
 		return A2($rtfeldman$elm_css$Css$property, key, argA.value + (' ' + (argB.value + (' ' + argC.value))));
@@ -7611,7 +7613,6 @@ var $author$project$Components$heading = function (title) {
 					[title]))
 			]));
 };
-var $rtfeldman$elm_css$Html$Styled$i = $rtfeldman$elm_css$Html$Styled$node('i');
 var $elm$core$Basics$composeR = F3(
 	function (f, g, x) {
 		return g(
@@ -8817,7 +8818,10 @@ var $rtfeldman$elm_css$Html$Styled$tr = $rtfeldman$elm_css$Html$Styled$node('tr'
 var $author$project$Pages$Navigation$navRow = function (pageInfo) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$tr,
-		_List_Nil,
+		_List_fromArray(
+			[
+				A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'text-wrap', 'balance')
+			]),
 		_List_fromArray(
 			[
 				A2(
@@ -9068,35 +9072,42 @@ var $author$project$Pages$Navigation$navigationPage = A2(
 			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('My name is Sean Luc Russell. Remember the name, for it shall soon spread across the lands and all shall sing my praises. You are a visitor to my website. Welcome.')
+					$rtfeldman$elm_css$Html$Styled$text('Hi! Welcome! Come on in. Welcome to the personal website for Sean Luc Russell. I hope we find you well on your visit.')
+				])),
+			A2(
+			$rtfeldman$elm_css$Html$Styled$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$text('If this is your first time here let me show you around. At the top right of every page we have a navigation link. This will help you get back here. Use it if you get lost. We also have a contact link in case you want to send an email to Mr. Russell. And below we have a collection of all the publications on this blog, ordered chronologically.')
+				])),
+			A2(
+			$rtfeldman$elm_css$Html$Styled$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$text('I can\'t tell you if we have what you are looking for here. I\'m not sure myself what you might find in the pages below. Mr. Russell is a fairly ordinary person, but then again ordinary people can say remarkable things. Stay as long as you\'d like, have a look around. Who knows? Maybe you\'ll find exactly what you need here.')
+				])),
+			A2(
+			$rtfeldman$elm_css$Html$Styled$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$text('Thanks for dropping in!')
 				])),
 			A2(
 			$rtfeldman$elm_css$Html$Styled$h2,
-			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('Bio')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center)
+						]))
+				]),
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('Ahh who am I? Born in MI, moved to CO when young. Studied CS and minored in math. Should have majored in math, but didn\'t realize how much I liked it till too late. Took all the AI courses I could in college, including one graduate course. Ended up being in charge of the whole group even though I was the only undergrad there (perhaps the only undergrad in the whole course)')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('TBH my interests are all over the place, so I\'m not going to pretend to be exhaustive. My main goal in life is to be right about everything all the time, which means that I have to know a lot of things. It\'s a work in progress. So rather than write a misleading bio that gives you an entirely too narrow view of who I am, I\'ll let you read the random nonsense I write and come to your own conclusions about my true nature.')
-				])),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$text('I am a man of modest ambition. All I want is to be right about everything all of the time.')
+					$rtfeldman$elm_css$Html$Styled$text('Pages')
 				])),
 			A2(
 			$rtfeldman$elm_css$Html$Styled$table,
@@ -9112,36 +9123,9 @@ var $author$project$Pages$Navigation$navigationPage = A2(
 							$rtfeldman$elm_css$Css$pct(100))
 						]))
 				]),
-			A2($elm$core$List$map, $author$project$Pages$Navigation$navRow, $author$project$Pages$Navigation$pageList)),
-			A2(
-			$rtfeldman$elm_css$Html$Styled$div,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$css(
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center)
-						]))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$i,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$Attributes$css(
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Css$fontSize(
-									$rtfeldman$elm_css$Css$em(0.8))
-								]))
-						]),
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('fig 1.1: Random blog posts')
-						]))
-				]))
+			A2($elm$core$List$map, $author$project$Pages$Navigation$navRow, $author$project$Pages$Navigation$pageList))
 		]));
+var $rtfeldman$elm_css$Html$Styled$i = $rtfeldman$elm_css$Html$Styled$node('i');
 var $author$project$Components$date = function (d) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
@@ -13041,6 +13025,13 @@ var $elm$browser$Browser$AnimationManager$onAnimationFrameDelta = function (tagg
 		$elm$browser$Browser$AnimationManager$Delta(tagger));
 };
 var $elm$browser$Browser$Events$onAnimationFrameDelta = $elm$browser$Browser$AnimationManager$onAnimationFrameDelta;
+var $rtfeldman$elm_css$Css$alignItems = function (fn) {
+	return A3(
+		$rtfeldman$elm_css$Css$Internal$getOverloadedProperty,
+		'alignItems',
+		'align-items',
+		fn($rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
+};
 var $rtfeldman$elm_css$Css$backgroundColor = function (c) {
 	return A2($rtfeldman$elm_css$Css$property, 'background-color', c.value);
 };
@@ -13665,7 +13656,6 @@ var $rtfeldman$elm_css$Css$Media$minWidth = function (value) {
 var $author$project$Sitewide$Types$CommandBarChanged = function (a) {
 	return {$: 'CommandBarChanged', a: a};
 };
-var $author$project$Sitewide$Types$ToggleContactForm = {$: 'ToggleContactForm'};
 var $rtfeldman$elm_css$Css$border = $rtfeldman$elm_css$Css$prop1('border');
 var $rtfeldman$elm_css$Css$flexDirection = $rtfeldman$elm_css$Css$prop1('flex-direction');
 var $rtfeldman$elm_css$Css$flexGrow = $rtfeldman$elm_css$Css$prop1('flex-grow');
@@ -13914,6 +13904,7 @@ var $rtfeldman$elm_css$Css$Structure$OnlyQuery = F2(
 		return {$: 'OnlyQuery', a: a, b: b};
 	});
 var $rtfeldman$elm_css$Css$Media$only = $rtfeldman$elm_css$Css$Structure$OnlyQuery;
+var $rtfeldman$elm_css$Css$overflowY = $rtfeldman$elm_css$Css$prop1('overflow-y');
 var $rtfeldman$elm_css$Css$RemUnits = {$: 'RemUnits'};
 var $rtfeldman$elm_css$Css$rem = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$RemUnits, 'rem');
 var $rtfeldman$elm_css$Css$Structure$Screen = {$: 'Screen'};
@@ -14798,13 +14789,15 @@ var $author$project$Sitewide$View$view = function (m) {
 											$rtfeldman$elm_css$Css$Transitions$transition(
 											_List_fromArray(
 												[
-													$rtfeldman$elm_css$Css$Transitions$height(300)
+													$rtfeldman$elm_css$Css$Transitions$height(400)
 												])),
 											$rtfeldman$elm_css$Css$height(
 											$rtfeldman$elm_css$Css$em(
-												m.contactInfoIsVisible ? 2 : 0)),
-											$rtfeldman$elm_css$Css$overflow($rtfeldman$elm_css$Css$hidden),
-											$rtfeldman$elm_css$Css$margin($rtfeldman$elm_css$Css$auto),
+												m.contactInfoIsVisible ? 2.4 : 0)),
+											$rtfeldman$elm_css$Css$overflowY($rtfeldman$elm_css$Css$hidden),
+											$rtfeldman$elm_css$Css$displayFlex,
+											$rtfeldman$elm_css$Css$justifyContent($rtfeldman$elm_css$Css$center),
+											$rtfeldman$elm_css$Css$alignItems($rtfeldman$elm_css$Css$center),
 											$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
 											$rtfeldman$elm_css$Css$fontFamilies(
 											_List_fromArray(
@@ -14813,16 +14806,22 @@ var $author$project$Sitewide$View$view = function (m) {
 								]),
 							_List_fromArray(
 								[
-									$rtfeldman$elm_css$Html$Styled$text('EMAIL ME AT '),
 									A2(
-									$rtfeldman$elm_css$Html$Styled$a,
+									$rtfeldman$elm_css$Html$Styled$span,
+									_List_Nil,
 									_List_fromArray(
 										[
-											$rtfeldman$elm_css$Html$Styled$Attributes$href('mailto:seanlucrussell@gmail.com')
-										]),
-									_List_fromArray(
-										[
-											$rtfeldman$elm_css$Html$Styled$text('seanlucrussell@gmail.com')
+											$rtfeldman$elm_css$Html$Styled$text('EMAIL ME AT '),
+											A2(
+											$rtfeldman$elm_css$Html$Styled$a,
+											_List_fromArray(
+												[
+													$rtfeldman$elm_css$Html$Styled$Attributes$href('mailto:seanlucrussell@gmail.com')
+												]),
+											_List_fromArray(
+												[
+													$rtfeldman$elm_css$Html$Styled$text('seanlucrussell@gmail.com')
+												]))
 										]))
 								])),
 							$author$project$Sitewide$Routes$urlMap(m.currentPage).view(m)

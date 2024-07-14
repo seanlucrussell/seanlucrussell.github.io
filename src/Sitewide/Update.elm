@@ -17,6 +17,7 @@ commandMap _ =
         , ( "GOG", SelectPage "/GOG" )
         , ( "LIFE", SelectPage "/LIFE" )
         , ( "CLOCK", ToggleClock )
+        , ( "MSG", ToggleContactForm )
         ]
 
 

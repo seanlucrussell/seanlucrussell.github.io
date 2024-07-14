@@ -3,8 +3,8 @@ module Pages.Navigation exposing (..)
 import Components exposing (heading)
 import Css exposing (center, em, fontFamilies, fontSize, pct, right, textAlign, width)
 import Date exposing (Date, format)
-import Html.Styled exposing (Html, a, article, div, h2, i, p, table, td, text, tr)
-import Html.Styled.Attributes exposing (css, href)
+import Html.Styled exposing (Html, a, article, div, h2, h4, i, p, table, td, text, tr)
+import Html.Styled.Attributes exposing (css, href, style)
 import List exposing (map, sortWith)
 import Pages.GameOfLife
 import Pages.RecursionSchemes
@@ -16,17 +16,14 @@ navigationPage : Html msg
 navigationPage =
     article []
         [ heading (text "Navigation")
-        , p []
-            [ text "My name is Sean Luc Russell. Remember the name, for it shall soon spread across the lands and all shall sing my praises. You are a visitor to my website. Welcome."
-            ]
-        , h2 [] [ text "Bio" ]
-        , p [] [ text "Ahh who am I? Born in MI, moved to CO when young. Studied CS and minored in math. Should have majored in math, but didn't realize how much I liked it till too late. Took all the AI courses I could in college, including one graduate course. Ended up being in charge of the whole group even though I was the only undergrad there (perhaps the only undergrad in the whole course)" ]
-        , p [] [ text "TBH my interests are all over the place, so I'm not going to pretend to be exhaustive. My main goal in life is to be right about everything all the time, which means that I have to know a lot of things. It's a work in progress. So rather than write a misleading bio that gives you an entirely too narrow view of who I am, I'll let you read the random nonsense I write and come to your own conclusions about my true nature." ]
-        , p [] [ text "I am a man of modest ambition. All I want is to be right about everything all of the time." ]
+        , p [] [ text "Hi! Welcome! Come on in. Welcome to the personal website for Sean Luc Russell. I hope we find you well on your visit." ]
+        , p [] [ text "If this is your first time here let me show you around. At the top right of every page we have a navigation link. This will help you get back here. Use it if you get lost. We also have a contact link in case you want to send an email to Mr. Russell. And below we have a collection of all the publications on this blog, ordered chronologically." ]
+        , p [] [ text "I can't tell you if we have what you are looking for here. I'm not sure myself what you might find in the pages below. Mr. Russell is a fairly ordinary person, but then again ordinary people can say remarkable things. Stay as long as you'd like, have a look around. Who knows? Maybe you'll find exactly what you need here." ]
+        , p [] [ text "Thanks for dropping in!" ]
+        , h2 [ css [ textAlign center ] ] [ text "Pages" ]
         , table
             [ css [ fontFamilies [ "courier" ], width (pct 100) ] ]
             (map navRow pageList)
-        , div [ css [ textAlign center ] ] [ i [ css [ fontSize (em 0.8) ] ] [ text "fig 1.1: Random blog posts" ] ]
         ]
 
 
@@ -45,4 +42,4 @@ pageList =
 
 navRow : Article -> Html msg
 navRow pageInfo =
-    tr [] [ td [] [ a [ href pageInfo.primaryUrl ] [ text pageInfo.title ] ], td [ css [ textAlign right ] ] [ text (format "MMM dd y" pageInfo.publicationDate) ] ]
+    tr [ style "text-wrap" "balance" ] [ td [] [ a [ href pageInfo.primaryUrl ] [ text pageInfo.title ] ], td [ css [ textAlign right ] ] [ text (format "MMM dd y" pageInfo.publicationDate) ] ]

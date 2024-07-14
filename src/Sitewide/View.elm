@@ -31,25 +31,25 @@ view m =
                 [ navBar m
                 , div
                     [ css
-                        [ transition [ Transitions.height 300 ]
+                        [ transition [ Transitions.height 400 ]
                         , height
                             (em
                                 (if m.contactInfoIsVisible then
-                                    2
+                                    2.4
 
                                  else
                                     0
                                 )
                             )
-                        , overflow hidden
-                        , margin auto
+                        , overflowY hidden
+                        , displayFlex
+                        , justifyContent center
+                        , alignItems center
                         , textAlign center
                         , fontFamilies [ "courier" ]
-
-                        -- , textAlign right
                         ]
                     ]
-                    [ text "EMAIL ME AT ", a [ href "mailto:seanlucrussell@gmail.com" ] [ text "seanlucrussell@gmail.com" ] ]
+                    [ span [] [ text "EMAIL ME AT ", a [ href "mailto:seanlucrussell@gmail.com" ] [ text "seanlucrussell@gmail.com" ] ] ]
                 , (urlMap m.currentPage).view m
                 ]
             )

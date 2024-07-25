@@ -5,6 +5,7 @@ import Pages.GameOfLife
 import Pages.Missing
 import Pages.Navigation
 import Pages.RecursionSchemes
+import Pages.Test
 import Pages.TheGutsOfGit
 import Platform.Cmd as Cmd
 import Sitewide.Types exposing (Page, SitewideModel, SitewideMsg)
@@ -32,6 +33,9 @@ urlMap s =
 
         "/LIFE" ->
             Pages.GameOfLife.page
+
+        "/TEST" ->
+            Pages.Test.page
 
         _ ->
             staticPage (always Pages.Missing.missing)

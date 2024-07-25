@@ -4,21 +4,36 @@ import Browser exposing (UrlRequest(..))
 import Browser.Navigation as Navigation
 import Char exposing (toUpper)
 import Css exposing (..)
-import Dict exposing (Dict)
 import Sitewide.Routes exposing (urlMap)
 import Sitewide.Types exposing (..)
 
 
-commandMap : SitewideModel -> Dict String SitewideMsg
-commandMap _ =
-    Dict.fromList
-        [ ( "NAV", SelectPage "/NAV" )
-        , ( "REC", SelectPage "/REC" )
-        , ( "GOG", SelectPage "/GOG" )
-        , ( "LIFE", SelectPage "/LIFE" )
-        , ( "CLOCK", ToggleClock )
-        , ( "MSG", ToggleContactForm )
-        ]
+commandInterpreter : SitewideModel -> String -> Maybe SitewideMsg
+commandInterpreter _ s =
+    case s of
+        "NAV" ->
+            Just (SelectPage "/NAV")
+
+        "REC" ->
+            Just (SelectPage "/REC")
+
+        "GOG" ->
+            Just (SelectPage "/GOG")
+
+        "LIFE" ->
+            Just (SelectPage "/LIFE")
+
+        "TEST" ->
+            Just (SelectPage "/TEST")
+
+        "CLOCK" ->
+            Just ToggleClock
+
+        "MSG" ->
+            Just ToggleContactForm
+
+        _ ->
+            Nothing
 
 
 intervalCount : Float -> Float -> Int
@@ -45,7 +60,7 @@ update message model =
             ( { model | commandText = t }, Cmd.none )
 
         CommandSubmitted ->
-            case Dict.get (String.map toUpper model.commandText) (commandMap model) of
+            case commandInterpreter model (String.map toUpper model.commandText) of
                 Just cmd ->
                     update cmd { model | commandText = "" }
 

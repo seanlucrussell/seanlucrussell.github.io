@@ -5565,70 +5565,33 @@ var $author$project$Sitewide$Types$SelectPage = function (a) {
 };
 var $author$project$Sitewide$Types$ToggleClock = {$: 6};
 var $author$project$Sitewide$Types$ToggleContactForm = {$: 7};
-var $elm$core$Dict$fromList = function (assocs) {
-	return A3(
-		$elm$core$List$foldl,
-		F2(
-			function (_v0, dict) {
-				var key = _v0.a;
-				var value = _v0.b;
-				return A3($elm$core$Dict$insert, key, value, dict);
-			}),
-		$elm$core$Dict$empty,
-		assocs);
-};
-var $author$project$Sitewide$Update$commandMap = function (_v0) {
-	return $elm$core$Dict$fromList(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'NAV',
-				$author$project$Sitewide$Types$SelectPage('/NAV')),
-				_Utils_Tuple2(
-				'REC',
-				$author$project$Sitewide$Types$SelectPage('/REC')),
-				_Utils_Tuple2(
-				'GOG',
-				$author$project$Sitewide$Types$SelectPage('/GOG')),
-				_Utils_Tuple2(
-				'LIFE',
-				$author$project$Sitewide$Types$SelectPage('/LIFE')),
-				_Utils_Tuple2('CLOCK', $author$project$Sitewide$Types$ToggleClock),
-				_Utils_Tuple2('MSG', $author$project$Sitewide$Types$ToggleContactForm)
-			]));
-};
-var $elm$core$Basics$ge = _Utils_ge;
-var $elm$core$Dict$get = F2(
-	function (targetKey, dict) {
-		get:
-		while (true) {
-			if (dict.$ === -2) {
+var $author$project$Sitewide$Update$commandInterpreter = F2(
+	function (_v0, s) {
+		switch (s) {
+			case 'NAV':
+				return $elm$core$Maybe$Just(
+					$author$project$Sitewide$Types$SelectPage('/NAV'));
+			case 'REC':
+				return $elm$core$Maybe$Just(
+					$author$project$Sitewide$Types$SelectPage('/REC'));
+			case 'GOG':
+				return $elm$core$Maybe$Just(
+					$author$project$Sitewide$Types$SelectPage('/GOG'));
+			case 'LIFE':
+				return $elm$core$Maybe$Just(
+					$author$project$Sitewide$Types$SelectPage('/LIFE'));
+			case 'TEST':
+				return $elm$core$Maybe$Just(
+					$author$project$Sitewide$Types$SelectPage('/TEST'));
+			case 'CLOCK':
+				return $elm$core$Maybe$Just($author$project$Sitewide$Types$ToggleClock);
+			case 'MSG':
+				return $elm$core$Maybe$Just($author$project$Sitewide$Types$ToggleContactForm);
+			default:
 				return $elm$core$Maybe$Nothing;
-			} else {
-				var key = dict.b;
-				var value = dict.c;
-				var left = dict.d;
-				var right = dict.e;
-				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
-				switch (_v1) {
-					case 0:
-						var $temp$targetKey = targetKey,
-							$temp$dict = left;
-						targetKey = $temp$targetKey;
-						dict = $temp$dict;
-						continue get;
-					case 1:
-						return $elm$core$Maybe$Just(value);
-					default:
-						var $temp$targetKey = targetKey,
-							$temp$dict = right;
-						targetKey = $temp$targetKey;
-						dict = $temp$dict;
-						continue get;
-				}
-			}
 		}
 	});
+var $elm$core$Basics$ge = _Utils_ge;
 var $author$project$Sitewide$Update$intervalCount = F2(
 	function (time, intervalDuration) {
 		return $elm$core$Basics$floor(time / intervalDuration);
@@ -9183,6 +9146,37 @@ var $author$project$Extra$GameOfLife$Diagrams$drawCell = F2(
 			_List_Nil);
 	});
 var $rtfeldman$elm_css$Svg$Styled$g = $rtfeldman$elm_css$Svg$Styled$node('g');
+var $elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === -2) {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
+				switch (_v1) {
+					case 0:
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 1:
+						return $elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
+	});
 var $elm$core$Dict$member = F2(
 	function (key, dict) {
 		var _v0 = A2($elm$core$Dict$get, key, dict);
@@ -12137,6 +12131,297 @@ var $author$project$Pages$RecursionSchemes$page = {
 				]));
 	}
 };
+var $rtfeldman$elm_css$Svg$Styled$line = $rtfeldman$elm_css$Svg$Styled$node('line');
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $rtfeldman$elm_css$Svg$Styled$Attributes$x1 = $rtfeldman$elm_css$VirtualDom$Styled$attribute('x1');
+var $rtfeldman$elm_css$Svg$Styled$Attributes$x2 = $rtfeldman$elm_css$VirtualDom$Styled$attribute('x2');
+var $rtfeldman$elm_css$Svg$Styled$Attributes$y1 = $rtfeldman$elm_css$VirtualDom$Styled$attribute('y1');
+var $rtfeldman$elm_css$Svg$Styled$Attributes$y2 = $rtfeldman$elm_css$VirtualDom$Styled$attribute('y2');
+var $author$project$Pages$Test$ln = F2(
+	function (start, end) {
+		return A2(
+			$rtfeldman$elm_css$Svg$Styled$line,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Svg$Styled$Attributes$x1(
+					$elm$core$String$fromFloat(start.a)),
+					$rtfeldman$elm_css$Svg$Styled$Attributes$y1(
+					$elm$core$String$fromFloat(start.b)),
+					$rtfeldman$elm_css$Svg$Styled$Attributes$x2(
+					$elm$core$String$fromFloat(end.a)),
+					$rtfeldman$elm_css$Svg$Styled$Attributes$y2(
+					$elm$core$String$fromFloat(end.b)),
+					$rtfeldman$elm_css$Svg$Styled$Attributes$stroke('black'),
+					$rtfeldman$elm_css$Svg$Styled$Attributes$strokeWidth('0.1')
+				]),
+			_List_Nil);
+	});
+var $author$project$Pages$Test$lln = F3(
+	function (sx, sy, len) {
+		return A2(
+			$author$project$Pages$Test$ln,
+			_Utils_Tuple2(sx, sy),
+			_Utils_Tuple2(sx - len, sy + len));
+	});
+var $author$project$Pages$Test$rln = F3(
+	function (sx, sy, len) {
+		return A2(
+			$author$project$Pages$Test$ln,
+			_Utils_Tuple2(sx, sy),
+			_Utils_Tuple2(sx + len, sy + len));
+	});
+var $author$project$Pages$Test$drawTree = F4(
+	function (tree, len, x, y) {
+		if (!tree.$) {
+			return _List_Nil;
+		} else {
+			var l = tree.a;
+			var r = tree.b;
+			return _Utils_ap(
+				_List_fromArray(
+					[
+						A3($author$project$Pages$Test$rln, x, y, len),
+						A3($author$project$Pages$Test$lln, x, y, len)
+					]),
+				_Utils_ap(
+					A4($author$project$Pages$Test$drawTree, l, len * 0.4, x - len, y + len),
+					A4($author$project$Pages$Test$drawTree, r, len * 0.4, x + len, y + len)));
+		}
+	});
+var $author$project$Pages$Test$B = F2(
+	function (a, b) {
+		return {$: 1, a: a, b: b};
+	});
+var $author$project$Pages$Test$L = {$: 0};
+var $author$project$Pages$Test$numToTree = function (n) {
+	switch (n) {
+		case 0:
+			return $author$project$Pages$Test$L;
+		case 1:
+			return A2($author$project$Pages$Test$B, $author$project$Pages$Test$L, $author$project$Pages$Test$L);
+		default:
+			return A2(
+				$author$project$Pages$Test$B,
+				$author$project$Pages$Test$numToTree(n - 1),
+				$author$project$Pages$Test$numToTree(n - 2));
+	}
+};
+var $elm$core$Basics$cos = _Basics_cos;
+var $elm$core$Basics$pi = _Basics_pi;
+var $elm$core$Basics$sin = _Basics_sin;
+var $author$project$Pages$Test$circleCoordinateMap = F3(
+	function (scale, m, n) {
+		var angle = ((2 * $elm$core$Basics$pi) * n) / m;
+		return _Utils_Tuple2(
+			50 + (scale * $elm$core$Basics$cos(angle)),
+			50 + (scale * $elm$core$Basics$sin(angle)));
+	});
+var $author$project$Pages$Test$cartesianProduct = F2(
+	function (la, lb) {
+		return A2(
+			$elm$core$List$concatMap,
+			function (x) {
+				return A2(
+					$elm$core$List$map,
+					function (y) {
+						return _Utils_Tuple2(x, y);
+					},
+					lb);
+			},
+			la);
+	});
+var $author$project$Pages$Test$drawGraph = F3(
+	function (vertexIterator, vertexRenderer, edgeRenderer) {
+		return _Utils_ap(
+			A2($elm$core$List$concatMap, vertexRenderer, vertexIterator),
+			A2(
+				$elm$core$List$concatMap,
+				function (_v0) {
+					var start = _v0.a;
+					var end = _v0.b;
+					return A2(edgeRenderer, start, end);
+				},
+				A2($author$project$Pages$Test$cartesianProduct, vertexIterator, vertexIterator)));
+	});
+var $author$project$Pages$Test$renderEdge = F4(
+	function (graphIndicator, coordinateMap, startVertex, endVertex) {
+		return A2(graphIndicator, startVertex, endVertex) ? _List_fromArray(
+			[
+				A2(
+				$author$project$Pages$Test$ln,
+				coordinateMap(startVertex),
+				coordinateMap(endVertex))
+			]) : _List_Nil;
+	});
+var $author$project$Pages$Test$testIndicator = F2(
+	function (x, y) {
+		return !(y % x);
+	});
+var $author$project$Pages$Test$testVertexRenderer = F2(
+	function (coordinateMap, n) {
+		return _List_Nil;
+	});
+var $author$project$Pages$Test$sampleGraphic = function () {
+	var top = 400;
+	return A3(
+		$author$project$Pages$Test$drawGraph,
+		A2($elm$core$List$range, 2, top),
+		$author$project$Pages$Test$testVertexRenderer(
+			A2($author$project$Pages$Test$circleCoordinateMap, 47, top - 1)),
+		A2(
+			$author$project$Pages$Test$renderEdge,
+			$author$project$Pages$Test$testIndicator,
+			A2($author$project$Pages$Test$circleCoordinateMap, 49, top - 1)));
+}();
+var $author$project$Pages$Test$coordinatesList = _List_fromArray(
+	[
+		_Utils_Tuple2(55, 23),
+		_Utils_Tuple2(43, 12),
+		_Utils_Tuple2(93, 23),
+		_Utils_Tuple2(77, 77),
+		_Utils_Tuple2(54, 45)
+	]);
+var $author$project$Pages$Test$indices = A2(
+	$elm$core$List$range,
+	0,
+	$elm$core$List$length($author$project$Pages$Test$coordinatesList));
+var $author$project$Pages$Test$allNodePairs = A2(
+	$elm$core$List$concatMap,
+	function (x) {
+		return A2(
+			$elm$core$List$map,
+			function (y) {
+				return _Utils_Tuple2(x, y);
+			},
+			$author$project$Pages$Test$indices);
+	},
+	$author$project$Pages$Test$indices);
+var $author$project$Pages$Test$connectionsList = _List_fromArray(
+	[
+		_List_fromArray(
+		[1, 0]),
+		_List_fromArray(
+		[1, 4]),
+		_List_fromArray(
+		[2, 4]),
+		_List_fromArray(
+		[1, 2]),
+		_List_fromArray(
+		[3, 4]),
+		_List_fromArray(
+		[1, 3])
+	]);
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
+var $author$project$Pages$Test$connected = F2(
+	function (n, m) {
+		return A2(
+			$elm$core$List$member,
+			$elm$core$Set$fromList(
+				_List_fromArray(
+					[n, m])),
+			A2($elm$core$List$map, $elm$core$Set$fromList, $author$project$Pages$Test$connectionsList));
+	});
+var $author$project$Pages$Test$allConnections = A2(
+	$elm$core$List$filter,
+	function (_v0) {
+		var x = _v0.a;
+		var y = _v0.b;
+		return A2($author$project$Pages$Test$connected, x, y);
+	},
+	$author$project$Pages$Test$allNodePairs);
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $author$project$Pages$Test$coordinates = function (n) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		_Utils_Tuple2(0, 0),
+		$elm$core$List$head(
+			A2($elm$core$List$drop, n, $author$project$Pages$Test$coordinatesList)));
+};
+var $author$project$Pages$Test$drawConnection = F2(
+	function (start, end) {
+		return A2(
+			$author$project$Pages$Test$ln,
+			$author$project$Pages$Test$coordinates(start),
+			$author$project$Pages$Test$coordinates(end));
+	});
+var $author$project$Pages$Test$viewNetwork = A2(
+	$rtfeldman$elm_css$Svg$Styled$svg,
+	_List_fromArray(
+		[
+			$rtfeldman$elm_css$Svg$Styled$Attributes$viewBox('0 0 100 100')
+		]),
+	A2(
+		$elm$core$List$map,
+		function (_v0) {
+			var x = _v0.a;
+			var y = _v0.b;
+			return A2($author$project$Pages$Test$drawConnection, x, y);
+		},
+		$author$project$Pages$Test$allConnections));
+var $author$project$Pages$Test$page = {
+	cX: F2(
+		function (_v0, b) {
+			return _Utils_Tuple2(b, $elm$core$Platform$Cmd$none);
+		}),
+	c_: $elm$core$Basics$always(
+		A2(
+			$rtfeldman$elm_css$Html$Styled$div,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$rtfeldman$elm_css$Svg$Styled$svg,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Svg$Styled$Attributes$viewBox('0 0 100 100')
+						]),
+					$author$project$Pages$Test$sampleGraphic),
+					$author$project$Pages$Test$viewNetwork,
+					A2(
+					$rtfeldman$elm_css$Svg$Styled$svg,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Svg$Styled$Attributes$viewBox('0 0 100 100')
+						]),
+					A4(
+						$author$project$Pages$Test$drawTree,
+						$author$project$Pages$Test$numToTree(14),
+						25,
+						50,
+						20))
+				])))
+};
 var $rtfeldman$elm_css$Html$Styled$Attributes$alt = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('alt');
 var $rtfeldman$elm_css$Html$Styled$img = $rtfeldman$elm_css$Html$Styled$node('img');
 var $rtfeldman$elm_css$Html$Styled$Attributes$src = function (url) {
@@ -12733,6 +13018,8 @@ var $author$project$Sitewide$Routes$urlMap = function (s) {
 			return $author$project$Pages$RecursionSchemes$page;
 		case '/LIFE':
 			return $author$project$Pages$GameOfLife$page;
+		case '/TEST':
+			return $author$project$Pages$Test$page;
 		default:
 			return $author$project$Sitewide$Routes$staticPage(
 				$elm$core$Basics$always($author$project$Pages$Missing$missing));
@@ -12780,9 +13067,9 @@ var $author$project$Sitewide$Update$update = F2(
 						$elm$core$Platform$Cmd$none);
 				case 4:
 					var _v1 = A2(
-						$elm$core$Dict$get,
-						A2($elm$core$String$map, $elm$core$Char$toUpper, model.ct),
-						$author$project$Sitewide$Update$commandMap(model));
+						$author$project$Sitewide$Update$commandInterpreter,
+						model,
+						A2($elm$core$String$map, $elm$core$Char$toUpper, model.ct));
 					if (!_v1.$) {
 						var cmd = _v1.a;
 						var $temp$message = cmd,

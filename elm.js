@@ -8983,7 +8983,7 @@ var $author$project$Pages$Navigation$navigationPage = A2(
 			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('Hi! Welcome! Come on in. Welcome to the personal website for Sean Luc Russell. I hope we find you well on your visit.')
+					$rtfeldman$elm_css$Html$Styled$text('Hi! Welcome! Come on in. Welcome to the personal website for Sean Luc Russell. Glad you found us.')
 				])),
 			A2(
 			$rtfeldman$elm_css$Html$Styled$p,
@@ -8997,7 +8997,7 @@ var $author$project$Pages$Navigation$navigationPage = A2(
 			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('I can\'t tell you if we have what you are looking for here. I\'m not sure myself what you might find in the pages below. Mr. Russell is a fairly ordinary person, but then again ordinary people can say remarkable things. Stay as long as you\'d like, have a look around. Who knows? Maybe you\'ll find exactly what you need here.')
+					$rtfeldman$elm_css$Html$Styled$text('I can\'t tell you if we have what you are looking for here. I\'m not sure myself what you might find in the pages below. The precise purpose of this site is a work in progress. But we are happy you are here, so stay as long as you\'d like and have a look around. Who knows? Maybe you\'ll find something that interests you.')
 				])),
 			A2(
 			$rtfeldman$elm_css$Html$Styled$p,

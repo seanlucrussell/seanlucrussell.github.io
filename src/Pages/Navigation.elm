@@ -16,9 +16,9 @@ navigationPage : Html msg
 navigationPage =
     article []
         [ heading (text "Navigation")
-        , p [] [ text "Hi! Welcome! Come on in. Welcome to the personal website for Sean Luc Russell. I hope we find you well on your visit." ]
+        , p [] [ text "Hi! Welcome! Come on in. Welcome to the personal website for Sean Luc Russell. Glad you found us." ]
         , p [] [ text "If this is your first time here let me show you around. At the top right of every page we have a navigation link. This will help you get back here. Use it if you get lost. We also have a contact link in case you want to send an email to Mr. Russell. And below we have a collection of all the publications on this blog, ordered chronologically." ]
-        , p [] [ text "I can't tell you if we have what you are looking for here. I'm not sure myself what you might find in the pages below. Mr. Russell is a fairly ordinary person, but then again ordinary people can say remarkable things. Stay as long as you'd like, have a look around. Who knows? Maybe you'll find exactly what you need here." ]
+        , p [] [ text "I can't tell you if we have what you are looking for here. I'm not sure myself what you might find in the pages below. The precise purpose of this site is a work in progress. But we are happy you are here, so stay as long as you'd like and have a look around. Who knows? Maybe you'll find something that interests you." ]
         , p [] [ text "Thanks for dropping in!" ]
         , h2 [ css [ textAlign center ] ] [ text "Pages" ]
         , table

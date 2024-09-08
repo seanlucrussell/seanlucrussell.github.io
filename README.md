@@ -54,10 +54,10 @@ analytics are something to think about sometime. how would you wanna do that? ro
 ## pre-flight
 
 - [x] fix mobile scaling
-- [ ] write bio
+- [x] write bio
 - [x] better contact system
 - [ ] what do i do with local build?
-- [ ] beautify navigation / home page
+- [x] beautify navigation / home page
 - [ ] scan through pages, make sure there are not glaring errors
 - [x] rectify dates
 - [ ] confirm initial urls (develop scheme?)

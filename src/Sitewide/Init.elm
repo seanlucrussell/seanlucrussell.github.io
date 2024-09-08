@@ -3,6 +3,7 @@ module Sitewide.Init exposing (..)
 import Browser exposing (UrlRequest(..))
 import Browser.Navigation exposing (Key)
 import Extra.GameOfLife.App
+import Pages.Test
 import Sitewide.Types exposing (..)
 import Sitewide.Update exposing (update)
 import Url exposing (Url)
@@ -14,8 +15,9 @@ init _ url key =
         { key = key
         , currentPage = "/NAV"
         , commandText = ""
-        , gameOfLifeBoard = Extra.GameOfLife.App.initialBoard
         , time = 0
         , clockIsVisible = False
         , contactInfoIsVisible = False
+        , gameOfLifeBoard = Extra.GameOfLife.App.initialBoard
+        , testModel = Pages.Test.initialComplexList
         }

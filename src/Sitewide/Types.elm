@@ -18,6 +18,9 @@ type alias SitewideModel =
 
     -- game of life
     , gameOfLifeBoard : Extra.GameOfLife.GameOfLife.Board
+
+    -- test page
+    , testModel : List ( Float, Float )
     }
 
 

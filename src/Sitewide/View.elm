@@ -62,21 +62,22 @@ defaultStyles =
     css
         [ descendants
             [ typeSelector "code"
-                [ color (rgb 100 100 100)
-                , fontSize (em 0.8)
+                [ fontSize (em 0.7)
+
+                -- , color (rgb 80 80 80)
                 ]
             , typeSelector "pre"
                 [ overflow auto
                 , width (pct 90)
-                , backgroundColor (rgb 220 220 220)
+
+                -- , backgroundColor (rgb 240 240 240)
                 , padding2 (em 0.9) (pct 5)
-                , borderRadius (em 0.4)
                 ]
             , typeSelector "p"
                 [ paddingTop (em 0.4)
                 , paddingBottom (em 0.4)
                 ]
-            , typeSelector "svg"
+            , typeSelector "article>svg"
                 [ width (pct 90)
                 , padding2 (em 1.4) (pct 5)
                 ]

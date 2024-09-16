@@ -1,6 +1,7 @@
 module Sitewide.Routes exposing (..)
 
 import Html.Styled exposing (Html)
+import Pages.FunctionalLinearAlgebra
 import Pages.GameOfLife
 import Pages.Missing
 import Pages.Navigation
@@ -33,6 +34,9 @@ urlMap s =
 
         "/LIFE" ->
             Pages.GameOfLife.page
+
+        "/FNLINALG" ->
+            Pages.FunctionalLinearAlgebra.page
 
         "/TEST" ->
             Pages.Test.page

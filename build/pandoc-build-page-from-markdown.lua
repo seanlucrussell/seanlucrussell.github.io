@@ -23,6 +23,9 @@ local function inline_to_elm(inlines)
       table.insert(current_text, inline.text)
     elseif inline.t == "Space" then
       table.insert(current_text, " ")
+    elseif inline.t == "Math" then
+      flush_text()
+      table.insert(buffer, 'node "katex-expression" [ attribute "expression" "' .. escape_elm(inline.text) .. '"] []')
     elseif inline.t == "Code" then
       flush_text()
       table.insert(buffer, 'code [] [ text "' .. escape_elm(inline.text) .. '" ]')
@@ -42,7 +45,8 @@ local function inline_to_elm(inlines)
       flush_text()
       table.insert(buffer, inline_to_elm(inline.content))
       table.insert(current_text, '"')
-    -- Add more inline element handlers as needed
+    else
+      -- Add more inline element handlers as needed
     end
   end
   flush_text()
@@ -50,17 +54,11 @@ local function inline_to_elm(inlines)
 end
 
 function li_prefix(isFirst)
-  if isFirst then
-      return "    [ "
-    end
-    return "    , "
+  return isFirst and "    [ " or "    , "
 end
 
 function processBlock(i, block)
-
-  if block.t == "Para" then
-    return {', p [] [ ' .. inline_to_elm(block.content) .. ' ]'}
-  elseif block.t == "Header" then
+  if block.t == "Header" then
     return {', h' .. block.level .. ' [] [ ' .. inline_to_elm(block.content) .. ' ]'}
   elseif block.t == "BulletList" then
     local buffer = {}
@@ -89,9 +87,13 @@ function processBlock(i, block)
     else
       return {', pre [] [ code [] [ text "' .. escape_elm(block.text) .. '" ] ]'}
     end
+  elseif block.content[1].t == "Math" then
+      return {', node "katex-expression" [ attribute "katex-options" (Encode.encode 0 (Encode.object [ ( "displayMode", Encode.bool True ), ( "throwOnError", Encode.bool False ) ])), attribute "expression" "' .. escape_elm(block.content[1].text) .. '"] []'}
   elseif block.content[1].t == "Plain" and #block.content[1].content == 1 then
     local image = block.content[1].content[1];
     return {', img [ src "' .. image.src .. '", alt "' .. stringify(image.caption) .. '" ] []'}
+  elseif block.t == "Para" then
+    return {', p [] [ ' .. inline_to_elm(block.content) .. ' ]'}
   else
     error("Unhandled block of type " .. block.t);
   end
@@ -151,6 +153,7 @@ function Writer(doc, opts)
   table.insert(imports, 'import Date exposing (fromPosix)')
   table.insert(imports, 'import Html.Styled exposing (..)')
   table.insert(imports, 'import Html.Styled.Attributes exposing (..)')
+  table.insert(imports, 'import Json.Encode as Encode')
   table.insert(imports, 'import Sitewide.Types exposing (Article, Page)')
   table.insert(imports, 'import Time exposing (Month(..), millisToPosix, utc)')
   for _, lib in ipairs(metadata.imports) do

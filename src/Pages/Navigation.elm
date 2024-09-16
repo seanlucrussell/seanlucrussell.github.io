@@ -1,11 +1,12 @@
 module Pages.Navigation exposing (..)
 
 import Components exposing (heading)
-import Css exposing (center, em, fontFamilies, fontSize, pct, right, textAlign, width)
+import Css exposing (center, fontFamilies, pct, right, textAlign, width)
 import Date exposing (Date, format)
-import Html.Styled exposing (Html, a, article, div, h2, h4, i, p, table, td, text, tr)
+import Html.Styled exposing (Html, a, article, h2, p, table, td, text, tr)
 import Html.Styled.Attributes exposing (css, href, style)
 import List exposing (map, sortWith)
+import Pages.FunctionalLinearAlgebra
 import Pages.GameOfLife
 import Pages.RecursionSchemes
 import Pages.TheGutsOfGit
@@ -37,6 +38,7 @@ pageList =
         [ Pages.TheGutsOfGit.article
         , Pages.GameOfLife.article
         , Pages.RecursionSchemes.article
+        , Pages.FunctionalLinearAlgebra.article
         ]
 
 

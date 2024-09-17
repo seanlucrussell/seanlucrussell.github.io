@@ -66,7 +66,7 @@ eigenvalue_1, eigenvector_1 = power_iteration(A)
 A_deflated = deflate(A, eigenvalue_1, eigenvector_1)
 eigenvalue_2, eigenvector_2 = power_iteration(A_deflated)
 
-A = mfromlist([[4,4,2],[1,3,0],[2,0,3]])
+A = mfromlist([[4,1,2],[1,3,0],[2,0,3]])
 
 # display the results of our calculation
 def display(val, vec):

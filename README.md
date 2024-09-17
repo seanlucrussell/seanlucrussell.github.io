@@ -30,6 +30,8 @@ pandoc -t native pages/the-guts-of-git/the-guts-of-git.md
 date in format YYYY-MM-DD
 
 
+silly concept: to permit flexible mobile layouts, what if we pretty-printed all code blocks? this would be probably way too much to do manually but its a cool idea in theory. perhaps there is some way to support this
+
 need data on
 
 - url
@@ -50,6 +52,13 @@ elm-live src/Main.elm --host=10.0.0.119 --port=8001 --dir=docs/ --pushstate --st
 
 analytics are something to think about sometime. how would you wanna do that? roll your own? use off the shelf? idk.
 
+## KaTeX
+
+The KaTeX integration is decent, but could be better. Some brief notes here to keep things a little clear.
+
+We are using a system that defines custom `katex-expression` html elements. We import the necessary scripts in index.html and then the pandoc conversion emits them. there isn't really anything else to it, it works pretty well and is very simple. tbh whatever technology they are using for these html tags is really cool and i hope more things like it get adopted in the future. i guess stenciljs is their library? maybe check it out sometime. "web component" is another search term for ya.
+
+but idk how well supported this library i'm using will be so be prepared for an exit plan. it would probably be best to do some sort of backend server side rendering as part of the pandoc conversion process tbh.
 
 ## pre-flight
 

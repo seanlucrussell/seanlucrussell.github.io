@@ -45,7 +45,7 @@ mfromlist = lambda l: lambda i,j: l[i][j]
 vfromlist = lambda l: lambda i: l[i]
 ```
 
-This stuff is the basic linear algebra "library" in python 3. I only implemented the feature I needed to do the eigenvalue calculations, demonstrated below.
+This stuff is the basic linear algebra "library" in python 3. I only implemented the features I needed to do the eigenvalue calculations, demonstrated below.
 
 ```python
 # Eigenvalue/eigenvector calculation
@@ -80,7 +80,7 @@ display(eigenvalue_2, eigenvector_2)
 
 Let us discuss.
 
-First, you will notice we have got quite a lot of lambdas running about. Some may say that the code is not particularly "pythonic", but we can ignore those people. This is unmistakeably how the language was meant to be used.
+First, you will notice we have got quite a lot of lambdas running about. Some may say that the code is not particularly "pythonic", but we can ignore those people. This is unmistakably how the language was meant to be used.
 
 How so? Let us consider what a matrix "is". We often think about it as a grid of values.
 
@@ -119,10 +119,10 @@ To dip our toes in, let's look at scalar-vector multiplication.
 svmul = lambda s,v: lambda i: s * v(i)
 ```
 
-This is a function that takes a scalar `s` and a vector `v` (AKA a function from an index to a scalar) and returns a function from an index to a scalar (AKA a vector). If you look at this for a while you can probably see why it is equivalent to the more standard definition.
+This is a function that takes a scalar `s` and a vector `v` (AKA a function from an index to a scalar) and returns a function from an index `i` to a scalar (AKA a vector). If you look at this for a while you can probably see why it is equivalent to the more standard definition.
 
 $$
-(s \times \vec v)_i = s \times \vec v_i
+(s\vec v)_i = s(\vec v_i)
 $$
 
 We can do the same thing to define all the basic arithmetic operations on scalars, vectors, and matrices. In our library we use prefixes to identify the different operations, for example `mmadd` is matrix-matrix addition, `svmul` is scalar-vector multiplication, etc.
@@ -135,7 +135,7 @@ Fortunately this is not a fundamental weakness of this technique. I'm just lazy.
 
 But like I said I'm lazy so this will wait for another day.
 
-There is one other glaring issue that you will have noticed if you've tried running this code. It is quite horribly slow. This is because we aren't caching intermediate results. Every time we look up the value of some vector index, we are rerunning all the computations that describe that index. But once again this is possible to solve, and arguably even easier than the dimensionality thing I discussed before. A pretty brain-dead memoization of the core library makes it so our computer can barely churn through 7 iterations of the power iteration algorithm to basically instantly computing a thousand.
+There is one other glaring issue that you will have noticed if you've tried running this code. It is quite horribly slow. This is because we aren't caching intermediate results. Every time we look up the value of some vector index, we are rerunning all the computations that describe that index. But once again this is possible to solve, and arguably even easier than the dimensionality thing I discussed before. A pretty brain-dead memoization of the core library makes it so our computer that struggls to churn through 7 iterations of the power iteration algorithm will instantly compute a thousand iterations once memoized.
 
 ```python
 def memoize(f):
@@ -167,13 +167,13 @@ vfromlist = lambda l:
   memoize(lambda i: l[i])
 ```
 
-Substitude this memoized version of the library for the original without making any changes and see instant massive performance gains.
+Substitute this memoized version of the library for the original without making any changes and see instant massive performance gains.
 
 So this system totally works. Very cool. If you are like me you probably think this is cool enough on its own merits, but just to be explicit let us enumerate the reasons this approach might me interesting explicitly. As far as I've thought through there are three of them. First, portability. Second, simplicity. Third, insight.
 
 Starting with portability. You might find yourself wanting to perform some linear algebra in a place that is hostile to linear algebra. Maybe you are doing some in browser stuff with javascript and don't want to load a full library for some lightweight operations. Copy in twenty or so lines of code and you've got yourself a basic linear algebra system anywhere you like. This is a pretty narrow use case but it's still kind of fun.
 
-Second is simplicity. Many, many interesting matrix operations are expressed more naturally as functions to be quite honest. For example we can construct an identity matrix very cleanly using this functional style: `identity = lambda i,j: 1 if i == j else 0`. Technically in Python we could even use implicit boolean conversion to write this `identity = lambda i,j: i == j` but implicit casting like that gives me the creeps. Or suppose we want a constant vector - this is easily written as `vconstant = lambda n: lambda i: n`. Or perhaps we want to test two vectors for equality with `vequal = lambda v, w: contract(lambda k: abs(v(k) - w(k))) == 0`. We skipped defining the transpose of a matrix because we didn't need it, but if we did we could write `transpose = lambda m: lambda i,j: m(j,i)`. Because we are using such basic primitive operations it is easy to build up new and more exotic kinds of operations. Instead of having a million library functions to describe direct sums, constant matrices, pointwise nonlinear operations, etc etc etc, we can directly specify them ourselves. I'm a control freak so I find this to be a nice advantage of this style. If you are looking for heavily optimized linear algebra routines this is obviously not the correct style, but if you are looking to do more exploratory and experimental work the flexibility offered by this functional approach to linear algebra is pretty hard to beat, so far as I've seen.
+Second is simplicity. Many, many interesting matrix operations are expressed more naturally as functions to be quite honest. For example we can construct an identity matrix very cleanly using this functional style: `identity = lambda i,j: 1 if i == j else 0`. Technically in Python we could even use implicit boolean conversion to write this `identity = lambda i,j: i == j` but implicit casting like that gives me the creeps. Or suppose we want a constant vector - this is easily written as `vconstant = lambda n: lambda i: n`. Or perhaps we want to test two vectors for equality with `vequal = lambda v, w: contract(lambda k: abs(v(k) - w(k))) == 0`. We skipped defining the transpose of a matrix because we didn't need it, but if we did we could write `transpose = lambda m: lambda i,j: m(j,i)`. This concept also works particularly well to represent sparse matrices which could have considerable performance implications for the right contexts. And because we are using such basic primitive operations it is easy to build up new and more exotic kinds of operations. Instead of having a million library functions to describe direct sums, constant matrices, pointwise nonlinear operations, etc etc etc, we can directly specify them ourselves. I'm a control freak so I find this to be a nice advantage of this style. If you are looking for heavily optimized linear algebra routines this is obviously not the correct style, but if you are looking to do more exploratory and experimental work the flexibility offered by this functional approach to linear algebra is pretty hard to beat, so far as I've seen.
 
 This leads into the third benefit I'm aware of. Insight.
 

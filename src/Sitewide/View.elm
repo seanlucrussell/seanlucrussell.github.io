@@ -73,6 +73,7 @@ defaultStyles =
                 -- , backgroundColor (rgb 240 240 240)
                 , padding2 (em 0.9) (pct 5)
                 ]
+            , typeSelector ".katex" [ fontSize (em 1) ]
             , typeSelector "p"
                 [ paddingTop (em 0.4)
                 , paddingBottom (em 0.4)

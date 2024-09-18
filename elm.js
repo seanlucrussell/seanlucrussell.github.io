@@ -8983,6 +8983,15 @@ var $author$project$Pages$FunctionalLinearAlgebra$article = {
 		$elm$time$Time$millisToPosix(1726423200000)),
 	c0: 'Functional Linear Algebra'
 };
+var $author$project$Pages$FunctionalLinearAlgebraWithTypes$article = {
+	cN: 'FunctionalLinearAlgebraWithTypes',
+	cV: '/FNLINALGTYPED',
+	b_: A2(
+		$justinmimbs$date$Date$fromPosix,
+		$elm$time$Time$utc,
+		$elm$time$Time$millisToPosix(1726596000000)),
+	c0: 'Functional Linear Algebra, with Types'
+};
 var $author$project$Pages$GameOfLife$article = {
 	cN: 'GameOfLife',
 	cV: '/LIFE',
@@ -9024,7 +9033,7 @@ var $author$project$Pages$Navigation$pageList = A2(
 			return A2($justinmimbs$date$Date$compare, s.b_, r.b_);
 		}),
 	_List_fromArray(
-		[$author$project$Pages$TheGutsOfGit$article, $author$project$Pages$GameOfLife$article, $author$project$Pages$RecursionSchemes$article, $author$project$Pages$FunctionalLinearAlgebra$article]));
+		[$author$project$Pages$TheGutsOfGit$article, $author$project$Pages$GameOfLife$article, $author$project$Pages$RecursionSchemes$article, $author$project$Pages$FunctionalLinearAlgebra$article, $author$project$Pages$FunctionalLinearAlgebraWithTypes$article]));
 var $rtfeldman$elm_css$Html$Styled$table = $rtfeldman$elm_css$Html$Styled$node('table');
 var $author$project$Pages$Navigation$navigationPage = A2(
 	$rtfeldman$elm_css$Html$Styled$article,
@@ -9215,7 +9224,7 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 						[
 							$rtfeldman$elm_css$Html$Styled$text('This stuff is the basic linear algebra \"'),
 							$rtfeldman$elm_css$Html$Styled$text('library'),
-							$rtfeldman$elm_css$Html$Styled$text('\" in python 3. I only implemented the feature I needed to do the eigenvalue calculations, demonstrated below.')
+							$rtfeldman$elm_css$Html$Styled$text('\" in python 3. I only implemented the features I needed to do the eigenvalue calculations, demonstrated below.')
 						])),
 					A2(
 					$rtfeldman$elm_css$Html$Styled$pre,
@@ -9244,7 +9253,7 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 						[
 							$rtfeldman$elm_css$Html$Styled$text('First, you will notice we have got quite a lot of lambdas running about. Some may say that the code is not particularly \"'),
 							$rtfeldman$elm_css$Html$Styled$text('pythonic'),
-							$rtfeldman$elm_css$Html$Styled$text('\", but we can ignore those people. This is unmistakeably how the language was meant to be used.')
+							$rtfeldman$elm_css$Html$Styled$text('\", but we can ignore those people. This is unmistakably how the language was meant to be used.')
 						])),
 					A2(
 					$rtfeldman$elm_css$Html$Styled$p,
@@ -9399,7 +9408,15 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 								[
 									$rtfeldman$elm_css$Html$Styled$text('v')
 								])),
-							$rtfeldman$elm_css$Html$Styled$text(' (AKA a function from an index to a scalar) and returns a function from an index to a scalar (AKA a vector). If you look at this for a while you can probably see why it is equivalent to the more standard definition.')
+							$rtfeldman$elm_css$Html$Styled$text(' (AKA a function from an index to a scalar) and returns a function from an index '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('i')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' to a scalar (AKA a vector). If you look at this for a while you can probably see why it is equivalent to the more standard definition.')
 						])),
 					A3(
 					$rtfeldman$elm_css$Html$Styled$node,
@@ -9422,7 +9439,7 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 											'throwOnError',
 											$elm$json$Json$Encode$bool(false))
 										])))),
-							A2($rtfeldman$elm_css$Html$Styled$Attributes$attribute, 'expression', '\n(s \\times \\vec v)_i = s \\times \\vec v_i\n')
+							A2($rtfeldman$elm_css$Html$Styled$Attributes$attribute, 'expression', '\n(s\\vec v)_i = s(\\vec v_i)\n')
 						]),
 					_List_Nil),
 					A2(
@@ -9507,7 +9524,7 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('There is one other glaring issue that you will have noticed if you’ve tried running this code. It is quite horribly slow. This is because we aren’t caching intermediate results. Every time we look up the value of some vector index, we are rerunning all the computations that describe that index. But once again this is possible to solve, and arguably even easier than the dimensionality thing I discussed before. A pretty brain-dead memoization of the core library makes it so our computer can barely churn through 7 iterations of the power iteration algorithm to basically instantly computing a thousand.')
+							$rtfeldman$elm_css$Html$Styled$text('There is one other glaring issue that you will have noticed if you’ve tried running this code. It is quite horribly slow. This is because we aren’t caching intermediate results. Every time we look up the value of some vector index, we are rerunning all the computations that describe that index. But once again this is possible to solve, and arguably even easier than the dimensionality thing I discussed before. A pretty brain-dead memoization of the core library makes it so our computer that struggls to churn through 7 iterations of the power iteration algorithm will instantly compute a thousand iterations once memoized.')
 						])),
 					A2(
 					$rtfeldman$elm_css$Html$Styled$pre,
@@ -9527,7 +9544,7 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('Substitude this memoized version of the library for the original without making any changes and see instant massive performance gains.')
+							$rtfeldman$elm_css$Html$Styled$text('Substitute this memoized version of the library for the original without making any changes and see instant massive performance gains.')
 						])),
 					A2(
 					$rtfeldman$elm_css$Html$Styled$p,
@@ -9588,7 +9605,7 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 								[
 									$rtfeldman$elm_css$Html$Styled$text('transpose = lambda m: lambda i,j: m(j,i)')
 								])),
-							$rtfeldman$elm_css$Html$Styled$text('. Because we are using such basic primitive operations it is easy to build up new and more exotic kinds of operations. Instead of having a million library functions to describe direct sums, constant matrices, pointwise nonlinear operations, etc etc etc, we can directly specify them ourselves. I’m a control freak so I find this to be a nice advantage of this style. If you are looking for heavily optimized linear algebra routines this is obviously not the correct style, but if you are looking to do more exploratory and experimental work the flexibility offered by this functional approach to linear algebra is pretty hard to beat, so far as I’ve seen.')
+							$rtfeldman$elm_css$Html$Styled$text('. This concept also works particularly well to represent sparse matrices which could have considerable performance implications for the right contexts. And because we are using such basic primitive operations it is easy to build up new and more exotic kinds of operations. Instead of having a million library functions to describe direct sums, constant matrices, pointwise nonlinear operations, etc etc etc, we can directly specify them ourselves. I’m a control freak so I find this to be a nice advantage of this style. If you are looking for heavily optimized linear algebra routines this is obviously not the correct style, but if you are looking to do more exploratory and experimental work the flexibility offered by this functional approach to linear algebra is pretty hard to beat, so far as I’ve seen.')
 						])),
 					A2(
 					$rtfeldman$elm_css$Html$Styled$p,
@@ -9625,6 +9642,476 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 					_List_fromArray(
 						[
 							$rtfeldman$elm_css$Html$Styled$text('So there you have it! You are now in posession of a very weird approach to implementing linear algebra in any language that supports first class functions. Impress your friends, frighten your enemies, and awe the world with the power of functional linear algebra.')
+						]))
+				]));
+	}
+};
+var $rtfeldman$elm_css$Html$Styled$li = $rtfeldman$elm_css$Html$Styled$node('li');
+var $rtfeldman$elm_css$Html$Styled$ol = $rtfeldman$elm_css$Html$Styled$node('ol');
+var $author$project$Pages$FunctionalLinearAlgebraWithTypes$page = {
+	c1: F2(
+		function (_v0, model) {
+			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}),
+	c4: function (_v1) {
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$article,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$author$project$Components$blogHeading,
+					$rtfeldman$elm_css$Html$Styled$text('Functional Linear Algebra, with Types'),
+					$author$project$Pages$FunctionalLinearAlgebraWithTypes$article.b_),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('This is an appendix to '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$a,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('/FNLINALG')
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Functional Linear Algebra')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' that fills in one of the biggest gaps from that essay. If you haven’t read it, the premise is that I didn’t want to install numpy. Instead we talked over how we can represent vectors and matrices using functions from some set of labels (e.g. X, Y, Z or 0, 1, 2) to scalars. And with this representation we can write all sorts of operations pretty simply as higher order functions. If you want more details go read that article, I think it’s a pretty cool idea if I do say so myself.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('I alluded to a better system for representing dimensions in that essay. Some handwaving suggestions that \"'),
+							$rtfeldman$elm_css$Html$Styled$text('with the magic of types we can nicely deal with contractions over dimensions'),
+							$rtfeldman$elm_css$Html$Styled$text('\" and stuff like that. This appendix closes that loop by showing how to do this quite elegantly in Haskell. Porting this demonstration to other languages is clearly trivial and left as an exercise to the reader (I’m so sorry but I’m too dumb to figure it out myself).')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The only new piece of technology we will use is the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Data.Finite')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' module. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Data.Finite')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' uses some fancy Haskell stuff with type level natural numbers to provide an easy way to build finite sets of a given cardinality. For example the type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Finite 3')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' will contain the values '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('finite 0')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('finite 1')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', and '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('finite 2')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', and nothing else.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Crucially the module provides us a nice utility, '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('finites')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', that gives us an iterator over all elements of a particular finite set with a particular cardinality. If we were to evaluate '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('finites :: [Finite 4]')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' we would be yielded the result '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('[finite 0, finite 1, finite 2, finite 3]')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. This means that our types carry precisely the information needed to define iterators for the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('contract')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' function we were using last time.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('If that doesn’t make sense, don’t worry about it. Have some code instead.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('{-# LANGUAGE ScopedTypeVariables #-}\n{-# LANGUAGE DataKinds #-}\n{-# LANGUAGE TypeApplications #-}\n\nmodule Main where\n\nimport GHC.TypeLits\nimport Data.Finite\nimport Data.Maybe\nimport Data.List\nimport Control.Monad\n\ntype Vector a = Finite a -> Float\ntype Matrix a b = Finite a -> Finite b -> Float\n\ncontract :: forall a. KnownNat a => Vector a -> Float\ncontract f = sum (map f finites)\n\nmmadd :: Matrix a b -> Matrix a b -> Matrix a b\nmmadd m n i j = m i j + n i j\n\nmmmul :: forall a b c. (KnownNat a, KnownNat b, KnownNat c)\n  => Matrix a b -> Matrix b c -> Matrix a c\nmmmul m n i j = contract (\\k -> m i k * n k j)\n\nmvmul :: forall a b. (KnownNat a, KnownNat b)\n  => Matrix a b -> Vector b -> Vector a\nmvmul m v i = contract (\\k -> m i k * v k)\n\nsmmul :: Float -> Matrix a b -> Matrix a b\nsmmul s m i j = s * m i j\n\nsvmul :: Float -> Vector a -> Vector a\nsvmul s v i = s * v i\n\ndot :: forall a. KnownNat a => Vector a -> Vector a -> Float\ndot v w = contract (\\k -> v k * w k)\n\nmagnitude :: forall a. KnownNat a => Vector a -> Float\nmagnitude v = (contract (\\k -> (v k)**2))**0.5\n\nnormalize :: forall a. KnownNat a => Vector a -> Vector a\nnormalize v = svmul (1 / (magnitude v)) v\n\nouter :: Vector a -> Vector b -> Matrix a b\nouter v w i j = v i * w j\n\nvfromlist :: forall n. KnownNat n => [Float] -> Maybe (Vector n)\nvfromlist l = do\n  guard (length l == length (finites @n))\n  pure (\\i -> (l !! fromIntegral (getFinite i)))\n\nmfromlist :: forall n m. (KnownNat n, KnownNat m)\n  => [[Float]] -> Maybe (Matrix n m)\nmfromlist l = do\n  guard (length l == length (finites @n))\n  ls <- sequence (fmap vfromlist l)\n  pure (\\i -> (ls !! fromIntegral (getFinite i)))')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('This is what our linear algebra library looks like when translated into Haskell. If you were to cross reference it with the python implementation from the other post, you’d notice only a few key differences.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$ol,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Type annotations. The whole point is that we are trying to make this new scheme well typed, no? Most of the new lines here are type annotations. These annotations are mostly intuitive, though the '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('forall a.KnownNat a')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text(' stuff may be a bit perplexing. Just know that this universal quantification is how we pass around the type information that lets us write '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('contract')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text(' all nice like.')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('More complex conversions from lists to matrices and vectors. The python list conversion functions did no bounds checking, so we added some extra stuff to make the matrix conversions type safe.')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('The type aliases '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('Vector')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text(' and '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('Matrix')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text('. They are just aliases for functions!')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Perhaps the real star of the show, our new definitions for '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('contract')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text('. Notice how it no longer depends on some hard coded '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('dims')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text(' array floating around in the ether, but it also doesn’t require any new arguments? That’s the magic of our chosen library and the '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('finites')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text(' function. '),
+									A2(
+									$rtfeldman$elm_css$Html$Styled$code,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Html$Styled$text('finites')
+										])),
+									$rtfeldman$elm_css$Html$Styled$text(' lets us access the type level data we need to iterate over all the values of a given axis.')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Everything else in the library is a very straightforward translation from Python to Haskell.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('From here we rush through the remainder of the example from the original essay. Here we define our power iteration and deflation functions')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('powerIteration :: forall a. KnownNat a\n  => Vector a -> Matrix a a -> (Float, Vector a)\npowerIteration b0 m =\n  let\n    loop :: Int -> Vector a -> Vector a\n    loop 0 b\' = b\'\n    loop i b\' = (normalize (mvmul m (loop (i-1) b\')))\n    b :: Vector a\n    b = loop 5 b0\n    eigenvalue :: Float\n    eigenvalue = dot b (mvmul m b)\n  in (eigenvalue, b)\n\ndeflate :: forall a. KnownNat a\n  => Matrix a a -> Float -> Vector a -> Matrix a a\ndeflate m s v = mmadd m (smmul (-s / magnitude v) (outer v v))')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('You can read from the type signatures that we can only define these methods over a square matrix, since our functions operate on '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Matrix a a')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. And here is an example calculation using '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('powerIteration')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('deflate')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('a :: Matrix 3 3\nJust a = mfromlist [[4,1,2],[1,3,0],[2,0,3]]\n\nb0 :: Vector 3\nJust b0 = vfromlist([1,2,3])\n\ne1 :: (Float, Vector 3)\ne1 = powerIteration b0 a\na_deflated :: Matrix 3 3\na_deflated = deflate a (fst e1) (snd e1)\ne2 :: (Float, Vector 3)\ne2 = powerIteration b0 a_deflated\n\ndisplay :: (Float, Vector 3) -> String\ndisplay (eval, evec) =\n  \"λ: \"\n  ++ show eval\n  ++ \" \"\n  ++ intercalate \" \"\n       (map\n         (\\i -> show (getFinite i) ++ \": \" ++ show (evec i))\n         finites)\n\nmain :: IO ()\nmain = do putStrLn (display e1)\n          putStrLn (display e2)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Notice that we have lovely type level natural numbers on the type of '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('a')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. You won’t get confused when you see '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('a :: Matrix 3 3')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. It’s scientifically impossible. When we put everything together and run it we get the results that we hope for')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('λ: 5.7912016 0: 0.7802645 1: 0.28464365 2: 0.55692476\nλ: 2.9946988 0: -4.2912193e-2 1: 0.90928996 2: -0.41394478')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Isn’t this lovely? I think it is lovely. Our linear algebra system is perfectly well typed '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$em,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('and')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' we still have the incredible flexibiliy offered by defining matrices and vectors in terms of functions. Need an identity matrix? Here’s a perfectly typed identity matrix.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('identity :: Matrix a a\nidentity i j = if i == j then 1 else 0')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Too easy.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Before wrapping up, here is the full source code you can use to experiment with yourself.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('{-# LANGUAGE ScopedTypeVariables #-}\n{-# LANGUAGE DataKinds #-}\n{-# LANGUAGE TypeApplications #-}\n\nmodule Main where\n\nimport GHC.TypeLits\nimport Data.Finite\nimport Data.Maybe\nimport Data.List\nimport Control.Monad\n\ntype Vector a = Finite a -> Float\ntype Matrix a b = Finite a -> Finite b -> Float\n\ncontract :: forall a. KnownNat a => Vector a -> Float\ncontract f = sum (map f finites)\n\nmmadd :: Matrix a b -> Matrix a b -> Matrix a b\nmmadd m n i j = m i j + n i j\n\nmmmul :: forall a b c. (KnownNat a, KnownNat b, KnownNat c) => Matrix a b -> Matrix b c -> Matrix a c\nmmmul m n i j = contract (\\k -> m i k * n k j)\n\nmvmul :: forall a b. (KnownNat a, KnownNat b) => Matrix a b -> Vector b -> Vector a\nmvmul m v i = contract (\\k -> m i k * v k)\n\nsmmul :: Float -> Matrix a b -> Matrix a b\nsmmul s m i j = s * m i j\n\nsvmul :: Float -> Vector a -> Vector a\nsvmul s v i = s * v i\n\ndot :: forall a. KnownNat a => Vector a -> Vector a -> Float\ndot v w = contract (\\k -> v k * w k)\n\nmagnitude :: forall a. KnownNat a => Vector a -> Float\nmagnitude v = (contract (\\k -> (v k)**2))**0.5\n\nnormalize :: forall a. KnownNat a => Vector a -> Vector a\nnormalize v = svmul (1 / (magnitude v)) v\n\nouter :: Vector a -> Vector b -> Matrix a b\nouter v w i j = v i * w j\n\nvfromlist :: forall n. KnownNat n => [Float] -> Maybe (Vector n)\nvfromlist l = do\n  guard (length l == length (finites @n))\n  pure (\\i -> (l !! fromIntegral (getFinite i)))\n\nmfromlist :: forall n m. (KnownNat n, KnownNat m) => [[Float]] -> Maybe (Matrix n m)\nmfromlist l = do\n  guard (length l == length (finites @n))\n  ls <- sequence (fmap vfromlist l)\n  pure (\\i -> (ls !! fromIntegral (getFinite i)))\n\npowerIteration :: forall a. KnownNat a => Vector a -> Matrix a a -> (Float, Vector a)\npowerIteration b0 m =\n  let\n    loop :: Int -> Vector a -> Vector a\n    loop 0 b\' = b\'\n    loop i b\' = (normalize (mvmul m (loop (i-1) b\')))\n    b :: Vector a\n    b = loop 2 b0\n    eigenvalue :: Float\n    eigenvalue = dot b (mvmul m b)\n  in (eigenvalue, b)\n\ndeflate :: forall a. KnownNat a => Matrix a a -> Float -> Vector a -> Matrix a a\ndeflate m s v = mmadd m (smmul (-s / magnitude v) (outer v v))\n\na :: Matrix 3 3\nJust a = mfromlist [[4,1,2],[1,3,0],[2,0,3]]\n\nb0 :: Vector 3\nJust b0 = vfromlist([1,2,3])\n\ne1 :: (Float, Vector 3)\ne1 = powerIteration b0 a\na_deflated :: Matrix 3 3\na_deflated = deflate a (fst e1) (snd e1)\ne2 :: (Float, Vector 3)\ne2 = powerIteration b0 a_deflated\n\ndisplay :: (Float, Vector 3) -> String\ndisplay (eval, evec) = \"λ: \" ++ show eval ++ \" \" ++ intercalate \" \" (map (\\i -> show (getFinite i) ++ \": \" ++ show (evec i)) finites)\n\nidentity :: Matrix a a\nidentity i j = if i == j then 1 else 0\n\nmain :: IO ()\nmain = do putStrLn (display e1)\n          putStrLn (display e2)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('If you try running this code you will notice there is one very minor drawback to this implementation. Memoizing is unfortunately not as braindead simple in Haskell as it is in python, so i haven’t implemented it. I don’t even really have a good idea how to implement it yet in a way that sparks joy. Obviously this code '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$em,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('could')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' be memoized, but I’m not sure how to do it without sacrificing the semantic clarity we’ve gained from turning everything into functions. And if we lose the simplicity then we’ve lost a lot of the draw of this approach.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('So there is still work to do.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Nevertheless! We have from the original essay a fairly performant memoized implementation of functional linear algebra. And we have in this appendix a very nicely typed implementation of functional linear algebra. The technique works.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('And we still haven’t installed numpy.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Good job team.')
 						]))
 				]));
 	}
@@ -9962,7 +10449,6 @@ var $author$project$Extra$GameOfLife$Diagrams$cellsToCheckDiagram = function () 
 			]));
 }();
 var $rtfeldman$elm_css$Html$Styled$h3 = $rtfeldman$elm_css$Html$Styled$node('h3');
-var $rtfeldman$elm_css$Html$Styled$li = $rtfeldman$elm_css$Html$Styled$node('li');
 var $author$project$Extra$GameOfLife$Diagrams$livingNeighborsDiagram = function () {
 	var line4 = A2(
 		$rtfeldman$elm_css$Svg$Styled$g,
@@ -10191,7 +10677,6 @@ var $author$project$Extra$GameOfLife$Diagrams$nearDiagram = A2(
 					]))),
 			$author$project$Extra$GameOfLife$Diagrams$arrow(0.23)
 		]));
-var $rtfeldman$elm_css$Html$Styled$ol = $rtfeldman$elm_css$Html$Styled$node('ol');
 var $elm$core$Dict$getMin = function (dict) {
 	getMin:
 	while (true) {
@@ -13795,6 +14280,8 @@ var $author$project$Sitewide$Routes$urlMap = function (s) {
 			return $author$project$Pages$GameOfLife$page;
 		case '/FNLINALG':
 			return $author$project$Pages$FunctionalLinearAlgebra$page;
+		case '/FNLINALGTYPED':
+			return $author$project$Pages$FunctionalLinearAlgebraWithTypes$page;
 		case '/TEST':
 			return $author$project$Pages$Test$page;
 		default:
@@ -14496,6 +14983,14 @@ var $author$project$Sitewide$View$defaultStyles = $rtfeldman$elm_css$Html$Styled
 							$rtfeldman$elm_css$Css$padding2,
 							$rtfeldman$elm_css$Css$em(0.9),
 							$rtfeldman$elm_css$Css$pct(5))
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$typeSelector,
+					'.katex',
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$fontSize(
+							$rtfeldman$elm_css$Css$em(1))
 						])),
 					A2(
 					$rtfeldman$elm_css$Css$Global$typeSelector,

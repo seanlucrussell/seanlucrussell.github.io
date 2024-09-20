@@ -25,7 +25,7 @@ local function inline_to_elm(inlines)
       table.insert(current_text, " ")
     elseif inline.t == "Math" then
       flush_text()
-      table.insert(buffer, 'node "katex-expression" [ attribute "expression" "' .. escape_elm(inline.text) .. '"] []')
+      table.insert(buffer, 'node "katex-expression" [ attribute "katex-options" (Encode.encode 0 (Encode.object [ ( "displayMode", Encode.bool False ), ( "throwOnError", Encode.bool False ) ])), attribute "expression" "' .. escape_elm(inline.text) .. '"] []')
     elseif inline.t == "Code" then
       flush_text()
       table.insert(buffer, 'code [] [ text "' .. escape_elm(inline.text) .. '" ]')
@@ -133,11 +133,9 @@ function ReadMetadata(doc)
   else
     error("Expecting a primaryUrl for the page in the metadata")
   end
-  if doc.meta.dynamic then
-    metadata.dynamic = true
-  else
-    metadata.dynamic = false
-  end
+  -- ideally these parameters should be automatically detected from the document content itself, not loaded as metadata
+  metadata.dynamic = doc.meta.dynamic
+  metadata.math = doc.meta.math
   return metadata
 end
 
@@ -153,7 +151,9 @@ function Writer(doc, opts)
   table.insert(imports, 'import Date exposing (fromPosix)')
   table.insert(imports, 'import Html.Styled exposing (..)')
   table.insert(imports, 'import Html.Styled.Attributes exposing (..)')
-  table.insert(imports, 'import Json.Encode as Encode')
+  if metadata.math then 
+    table.insert(imports, 'import Json.Encode as Encode')
+  end
   table.insert(imports, 'import Sitewide.Types exposing (Article, Page)')
   table.insert(imports, 'import Time exposing (Month(..), millisToPosix, utc)')
   for _, lib in ipairs(metadata.imports) do

@@ -68,14 +68,14 @@ outer v w i j = v i * w j
 vfromlist :: forall n. KnownNat n => [Float] -> Maybe (Vector n)
 vfromlist l = do
   guard (length l == length (finites @n))
-  pure (\i -> (l !! fromIntegral (getFinite i)))
+  pure (\i -> l !! getFinite i)
 
 mfromlist :: forall n m. (KnownNat n, KnownNat m)
   => [[Float]] -> Maybe (Matrix n m)
 mfromlist l = do
   guard (length l == length (finites @n))
   ls <- sequence (fmap vfromlist l)
-  pure (\i -> (ls !! fromIntegral (getFinite i)))
+  pure (\i -> ls !! getFinite i)
 ```
 
 This is what our linear algebra library looks like when translated into Haskell. If you were to cross reference it with the python implementation from the other post, you'd notice only a few key differences.
@@ -96,7 +96,7 @@ powerIteration b0 m =
   let
     loop :: Int -> Vector a -> Vector a
     loop 0 b' = b'
-    loop i b' = (normalize (mvmul m (loop (i-1) b')))
+    loop i b' = loop (i-1) (normalize (mvmul m b'))
     b :: Vector a
     b = loop 5 b0
     eigenvalue :: Float
@@ -206,22 +206,22 @@ outer v w i j = v i * w j
 vfromlist :: forall n. KnownNat n => [Float] -> Maybe (Vector n)
 vfromlist l = do
   guard (length l == length (finites @n))
-  pure (\i -> (l !! fromIntegral (getFinite i)))
+  pure (\i -> l !! getFinite i)
 
 mfromlist :: forall n m. (KnownNat n, KnownNat m) => [[Float]] -> Maybe (Matrix n m)
 mfromlist l = do
   guard (length l == length (finites @n))
   ls <- sequence (fmap vfromlist l)
-  pure (\i -> (ls !! fromIntegral (getFinite i)))
+  pure (\i -> ls !! getFinite i)
 
 powerIteration :: forall a. KnownNat a => Vector a -> Matrix a a -> (Float, Vector a)
 powerIteration b0 m =
   let
     loop :: Int -> Vector a -> Vector a
     loop 0 b' = b'
-    loop i b' = (normalize (mvmul m (loop (i-1) b')))
+    loop i b' = loop (i-1) (normalize (mvmul m b'))
     b :: Vector a
-    b = loop 2 b0
+    b = loop 5 b0
     eigenvalue :: Float
     eigenvalue = dot b (mvmul m b)
   in (eigenvalue, b)
@@ -245,9 +245,6 @@ e2 = powerIteration b0 a_deflated
 display :: (Float, Vector 3) -> String
 display (eval, evec) = "λ: " ++ show eval ++ " " ++ intercalate " " (map (\i -> show (getFinite i) ++ ": " ++ show (evec i)) finites)
 
-identity :: Matrix a a
-identity i j = if i == j then 1 else 0
-
 main :: IO ()
 main = do putStrLn (display e1)
           putStrLn (display e2)
@@ -262,3 +259,5 @@ Nevertheless! We have from the original essay a fairly performant memoized imple
 And we still haven't installed numpy.
 
 Good job team.
+
+*For more, check out the second appendix to this essay: [Functional Linear Algebra, Memoized](/FNLINALGMEMO)*

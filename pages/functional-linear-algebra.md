@@ -2,6 +2,7 @@
 moduleName: FunctionalLinearAlgebra
 primaryUrl: "/FNLINALG"
 static: True
+math: True
 date: 2024-09-15
 ---
 
@@ -9,7 +10,7 @@ date: 2024-09-15
 
 Today we are learning how to implement all the basic operations of linear algebra for ourselves! Why? Well I was trying to learn how to find eigenvalues of a matrix today but the computer I was working on didn't have numpy installed already and I was to lazy to set it up so I decided to implement all the linear algebra operations I needed from scratch. So now you are in this with me too.
 
-Also we are going to do it in a super weird way. I've been thinking of a way to express linear algebra using a more functional style, something vaguely reminiscent of the church encoding for data. If you don't know what that is don't worry about it, you can look it up after reading. Not a prerequisite at all. I just mean that we are going to be using functions to represent matrices and vectors instead of using lists.
+Also we are going to do it in a super weird way. I've been thinking of a way to express linear algebra using a more functional style, something vaguely reminiscent of the church encoding for data. If you don't know what that is don't worry about it, you can look it up after reading. Not a prerequisite at all. I just mean that we are going to be using functions to represent data, in this case matrices and vectors, instead of using lists.
 
 I don't feel like delaying the big reveal, so here is the code.
 
@@ -182,3 +183,5 @@ I'm a firm believer that seeing the same concepts from dozens of different angle
 But perhaps more than simply seeing things from a different perspective we gain insight by tinkering and experimentation. Like I said, this approach is extremely flexible. It took me just a few hours to develop this entire approach from scratch and implement the power iteration algorithm in it. Next time I will be even faster. There is no better educational technique than hands-on experimentation and the functional linear algebra approach is the best approach I've ever come across for doing it yourself.
 
 So there you have it! You are now in posession of a very weird approach to implementing linear algebra in any language that supports first class functions. Impress your friends, frighten your enemies, and awe the world with the power of functional linear algebra.
+
+*For more, check out the appendices to this essay: [Functional Linear Algebra, With Types](/FNLINALGTYPED) and [Functional Linear Algebra, Memoized](/FNLINALGMEMO)*

@@ -7,6 +7,7 @@ import Html.Styled exposing (Html, a, article, h2, p, table, td, text, tr)
 import Html.Styled.Attributes exposing (css, href, style)
 import List exposing (map, sortWith)
 import Pages.FunctionalLinearAlgebra
+import Pages.FunctionalLinearAlgebraMemoized
 import Pages.FunctionalLinearAlgebraWithTypes
 import Pages.GameOfLife
 import Pages.RecursionSchemes
@@ -41,6 +42,7 @@ pageList =
         , Pages.RecursionSchemes.article
         , Pages.FunctionalLinearAlgebra.article
         , Pages.FunctionalLinearAlgebraWithTypes.article
+        , Pages.FunctionalLinearAlgebraMemoized.article
         ]
 
 

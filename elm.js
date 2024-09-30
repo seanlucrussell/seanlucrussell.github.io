@@ -9204,7 +9204,7 @@ var $author$project$Pages$FunctionalLinearAlgebra$page = {
 					_List_Nil,
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text('Also we are going to do it in a super weird way. I’ve been thinking of a way to express linear algebra using a more functional style, something vaguely reminiscent of the church encoding for data. If you don’t know what that is don’t worry about it, you can look it up after reading. Not a prerequisite at all. I just mean that we are going to be using functions to represent data, in this case matrices and vectors, instead of using lists.')
+							$rtfeldman$elm_css$Html$Styled$text('Also we are going to do it in a super weird way. I’ve been thinking of a way to express linear algebra using a more functional style. Instead of using data to represent data, we are going to be using functions to represent data. Instead of using lists to encode matrices and vectors, we will use functions.')
 						])),
 					A2(
 					$rtfeldman$elm_css$Html$Styled$p,

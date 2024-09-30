@@ -10,7 +10,7 @@ date: 2024-09-15
 
 Today we are learning how to implement all the basic operations of linear algebra for ourselves! Why? Well I was trying to learn how to find eigenvalues of a matrix today but the computer I was working on didn't have numpy installed already and I was to lazy to set it up so I decided to implement all the linear algebra operations I needed from scratch. So now you are in this with me too.
 
-Also we are going to do it in a super weird way. I've been thinking of a way to express linear algebra using a more functional style, something vaguely reminiscent of the church encoding for data. If you don't know what that is don't worry about it, you can look it up after reading. Not a prerequisite at all. I just mean that we are going to be using functions to represent data, in this case matrices and vectors, instead of using lists.
+Also we are going to do it in a super weird way. I've been thinking of a way to express linear algebra using a more functional style. Instead of using data to represent data, we are going to be using functions to represent data. Instead of using lists to encode matrices and vectors, we will use functions.
 
 I don't feel like delaying the big reveal, so here is the code.
 

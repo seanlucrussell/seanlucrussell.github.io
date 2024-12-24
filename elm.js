@@ -8974,6 +8974,15 @@ var $elm$time$Time$Zone = F2(
 		return {$: 0, a: a, b: b};
 	});
 var $elm$time$Time$utc = A2($elm$time$Time$Zone, 0, _List_Nil);
+var $author$project$Pages$DiyPatternMatching$article = {
+	cN: 'DiyPatternMatching',
+	cV: '/DIYPTRNMATCH',
+	b_: A2(
+		$justinmimbs$date$Date$fromPosix,
+		$elm$time$Time$utc,
+		$elm$time$Time$millisToPosix(1735066800000)),
+	c0: 'DIY Pattern Matching'
+};
 var $author$project$Pages$FunctionalLinearAlgebra$article = {
 	cN: 'FunctionalLinearAlgebra',
 	cV: '/FNLINALG',
@@ -9042,7 +9051,7 @@ var $author$project$Pages$Navigation$pageList = A2(
 			return A2($justinmimbs$date$Date$compare, s.b_, r.b_);
 		}),
 	_List_fromArray(
-		[$author$project$Pages$TheGutsOfGit$article, $author$project$Pages$GameOfLife$article, $author$project$Pages$RecursionSchemes$article, $author$project$Pages$FunctionalLinearAlgebra$article, $author$project$Pages$FunctionalLinearAlgebraWithTypes$article, $author$project$Pages$FunctionalLinearAlgebraMemoized$article]));
+		[$author$project$Pages$TheGutsOfGit$article, $author$project$Pages$GameOfLife$article, $author$project$Pages$RecursionSchemes$article, $author$project$Pages$DiyPatternMatching$article, $author$project$Pages$FunctionalLinearAlgebra$article, $author$project$Pages$FunctionalLinearAlgebraWithTypes$article, $author$project$Pages$FunctionalLinearAlgebraMemoized$article]));
 var $rtfeldman$elm_css$Html$Styled$table = $rtfeldman$elm_css$Html$Styled$node('table');
 var $author$project$Pages$Navigation$navigationPage = A2(
 	$rtfeldman$elm_css$Html$Styled$article,
@@ -9109,15 +9118,6 @@ var $author$project$Pages$Navigation$navigationPage = A2(
 				]),
 			A2($elm$core$List$map, $author$project$Pages$Navigation$navRow, $author$project$Pages$Navigation$pageList))
 		]));
-var $rtfeldman$elm_css$VirtualDom$Styled$attribute = F2(
-	function (key, value) {
-		return A3(
-			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
-			A2($elm$virtual_dom$VirtualDom$attribute, key, value),
-			false,
-			'');
-	});
-var $rtfeldman$elm_css$Html$Styled$Attributes$attribute = $rtfeldman$elm_css$VirtualDom$Styled$attribute;
 var $rtfeldman$elm_css$Html$Styled$i = $rtfeldman$elm_css$Html$Styled$node('i');
 var $author$project$Components$date = function (d) {
 	return A2(
@@ -9160,8 +9160,613 @@ var $author$project$Components$blogHeading = F2(
 					$author$project$Components$date(publicationDate)
 				]));
 	});
-var $elm$json$Json$Encode$bool = _Json_wrap;
 var $rtfeldman$elm_css$Html$Styled$code = $rtfeldman$elm_css$Html$Styled$node('code');
+var $rtfeldman$elm_css$Html$Styled$li = $rtfeldman$elm_css$Html$Styled$node('li');
+var $rtfeldman$elm_css$Html$Styled$ol = $rtfeldman$elm_css$Html$Styled$node('ol');
+var $rtfeldman$elm_css$Html$Styled$pre = $rtfeldman$elm_css$Html$Styled$node('pre');
+var $author$project$Pages$DiyPatternMatching$page = {
+	c1: F2(
+		function (_v0, model) {
+			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}),
+	c4: function (_v1) {
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$article,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$author$project$Components$blogHeading,
+					$rtfeldman$elm_css$Html$Styled$text('DIY Pattern Matching'),
+					$author$project$Pages$DiyPatternMatching$article.b_),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Today I’m going to tell you about the coolest thing I’ve discovered in the last year.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Algebraic data types with pattern matching are one of the best language features out there right now. They make Rust and Haskell really easy to use. They make it easy to manage error handling, partial functions, embedded DSLs, any kind of tree data, complex control flow, and so much more. Once you rewire your brain to think in terms of ADTs you won’t wanna go back.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Unfortunately, you will have to go back. You will inevitably find yourself having to write programs in languages that do not natively support pattern matching. Tragic.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Except. And this is what I discovered recently. Quite a lot of languages actually support a DIY style of pattern matching. You can implement your own data types in just a few lines of code. And a LOT of languages let you do this. In fact any language that supports both')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$ol,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('First class functions')
+								])),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$li,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Records (aka tables, objects, dictionaries)')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('then you can build your own pattern matching. The languages that have these features are many. I’ve confirmed this trick works in Python, Lua, Ruby, Clojure, Perl, and, funnily enough, Elm. It is easy to use and looks really clean.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Lets see how to do a simple example in Javascript. Suppose we want to implement the Maybe datatype to make a safe division function. Since it really doesn’t require that much code, I’ll just show you the full thing and we will walk through it step-by-step')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('const Just = x => handler => handler.Just(x);\nconst Nothing = handler => handler.Nothing;\n\nconst match = (value, handler) => value(handler);\n\nfunction safeDivide(numerator, denominator) {\n    return denominator === 0 ? Nothing : Just(numerator / denominator);\n}\n\nfunction displayResult(maybeValue) {\n  const extractedValue = match(maybeValue, {\n    Just: result => `Result of division is ${result}`,\n    Nothing: `Handled divide by zero error`\n  });\n  console.log(extractedValue);\n}\n\nconst badDivision = safeDivide(5,0);\nconst goodDivision = safeDivide(22, 7);\n\ndisplayResult(badDivision);\ndisplayResult(goodDivision);')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('That’s the whole thing. You can paste it into node or your browser console and run it and you will see the output')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Handled divide by zero error\nResult of division is 3.142857142857143')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Pretty neat. So what is going on here?')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The first two lines define our data type constructors. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' has two arguments in curried form, and '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Nothing')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' has one. The final argument for both is the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('handler')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. We think of the value of a type '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Maybe')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' as this later half of this: a '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Maybe')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' value is a function that takes a handler as input and does something with it. What something? Well both '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Maybe')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' use the handler as an object, and between them the object has a field '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Nothing')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and a field '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' seems to store a function that takes a single argument as input, while '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Nothing')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' could be any value.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('For an example, suppose we were to construct a value of '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just(5)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. What would we get? A new value, '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('handler => handler.Just(5)')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. This is a function that takes an object that has a field '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' contains a function, and we pass '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('handler.Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' the value 5.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('FYI if this seems majorly confusing don’t worry. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Nothing')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', as keywords, are getting used in both the handler and the constructor. This is to make everything look nice when we are using them for programming, but it can make the comprehension a little bit challenging.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The third line, '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('match')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', is syntax sugar to make pattern matching plesant. A '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('maybe')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' value is a function from a handler to some data. '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('match')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' hides that weird detail from the user and does the calling for us.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('In '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('safeDivide')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' we get to the first usage of our data types. If you are at all familiar with algebraic data then this will be easy. Using a ternary operator, we check if the denominator is zero. If it is we return '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Nothing')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', if it isn’t we return the result of division wrapped in a '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Likewise '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('displayResult')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' is a very standard use of algebraic data. We pattern match on '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('maybeValue')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' and handle the two cases: where the value contains '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Just')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' some data and where the value contains '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Nothing')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('. This will look pretty familiar at a casual reading, but there are some mild differences.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('The handler is an object. It is an object with two labels representing the two cases. So overall the handler looks like '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('{ Just: ..., Nothing: ... }')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' with relevant data. This is slightly different from traditional pattern matching. We don’t do destructuring in the pattern match on the labels. Instead we emulate destructuring by writing the appropriate functions. This is almost like using a continuation passing style, if that helps with intuition. We \"'),
+							$rtfeldman$elm_css$Html$Styled$text('destructure'),
+							$rtfeldman$elm_css$Html$Styled$text('\" by writing a continuation.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Okay so we’ve got this basic setup. Let us manually run through the examples to see what happens. I’m going to be super verbose and manually walk through the evaluations of the '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('goodDivision')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' code. The '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('badDivision')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' execution trace is left as an exercise for the reader.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('goodDivision = safeDivide(22,7);\n// inline safeDivide\ngoodDivision = 0 === 0 ? Nothing : Just(22/7);\n// evaluate ternary expression\ngoodDivision = Just(22/7);\n// inline definition of Nothing\ngoodDivision = handler => handler.Just(22/7);')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Now we have the value of '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('goodDivision')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(', lets pass it to '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('displayResult')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('displayResult(goodDivision);\n\n// inline displayResult\nconst extractedValue = match(goodDivision, {\n  Just: result => `Result of division is ${result}`,\n  Nothing: `Handled divide by zero error`\n});\nconsole.log(extractedValue);\n\n// inline match\nconst extractedValue = goodDivision({\n  Just: result => `Result of division is ${result}`,\n  Nothing: `Handled divide by zero error`\n});\nconsole.log(extractedValue);\n\n// inline definition of badDivision\nconst extractedValue = (handler => handler.Just(22/7)) ({\n  Just: result => `Result of division is ${result}`,\n  Nothing: `Handled divide by zero error`\n});\nconsole.log(extractedValue);\n\n// evaluate function call\nconst extractedValue = ({\n  Just: result => `Result of division is ${result}`,\n  Nothing: `Handled divide by zero error`\n}.Just)(22/7);\nconsole.log(extractedValue);\n\n// execute field lookup\nconst extractedValue = (result => `Result of division is ${result}`)(22/7);\nconsole.log(extractedValue);\n\n// evaluate function call\nconst extractedValue = `Result of division is ${22/7}`;\nconsole.log(extractedValue);\n\n// print to console\nconsole.log(`Result of division is ${22/7}`);')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('We did the division safely and everyone is happy.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('This idea is by no means limited to '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('Maybe')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' types either. All sorts of algebraic data can be encoded with this pattern. For example, lets look at embedding a simple arithmetic language with addition, multiplication, numeric literals, equality tests, and branching.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('const Add = (x,y) => handler => handler.Add(x,y);\nconst Multiply = (x,y) => handler => handler.Multiply(x,y);\nconst Literal = x => handler => handler.Literal(x);\nconst Equal = (x,y) => handler => handler.Equal(x,y);\nconst Cond = (condition,x,y) => handler => handler.Cond(condition,x,y);')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('There we go. New data type built. We don’t have to define a new '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('match')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' function because '),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('match')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text(' was always generic. And now we can write a pretty printer')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('function prettyPrint(expression) {\n  return match(expression, {\n    Add: (x,y) => \"(\" + prettyPrint(x) + \"+\" + prettyPrint(y) + \")\",\n    Multiply: (x,y) => \"(\" + prettyPrint(x) + \"*\" + prettyPrint(y) + \")\",\n    Literal: x => x.toString(),\n    Equal: (x,y) => \"(\" + prettyPrint(x) + \"==\" + prettyPrint(y) + \")\",\n    Cond: (condition,x,y) => \"(if \" + prettyPrint(condition) + \" then \" + prettyPrint(x) + \" else \" + prettyPrint(y) + \")\"\n  });\n}')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('and use it')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$pre,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$code,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('prettyPrint(\n  Cond(\n    Equal(\n      Literal(4),\n      Add(\n        Literal(2),\n        Literal(2))),\n    Literal(1),\n    Literal(0)));')
+								]))
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Now you know one of my better secrets. This pattern transports to all sorts of languages and all sorts of data types. You could write your own libraries using this stuff. You can cover the world in algebra.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('In fact that is what I hope you’ll do. Algebraic data types are one of the best features of modern languages. Since this trick lets us implement them in languages that don’t natively support them, we can spread the gospel of algebra to all those who haven’t yet heard the good word. Convert the unelightened. Remake the world into a new order.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Or you can just think of this as a neat trick.')
+						])),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$p,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('Up to you.')
+						]))
+				]));
+	}
+};
+var $rtfeldman$elm_css$VirtualDom$Styled$attribute = F2(
+	function (key, value) {
+		return A3(
+			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
+			A2($elm$virtual_dom$VirtualDom$attribute, key, value),
+			false,
+			'');
+	});
+var $rtfeldman$elm_css$Html$Styled$Attributes$attribute = $rtfeldman$elm_css$VirtualDom$Styled$attribute;
+var $elm$json$Json$Encode$bool = _Json_wrap;
 var $rtfeldman$elm_css$Html$Styled$em = $rtfeldman$elm_css$Html$Styled$node('em');
 var $elm$json$Json$Encode$object = function (pairs) {
 	return _Json_wrap(
@@ -9176,7 +9781,6 @@ var $elm$json$Json$Encode$object = function (pairs) {
 			_Json_emptyObject(0),
 			pairs));
 };
-var $rtfeldman$elm_css$Html$Styled$pre = $rtfeldman$elm_css$Html$Styled$node('pre');
 var $author$project$Pages$FunctionalLinearAlgebra$page = {
 	c1: F2(
 		function (_v0, model) {
@@ -10120,8 +10724,6 @@ var $author$project$Pages$FunctionalLinearAlgebraMemoized$page = {
 				]));
 	}
 };
-var $rtfeldman$elm_css$Html$Styled$li = $rtfeldman$elm_css$Html$Styled$node('li');
-var $rtfeldman$elm_css$Html$Styled$ol = $rtfeldman$elm_css$Html$Styled$node('ol');
 var $author$project$Pages$FunctionalLinearAlgebraWithTypes$page = {
 	c1: F2(
 		function (_v0, model) {
@@ -14781,6 +15383,8 @@ var $author$project$Sitewide$Routes$urlMap = function (s) {
 			return $author$project$Pages$FunctionalLinearAlgebraWithTypes$page;
 		case '/FNLINALGMEMO':
 			return $author$project$Pages$FunctionalLinearAlgebraMemoized$page;
+		case '/DIYPTRNMATCH':
+			return $author$project$Pages$DiyPatternMatching$page;
 		case '/TEST':
 			return $author$project$Pages$Test$page;
 		default:

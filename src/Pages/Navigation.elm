@@ -6,6 +6,7 @@ import Date exposing (Date, format)
 import Html.Styled exposing (Html, a, article, h2, p, table, td, text, tr)
 import Html.Styled.Attributes exposing (css, href, style)
 import List exposing (map, sortWith)
+import Pages.DiyPatternMatching
 import Pages.FunctionalLinearAlgebra
 import Pages.FunctionalLinearAlgebraMemoized
 import Pages.FunctionalLinearAlgebraWithTypes
@@ -40,6 +41,7 @@ pageList =
         [ Pages.TheGutsOfGit.article
         , Pages.GameOfLife.article
         , Pages.RecursionSchemes.article
+        , Pages.DiyPatternMatching.article
         , Pages.FunctionalLinearAlgebra.article
         , Pages.FunctionalLinearAlgebraWithTypes.article
         , Pages.FunctionalLinearAlgebraMemoized.article

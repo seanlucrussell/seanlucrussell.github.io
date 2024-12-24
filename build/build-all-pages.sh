@@ -6,3 +6,4 @@ pandoc -t build/pandoc-build-page-from-markdown.lua pages/recursion-schemes.md >
 pandoc -t build/pandoc-build-page-from-markdown.lua pages/functional-linear-algebra.md > src/Pages/FunctionalLinearAlgebra.elm
 pandoc -t build/pandoc-build-page-from-markdown.lua pages/functional-linear-algebra-with-types.md > src/Pages/FunctionalLinearAlgebraWithTypes.elm
 pandoc -t build/pandoc-build-page-from-markdown.lua pages/functional-linear-algebra-memoized.md > src/Pages/FunctionalLinearAlgebraMemoized.elm
+pandoc -t build/pandoc-build-page-from-markdown.lua pages/diy-pattern-matching.md > src/Pages/DiyPatternMatching.elm

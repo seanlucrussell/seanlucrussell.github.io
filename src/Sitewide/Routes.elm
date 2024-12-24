@@ -1,6 +1,7 @@
 module Sitewide.Routes exposing (..)
 
 import Html.Styled exposing (Html)
+import Pages.DiyPatternMatching
 import Pages.FunctionalLinearAlgebra
 import Pages.FunctionalLinearAlgebraMemoized
 import Pages.FunctionalLinearAlgebraWithTypes
@@ -45,6 +46,9 @@ urlMap s =
 
         "/FNLINALGMEMO" ->
             Pages.FunctionalLinearAlgebraMemoized.page
+
+        "/DIYPTRNMATCH" ->
+            Pages.DiyPatternMatching.page
 
         "/TEST" ->
             Pages.Test.page
